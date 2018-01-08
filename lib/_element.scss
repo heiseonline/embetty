@@ -1,0 +1,10 @@
+@import './vars';
+
+:host {
+  width: 100%;
+  display: block;
+  font-family: var(--embetty-font-family, $embetty-font-family);
+  border: 1px solid var(--embetty-border-color, $embetty-border-color);
+  border-width: 1px;
+  border-radius: 4px;
+}
