@@ -1,0 +1,41 @@
+{
+  "statusCode": 200,
+  "body": {
+    "type": "Buffer",
+    "data": [
+      66,
+      117,
+      102,
+      102,
+      101,
+      114,
+      58,
+      32,
+      111,
+      107
+    ]
+  },
+  "headers": {
+    "date": "Thu, 14 Dec 2017 14:51:29 GMT",
+    "connection": "close",
+    "content-length": "10"
+  },
+  "request": {
+    "uri": {
+      "protocol": "http:",
+      "slashes": true,
+      "auth": null,
+      "host": "[::]:61152",
+      "port": "61152",
+      "hostname": "::",
+      "hash": null,
+      "search": null,
+      "query": null,
+      "pathname": "/buffer",
+      "path": "/buffer",
+      "href": "http://[::]:61152/buffer"
+    },
+    "method": "GET",
+    "headers": {}
+  }
+}
