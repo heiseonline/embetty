@@ -31,3 +31,7 @@ $ yarn start
 ```sh
 $ yarn test
 ```
+
+# License
+
+embetty-server is [MIT licensed](./LICENSE).
