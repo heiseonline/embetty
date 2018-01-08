@@ -1,0 +1,79 @@
+{
+  "statusCode": 200,
+  "body": [
+    {
+      "id": 223099532,
+      "title": "Wie geht eigentlich Softwareentwicklung? (Golo Roden) - enterJS 2017",
+      "description": "Viele Teams und Unternehmen streben nach einem modernen Entwicklungsprozess. Leider mangelt es jedoch häufig an Wissen und Erfahrung, wie ein solcher im Detail funktioniert. Übrig bleiben viele Fragen: Wie wichtig ist das Verwenden von Feature-Branches? Wie steht es um Continuous-Deployment? Welche Rolle spielt die Cloud? Und Kanban? Alle diese Fragen beantwortet Golo Roden in dieser Session. Er fügt die vielen kleinen Puzzleteile zu einem großen Bild zusammen und erklärt, wie ein moderner Softwareentwicklungsprozess aussieht, wie man ihn umsetzt, und worauf es dabei zu achten gilt.",
+      "url": "https://vimeo.com/223099532",
+      "upload_date": "2017-06-26 04:14:47",
+      "thumbnail_small": "http://i.vimeocdn.com/video/642067351_100x75.jpg",
+      "thumbnail_medium": "http://i.vimeocdn.com/video/642067351_200x150.jpg",
+      "thumbnail_large": "http://i.vimeocdn.com/video/642067351_640.jpg",
+      "user_id": 46149333,
+      "user_name": "dpunkt.verlag",
+      "user_url": "https://vimeo.com/dpunkt",
+      "user_portrait_small": "http://i.vimeocdn.com/portrait/10724278_30x30",
+      "user_portrait_medium": "http://i.vimeocdn.com/portrait/10724278_75x75",
+      "user_portrait_large": "http://i.vimeocdn.com/portrait/10724278_100x100",
+      "user_portrait_huge": "http://i.vimeocdn.com/portrait/10724278_300x300",
+      "duration": 2840,
+      "width": 1280,
+      "height": 720,
+      "tags": "dpunkt, enterJS, javascript",
+      "embed_privacy": "approved"
+    }
+  ],
+  "headers": {
+    "server": "nginx",
+    "content-type": "application/json",
+    "access-control-allow-origin": "*",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "sameorigin",
+    "x-ratelimit-limit": "3600",
+    "x-ratelimit-remaining": "3585",
+    "x-ratelimit-reset": "1513266496",
+    "content-disposition": "attachment; filename=vimeo.json",
+    "cache-control": "max-age=60",
+    "expires": "Thu, 14 Dec 2017 14:56:49 GMT",
+    "last-modified": "Tue, 05 Dec 2017 19:26:49 GMT",
+    "etag": "\"66d2f811458ab57048241b0fa089bf98\"",
+    "x-ua-compatible": "IE=edge",
+    "x-xss-protection": "1; mode=block",
+    "strict-transport-security": "max-age=15552000; includeSubDomains; preload",
+    "content-security-policy-report-only": "default-src https: data: blob: 'unsafe-inline' 'unsafe-eval'; report-uri /_csp",
+    "via": "1.1 varnish, 1.1 varnish",
+    "fastly-debug-digest": "b57614739aa9e842adc734c4c1c17b475a0f91066f72d41d6c61fcf33c64b8f4",
+    "content-length": "1515",
+    "accept-ranges": "bytes",
+    "date": "Thu, 14 Dec 2017 14:55:49 GMT",
+    "age": "0",
+    "connection": "close",
+    "x-served-by": "cache-iad2143-IAD, cache-fra1246-FRA",
+    "x-cache": "MISS, MISS",
+    "x-cache-hits": "0, 0",
+    "x-timer": "S1513263349.453589,VS0,VE114",
+    "vary": "User-Agent,Accept-Encoding"
+  },
+  "request": {
+    "uri": {
+      "protocol": "http:",
+      "slashes": true,
+      "auth": null,
+      "host": "vimeo.com",
+      "port": 80,
+      "hostname": "vimeo.com",
+      "hash": null,
+      "search": null,
+      "query": null,
+      "pathname": "/api/v2/video/223099532.json",
+      "path": "/api/v2/video/223099532.json",
+      "href": "http://vimeo.com/api/v2/video/223099532.json"
+    },
+    "method": "GET",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+      "accept": "application/json"
+    }
+  }
+}

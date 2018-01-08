@@ -1,0 +1,28 @@
+{
+  "name": "@heise/embetty-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:heiseonline/embetty-server.git",
+  "author": "Philipp Busse <pmb@heise.de>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "NODE_ENV=test mocha --bail --check-leaks"
+  },
+  "devDependencies": {
+    "@heise/request-promise-native-record": "^1.0.1",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "@heise/embetty-base": "../embetty-base",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "morgan": "~1.9.0"
+  }
+}
