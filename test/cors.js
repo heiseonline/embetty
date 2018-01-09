@@ -40,4 +40,12 @@ describe('CORS', () => {
       .set('Origin', 'http://c.example.com')
     assert.equal(response3.status, 403)
   })
+
+  it('should support "*" origin', async () => {
+    process.env.VALID_ORIGINS = '*'
+    const response = await request(app)
+      .get('/')
+      .set('Origin', 'http://example.com')
+    assert.equal(response.status, 404)
+  })
 })
