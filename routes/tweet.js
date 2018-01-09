@@ -18,7 +18,7 @@ router.param('number', (req, res, next, number) => {
   next()
 })
 
-router.get('/:id/profile-image', async (req, res, next) => {
+router.get('/:id-profile-image', async (req, res, next) => {
   try {
     const image = await req.tweet.getProfileImage()
     if (!image) return next(NotFound)
@@ -29,7 +29,7 @@ router.get('/:id/profile-image', async (req, res, next) => {
   }
 })
 
-router.get('/:id/link-image', async (req, res, next) => {
+router.get('/:id-link-image', async (req, res, next) => {
   try {
     const image = await req.tweet.getLinkImage()
     if (!image) return next(NotFound)
@@ -40,7 +40,7 @@ router.get('/:id/link-image', async (req, res, next) => {
   }
 })
 
-router.get('/:id/images/:number', async (req, res, next) => {
+router.get('/:id-images-:number', async (req, res, next) => {
   try {
     const image = await req.tweet.getImage(req.params.number)
     if (!image) return next(NotFound)

@@ -33,21 +33,21 @@ describe('Tweet', () => {
     assert.equal(response.body.id_str, Tweets.s200)
   })
 
-  it('/tweet/:id/profile-image => 404', async () => {
+  it('/tweet/:id-profile-image => 404', async () => {
     await request(app)
       .get(`/tweet/${Tweets.s404}/profile-image`)
       .expect(404)
   })
 
-  it('/tweet/:id/profile-image => 400', async () => {
+  it('/tweet/:id-profile-image => 400', async () => {
     await request(app)
-      .get(`/tweet/${Tweets.s400}/profile-image`)
+      .get(`/tweet/${Tweets.s400}-profile-image`)
       .expect(400)
   })
 
-  it('/tweet/:id/profile-image => 200', async () => {
+  it('/tweet/:id-profile-image => 200', async () => {
     const response = await request(app)
-      .get(`/tweet/${Tweets.s200}/profile-image`)
+      .get(`/tweet/${Tweets.s200}-profile-image`)
       .expect('Content-Type', /png/)
       .expect(200)
 
@@ -57,21 +57,21 @@ describe('Tweet', () => {
     assert.equal(response.headers['content-length'], imageLength)
   })
 
-  it('/tweet/:id/images/:number => 400', async () => {
+  it('/tweet/:id-images-:number => 400', async () => {
     await request(app)
-      .get(`/tweet/${Tweets.s200}/images/abc`)
+      .get(`/tweet/${Tweets.s200}-images-abc`)
       .expect(400)
   })
 
-  it('/tweet/:id/images/:number => 404', async () => {
+  it('/tweet/:id-images-:number => 404', async () => {
     await request(app)
-      .get(`/tweet/${Tweets.s200}/images/99`)
+      .get(`/tweet/${Tweets.s200}-images-99`)
       .expect(404)
   })
 
-  it('/tweet/:id/images/:number => 200', async () => {
+  it('/tweet/:id-images-:number => 200', async () => {
     const response = await request(app)
-      .get(`/tweet/${Tweets.s200}/images/0`)
+      .get(`/tweet/${Tweets.s200}-images-0`)
       .expect('Content-Type', /jpeg/)
       .expect(200)
 
@@ -81,9 +81,9 @@ describe('Tweet', () => {
     assert.equal(response.headers['content-length'], imageLength)
   })
 
-  it('/tweet/:id/link-image => 200', async () => {
+  it('/tweet/:id-link-image => 200', async () => {
     const response = await request(app)
-      .get('/tweet/934386458852495360/link-image')
+      .get('/tweet/934386458852495360-link-image')
       .expect('Content-Type', /jpeg/)
       .expect(200)
 
@@ -93,9 +93,9 @@ describe('Tweet', () => {
     assert.equal(response.headers['content-length'], imageLength)
   })
 
-  it('/tweet/:id/link-image => 404', async () => {
+  it('/tweet/:id-link-image => 404', async () => {
     await request(app)
-      .get(`/tweet/${Tweets.s200}/link-image`)
+      .get(`/tweet/${Tweets.s200}-link-image`)
       .expect(404)
   })
 })

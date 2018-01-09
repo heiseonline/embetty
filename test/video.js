@@ -16,7 +16,7 @@ describe('Video', () => {
 
     it('should provide the poster image', async () => {
       const response = await request(app)
-        .get('/video/youtube/m6UOo2YGbIE/poster-image')
+        .get('/video/youtube/m6UOo2YGbIE-poster-image')
         .expect('Content-Type', /jpeg/)
         .expect(200)
 
@@ -42,7 +42,7 @@ describe('Video', () => {
 
     it('should provide the poster image', async () => {
       const response = await request(app)
-        .get('/video/vimeo/223099532/poster-image')
+        .get('/video/vimeo/223099532-poster-image')
         .expect('Content-Type', /jpeg/)
         .expect(200)
 
@@ -68,7 +68,7 @@ describe('Video', () => {
 
     it('should provide the poster image', async () => {
       const response = await request(app)
-        .get('/video/facebook/10156049485672318/poster-image')
+        .get('/video/facebook/10156049485672318-poster-image')
         .expect('Content-Type', /jpeg/)
         .expect(200)
 

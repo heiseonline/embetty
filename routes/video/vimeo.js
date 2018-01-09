@@ -13,7 +13,7 @@ router.param('id', async (req, res, next, id) => {
   }
 })
 
-router.get('/:id/poster-image', async (req, res, next) => {
+router.get('/:id-poster-image', async (req, res, next) => {
   try {
     const {data, type} = await req.video.getPosterImage()
     if (!data) return next()
