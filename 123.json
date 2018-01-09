@@ -1,0 +1,31 @@
+{
+  "created_at": "Sat Nov 25 11:41:06 +0000 2017",
+  "id": 934386458852495400,
+  "id_str": "934386458852495360",
+  "full_text": "\"Flache Erde\"-Tüftler verschiebt Raketenflug https://t.co/JPwcswQaMI #Maker",
+  "truncated": false,
+  "display_text_range": [
+    0,
+    75
+  ],
+  "entities": {
+    "hashtags": [{
+      "text": "Maker",
+      "indices": [
+        69,
+        75
+      ]
+    }],
+    "symbols": [],
+    "user_mentions": [],
+    "urls": [{
+      "url": "https://t.co/JPwcswQaMI",
+      "expanded_url": "https://www.heise.de/newsticker/meldung/Flache-Erde-Tueftler-verschiebt-Raketenflug-3901531.html",
+      "display_url": "heise.de/newsticker/mel…",
+      "indices": [
+        45,
+        68
+      ]
+    }]
+  }
+}
