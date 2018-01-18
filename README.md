@@ -34,7 +34,7 @@ Currently, tweets and various video platforms are supported.
 Use the `status` attribute to embed a tweet with its tweet ID. Example:
 
 ```html
-<embetty-video type="vimeo" video-id="223099532"></embetty-video>
+<embetty-tweet status="950371792874557440"></embetty-tweet>
 ```
 
 ### Video
