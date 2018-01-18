@@ -4,6 +4,7 @@
   <img alt="Embetty" src="assets/embetty.png" width="360">
 </p>
 
+Embetty displays remote content like tweets or YouTube videos without compromising your privacy.
 
 ## Quick Start
 
