@@ -1,0 +1,29 @@
+{
+  "name": "@heise/embetty-base",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
+    "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
+  },
+  "dependencies": {
+    "@heise/request-promise-native-record": "^1.0.1",
+    "cheerio": "^1.0.0-rc.2",
+    "content-type": "^1.0.4",
+    "debug": "^3.1.0",
+    "ioredis": "^3.2.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.0.0",
+    "nock": "^9.1.0"
+  }
+}
