@@ -1,5 +1,10 @@
 # embetty · [![Build Status](https://travis-ci.org/heiseonline/embetty-server.svg?branch=master)](https://travis-ci.org/heiseonline/embetty) [![Greenkeeper badge](https://badges.greenkeeper.io/heiseonline/embetty.svg)](https://greenkeeper.io/) [![Dependency Status](https://img.shields.io/david/heiseonline/embetty.svg?style=flat-square)](https://david-dm.org/heiseonline/embetty) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+<p align="center">
+  <img alt="Embetty" src="assets/embetty.png" width="360">
+</p>
+
+
 ## Quick Start
 
 1. Setup your [embetty-server](https://github.com/heiseonline/embetty-server).
