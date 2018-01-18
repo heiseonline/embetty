@@ -2,8 +2,9 @@
 # yarn lockfile v1
 
 
-"@heise/embetty-base@../embetty-base":
-  version "0.0.0"
+"@heise/embetty-base@^1.0.0-beta.2":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@heise/embetty-base/-/embetty-base-1.0.0-beta.2.tgz#f388118cb5f8e47064d22e95f7cdfc574e0815b5"
   dependencies:
     "@heise/request-promise-native-record" "^1.0.1"
     cheerio "^1.0.0-rc.2"

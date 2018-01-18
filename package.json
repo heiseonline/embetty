@@ -18,7 +18,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
-    "@heise/embetty-base": "../embetty-base",
+    "@heise/embetty-base": "^1.0.0-beta.2",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
     "express": "^4.16.2",
