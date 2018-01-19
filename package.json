@@ -7,6 +7,10 @@
     "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
     "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
   "dependencies": {
     "@heise/request-promise-native-record": "^1.0.1",
     "cheerio": "^1.0.0-rc.2",
