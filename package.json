@@ -11,6 +11,10 @@
     "dev": "nodemon ./bin/www",
     "test": "NODE_ENV=test mocha --bail --check-leaks"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
   "devDependencies": {
     "@heise/request-promise-native-record": "^1.0.1",
     "mocha": "^4.0.1",
