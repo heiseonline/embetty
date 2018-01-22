@@ -51,6 +51,17 @@ const download = async (baseDir, url) => {
   page.on('request', request => { urls.push(request.url()) })
 
   await page.goto(url, {waitUntil: 'networkidle0'})
+  await page.evaluate(() => {
+    window.scrollBy(0, document.body.scrollHeight)
+    // return Promise.all(
+    //   [...document.querySelectorAll('embetty-tweet,embetty-video')]
+    //     .map(element => {
+    //       return new Promise(resolve => element.on('initialized', resolve))
+    //     })
+    // )
+    return new Promise(resolve => setTimeout(resolve, 3000))
+  })
+
   await Promise.all(urls.map(url => downloadAsset(url, baseDir)))
   await browser.close()
 }
