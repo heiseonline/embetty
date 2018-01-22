@@ -14,8 +14,13 @@
     "name": "Philipp Busse",
     "email": "pmb@heise.de"
   },
+  "contributors": [
+    {
+      "name": "Jan Hofmann",
+      "email": "jah@heise.de"
+    }
+  ],
   "homepage": "https://github.com/heiseonline/embetty",
-  "contributors": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/heiseonline/embetty"
