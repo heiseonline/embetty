@@ -25,4 +25,8 @@ router.use(cors({
 router.use('/tweet', tweet)
 router.use('/video', video)
 
+router.get('/version', (req, res) => {
+  res.send(require('../package.json').version)
+})
+
 module.exports = router
