@@ -1,4 +1,5 @@
 dist
+.gh-pages
 .vscode
 /node_modules
 /public/hot
