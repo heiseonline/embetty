@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
-    "build:gh-pages": "./gh-pages.js",
+    "build:gh-pages": "rm -fr .gh-pages && ./gh-pages.js",
+    "deploy:gh-pages": "yarn build:gh-pages && gh-pages -d .gh-pages",
     "dev": "./dev-server.js",
     "watch": "karma start",
     "test": "karma start --single-run"

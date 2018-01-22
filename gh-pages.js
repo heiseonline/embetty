@@ -5,7 +5,6 @@ const config = require('./webpack.config')
 const Embetty = require('@heise/embetty-base')
 const embettyRoutes = require('@heise/embetty-server/routes')
 const fs = require('fs-extra')
-const ghpages = require('gh-pages')
 const path = require('path')
 const puppeteer = require('puppeteer')
 const request = require('request-promise-native')
@@ -62,7 +61,6 @@ const main = async () => {
   await download(baseDir, `${url}/index.html`)
   await download(baseDir, `${url}/tweet.html`)
   await download(baseDir, `${url}/video.html`)
-  await ghpages.publish(baseDir)
   process.exit(0)
 }
 
