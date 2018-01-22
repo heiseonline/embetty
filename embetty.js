@@ -1,5 +1,5 @@
 /*!
- * @heise/embetty - v0.0.0 - Mon, 22 Jan 2018 10:22:11 GMT
+ * @heise/embetty - v0.0.0 - Mon, 22 Jan 2018 10:28:36 GMT
  * https://github.com/heiseonline/embetty
  * Copyright (c) 2018 Philipp Busse, 
  * Licensed under the MIT license
