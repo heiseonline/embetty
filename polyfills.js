@@ -6,3 +6,4 @@ try {
 } catch (error) {}
 
 require('@webcomponents/webcomponentsjs')
+require('intersection-observer')
