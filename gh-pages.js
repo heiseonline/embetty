@@ -12,6 +12,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 const createServer = config => new Promise((resolve, reject) => {
+  config.devtool = 'none'
   const compiler = webpack(config, (err, stats) => {
     if (err) return reject(err)
 
