@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
-    "dev": "./dev-server",
+    "dev": "./dev-server.js",
     "watch": "karma start",
     "test": "karma start --single-run"
   },
