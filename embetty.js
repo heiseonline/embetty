@@ -1,5 +1,5 @@
 /*!
- * @heise/embetty - v0.0.0 - Tue, 23 Jan 2018 10:35:49 GMT
+ * @heise/embetty - v0.0.0 - Tue, 23 Jan 2018 10:59:45 GMT
  * https://github.com/heiseonline/embetty
  * Copyright (c) 2018 Heise Medien GmbH & Co. KG
  * Contributors: Philipp Busse, Jan Hofmann, Alexander Pluhar
@@ -13671,6 +13671,11 @@ var Tweet = function (_Observable) {
         last = p.innerText;
         p.innerText = p.innerText.replace(/\W*\s(\S)*$/, '') + '…';
       }
+    }
+  }, {
+    key: 'answeredTweets',
+    get: function get() {
+      return this.shadowRoot.querySelectorAll('embetty-tweet');
     }
   }, {
     key: 'url',
