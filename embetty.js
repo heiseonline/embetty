@@ -1,7 +1,8 @@
 /*!
- * @heise/embetty - v0.0.0 - Mon, 22 Jan 2018 16:37:54 GMT
+ * @heise/embetty - v0.0.0 - Tue, 23 Jan 2018 10:35:49 GMT
  * https://github.com/heiseonline/embetty
- * Copyright (c) 2018 Philipp Busse, Jan Hofmann
+ * Copyright (c) 2018 Heise Medien GmbH & Co. KG
+ * Contributors: Philipp Busse, Jan Hofmann, Alexander Pluhar
  * Licensed under the MIT license
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -4389,66 +4390,85 @@ exports.default = function (Base) {
 
     _createClass(Observable, [{
       key: 'connectedCallback',
-      value: function connectedCallback() {
-        var _this2 = this;
+      value: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+          var _this2 = this;
 
-        var observer = new window.IntersectionObserver(function () {
-          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref) {
-            var _ref3 = _slicedToArray(_ref, 1),
-                entry = _ref3[0];
+          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _get(Observable.prototype.__proto__ || Object.getPrototypeOf(Observable.prototype), 'connectedCallback', this).call(this);
 
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    if (_this2.isVisible()) {
-                      _context.next = 2;
-                      break;
-                    }
+                  new window.IntersectionObserver(function () {
+                    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref2) {
+                      var _ref4 = _slicedToArray(_ref2, 1),
+                          entry = _ref4[0];
 
-                    return _context.abrupt('return');
+                      return regeneratorRuntime.wrap(function _callee$(_context) {
+                        while (1) {
+                          switch (_context.prev = _context.next) {
+                            case 0:
+                              if (_this2.isVisible()) {
+                                _context.next = 2;
+                                break;
+                              }
 
-                  case 2:
-                    if (!(entry.intersectionRatio === 0)) {
-                      _context.next = 4;
-                      break;
-                    }
+                              return _context.abrupt('return');
 
-                    return _context.abrupt('return');
+                            case 2:
+                              if (!(entry.intersectionRatio === 0)) {
+                                _context.next = 4;
+                                break;
+                              }
 
-                  case 4:
-                    if (!_this2.initialized) {
-                      _context.next = 6;
-                      break;
-                    }
+                              return _context.abrupt('return');
 
-                    return _context.abrupt('return');
+                            case 4:
+                              if (!_this2.initialized) {
+                                _context.next = 6;
+                                break;
+                              }
 
-                  case 6:
+                              return _context.abrupt('return');
 
-                    _this2.initialized = true;
-                    _context.next = 9;
-                    return _this2.becomesVisible(entry);
+                            case 6:
 
-                  case 9:
-                  case 'end':
-                    return _context.stop();
-                }
+                              _this2.initialized = true;
+                              _context.next = 9;
+                              return _this2.becomesVisible(entry);
+
+                            case 9:
+                            case 'end':
+                              return _context.stop();
+                          }
+                        }
+                      }, _callee, _this2);
+                    }));
+
+                    return function (_x) {
+                      return _ref3.apply(this, arguments);
+                    };
+                  }(), {
+                    root: this.observableRoot || null,
+                    rootMargin: this.observableRootMargin || '0px 0px 10% 0px',
+                    threshold: this.observableRootThreshold || 0
+                  }).observe(this);
+
+                case 2:
+                case 'end':
+                  return _context2.stop();
               }
-            }, _callee, _this2);
-          }));
+            }
+          }, _callee2, this);
+        }));
 
-          return function (_x) {
-            return _ref2.apply(this, arguments);
-          };
-        }(), {
-          root: this.observableRoot || null,
-          rootMargin: this.observableRootMargin || '0px 0px 10% 0px',
-          threshold: this.observableRootThreshold || 0
-        });
-        observer.observe(this);
-        _get(Observable.prototype.__proto__ || Object.getPrototypeOf(Observable.prototype), 'connectedCallback', this).call(this);
-      }
+        function connectedCallback() {
+          return _ref.apply(this, arguments);
+        }
+
+        return connectedCallback;
+      }()
     }]);
 
     return Observable;
