@@ -1,4 +1,5 @@
 dist
+.cache-loader
 .gh-pages
 .vscode
 /node_modules

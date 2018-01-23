@@ -48,6 +48,7 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "cache-loader": "^1.2.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",

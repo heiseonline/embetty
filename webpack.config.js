@@ -32,17 +32,21 @@ module.exports = {
         test: /\.js$/,
         // exclude: /node_modules/,
         exclude: /custom-elements-es5-adapter/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['babel-preset-env'],
-            plugins: [require('babel-plugin-transform-object-rest-spread')]
+        use: [
+          'cache-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['babel-preset-env'],
+              plugins: [require('babel-plugin-transform-object-rest-spread')]
+            }
           }
-        }
+        ]
       },
       {
         test: /\.scss$/,
         use: [
+          'cache-loader',
           'to-string-loader',
           {
             loader: 'css-loader'
