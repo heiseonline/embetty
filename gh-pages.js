@@ -31,6 +31,11 @@ const createServer = config => new Promise((resolve, reject) => {
 const downloadAsset = async (url, baseDir) => {
   const {pathname} = new URL(url)
   const targetFile = path.join(baseDir, pathname)
+  if (await fs.pathExists(targetFile)) {
+    console.log('skipping download:', targetFile)
+    return
+  }
+
   const response = await request.get(url, {encoding: null})
   console.log('Writing:', targetFile)
   return fs.outputFile(targetFile, response)
@@ -49,17 +54,20 @@ const download = async (baseDir, url) => {
   const urls = []
 
   page.on('request', request => { urls.push(request.url()) })
+  page.on('console', msg => { console[msg.type()](msg.text()) })
 
   await page.goto(url, {waitUntil: 'networkidle0'})
-  await page.evaluate(() => {
-    window.scrollBy(0, document.body.scrollHeight)
-    // return Promise.all(
-    //   [...document.querySelectorAll('embetty-tweet,embetty-video')]
-    //     .map(element => {
-    //       return new Promise(resolve => element.on('initialized', resolve))
-    //     })
-    // )
-    return new Promise(resolve => setTimeout(resolve, 3000))
+  await page.evaluate(async () => {
+    return Promise.all(
+      [...document.querySelectorAll('embetty-tweet, embetty-video')]
+        .map(element => new Promise(resolve => {
+          element.on('initialized', () => {
+            console.log('initialized:', element.outerHTML)
+            resolve()
+          })
+          element.becomesVisible()
+        }))
+    )
   })
 
   await Promise.all(urls.map(url => downloadAsset(url, baseDir)))
@@ -70,9 +78,11 @@ const main = async () => {
   const url = await launchServer()
   const baseDir = path.join(__dirname, '.gh-pages')
   await fs.emptyDir(baseDir)
-  await download(baseDir, `${url}/index.html`)
-  await download(baseDir, `${url}/tweet.html`)
-  await download(baseDir, `${url}/video.html`)
+  await Promise.all([
+    download(baseDir, `${url}/index.html`),
+    download(baseDir, `${url}/tweet.html`),
+    download(baseDir, `${url}/video.html`),
+  ])
   process.exit(0)
 }
 
