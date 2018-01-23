@@ -58,19 +58,26 @@ const download = async (baseDir, url) => {
 
   await page.goto(url, {waitUntil: 'networkidle0'})
   await page.evaluate(async () => {
-    return Promise.all(
-      [...document.querySelectorAll('embetty-tweet, embetty-video')]
-        .map(element => new Promise(resolve => {
-          element.on('initialized', () => {
-            console.log('initialized:', element.outerHTML)
-            resolve()
-          })
-          element.becomesVisible()
-        }))
-    )
+    const resolveOnInitialized = element => {
+      return new Promise(resolve => {
+        element.on('initialized', async () => {
+          console.log('initialized:', element.outerHTML)
+          const answeredTweets = element.answeredTweets
+          if (!answeredTweets) return resolve()
+          await Promise.all([...answeredTweets].map(resolveOnInitialized))
+          resolve()
+        })
+        element.becomesVisible()
+      })
+    }
+
+    const embeds = [...document.querySelectorAll('embetty-tweet, embetty-video')]
+    return Promise.all(embeds.map(resolveOnInitialized))
   })
 
+  console.log('Downloading assets ...')
   await Promise.all(urls.map(url => downloadAsset(url, baseDir)))
+  console.log('Assets downloaded.')
   await browser.close()
 }
 
