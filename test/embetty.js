@@ -8,8 +8,13 @@ defineElement('embetty-test', class EmbettyTest extends Embed {
     return this._api('/some-url')
   }
 
+  async connectedCallback() {
+    await super.connectedCallback()
+    this.becomesVisible()
+  }
+
   static get template() {
-    return `Embetty test`
+    return 'Embetty test'
   }
 })
 
@@ -28,5 +33,7 @@ describe('Embetty', () => {
     const {element} = await createElement('embetty-test')
     assert.equal(element.serverUrl, '/embetty-server')
     assert.equal(element.someApiUrl, '/embetty-server/some-url')
+
+    meta.remove()
   })
 })
