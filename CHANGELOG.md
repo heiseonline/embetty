@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Upgraded dependencies.
+
 ## v1.0.0-beta.3, 2018-01-26
 
 - Fixed Travis CI.
