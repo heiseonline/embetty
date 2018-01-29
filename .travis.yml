@@ -12,6 +12,7 @@ before_install: yarn global add greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 deploy:
+  skip_cleanup: true
   provider: npm
   email: npmjs@heise.de
   api_key:
