@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -26,7 +26,6 @@
     }
   ],
   "engines": {
-    "node": ">=8.9.1 <9.0.0",
     "yarn": ">=1.3.2 <2.0.0"
   },
   "bugs": "https://github.com/heiseonline/embetty/issues",
@@ -71,13 +70,13 @@
     "file-loader": "^1.1.5",
     "fs-extra": "^5.0.0",
     "gh-pages": "^1.1.0",
-    "karma": "^1.7.1",
+    "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.6",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.0",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.9",
     "puppeteer": "^1.0.0",

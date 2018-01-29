@@ -24,23 +24,15 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
-  // devtool: (prod && 'none') || 'eval-source-map',
   devtool: (prod && 'none') || 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
-        // exclude: /node_modules/,
         exclude: /custom-elements-es5-adapter/,
         use: [
           'cache-loader',
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['babel-preset-env'],
-              plugins: [require('babel-plugin-transform-object-rest-spread')]
-            }
-          }
+          'babel-loader'
         ]
       },
       {
@@ -48,14 +40,9 @@ module.exports = {
         use: [
           'cache-loader',
           'to-string-loader',
-          {
-            loader: 'css-loader'
-          },
+          'css-loader',
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: { }
-          }
+          'sass-loader'
         ]
       },
     ]
