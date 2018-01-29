@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.0-beta.7, 2018-01-29
 
 - Added missing `skip_cleanup: true` to Travis CI config.
 
