@@ -25,6 +25,7 @@
       "email": "apl@heise.de"
     }
   ],
+  "bugs": "https://github.com/heiseonline/embetty/issues",
   "homepage": "https://github.com/heiseonline/embetty",
   "repository": {
     "type": "git",
