@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Upgraded dependencies.
+
 ## v1.0.0-beta.4, 2018-01-29
 
 - Added missing `files` configuration so that the `dist` directory is published.
