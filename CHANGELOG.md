@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.0-beta.6, 2018-01-29
 
 - Added missing `yarn build` to Travis CI config.
 
