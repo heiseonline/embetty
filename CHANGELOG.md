@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Removed `engines.node` property from `package.json`.
 - Upgraded dependencies.
 
 ## v1.0.0-beta.4, 2018-01-29
