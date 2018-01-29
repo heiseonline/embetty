@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Added missing `files` configuration so that the `dist` directory is published.
+
 ## v1.0.0-beta.3, 2018-01-26
 
 - Fixed Travis CI.
