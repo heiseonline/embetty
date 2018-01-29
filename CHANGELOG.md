@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.0-beta.5, 2018-01-29
 
 - Removed `engines.node` property from `package.json`.
 - Upgraded dependencies.
