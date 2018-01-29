@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -25,14 +25,26 @@
       "email": "apl@heise.de"
     }
   ],
+  "engines": {
+    "node": ">=8.9.1 <9.0.0",
+    "yarn": ">=1.3.2 <2.0.0"
+  },
+  "bugs": "https://github.com/heiseonline/embetty/issues",
   "homepage": "https://github.com/heiseonline/embetty",
+  "files": [
+    "dist",
+    "lib",
+    "polyfills.js",
+    "postcss.config.js",
+    "webpack.config.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/heiseonline/embetty"
   },
   "publishConfig": {
     "access": "public",
-    "registry": "http://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
