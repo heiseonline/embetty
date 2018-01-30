@@ -1,6 +1,6 @@
 # embetty-base
 
-## Unreleased
+## v1.0.0-beta.3, 2018-01-30
 
 - Added `GET /version` route.
 - Bumped `debug` to `^3.1.0`.
