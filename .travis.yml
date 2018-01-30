@@ -2,7 +2,6 @@ language: node_js
 sudo: false
 node_js:
 - '8'
-- '7'
 script:
 - yarn test
 before_install: yarn global add greenkeeper-lockfile@1
@@ -12,7 +11,7 @@ deploy:
   provider: npm
   email: npmjs@heise.de
   api_key:
-    secure: nOzv569aM6CHxo4rJVrosQucXhpygG72BfBLHRtJK8HfLP7pyuLQ9NgWjqSpxoVqP96qDajh3EaTb5s6v4T02ezGyOMeA/Ly0E5La2Yx3/Ava1EHqB61AGMvALPG6f38Gw4gCSoddD+lndWbtvzkXGCbVS3EAoKE5AYzfEHXpsAk9NTIZdeXUHgBc8L0pu9C85rJ4haaiLJmQLVWWeRHWIrTCFWfhfwj5LR4I0aAaPmewT8Ej9KWDLkJoyJ/PezXhykNMBIJGUbHb1XWadtuQUsoH4VusZtH2mes3KzlHyR6/Z4U9HszpkhQlj/hWNdF/sKP9mwSejwDp5DJtatHuC1TTJWO7+eWgjrJYJpX5/gJi1s1WLcrDLx6/6qxZhWJ57hVrvnaaiPGS+hZMLaD9+PUl58Fi4JbRycw9mwti6YePHnJRhvWl2S+9LY9nc1VJQuXcix3pki5Gg7WJmDntehuRUns/0NLJvy5UsBOd/RHPdUvshDX2ncpDFh4uwJKCBHyJKdScgbr61iWiSJny+Y1asWFy7KtGg2YOxa2ssbyzbBVMa9dUUeBJfwXeQPsYAqKm5IjLvhYRalzdGQbnUQf8wVyXMVBv9TMmLPx0GRot7rYC8wpZ0CQPVWU3WBojBoY129r2AJdWQGUva2NqjcTry7fE/IT4lWIEr7SlgY=
+    secure: "qxC5o2Bc0cOTxqjDyCMIkY+9+4pfZobATq2MNP/4wxy4cqNNsuBjhy335bE44n/z08XIlODJYuJHZfq8wb1NpHC+JmD5iZM/QaYkwi5XFm73R0iZ2gAivQGVnv2Fvu4D8SdtpseFP3YBoX/c8eRbHnImkIGUrObPXvqhc9b0+vyzgdZSrRy7a/wkUbDLqi+Z8iI/mTAFr/Ur3yTmD9hlw8NFw3HHCCqzwVj7Fdb9vv9bLT+1SxHj96tcHWRdUDjV48tfKyID6DCpoGreJos1L0P5LGhJgVsjgQyaI3JEzxChHJA0IVexW6bLNctZvT9yTgaW1AGKr4f8NPED0Vthv59vWjf0ptEVPSt4NFV9XCHpWrPiW+koTxJPNADkDQ/YGJpHKG5nT85psHQbWZT2AmKuvGue7MCyYrZdaKttWWFTc+dZi+sDFg64iiw4hyU0L+9xG+0bxSBo2kVFG2cn7ie3LYRKtZv5JwybqICHehDscF5Ha1lw++7ie65VD/3VlIlBd9EYcp3pbYwqeHLClXDDYieSVOcA/41V1vZNFNfl8uuDGLJLXi38qslq+xA7OyfXjtTCaSC+BFc4lFLCn2P/fGFzBpnxgoTI27LDI/puu80rjVs20nn2fyitHN3ebbpe9cvwC7uGNKS5NwQGUIS+WdRhNRn1S7OOe4IH8bs="
   on:
     tags: true
     repo: heiseonline/embetty-server

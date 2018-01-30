@@ -18,4 +18,9 @@ describe('embetty-server', () => {
     const response = await request(app).get('/')
     assert.equal(response.headers['x-frame-options'], 'SAMEORIGIN')
   })
+
+  it('should provide the version', async () => {
+    const response = await request(app).get('/version')
+    assert.equal(response.text, require('../package.json').version)
+  })
 })
