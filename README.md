@@ -25,6 +25,12 @@ $ yarn start
 | `NODE_ENV` | This variable should be set to `production` in production environments. |
 | `PORT` | This variable can be used to specify the port on which Embetty Server listens. Default: `3000` |
 | `VALID_ORIGINS` | Contains a comma-separated list of allowed [origins](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin). Must be specified. Examples: `https://example.com`, `https://a.example.com,https://b.example.com` or `*`. |
+| `TWITTER_ACCESS_TOKEN_KEY` | Twitter Access Token |
+| `TWITTER_ACCESS_TOKEN_SECRET` | Twitter Access Token Secret |
+| `TWITTER_CONSUMER_KEY` | Twitter consumer Key (API Key) |
+| `TWITTER_CONSUMER_SECRET` | Twitter consumer Secret (API Secret) |
+
+To create Twitter keys and access tokens, create a [Twitter app](https://apps.twitter.com/).
 
 ## Running the tests
 
