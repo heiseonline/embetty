@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "NODE_ENV=test mocha --bail --check-leaks"
+    "test": "NODE_ENV=test mocha --bail --check-leaks -t 10000"
   },
   "publishConfig": {
     "access": "public",
