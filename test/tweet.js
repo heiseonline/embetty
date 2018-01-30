@@ -44,6 +44,15 @@ describe('Tweet', () => {
     assert.ok(time.innerText.length > 5)
   })
 
+  it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
+    const {element} = await createTweet(Tweets.link)
+    const links = [...element.shadowRoot.querySelectorAll('a[target=_blank')]
+    assert.equal(links.length, 3)
+    links.forEach(link => {
+      assert.equal(link.getAttribute('rel'), 'noopener')
+    })
+  })
+
   describe('Tweet body', () => {
     it('should replace hash tags', async () => {
       const {query} = await createTweet(Tweets.hashTag.valid)
