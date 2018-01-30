@@ -9,8 +9,8 @@ Embetty displays remote content like tweets or YouTube videos without compromisi
 ## Quick Start
 
 1. Setup your [embetty-server](https://github.com/heiseonline/embetty-server).
-2. Include the embetty lib into your HTML document.
-3. Insert an embed by using a custom tag (see embeds section below).
+3. Include the embetty lib into your HTML document.
+4. Insert an embed by using a custom tag (see embeds section below).
 
 Example:
 
@@ -18,6 +18,7 @@ Example:
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta data-embetty-server="/path/to/embetty-server">
   <script async src="embetty.js"></script>
 </head>
 <body>
@@ -26,11 +27,37 @@ Example:
 </html>
 ```
 
-## Embeds
+## Documentation
+
+### Configure the Embetty server
+
+Embetty needs a [server component](https://github.com/heiseonline/embetty-server) that you need to run on your infrastructure. Configure the server URL for embetty using a `<meta data-embetty-server>` tag:
+
+```html
+<head>
+  <meta data-embetty-server="/path/to/embetty-server">
+</head>
+```
+
+### Including embetty.js
+
+There are three options.
+
+1. Download an Embetty archive from the [releases page](https://github.com/heiseonline/embetty/releases). Make `./dist/embetty.js` available on your site.
+2. Use Embetty in your npm project: `yarn add @heise/embetty` or `npm install @heise/embetty --save`. Then import embetty into your main script (i.e. `import '@heise/embetty'`).
+3. Clone [this repository](https://github.com/heiseonline/embetty) and build `./dist/embetty.js`:
+   ```sh
+   $ git clone https://github.com/heiseonline/embetty
+   $ cd embetty
+   $ yarn
+   $ yarn build
+   ``` 
+
+### Embeds
 
 Currently, tweets and various video platforms are supported.
 
-### Tweet
+#### Tweet
 
 Use the `status` attribute to embed a tweet with its tweet ID. Example:
 
@@ -38,7 +65,7 @@ Use the `status` attribute to embed a tweet with its tweet ID. Example:
 <embetty-tweet status="950371792874557440"></embetty-tweet>
 ```
 
-### Video
+#### Video
 
 Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set the `video-id` attribute to the video ID.
 
