@@ -1,5 +1,5 @@
 /*!
- * @heise/embetty - v0.0.0 - Tue, 23 Jan 2018 10:59:45 GMT
+ * @heise/embetty - v1.0.0-beta.7 - Thu, 01 Feb 2018 15:28:29 GMT
  * https://github.com/heiseonline/embetty
  * Copyright (c) 2018 Heise Medien GmbH & Co. KG
  * Contributors: Philipp Busse, Jan Hofmann, Alexander Pluhar
@@ -4274,9 +4274,8 @@ var Embed = function (_window$HTMLElement) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.attachShadow({ mode: 'open' });
-                if (this.shadowRootAttached) this.shadowRootAttached();
 
-              case 2:
+              case 1:
               case 'end':
                 return _context2.stop();
             }
@@ -13782,7 +13781,7 @@ var Tweet = function (_Observable) {
   }, {
     key: 'template',
     get: function get() {
-      return '\n    <style>' + _tweet2.default + '</style>\n      <header>\n        <img src="{{profileImageUrl}}" />\n        <span>\n          <strong>{{userName}}</strong>\n          <a href="https://twitter.com/{{screenName}}">@{{screenName}}</a>\n        </span>\n      </header>\n      <article>\n        <p>{{{ fullText }}}</p>\n        {{#hasMedia}}\n          <section class="media-{{media.length}}" id="media">\n            {{#media}}\n              <a target="_blank" href="{{imageUrl}}"><img src="{{imageUrl}}"></a>\n            {{/media}}\n          </section>\n        {{/hasMedia}}\n\n        {{#hasLinks}}\n          <a href="{{link.url}}" id="links">\n            <img src="{{linkImageUrl}}">\n            <section id="link-body">\n              <h3>{{link.title}}</h3>\n              {{#link.description}}<p>{{link.description}}</p>{{/link.description}}\n              <span>{{linkHostname}}</span>\n            </section>\n          </a>\n        {{/hasLinks}}\n\n        <a href="{{twitterUrl}}" id="created-at">\n          <time datetime="{{createdAt.toISOString}}">{{createdAt.toLocaleString}}</time>\n          via Twitter\n          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>\n        </a>\n      </article>\n    ';
+      return '\n    <style>' + _tweet2.default + '</style>\n      <header>\n        <img src="{{profileImageUrl}}" />\n        <span>\n          <strong>{{userName}}</strong>\n          <a href="https://twitter.com/{{screenName}}" target="_blank" rel="noopener" >@{{screenName}}</a>\n        </span>\n      </header>\n      <article>\n        <p>{{{ fullText }}}</p>\n        {{#hasMedia}}\n          <section class="media-{{media.length}}" id="media">\n            {{#media}}\n              <a target="_blank" href="{{imageUrl}}"><img src="{{imageUrl}}"></a>\n            {{/media}}\n          </section>\n        {{/hasMedia}}\n\n        {{#hasLinks}}\n          <a href="{{link.url}}" target="_blank" rel="noopener" id="links">\n            <img src="{{linkImageUrl}}">\n            <section id="link-body">\n              <h3>{{link.title}}</h3>\n              {{#link.description}}<p>{{link.description}}</p>{{/link.description}}\n              <span>{{linkHostname}}</span>\n            </section>\n          </a>\n        {{/hasLinks}}\n\n        <a href="{{twitterUrl}}" target="_blank" rel="noopener" id="created-at">\n          <time datetime="{{createdAt.toISOString}}">{{createdAt.toLocaleString}}</time>\n          via Twitter\n          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>\n        </a>\n      </article>\n    ';
     }
   }]);
 
@@ -14982,7 +14981,7 @@ var YoutubeVideo = exports.YoutubeVideo = function (_BaseType) {
   }, {
     key: 'iframe',
     get: function get() {
-      return '\n      <style>' + this.css + '</style>\n      <div class="wrapper">\n        <iframe\n          id="ytplayer"\n          type="text/html"\n          width="' + this.width + '"\n          height="' + this.height + '"\n          src="http://www.youtube.com/embed/' + this.element.videoId + '?autoplay=1"\n          frameborder="0"\n        ></iframe>\n      </div>\n    ';
+      return '\n      <style>' + this.css + '</style>\n      <div class="wrapper">\n        <iframe\n          id="ytplayer"\n          type="text/html"\n          width="' + this.width + '"\n          height="' + this.height + '"\n          src="//www.youtube.com/embed/' + this.element.videoId + '?autoplay=1"\n          frameborder="0"\n        ></iframe>\n      </div>\n    ';
     }
   }]);
 
