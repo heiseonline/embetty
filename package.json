@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty-base",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
