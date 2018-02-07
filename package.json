@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.8",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -64,7 +64,7 @@
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "file-loader": "^1.1.5",
@@ -84,6 +84,7 @@
     "sass-loader": "^6.0.6",
     "to-string-loader": "^1.1.5",
     "webpack": "^3.8.1",
+    "webpack-bundle-analyzer": "^2.10.0",
     "webpack-dev-server": "^2.9.4"
   }
 }

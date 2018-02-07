@@ -8,6 +8,7 @@ const {
   version,
 } = require('./package.json')
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const path = require('path')
 const webpack = require('webpack')
 
@@ -49,6 +50,7 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/vertx/), // see https://github.com/parcel-bundler/parcel/issues/141
+    new BundleAnalyzerPlugin({analyzerMode: 'static', openAnalyzer: false}),
     new webpack.BannerPlugin({
       banner: `${title || name} - v${version} - ${(new Date()).toGMTString()}
 ${homepage}
