@@ -1,5 +1,9 @@
 # embetty-base
 
+## v1.0.0-beta.4, 2018-02-07
+
+- Fixed release process.
+
 ## v1.0.0-beta.3, 2018-02-07
 
 - Upgraded dependencies.
