@@ -82,7 +82,6 @@
     "puppeteer": "^1.0.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
-    "to-string-loader": "^1.1.5",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.10.0",
     "webpack-dev-server": "^2.9.4"
