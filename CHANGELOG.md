@@ -3,13 +3,13 @@
 ## Unreleased
 
 - SCSS files are now explicitly included in the components with the necessary webpack configuration to simplify building in dependant modules. For this reason, the loaders involved are now prod dependencies.
+- Upgraded dependencies.
 
 ## v1.0.0-beta.8, 2018-02-07
 
 - Fixed "Mixed Content" error when playing a Youtube video.
 - Links are now opened in a new tab.
 - Improved documentation.
-- Upgraded dependencies.
 
 ## v1.0.0-beta.7, 2018-01-29
 
