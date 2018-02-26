@@ -1,5 +1,9 @@
 # embetty-base
 
+## Unreleased
+
+- Fixed Vimeo API url.
+
 ## v1.0.0-beta.4, 2018-02-07
 
 - Fixed release process.

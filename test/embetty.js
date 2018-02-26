@@ -43,7 +43,7 @@ describe('Embetty', () => {
     const embetty = new Embetty()
     const v = await embetty.loadVimeoVideo('223099532')
     assert.ok(v instanceof Embetty.VimeoVideo)
-    assert.equal(v.posterImageUrl, 'http://i.vimeocdn.com/video/642067351_640.jpg')
+    assert.equal(v.posterImageUrl, 'https://i.vimeocdn.com/video/642067351_640.jpg')
   })
 
   it('should load a facebook video', async () => {
