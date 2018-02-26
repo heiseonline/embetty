@@ -62,7 +62,7 @@ describe('Video', () => {
 
     it('should respond with 404', async () => {
       await request(app)
-        .get('/video/facebook/9')
+        .get('/video/facebook/0')
         .expect(404)
     })
 
