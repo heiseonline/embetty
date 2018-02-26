@@ -13,7 +13,9 @@ app.use(logger(process.env.NODE_ENV === 'production' ? 'short' : 'dev', {
   skip: (req, res) => process.env.NODE_ENV === 'test'
 }))
 
-app.use(helmet())
+app.use(helmet({
+  hsts: false,
+}))
 app.use('/', routes)
 
 app.use((req, res, next) => {
