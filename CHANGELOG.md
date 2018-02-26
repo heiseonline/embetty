@@ -1,5 +1,9 @@
 # embetty-base
 
+## Unreleased
+
+- Disabled the `Strict-Transport-Security` response header.
+
 ## v1.0.0-beta.3, 2018-01-30
 
 - Added `GET /version` route.
