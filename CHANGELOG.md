@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Disabled the `Strict-Transport-Security` response header.
+- Upgraded dependencies.
 
 ## v1.0.0-beta.3, 2018-01-30
 
