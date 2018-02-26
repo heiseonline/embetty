@@ -4,7 +4,7 @@
 
 - Disabled the `Strict-Transport-Security` response header.
 - Upgraded dependencies.
-- Upgraded `@heise/embetty-base` to `@heise/embetty-base": "^1.0.0-beta.5`.
+- Upgraded `@heise/embetty-base` to `^1.0.0-beta.5`.
 
 ## v1.0.0-beta.3, 2018-01-30
 
