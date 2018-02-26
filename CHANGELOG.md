@@ -1,6 +1,6 @@
 # embetty-base
 
-## Unreleased
+## v1.0.0-beta.4, 2018-02-26
 
 - Disabled the `Strict-Transport-Security` response header.
 - Upgraded dependencies.
