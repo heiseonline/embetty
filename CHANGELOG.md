@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fixed Vimeo API url.
+- Fixed a problem that occurred when there was no `expanded_url` for a link. In this case, `url` is now used as fallback.
 
 ## v1.0.0-beta.4, 2018-02-07
 
