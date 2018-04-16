@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added `embetty` as global bin.
+- Upgraded dependencies.
 
 ## v1.0.0-beta.4, 2018-02-26
 
