@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
     "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
   },
