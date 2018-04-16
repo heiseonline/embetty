@@ -1,10 +1,15 @@
-# embetty-base
+# Changelog
+
+## v1.0.0-beat.5, 2018-04-16
+
+- Added `embetty` as global bin.
+- Upgraded dependencies.
 
 ## v1.0.0-beta.4, 2018-02-26
 
 - Disabled the `Strict-Transport-Security` response header.
 - Upgraded dependencies.
-- Upgraded `@heise/embetty-base` to `@heise/embetty-base": "^1.0.0-beta.5`.
+- Upgraded `@heise/embetty-base` to `^1.0.0-beta.5`.
 
 ## v1.0.0-beta.3, 2018-01-30
 
