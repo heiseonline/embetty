@@ -1,5 +1,9 @@
 # embetty-base
 
+## Unreleased
+
+- Added `embetty` as global bin.
+
 ## v1.0.0-beta.4, 2018-02-26
 
 - Disabled the `Strict-Transport-Security` response header.

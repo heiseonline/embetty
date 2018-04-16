@@ -6,8 +6,12 @@
   "author": "Philipp Busse <pmb@heise.de>",
   "license": "MIT",
   "private": false,
+  "bin": {
+    "embetty": "bin/embetty",
+    "embetty-start": "bin/embetty-start"
+  },
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "./bin/www",
     "dev": "nodemon ./bin/www",
     "test": "NODE_ENV=test mocha --bail --check-leaks -t 10000"
   },
@@ -29,6 +33,7 @@
   },
   "dependencies": {
     "@heise/embetty-base": "^1.0.0-beta.5",
+    "commander": "^2.15.1",
     "cors": "^2.8.4",
     "debug": "^3.1.0",
     "express": "^4.16.2",
