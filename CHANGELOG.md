@@ -1,6 +1,6 @@
-# embetty-base
+# Changelog
 
-## Unreleased
+## v1.0.0-beat.5, 2018-04-16
 
 - Added `embetty` as global bin.
 - Upgraded dependencies.
