@@ -2,7 +2,12 @@
 
 [Embetty](https://github.com/heiseonline/embetty) displays remote content like tweets or YouTube videos without compromising your privacy. `embetty-server` acts as a proxy and provides the necessary data.
 
-You may run the Embetty server in two different ways. Either you use our [official Docker image](https://hub.docker.com/r/heiseonline/embetty-server/) to run Embetty server in a container, or you install Embetty server on your server and use a process manager. In both variants you should configure a URL path of the target website in your web server so that requests are forwarded to the Embetty server (reverse proxy).
+Embetty server can be run in two different ways:
+
+- Use the [official Docker image](https://hub.docker.com/r/heiseonline/embetty-server/) to run it in a container.
+- [Install it directly and use a process manager](#running-embetty-server-with-a-process-manager).
+
+It's necessary to configure a reverse proxy to make Embetty server reachable either way.
 
 ## Running Embetty server with Docker
 
