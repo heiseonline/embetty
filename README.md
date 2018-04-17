@@ -61,8 +61,6 @@ $ curl -i http://localhost:8080/tweet/985882036777955328
 
 See [Contributing](./CONTRIBUTING.md).
 
-
-
 ## License
 
 Embetty server is [MIT licensed](./LICENSE).
