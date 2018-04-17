@@ -30,7 +30,7 @@ $ docker run \
 
 1. Install Embetty server by running `yarn global add @heise/embetty-server`. This makes the `embetty` command available on the server.
 2. Setup a process manager like [Forever](https://github.com/foreverjs/forever), [PM2](https://github.com/Unitech/pm2) or [StrongLoop Process Manager](http://strong-pm.io/). If you want to display tweets with Embetty, you also need to define the four Twitter environment variables (see the table below) in your process manager setup. You get the Twitter data by creating a [Twitter app](https://apps.twitter.com/).
-3. Configure the Process manager to run `embetty start`. The command `bin/embetty start --help` prints a list of all supported options. You probably want to specify a custom port.
+3. Configure the Process manager to run `embetty start`. The command `embetty start --help` prints a list of all supported options. You probably want to specify a custom port.
 
 ## Configuration
 
