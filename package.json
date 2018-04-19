@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@heise/embetty-server": "^1.0.0-beta.2",
     "@webcomponents/webcomponentsjs": "^1.0.19",
-    "autoprefixer": "^7.1.6",
+    "autoprefixer": "^8.0.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -62,7 +62,7 @@
     "cache-loader": "^1.2.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
-    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",

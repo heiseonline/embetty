@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.0-beta.10, 2018-04-06
 
 - Upgraded dependencies.
 
