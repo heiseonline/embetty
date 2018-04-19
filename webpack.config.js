@@ -36,16 +36,6 @@ module.exports = {
           'babel-loader'
         ]
       },
-      {
-        test: /\.scss$/,
-        use: [
-          'cache-loader',
-          'to-string-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
     ]
   },
   plugins: [
