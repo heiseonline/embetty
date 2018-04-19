@@ -1,5 +1,9 @@
 # embetty
 
+## v1.0.0-beta.10, 2018-04-06
+
+- Upgraded dependencies.
+
 ## v1.0.0-beta.9, 2018-02-21
 
 - SCSS files are now explicitly included in the components with the necessary webpack configuration to simplify building in dependant modules. For this reason, the loaders involved are now prod dependencies.
