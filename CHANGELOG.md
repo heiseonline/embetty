@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Upgraded dependencies.
+
 ## v1.0.0-beta.5, 2018-04-16
 
 - Added `embetty` as global bin.
