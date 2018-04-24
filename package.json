@@ -1,9 +1,10 @@
 {
   "name": "@heise/embetty-base",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
     "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
   },
@@ -17,12 +18,13 @@
     "content-type": "^1.0.4",
     "debug": "^3.1.0",
     "ioredis": "^3.2.1",
+    "lru-cache": "^4.1.2",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
-    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
