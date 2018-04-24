@@ -1,5 +1,9 @@
 # embetty-base
 
+## Unreleased
+
+- Added missing `lru-cache` dependency.
+
 ## v1.0.0-beta.5, 2018-02-26
 
 - Fixed Vimeo API url.
