@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.0.0-beta.6, 2018-04-24
 
 - Upgraded dependencies.
 
