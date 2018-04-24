@@ -1,6 +1,6 @@
 # embetty-base
 
-## Unreleased
+## v1.0.0-beta.6, 2018-04-24
 
 - Added missing `lru-cache` dependency.
 - Upgraded dependencies.
