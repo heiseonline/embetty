@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added missing `lru-cache` dependency.
+- Upgraded dependencies.
 
 ## v1.0.0-beta.5, 2018-02-26
 
