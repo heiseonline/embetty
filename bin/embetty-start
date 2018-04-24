@@ -9,6 +9,8 @@ program
   .option('-c, --cache <cache>', 'Connection string of a cache adapter. Default: "redis://"')
   .parse(process.argv)
 
+process.env.NODE_ENV = 'production'
+
 if (program.cache) process.env.EMBETTY_CACHE = program.cache
 if (program.debug) process.env.DEBUG = '*'
 if (program.port) process.env.PORT = program.port

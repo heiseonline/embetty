@@ -1,6 +1,10 @@
 # Changelog
 
-## v1.0.0-beat.5, 2018-04-16
+## v1.0.0-beta.6, 2018-04-24
+
+- Upgraded dependencies.
+
+## v1.0.0-beta.5, 2018-04-16
 
 - Added `embetty` as global bin.
 - Upgraded dependencies.
