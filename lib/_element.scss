@@ -1,8 +1,10 @@
 @import './vars';
 
 :host {
-  width: 100%;
+  position: relative;
+  overflow: hidden;
   display: block;
+  width: 100%;
   font-family: var(--embetty-font-family, $embetty-font-family);
   border: 1px solid var(--embetty-border-color, $embetty-border-color);
   border-width: 1px;

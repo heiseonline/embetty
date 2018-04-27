@@ -1,0 +1,22 @@
+#powered-by {
+  position: absolute;
+  z-index: 3;
+  right: -20px;
+  bottom: 5px;
+  padding-right: 46px;
+  font-size: 90%;
+  color: #777;
+  text-decoration: none;
+  opacity: .3;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    bottom: -47px;
+    width: 40px;
+  }
+}
