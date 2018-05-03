@@ -47,7 +47,7 @@ describe('Tweet', () => {
   it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
     const {element} = await createTweet(Tweets.link)
     const links = [...element.shadowRoot.querySelectorAll('a[target=_blank')]
-    assert.equal(links.length, 3)
+    assert.equal(links.length, 4)
     links.forEach(link => {
       assert.equal(link.getAttribute('rel'), 'noopener')
     })

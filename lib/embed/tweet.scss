@@ -1,4 +1,5 @@
 @import '../element';
+@import 'powered-by';
 
 $profile-image-width: 36px;
 $quoteLineWidth: 4px;
@@ -31,6 +32,8 @@ $quoteLineWidth: 4px;
 }
 
 :host {
+  position: relative;
+  overflow: hidden;
   max-width: 642px;
   padding: 2rem 2.5rem;
 
