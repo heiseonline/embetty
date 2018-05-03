@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -31,6 +31,7 @@
   "bugs": "https://github.com/heiseonline/embetty/issues",
   "homepage": "https://github.com/heiseonline/embetty",
   "files": [
+    "assets",
     "dist",
     "lib",
     "polyfills.js",
