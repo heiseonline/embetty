@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.0, 2018-05-03
 
 - Added powered by link.
 
