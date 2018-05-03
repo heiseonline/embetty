@@ -1,5 +1,9 @@
 # embetty
 
+## v1.0.0, 2018-05-03
+
+- Added powered by link.
+
 ## v1.0.0-beta.11, 2018-04-19
 
 - Upgraded dependencies.
