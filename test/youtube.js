@@ -13,9 +13,9 @@ describe('Youtube Video', () => {
   })
 
   it('should load the youtube player after click', async () => {
-    const {element, query} = await createYoutubeVideo('m6UOo2YGbIE')
+    const {query, element} = await createYoutubeVideo('m6UOo2YGbIE')
     assert.ok(!query('iframe'))
-    element.click()
+    element.activate()
     assert.ok(query('iframe'))
   })
 })
