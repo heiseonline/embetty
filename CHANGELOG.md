@@ -1,5 +1,9 @@
 # embetty
 
+## v1.0.1, 2018-05-03
+
+- Fixed `assets` folder not being published to npm registry.
+
 ## v1.0.0, 2018-05-03
 
 - Added powered by link.
