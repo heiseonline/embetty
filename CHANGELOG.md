@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Do not display the powered by link in answered tweets.
+
 ## v1.0.1, 2018-05-03
 
 - Fixed `assets` folder not being published to npm registry.
