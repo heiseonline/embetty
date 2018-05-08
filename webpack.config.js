@@ -26,6 +26,7 @@ module.exports = {
     filename: '[name].js',
   },
   devtool: (prod && 'none') || 'inline-source-map',
+  mode: (prod && 'production') || 'development',
   module: {
     rules: [
       {

@@ -1,5 +1,11 @@
 # embetty
 
+## v1.0.2, 2018-05-08
+
+- Do not display the powered by link in answered tweets.
+- Fixed layout bugs.
+- Fixed powered by link.
+
 ## v1.0.1, 2018-05-03
 
 - Fixed `assets` folder not being published to npm registry.

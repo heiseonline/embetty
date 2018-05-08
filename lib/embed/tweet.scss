@@ -4,7 +4,6 @@
 $profile-image-width: 36px;
 $quoteLineWidth: 4px;
 
-// :host-context(.answered), :host.answered, :host(.answered), :host :host {
 :host(.answered) {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -28,6 +27,10 @@ $quoteLineWidth: 4px;
     #created-at {
       display: none;
     }
+  }
+
+  #powered-by {
+    display: none;
   }
 }
 
