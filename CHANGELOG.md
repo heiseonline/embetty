@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Do not display the powered by link in answered tweets.
+- Fixed layout bugs.
 - Fixed powered by link.
 
 ## v1.0.1, 2018-05-03
