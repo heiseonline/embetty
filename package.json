@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@heise/embetty-server": "^1.0.0-beta.2",
-    "@webcomponents/webcomponentsjs": "^1.0.19",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
     "autoprefixer": "^8.0.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
