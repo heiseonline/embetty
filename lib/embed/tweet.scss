@@ -75,8 +75,11 @@ $quoteLineWidth: 4px;
     p {
       margin: 0 auto 0.5rem;
       line-height: 1.4;
-      font-size: 20px;
       letter-spacing: .01em;
+
+      @media (min-width: 600px) {
+        font-size: 18px;
+      }
 
       a {
         color: #012469;
@@ -193,7 +196,7 @@ $quoteLineWidth: 4px;
   #created-at {
     margin-top: 1rem;
     display: block;
-    font-size: 90%;
+    font-size: 14px;
     color: #777;
     text-decoration: none;
 
