@@ -186,6 +186,8 @@ $quoteLineWidth: 4px;
       padding: .5rem;
 
       @media (min-width: 600px) {
+        display: flex;
+        flex-direction: column;
         padding: .5rem .8rem;
       }
     }
@@ -202,6 +204,7 @@ $quoteLineWidth: 4px;
 
       @media (min-width: 600px) {
         display: block;
+        flex-grow: 1;
         hyphens: auto;
         line-height: 18px;
         font-size: 14px;
