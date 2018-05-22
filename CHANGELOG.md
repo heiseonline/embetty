@@ -1,5 +1,10 @@
 # embetty
 
+## v1.0.4, 2018-05-22
+
+- Fixed error handling for tweets without link preview images.
+- Improved the design on smaller viewports.
+
 ## v1.0.3, 2018-05-16
 
 - Fixed layout for links without images.
