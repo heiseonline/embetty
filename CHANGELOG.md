@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Fixed release process.
+
 ## v1.0.4, 2018-05-22
 
 - Fixed error handling for tweets without link preview images.

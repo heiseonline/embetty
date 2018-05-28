@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack -p",
     "build:gh-pages": "./gh-pages.js",
+    "build:zip": "7z a -tzip $BASE_NAME.zip ./dist/* && 7z a -ttar $BASE_NAME.tar ./dist/* && 7z a $BASE_NAME.tar.gz $BASE_NAME.tar",
     "deploy:gh-pages": "yarn build:gh-pages && gh-pages -d .gh-pages",
     "dev": "./dev-server.js",
     "watch": "karma start",
