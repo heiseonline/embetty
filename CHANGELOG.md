@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed API so Youtube videos can now contain minus signs.
+
 ## v1.0.0-beta.6, 2018-04-24
 
 - Upgraded dependencies.
