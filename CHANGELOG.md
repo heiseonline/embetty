@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.0.5, 2018-05-28
 
 - Fixed release process.
 
