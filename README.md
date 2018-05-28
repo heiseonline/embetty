@@ -43,7 +43,7 @@ Embetty needs a [server component](https://github.com/heiseonline/embetty-server
 
 There are three options.
 
-1. Download an Embetty archive from the [releases page](https://github.com/heiseonline/embetty/releases). Make `./dist/embetty.js` available on your site.
+1. Download an Embetty archive from the [releases page](https://github.com/heiseonline/embetty/releases). Make `./embetty.js` available on your site.
 2. Use Embetty in your npm project: `yarn add @heise/embetty` or `npm install @heise/embetty --save`. Then import embetty into your main script (i.e. `import '@heise/embetty'`).
 3. Clone this repository and build `./dist/embetty.js`:
    ```sh
