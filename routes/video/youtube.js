@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.param('id', async (req, res, next, id) => {
   try {
-    if (!/^\w+$/.test(id)) throw BadRequest
+    if (!/^[\w-]+$/.test(id)) throw BadRequest
     req.video = await req.app.get('embetty').loadYoutubeVideo(id)
     next()
   } catch (e) {
