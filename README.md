@@ -6,6 +6,8 @@
 
 Embetty displays remote content like tweets or YouTube videos without compromising your privacy.
 
+See it in action on our [demo pgaes](https://heiseonline.github.io/embetty/).
+
 ## Quick Start
 
 1. Setup your [embetty-server](https://github.com/heiseonline/embetty-server).
