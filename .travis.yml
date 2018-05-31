@@ -11,6 +11,10 @@ addons:
 env:
   global:
     - BASE_NAME=embetty-$TRAVIS_TAG
+cache:
+  yarn: true
+  directories:
+    - node_modules
 script:
 - yarn test
 - yarn build
