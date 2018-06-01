@@ -1,5 +1,24 @@
 # embetty
 
+## Unreleased
+
+- Improved build process. (DanielRuf)
+- Added link to [demo](https://heiseonline.github.io/embetty/) to readme. (schliflo)
+- Added testing for latest node.js version. (DanielRuf)
+
+## v1.0.5, 2018-05-28
+
+- Fixed release process.
+
+## v1.0.4, 2018-05-22
+
+- Fixed error handling for tweets without link preview images.
+- Improved the design on smaller viewports.
+
+## v1.0.3, 2018-05-16
+
+- Fixed layout for links without images.
+
 ## v1.0.2, 2018-05-08
 
 - Do not display the powered by link in answered tweets.

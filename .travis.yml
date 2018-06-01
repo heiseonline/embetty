@@ -1,23 +1,50 @@
 language: node_js
 node_js:
 - '8'
+- '10'
 dist: trusty
 sudo: required
 addons:
   chrome: stable
+  apt:
+    packages:
+      - p7zip-full
+env:
+  global:
+    - BASE_NAME=embetty-$TRAVIS_TAG
+cache:
+  yarn: true
+  directories:
+    - node_modules
+matrix:
+  allow_failures:
+    - node_js: 10
 script:
 - yarn test
 - yarn build
 before_install: yarn global add greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
+before_deploy: yarn build:zip
 after_script: greenkeeper-lockfile-upload
 deploy:
-  skip_cleanup: true
-  provider: npm
-  email: npmjs@heise.de
-  api_key:
-    secure: "QAYvXR/BWoHuKcRa0DZQPWsjXuKzZGDlZXAVYuySce9Wh7sz4mpUQHhZGrSYijognBmkXQIHDcyQ88SM3qPsHv56VjzMWBNGNss1ZUQwsJPRDQ2woXBf95SH6MWeCdvt5oBVSJBpWnNVsoHENWPZWuqiNT+xVAq7oW56DTmNJt49WihCmYq+qDFnKtWCXNlFCfVf0ogLdxnPOH36YjINlXPwxn5JrsAWEp/wznMNe9NpWrodMWIzsA5NiMXJCirKZMPxeTYouH+8txckv8S8iIWykaMWbb90Me23CDN1nU9ZkMlvedggerSbebyz3epgw1zZVxRSPc9GyHUGRyPXSoR04OFmPvmjJGb5sOiqoRhf9l2g9q8PlTybLyfxrJvAWnXuET7BiAghrjqcjNTEkP+ErjY2N4YDL19ACHpKjGC6WArD/+rWCkNTiw43E8gEdzH63ruEzwWMKRyyLaQpGjE7c/HHFjRD+r22YMZaJ5MsOZFFP/NCORCAIlhdmsTdPuMgr2P66gFImFPIaAIhl1EXXAJ1wPn8UxpxTTB3BxtdagMk6mFggX+aY0MRk4BXerVs41SB8NUz2UR95sicreYds9ZR5HRMnfgVz4gotN67UrwlkPExt8ox++3sbddR0IPI4x3CdX4gQQHYPAhMLqdcE8+GbFSSQttfaqbt9uc="
-  on:
-    tags: true
-    repo: heiseonline/embetty
-    node_js: '8'
+  - provider: npm
+    skip_cleanup: true
+    provider: npm
+    email: npmjs@heise.de
+    api_key:
+      secure: "QAYvXR/BWoHuKcRa0DZQPWsjXuKzZGDlZXAVYuySce9Wh7sz4mpUQHhZGrSYijognBmkXQIHDcyQ88SM3qPsHv56VjzMWBNGNss1ZUQwsJPRDQ2woXBf95SH6MWeCdvt5oBVSJBpWnNVsoHENWPZWuqiNT+xVAq7oW56DTmNJt49WihCmYq+qDFnKtWCXNlFCfVf0ogLdxnPOH36YjINlXPwxn5JrsAWEp/wznMNe9NpWrodMWIzsA5NiMXJCirKZMPxeTYouH+8txckv8S8iIWykaMWbb90Me23CDN1nU9ZkMlvedggerSbebyz3epgw1zZVxRSPc9GyHUGRyPXSoR04OFmPvmjJGb5sOiqoRhf9l2g9q8PlTybLyfxrJvAWnXuET7BiAghrjqcjNTEkP+ErjY2N4YDL19ACHpKjGC6WArD/+rWCkNTiw43E8gEdzH63ruEzwWMKRyyLaQpGjE7c/HHFjRD+r22YMZaJ5MsOZFFP/NCORCAIlhdmsTdPuMgr2P66gFImFPIaAIhl1EXXAJ1wPn8UxpxTTB3BxtdagMk6mFggX+aY0MRk4BXerVs41SB8NUz2UR95sicreYds9ZR5HRMnfgVz4gotN67UrwlkPExt8ox++3sbddR0IPI4x3CdX4gQQHYPAhMLqdcE8+GbFSSQttfaqbt9uc="
+    on:
+      tags: true
+      repo: heiseonline/embetty
+      node_js: '8'
+  - provider: releases
+    api_key:
+      secure: "L60l7vyNfWmyEvLhVSY4EKb3Y61Sq0VVBinmZOEIGf4lYPGaFKiOZOgVOiIe9juvB2kJ5meyHkEstdnWaarTAmzufnjW1SO55Q9bF/ZZ2N7l0q2+7Gh57H5Wp+DFwslD8ymOQdI/0xtoOlXkxDCOCwaw2esJpqRxNR2MfEkGis54/uUaahyx6zsXWvzzefpxIB/uZjOFdklqJVxHfvyYDSK8oHAHGbdNaqpf761FyV9tcnGQ2oMSzR+oI9sg8CXQABiGaJKsFjmJF2XuzwG3blCxpk3e8E1aucxsqnd7pq0rloPM+AQgFBhnBh4rtUMmQ1w7hmCRZPXc9bpg08XNbRmd5YOiHuFrF3cvdTQMAjW0jT1H/DlpwteKy4BYn8ucG+H3bxjnjh1M2zjUXuvzrdqJQM+6DdkJ7/x0T4nlcLVCUSKNfOuc7rvCc3HJZ8206yRKItGj9m/hEPFwNic05WLNDwkUwr59RR6qSogycNDL976mgGwqaR1Pi/W7KalcSQjfIT6lxcHYUgQvpmnLs1VAX6xjPy1soDwGK8BZ24ZS3Ou+enYEhzS5svCJrwmWM6ian+CP08YooCIxOdfd2yM+R2yAxeJ+butZQRHmOtrxjg6xdjDcjrdGsgwN2OB3ruRwhAc0ZN6yj85RrvxutMMpx3LDgklwkXd7nVHgZNA="
+    file:
+      - $BASE_NAME.zip
+      - $BASE_NAME.tar.gz
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: heiseonline/embetty
+      node_js: '8'
