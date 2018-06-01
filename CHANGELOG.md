@@ -4,6 +4,7 @@
 
 - Improved build process. (DanielRuf)
 - Added link to [demo](https://heiseonline.github.io/embetty/) to readme. (schliflo)
+- Added testing for latest node.js version. (DanielRuf)
 
 ## v1.0.5, 2018-05-28
 
