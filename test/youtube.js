@@ -18,4 +18,11 @@ describe('Youtube Video', () => {
     element.activate()
     assert.ok(query('iframe'))
   })
+
+  it('should use the privacy-enhanced mode', async () => {
+    const {query, element} = await createYoutubeVideo('m6UOo2YGbIE')
+    element.activate()
+    const iframeSrc = query('iframe').getAttribute('src')
+    assert.ok(/^\/\/www\.youtube-nocookie\.com\//.test(iframeSrc))
+  })
 })
