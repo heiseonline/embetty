@@ -102,6 +102,8 @@ $quoteLineWidth: 4px;
     a {
       display: block;
       height: 100%;
+      display: flex;
+      align-items: center;
 
       &:not(:first-child) {
         display: none;
