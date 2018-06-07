@@ -6,6 +6,7 @@
 - Added testing for latest node.js version. (DanielRuf)
 - Fixed video poster CSS. (rbraband)
 - Improved build process. (DanielRuf)
+- Improved Vimeo and Facebook videos to autoplay after being klicked on.
 - Improved Youtube integration to use [privacy-enhanced mode](https://support.google.com/youtube/answer/171780?hl=en).
 - Upgraded dependencies.
 
