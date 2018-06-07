@@ -1,10 +1,12 @@
 # embetty
 
-## Unreleased
+## v1.0.6, 2018-06-07
 
-- Improved build process. (DanielRuf)
 - Added link to [demo](https://heiseonline.github.io/embetty/) to readme. (schliflo)
 - Added testing for latest node.js version. (DanielRuf)
+- Fixed video poster CSS. (rbraband)
+- Improved build process. (DanielRuf)
+- Improved Vimeo and Facebook videos to autoplay after being klicked on.
 - Improved Youtube integration to use [privacy-enhanced mode](https://support.google.com/youtube/answer/171780?hl=en).
 - Upgraded dependencies.
 
