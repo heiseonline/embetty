@@ -2,9 +2,9 @@
 
 ## Unreleased
 
-- Improved build process. (DanielRuf)
 - Added link to [demo](https://heiseonline.github.io/embetty/) to readme. (schliflo)
 - Added testing for latest node.js version. (DanielRuf)
+- Improved build process. (DanielRuf)
 - Improved Youtube integration to use [privacy-enhanced mode](https://support.google.com/youtube/answer/171780?hl=en).
 - Upgraded dependencies.
 
