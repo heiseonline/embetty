@@ -176,9 +176,9 @@
     "@webassemblyjs/wast-parser" "1.5.10"
     long "^3.2.0"
 
-"@webcomponents/webcomponentsjs@^1.0.19":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.2.0.tgz#c9e129340c3e4637f5fa6505e968e85face7bd5b"
+"@webcomponents/webcomponentsjs@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.0.0.tgz#166e7489b9ce66f5c082a3360120cb27505f762f"
 
 abbrev@1:
   version "1.1.1"
