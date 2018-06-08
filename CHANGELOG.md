@@ -1,6 +1,6 @@
 # embetty
 
-## Unrelease
+## Unreleased
 
 - Added caveats section to readme.
 
