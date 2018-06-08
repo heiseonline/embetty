@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added caveats section to readme.
+- Added `activated` event to videos. (rbraband)
 
 ## v1.0.6, 2018-06-07
 
