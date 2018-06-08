@@ -4,6 +4,7 @@
 
 - Added caveats section to readme.
 - Added `activated` event to videos. (rbraband)
+- Fixed images in tweets being cut off on the left side. (rbraband)
 - Upgraded dependencies.
 
 ## v1.0.6, 2018-06-07
