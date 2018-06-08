@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added events section to readme.
 - Added caveats section to readme.
 - Added `activated` event to videos. (rbraband)
 - Fixed images in tweets being cut off on the left side. (rbraband)
