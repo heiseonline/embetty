@@ -77,6 +77,11 @@ Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set t
 <embetty-video type="facebook" video-id="10156049485672318"></embetty-video>
 ```
 
+## Caveats
+
+The Embetty server component **does not proxy video data**
+. This means that **the tracking protection becomes ineffective after the play button has been clicked**.
+
 ## License
 
 Embetty is [MIT licensed](./LICENSE).
