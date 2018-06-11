@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+{% block embed %}{% endblock %}
+<script>
+
+var counter = 0;
+var interval;
+function postHeight() {
+  window.parent.postMessage({
+    sentinel: 'amp',
+    type: 'embed-size',
+    height: document.body.scrollHeight + 20
+  }, '*');
+  if (++counter === 200) clearInterval(interval)
+}
+
+document
+  .querySelector('embetty-tweet,embetty-video')
+  .addEventListener('initialized', function(e) {
+    interval = setInterval(postHeight, 100)
+  });
+</script>
+<script async src="/embetty.js"></script>
+</body>
+</html>
