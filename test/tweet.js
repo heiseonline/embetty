@@ -25,6 +25,15 @@ describe('Tweet', () => {
       .expect(400)
   })
 
+  it('/tweet/:id.amp => 200', async () => {
+    const response = await request(app)
+      .get(`/tweet/${Tweets.s200}.amp`)
+      .expect('Content-Type', /html/)
+      .expect(200)
+    const expected = '<embetty-tweet status="934029337019416579"></embetty-tweet>'
+    assert.ok(response.text.includes(expected))
+  })
+
   it('/tweet/:id => 200', async () => {
     const response = await request(app)
       .get(`/tweet/${Tweets.s200}`)

@@ -14,6 +14,15 @@ describe('Video', () => {
         .expect(404)
     })
 
+    it('should support AMP', async () => {
+      const response = await request(app)
+        .get(`/video/youtube/m6UOo2YGbIE.amp`)
+        .expect('Content-Type', /html/)
+        .expect(200)
+      const expected = '<embetty-video type="youtube" video-id="m6UOo2YGbIE"></embetty-video>'
+      assert.ok(response.text.includes(expected))
+    })
+
     it('should provide the poster image', async () => {
       const response = await request(app)
         .get('/video/youtube/m6UOo2YGbIE-poster-image')
@@ -40,6 +49,15 @@ describe('Video', () => {
         .expect(404)
     })
 
+    it('should support AMP', async () => {
+      const response = await request(app)
+        .get(`/video/vimeo/223099532.amp`)
+        .expect('Content-Type', /html/)
+        .expect(200)
+      const expected = '<embetty-video type="vimeo" video-id="223099532"></embetty-video>'
+      assert.ok(response.text.includes(expected))
+    })
+
     it('should provide the poster image', async () => {
       const response = await request(app)
         .get('/video/vimeo/223099532-poster-image')
@@ -64,6 +82,15 @@ describe('Video', () => {
       await request(app)
         .get('/video/facebook/0')
         .expect(404)
+    })
+
+    it('should support AMP', async () => {
+      const response = await request(app)
+        .get(`/video/facebook/10156049485672318.amp`)
+        .expect('Content-Type', /html/)
+        .expect(200)
+      const expected = '<embetty-video type="facebook" video-id="10156049485672318"></embetty-video>'
+      assert.ok(response.text.includes(expected))
     })
 
     it('should provide the poster image', async () => {
