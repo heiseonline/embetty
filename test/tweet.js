@@ -13,6 +13,9 @@ const Tweets = {
 }
 
 describe('Tweet', () => {
+  before(() => { process.env.URL_BASE = 'https://example.com/embetty-server' })
+  after(() => { delete process.env.URL_BASE })
+
   it('/tweet/:id => 404', async () => {
     await request(app)
       .get(`/tweet/${Tweets.s404}`)

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fixed the Embetty AMP ⚡️ integration.
+
 ## v1.1.1, 2018-06-12
 
 - Fixed `embetty.js` script path in the AMP ⚡️ iframe.

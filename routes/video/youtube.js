@@ -25,10 +25,7 @@ router.get('/:id-poster-image', async (req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  res.render('video.html', {
-    embettyJsPath: '../../embetty.js',
-    video: req.video,
-  })
+  res.render('video.html', {video: req.video})
 })
 
 router.get('/:id', (req, res) => {

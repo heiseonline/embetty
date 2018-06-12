@@ -52,10 +52,7 @@ router.get('/:id-images-:number', async (req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  res.render('tweet.html', {
-    embettyJsPath: '../embetty.js',
-    tweet: req.tweet,
-  })
+  res.render('tweet.html', {tweet: req.tweet})
 })
 
 router.get('/:id', (req, res) => {

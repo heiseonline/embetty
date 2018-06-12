@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta data-embetty-server="{{ urlFor('./') }}">
   <style>
     body {
       margin: 0;
@@ -28,6 +29,6 @@ document
     interval = setInterval(postHeight, 100)
   });
 </script>
-<script async src="{{ embettyJsPath }}"></script>
+<script async src="{{ urlFor('./embetty.js') }}"></script>
 </body>
 </html>

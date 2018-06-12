@@ -7,6 +7,9 @@ start({ folder: path.join(__dirname, 'fixtures') })
 const app = require('..')
 
 describe('Video', () => {
+  before(() => { process.env.URL_BASE = 'https://example.com/embetty-server' })
+  after(() => { delete process.env.URL_BASE })
+
   describe('Youtube', () => {
     it('should respond with 404', async () => {
       await request(app)

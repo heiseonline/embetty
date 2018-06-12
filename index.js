@@ -1,4 +1,5 @@
 const {NotFound} = require('./lib/exceptions')
+const {URL} = require('url')
 const Embetty = require('@heise/embetty-base')
 const express = require('express')
 const helmet = require('helmet')
@@ -8,10 +9,16 @@ const routes = require('./routes')
 
 const app = express()
 
-nunjucks.configure('views', {
-  autoescape: true,
-  express: app
-})
+nunjucks
+  .configure('views', {
+    autoescape: true,
+    express: app
+  })
+  .addGlobal('urlFor', path => {
+    const urlBase = process.env.URL_BASE
+    if (!urlBase) throw new Error('URL_BASE not set.')
+    return new URL(path, urlBase)
+  })
 
 app.set('embetty', new Embetty())
 
