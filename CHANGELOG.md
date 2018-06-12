@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added support for [AMP ⚡️](https://www.ampproject.org/) via `<amp-iframe>`.
 - Upgraded dependencies.
 
 ## v1.0.0, 2018-05-28
