@@ -7,6 +7,7 @@ router.param('id', async (req, res, next, id) => {
   try {
     if (!/^[\w-]+$/.test(id)) throw BadRequest
     req.video = await req.app.get('embetty').loadYoutubeVideo(id)
+    req.id = id
     next()
   } catch (e) {
     next(e)
@@ -24,6 +25,9 @@ router.get('/:id-poster-image', async (req, res, next) => {
   }
 })
 
+router.get('/:id.amp', (req, res) => {
+  res.render('video.html', {type: 'youtube', id: req.id})
+})
 router.get('/:id', (req, res) => {
   res.send(req.video)
 })
