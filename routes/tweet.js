@@ -7,7 +7,6 @@ router.param('id', async (req, res, next, id) => {
   try {
     if (!/^\d+$/.test(id)) throw BadRequest
     req.tweet = await req.app.get('embetty').loadTweet(id)
-    req.id = id
     next()
   } catch (e) {
     next(e)
@@ -53,7 +52,7 @@ router.get('/:id-images-:number', async (req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  res.render('tweet.html', {id: req.id})
+  res.render('tweet.html', {tweet: req.tweet})
 })
 
 router.get('/:id', (req, res) => {
