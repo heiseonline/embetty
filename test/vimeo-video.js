@@ -18,6 +18,11 @@ describe('Vimeo Video', () => {
     assert.doesNotThrow(() => { createVideo('abc123') })
   })
 
+  it('should of the type "vimeo"', () => {
+    const t = createVideo('223099532')
+    assert.equal(t.type, 'vimeo')
+  })
+
   it('should provide the poster image', async () => {
     const t = createVideo('223099532')
     await t.retrieve()
