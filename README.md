@@ -44,6 +44,7 @@ Embetty server can be configured using the following environment variables:
 
 | Variable | Required | Description |
 |----------|----------|-------------|
+| `URL_BASE` | no | The base URL of the Embetty server instance, e.g. `https://my-server.com/path/to/embetty`. |
 | `DEBUG` | no | This variable controls the output of log messages. You may set it to `embetty.*` to log all Embetty messages to `STDOUT`. |
 | `EMBETTY_CACHE`| no | Connection string of a cache adapter. Currently [Redis](https://www.iana.org/assignments/uri-schemes/prov/redis) (example: `redis://`) and LRU (example: `lru://`) are supported. |
 | `PORT` | no | This variable can be used to specify the port on which Embetty Server listens. Default: `3000` |
