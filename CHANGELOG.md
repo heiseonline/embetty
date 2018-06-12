@@ -1,5 +1,10 @@
 # embetty-base
 
+## v1.0.0, 2018-06-12
+
+- Added `type` attribute to embed classes.
+- Upgraded dependencies.
+
 ## v1.0.0-beta.6, 2018-04-24
 
 - Added missing `lru-cache` dependency.

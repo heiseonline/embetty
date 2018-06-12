@@ -18,6 +18,11 @@ describe('Youtube Video', () => {
     assert.doesNotThrow(() => { createVideo('abc123') })
   })
 
+  it('should of the type "youtube"', () => {
+    const t = createVideo('m6UOo2YGbIE')
+    assert.equal(t.type, 'youtube')
+  })
+
   it('should provide the poster image', async () => {
     const t = createVideo('m6UOo2YGbIE')
     await t.retrieve()

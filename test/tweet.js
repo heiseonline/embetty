@@ -37,6 +37,11 @@ describe('Tweet', () => {
     assert.equal(data.id_str, Tweets.text)
   })
 
+  it('should of the type "tweet"', () => {
+    const t = createTweet(Tweets.text)
+    assert.equal(t.type, 'tweet')
+  })
+
   describe('User', () => {
     it('should provide a getter for the profile image url', async () => {
       const t = createTweet(Tweets.text)

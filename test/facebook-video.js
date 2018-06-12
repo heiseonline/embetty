@@ -17,6 +17,11 @@ describe('Vimeo Video', () => {
     assert.doesNotThrow(() => { createVideo('123') })
   })
 
+  it('should of the type "facebook"', () => {
+    const t = createVideo('10156049485672318')
+    assert.equal(t.type, 'facebook')
+  })
+
   it('should resolve the canonical url of the video', async () => {
     const t = createVideo('10156049485672318')
     await t.retrieve()
