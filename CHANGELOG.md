@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1, 2018-06-12
+
+- Fixed `embetty.js` script path in the AMP ⚡️ iframe.
+
 ## v1.1.0, 2018-06-12
 
 - Added support for [AMP ⚡️](https://www.ampproject.org/) via `<amp-iframe>`.
