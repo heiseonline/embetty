@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.1.0, 2018-06-12
 
 - Added support for [AMP ⚡️](https://www.ampproject.org/) via `<amp-iframe>`.
 - Upgraded dependencies.
