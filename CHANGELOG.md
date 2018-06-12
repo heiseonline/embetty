@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.1.2, 2018-06-12
 
 - Fixed the Embetty AMP ⚡️ integration.
 
