@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
 <body>
 {% block embed %}{% endblock %}
 <script>
@@ -11,7 +17,7 @@ function postHeight() {
   window.parent.postMessage({
     sentinel: 'amp',
     type: 'embed-size',
-    height: document.body.scrollHeight + 20
+    height: document.body.scrollHeight
   }, '*');
   if (++counter === 200) clearInterval(interval)
 }
