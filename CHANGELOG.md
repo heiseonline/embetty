@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0, 2018-06-12
+
+- Added support for [AMP ⚡️](https://www.ampproject.org/) via `<amp-iframe>`.
+- Upgraded dependencies.
+
 ## v1.0.0, 2018-05-28
 
 - Fixed API so Youtube videos can now contain minus signs.

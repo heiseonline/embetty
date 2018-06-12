@@ -51,6 +51,10 @@ router.get('/:id-images-:number', async (req, res, next) => {
   }
 })
 
+router.get('/:id.amp', (req, res) => {
+  res.render('tweet.html', {tweet: req.tweet})
+})
+
 router.get('/:id', (req, res) => {
   res.send(req.tweet)
 })

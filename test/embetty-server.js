@@ -14,11 +14,6 @@ describe('embetty-server', () => {
     assert.ok(!('x-powered-by' in response.headers))
   })
 
-  it('"x-frame-options" is "SAMEORIGIN', async () => {
-    const response = await request(app).get('/')
-    assert.equal(response.headers['x-frame-options'], 'SAMEORIGIN')
-  })
-
   it('should provide the version', async () => {
     const response = await request(app).get('/version')
     assert.equal(response.text, require('../package.json').version)

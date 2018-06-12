@@ -66,6 +66,66 @@ $ curl -i http://localhost:8080/version
 $ curl -i http://localhost:8080/tweet/985882036777955328
 ```
 
+## Using Embetty with Google AMP ⚡️
+
+Embetty server supports Google AMP ⚡️ out of the box via `<amp-iframe>`:
+
+Tweet:
+
+```html
+<amp-iframe width="200" height="100"
+  sandbox="allow-scripts allow-same-origin"
+  layout="responsive"
+  resizable
+  frameborder="0"
+  src="https://your-site.com/path/to/embetty-server/tweet/1004988454978179072.amp"
+>
+  <div overflow tabindex=0 role=button aria-label=""></div>
+</amp-iframe>
+```
+
+Vimeo:
+
+```html
+<amp-iframe width="200" height="100"
+  sandbox="allow-scripts allow-same-origin"
+  layout="responsive"
+  resizable
+  frameborder="0"
+  src="https://your-site.com/path/to/embetty-server/video/vimeo/1084537.amp"
+>
+  <div overflow tabindex=0 role=button aria-label=""></div>
+</amp-iframe>
+```
+
+YouTube:
+
+```html
+<amp-iframe width="200" height="100"
+  sandbox="allow-scripts allow-same-origin"
+  layout="responsive"
+  resizable
+  frameborder="0"
+  src="https://your-site.com/path/to/embetty-server/video/youtube/m6UOo2YGbIE.amp"
+>
+  <div overflow tabindex=0 role=button aria-label=""></div>
+</amp-iframe>
+```
+
+Facebook:
+
+```html
+<amp-iframe width="200" height="100"
+  sandbox="allow-scripts allow-same-origin"
+  layout="responsive"
+  resizable
+  frameborder="0"
+  src="https://your-site.com/path/to/embetty-server/video/facebook/10156049485672318.amp"
+>
+  <div overflow tabindex=0 role=button aria-label=""></div>
+</amp-iframe>
+```
+
 ## Contributing to Embetty
 
 See [Contributing](./CONTRIBUTING.md).
