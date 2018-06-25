@@ -25,4 +25,11 @@ describe('Youtube Video', () => {
     const iframeSrc = query('iframe').getAttribute('src')
     assert.ok(/^\/\/www\.youtube-nocookie\.com\//.test(iframeSrc))
   })
+
+  it('[start-at]', async () => {
+    const {element, query} = await createYoutubeVideo('XvDZLjaCJuw', {'start-at': '37'})
+    element.activate()
+    const iframeSrc = query('iframe').getAttribute('src')
+    assert.equal(iframeSrc, '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37')
+  })
 })
