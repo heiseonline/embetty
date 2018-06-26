@@ -3,7 +3,7 @@ import assert from 'assert'
 
 afterEach(() => { document.body.innerHTML = '' })
 
-describe('Youtube Video', () => {
+describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
     const {query} = await createYoutubeVideo('m6UOo2YGbIE')
     assert.equal(
