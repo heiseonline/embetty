@@ -12,7 +12,7 @@ describe('Vimeo Video', () => {
     )
   })
 
-  it('should load the youtube player after click', async () => {
+  it('should load the vimeo player after click', async () => {
     const {query, element} = await createVimeoVideo('1084537')
     assert.ok(!query('iframe'))
     element.activate()
@@ -23,6 +23,6 @@ describe('Vimeo Video', () => {
     const {element, query} = await createVimeoVideo('1084537', {'start-at': '97'})
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.equal(iframeSrc, 'https://player.vimeo.com/video/1084537?autoplay=1&#t=97')
+    assert.equal(iframeSrc, 'https://player.vimeo.com/video/1084537?autoplay=1#t=97')
   })
 })
