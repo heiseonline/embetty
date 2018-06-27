@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.1.0, 2018-06-27
 
 - Added events section to readme.
 - Added caveats section to readme.
