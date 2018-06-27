@@ -3,7 +3,7 @@ import assert from 'assert'
 
 afterEach(() => { document.body.innerHTML = '' })
 
-describe('Youtube Video', () => {
+describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
     const {query} = await createYoutubeVideo('m6UOo2YGbIE')
     assert.equal(
@@ -24,5 +24,12 @@ describe('Youtube Video', () => {
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
     assert.ok(/^\/\/www\.youtube-nocookie\.com\//.test(iframeSrc))
+  })
+
+  it('[start-at]', async () => {
+    const {element, query} = await createYoutubeVideo('XvDZLjaCJuw', {'start-at': '37'})
+    element.activate()
+    const iframeSrc = query('iframe').getAttribute('src')
+    assert.equal(iframeSrc, '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37')
   })
 })

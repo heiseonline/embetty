@@ -14,8 +14,9 @@ export const createElement = (tag, attrs) => {
 
 export const createTweet = status => createElement('embetty-tweet', {status})
 
-export const createVideo = (videoId, type) => {
-  return createElement('embetty-video', {'video-id': videoId, type})
+export const createVideo = (videoId, type, attrs = {}) => {
+  return createElement('embetty-video', {...attrs, 'video-id': videoId, type})
 }
 
-export const createYoutubeVideo = videoId => createVideo(videoId, 'youtube')
+export const createYoutubeVideo = (videoId, attrs) => createVideo(videoId, 'youtube', attrs)
+export const createVimeoVideo = (videoId, attrs) => createVideo(videoId, 'vimeo', attrs)
