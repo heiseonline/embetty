@@ -77,6 +77,26 @@ Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set t
 <embetty-video type="facebook" video-id="10156049485672318"></embetty-video>
 ```
 
+### Events
+
+Embetty triggers the following events:
+
+| Name | Description |
+|------|-------------|
+| `initialized` | The Embetty embed will enter the viewport *after* this has been triggered. |
+| `activated` | The Embetty **video** embed has been replaced with an iframe containing the original video player. The content of the iframe may still be loading. |
+
+Example code:
+
+```js
+document.querySelector('embetty-tweet').addEventistener('initialized', function(e) { ... })
+```
+
+## Caveats
+
+The Embetty server component **does not proxy video data**
+. This means that **the tracking protection becomes ineffective after the play button has been clicked**.
+
 ## License
 
 Embetty is [MIT licensed](./LICENSE).

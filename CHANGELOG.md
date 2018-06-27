@@ -1,5 +1,14 @@
 # embetty
 
+## v1.1.0, 2018-06-27
+
+- Added events section to readme.
+- Added caveats section to readme.
+- Added `activated` event to videos. (rbraband)
+- Added support for `start-at` to youtube and vimeo videos.
+- Fixed images in tweets being cut off on the left side. (rbraband)
+- Upgraded dependencies.
+
 ## v1.0.6, 2018-06-07
 
 - Added link to [demo](https://heiseonline.github.io/embetty/) to readme. (schliflo)
