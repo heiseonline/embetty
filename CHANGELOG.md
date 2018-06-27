@@ -5,6 +5,7 @@
 - Added events section to readme.
 - Added caveats section to readme.
 - Added `activated` event to videos. (rbraband)
+- Added support for `start-at` to youtube and vimeo videos.
 - Fixed images in tweets being cut off on the left side. (rbraband)
 - Upgraded dependencies.
 
