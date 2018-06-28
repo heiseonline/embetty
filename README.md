@@ -4,7 +4,7 @@
   <img alt="Embetty" src="assets/embetty.png" width="360">
 </p>
 
-Embetty displays remote content like tweets or YouTube videos without compromising your privacy.
+Embetty displays remote content like tweets or videos without compromising your privacy.
 
 See it in action on our [demo pages](https://heiseonline.github.io/embetty/).
 
@@ -72,9 +72,14 @@ Use the `status` attribute to embed a tweet with its tweet ID. Example:
 Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set the `video-id` attribute to the video ID.
 
 ```html
-<embetty-video type="youtube" video-id="3L4fHrIJ3A4"></embetty-video>
-<embetty-video type="vimeo" video-id="223099532"></embetty-video>
 <embetty-video type="facebook" video-id="10156049485672318"></embetty-video>
+```
+
+For videos of type `vimeo` or `youtube`, it's also possible to set a `start-at` attribute with a value of time in seconds to start the video at a specific timecode.
+
+```html
+<embetty-video type="youtube" start-at="96" video-id="3L4fHrIJ3A4"></embetty-video>
+<embetty-video type="vimeo" start-at="96" video-id="223099532"></embetty-video>
 ```
 
 ### Events
@@ -94,8 +99,7 @@ document.querySelector('embetty-tweet').addEventistener('initialized', function(
 
 ## Caveats
 
-The Embetty server component **does not proxy video data**
-. This means that **the tracking protection becomes ineffective after the play button has been clicked**.
+The Embetty server component **does not proxy video data**. This means that **the tracking protection becomes ineffective after the play button has been clicked**.
 
 ## License
 
