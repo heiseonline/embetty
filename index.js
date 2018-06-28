@@ -17,7 +17,8 @@ nunjucks
   .addGlobal('urlFor', path => {
     const urlBase = process.env.URL_BASE
     if (!urlBase) throw new Error('URL_BASE not set.')
-    return new URL(path, urlBase)
+    const url = new URL(path, urlBase)
+    return url.toString().replace(/\/$/, '')
   })
 
 app.set('embetty', new Embetty())
