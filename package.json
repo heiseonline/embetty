@@ -80,7 +80,7 @@
     "karma-webpack": "^3.0.0",
     "mocha": "^5.0.0",
     "node-sass": "^4.7.2",
-    "postcss-loader": "^2.0.9",
+    "postcss-loader": "^3.0.0",
     "puppeteer": "^1.0.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.0.0",
