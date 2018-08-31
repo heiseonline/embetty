@@ -1,5 +1,10 @@
 # embetty
 
+## v1.1.3, 2018-08-31
+
+- Fixed YouTube videos not supporting fullscreen display.
+- Upgraded dependencies.
+
 ## v1.1.2, 2018-08-22
 
 - Fixed deployment to npmjs.com.
