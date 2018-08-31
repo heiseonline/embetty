@@ -36,7 +36,16 @@ describe('Embetty', () => {
     const embetty = new Embetty()
     const v = await embetty.loadYoutubeVideo('m6UOo2YGbIE')
     assert.ok(v instanceof Embetty.YoutubeVideo)
+    assert.equal(v.posterMaxResImageIsAvailable, false)
     assert.equal(v.posterImageUrl, 'https://img.youtube.com/vi/m6UOo2YGbIE/hqdefault.jpg')
+  })
+
+  it('should load a youtube video with a max res image', async () => {
+    const embetty = new Embetty()
+    const v = await embetty.loadYoutubeVideo('aEjL5z0j5E0')
+    assert.ok(v instanceof Embetty.YoutubeVideo)
+    assert.equal(v.posterMaxResImageIsAvailable, true)
+    assert.equal(v.posterImageUrl, 'https://img.youtube.com/vi/aEjL5z0j5E0/maxresdefault.jpg')
   })
 
   it('should load a vimeo video', async () => {
