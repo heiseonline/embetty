@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0, 2018-08-31
+
+- Added support for custom 'start at' attributes for YouTube and Vimeo.
+- Fixed URL generation.
+- Improved docs.
+- Upgraded dependencies.
+
 ## v1.1.2, 2018-06-12
 
 - Fixed the Embetty AMP ⚡️ integration.
