@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1, 2018-08031
+
+- Fixed docker build by downgrading `eslint` dependency to `4.19.1`.
+
 ## v1.2.0, 2018-08-31
 
 - Added support for custom 'start at' attributes for YouTube and Vimeo.
