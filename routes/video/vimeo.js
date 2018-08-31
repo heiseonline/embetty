@@ -25,7 +25,8 @@ router.get('/:id-poster-image', async (req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  res.render('video.html', {video: req.video})
+  const attributes = {...req.query}
+  res.render('video.html', {video: req.video, attributes})
 })
 
 router.get('/:id', (req, res) => {
