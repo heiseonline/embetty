@@ -1,5 +1,13 @@
 # embetty
 
+## v1.1.2, 2018-08-22
+
+- Fixed deployment to npmjs.com.
+
+## v1.1.1, 2018-08-21
+
+- Fixed hash tag error supporting all characters.
+
 ## v1.1.0, 2018-06-27
 
 - Added events section to readme.
