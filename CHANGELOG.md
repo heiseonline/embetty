@@ -1,5 +1,9 @@
 # embetty-base
 
+## v1.0.1, 2018-08-31
+
+- Upgraded dependencies.
+
 ## v1.0.0, 2018-06-12
 
 - Added `type` attribute to embed classes.
