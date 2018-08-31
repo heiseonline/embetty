@@ -2,6 +2,7 @@ language: node_js
 sudo: false
 node_js:
 - '8'
+- '10'
 script:
 - yarn test
 before_install: yarn global add greenkeeper-lockfile@1
