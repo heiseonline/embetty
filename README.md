@@ -65,6 +65,7 @@ The setup can be tested by sending a request to the running server. If everythin
 ```sh
 $ curl -i http://localhost:8080/version
 $ curl -i http://localhost:8080/tweet/985882036777955328
+$ curl -i http://localhost:8080/video/youtube/m6UOo2YGbIE-poster-image
 ```
 
 ## Using Embetty with Google AMP ⚡️
