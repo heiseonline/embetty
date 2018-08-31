@@ -1,5 +1,9 @@
 # embetty-base
 
+## v1.0.2, 2018-08-31
+
+- Fixed YouTube video poster image aspect ratio.
+
 ## v1.0.1, 2018-08-31
 
 - Upgraded dependencies.
