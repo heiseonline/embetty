@@ -23,7 +23,7 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "eslint": "^4.9.0",
+    "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^6.0.0",
