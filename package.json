@@ -16,7 +16,7 @@
     "@heise/request-promise-native-record": "^1.0.1",
     "cheerio": "^1.0.0-rc.2",
     "content-type": "^1.0.4",
-    "debug": "^3.1.0",
+    "debug": "^4.0.0",
     "ioredis": "^4.0.0",
     "lru-cache": "^4.1.2",
     "request": "^2.83.0",
