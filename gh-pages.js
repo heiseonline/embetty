@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const {URL} = require('url')
+const { URL } = require('url')
 const config = require('./webpack.config')
 const Embetty = require('@heise/embetty-base')
 const embettyRoutes = require('@heise/embetty-server/routes')
@@ -29,21 +29,21 @@ const createServer = config => new Promise((resolve, reject) => {
 })
 
 const downloadAsset = async (url, baseDir) => {
-  const {pathname} = new URL(url)
+  const { pathname } = new URL(url)
   const targetFile = path.join(baseDir, pathname)
   if (await fs.pathExists(targetFile)) {
     console.log('skipping download:', targetFile)
     return
   }
 
-  const response = await request.get(url, {encoding: null})
+  const response = await request.get(url, { encoding: null })
   console.log('Writing:', targetFile)
   return fs.outputFile(targetFile, response)
 }
 
 const launchServer = async () => {
   const server = await createServer(config)
-  let {address, family, port} = server.address()
+  let { address, family, port } = server.address()
   address = family === 'IPv6' ? `[${address}]` : address
   return `http://${address}:${port}`
 }
@@ -56,7 +56,7 @@ const download = async (baseDir, url) => {
   page.on('request', request => { urls.push(request.url()) })
   page.on('console', msg => { console[msg.type()](msg.text()) })
 
-  await page.goto(url, {waitUntil: 'networkidle0'})
+  await page.goto(url, { waitUntil: 'networkidle0' })
   await page.evaluate(async () => {
     const resolveOnInitialized = element => {
       return new Promise(resolve => {

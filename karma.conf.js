@@ -1,7 +1,7 @@
 const embettyServer = require('@heise/embetty-server')
 
 const server = embettyServer.listen()
-const {port} = server.address()
+const { port } = server.address()
 
 module.exports = function(config) {
   config.set({

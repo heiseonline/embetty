@@ -1,5 +1,10 @@
 # embetty
 
+## v1.1.4, 2018-10-25
+
+- Upgraded dependencies.
+- Improved tests to support Node versions 8 and 10.
+
 ## v1.1.3, 2018-08-31
 
 - Fixed YouTube videos not supporting fullscreen display.
