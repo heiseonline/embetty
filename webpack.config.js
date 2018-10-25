@@ -37,11 +37,25 @@ module.exports = {
           'babel-loader'
         ]
       },
+      {
+        test: /\.scss$/,
+        use: [
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /^custom-elements-es5-adapter\.js$/,
+        use: [
+          'raw-loader'
+        ]
+      }
     ]
   },
   plugins: [
     new webpack.IgnorePlugin(/vertx/), // see https://github.com/parcel-bundler/parcel/issues/141
-    new BundleAnalyzerPlugin({analyzerMode: 'static', openAnalyzer: false}),
+    new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false }),
     new webpack.BannerPlugin({
       banner: `${title || name} - v${version} - ${(new Date()).toGMTString()}
 ${homepage}
