@@ -1,6 +1,11 @@
 # Changelog
 
-## v1.2.1, 2018-08031
+## v1.2.2, 2018-10-25
+
+- Upgraded dependencies.
+- Improved tests to support Node versions 8 and 10.
+
+## v1.2.1, 2018-08-31
 
 - Fixed docker build by downgrading `eslint` dependency to `4.19.1`.
 
