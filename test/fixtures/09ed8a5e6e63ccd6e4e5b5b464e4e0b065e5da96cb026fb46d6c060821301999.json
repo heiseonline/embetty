@@ -1,0 +1,38 @@
+{
+  "statusCode": 404,
+  "body": "",
+  "headers": {
+    "timing-allow-origin": "https://imasdk.googleapis.com",
+    "content-type": "image/jpeg",
+    "date": "Thu, 25 Oct 2018 06:57:59 GMT",
+    "expires": "Thu, 25 Oct 2018 06:58:29 GMT",
+    "cache-control": "public, max-age=30",
+    "x-content-type-options": "nosniff",
+    "server": "sffe",
+    "content-length": "1097",
+    "x-xss-protection": "1; mode=block",
+    "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39,35\"",
+    "connection": "close"
+  },
+  "request": {
+    "uri": {
+      "protocol": "https:",
+      "slashes": true,
+      "auth": null,
+      "host": "img.youtube.com",
+      "port": 443,
+      "hostname": "img.youtube.com",
+      "hash": null,
+      "search": null,
+      "query": null,
+      "pathname": "/vi/m6UOo2YGbIE/maxresdefault.jpg",
+      "path": "/vi/m6UOo2YGbIE/maxresdefault.jpg",
+      "href": "https://img.youtube.com/vi/m6UOo2YGbIE/maxresdefault.jpg"
+    },
+    "method": "HEAD",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+      "content-length": 0
+    }
+  }
+}

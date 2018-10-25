@@ -1,8 +1,8 @@
-const {start, restore} = require('@heise/request-promise-native-record')
+const { start, restore } = require('@heise/request-promise-native-record')
 const assert = require('assert')
 const path = require('path')
 
-start({folder: path.join(__dirname, 'fixtures')})
+start({ folder: path.join(__dirname, 'fixtures') })
 
 const Embed = require('../lib/embed')
 const Embetty = require('..')
@@ -25,20 +25,20 @@ class EmbettyMock extends Embetty {
 
 class MyEmbed extends Embed {
   get _requestOptions() {
-    return {uri: 'http://www.heise.de'}
+    return { uri: 'http://www.heise.de' }
   }
 }
 
 describe('Embed', () => {
   it('should retrieve data', async () => {
-    const e = new MyEmbed(123, {embetty: new EmbettyMock()})
+    const e = new MyEmbed(123, { embetty: new EmbettyMock() })
     await e.retrieve()
     assert.ok(e.data.includes('<html'))
   })
 
   it('default timeout should be 2000 ms', () => {
     const e = new MyEmbed(123)
-    assert.equal(e.requestTimeout, 2000)
+    assert.strictEqual(e.requestTimeout, 2000)
   })
 
   it('should cancel long running requests', async () => {
