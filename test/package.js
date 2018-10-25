@@ -9,12 +9,12 @@ describe('Package', () => {
 
   it('exports the Embetty class', () => {
     const Embetty = require('..')
-    assert.equal(Embetty, _Embetty)
+    assert.strictEqual(Embetty, _Embetty)
   })
 
   it('Embetty contains the Tweet class', () => {
     const Embetty = require('..')
     assert.ok(Embetty.hasOwnProperty('Tweet'))
-    assert.equal(Embetty.Tweet, Tweet)
+    assert.strictEqual(Embetty.Tweet, Tweet)
   })
 })
