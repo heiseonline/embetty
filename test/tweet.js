@@ -1,4 +1,4 @@
-const {start} = require('@heise/request-promise-native-record')
+const { start } = require('@heise/request-promise-native-record')
 const assert = require('assert')
 const path = require('path')
 const request = require('supertest')
@@ -42,7 +42,7 @@ describe('Tweet', () => {
       .get(`/tweet/${Tweets.s200}`)
       .expect('Content-Type', /json/)
       .expect(200)
-    assert.equal(response.body.id_str, Tweets.s200)
+    assert.strictEqual(response.body.id_str, Tweets.s200)
   })
 
   it('/tweet/:id-profile-image => 404', async () => {
@@ -66,7 +66,7 @@ describe('Tweet', () => {
     assert.ok(Buffer.isBuffer(response.body))
     const imageLength = Buffer.byteLength(response.body)
     assert.ok(imageLength > 100)
-    assert.equal(response.headers['content-length'], imageLength)
+    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
   })
 
   it('/tweet/:id-images-:number => 400', async () => {
@@ -90,7 +90,7 @@ describe('Tweet', () => {
     assert.ok(Buffer.isBuffer(response.body))
     const imageLength = Buffer.byteLength(response.body)
     assert.ok(imageLength > 100)
-    assert.equal(response.headers['content-length'], imageLength)
+    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
   })
 
   it('/tweet/:id-link-image => 200', async () => {
@@ -102,7 +102,7 @@ describe('Tweet', () => {
     assert.ok(Buffer.isBuffer(response.body))
     const imageLength = Buffer.byteLength(response.body)
     assert.ok(imageLength > 100)
-    assert.equal(response.headers['content-length'], imageLength)
+    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
   })
 
   it('/tweet/:id-link-image => 404', async () => {

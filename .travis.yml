@@ -3,9 +3,6 @@ sudo: false
 node_js:
 - '8'
 - '10'
-matrix:
-  allow_failures:
-    - node_js: 10
 script:
 - yarn test
 before_install: yarn global add greenkeeper-lockfile@1

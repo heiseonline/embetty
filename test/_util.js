@@ -1,4 +1,4 @@
-const {spawn} = require('child_process')
+const { spawn } = require('child_process')
 const path = require('path')
 
 module.exports = class Util {
@@ -15,7 +15,7 @@ module.exports = class Util {
       cmd.stdout.on('data', d => { stdout += d.toString() })
 
       cmd.on('close', exitCode => {
-        if (exitCode === 0) return resolve({cmd, exitCode, stdout})
+        if (exitCode === 0) return resolve({ cmd, exitCode, stdout })
         const error = new Error(exitCode)
         error.stdout = stdout
         error.exitCode = exitCode

@@ -1,4 +1,4 @@
-const {Forbidden} = require('../lib/exceptions')
+const { Forbidden } = require('../lib/exceptions')
 const cors = require('cors')
 const debug = require('debug')('embetty.web:server')
 const express = require('express')
@@ -26,7 +26,7 @@ router.use(cors({
 router.use('/embetty.js', (req, res, next) => {
   const embettyPath = require.resolve('@heise/embetty/dist/embetty.js')
   res.type('application/javascript')
-  fs.createReadStream(embettyPath, {encoding: 'utf8'}).pipe(res)
+  fs.createReadStream(embettyPath, { encoding: 'utf8' }).pipe(res)
 })
 router.use('/tweet', tweet)
 router.use('/video', video)
