@@ -1,5 +1,10 @@
 # embetty-base
 
+## v1.0.3, 2018-10-25
+
+- Upgraded dependencies.
+- Improved tests to support Node versions 8, 10 and 11.
+
 ## v1.0.2, 2018-08-31
 
 - Fixed YouTube video poster image aspect ratio.
