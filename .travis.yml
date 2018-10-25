@@ -4,6 +4,9 @@ node_js:
 - '8'
 - '10'
 - '11'
+matrix:
+  allow_failures:
+    - node_js: 11
 script:
 - yarn test
 before_install: yarn global add greenkeeper-lockfile@1
