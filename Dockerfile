@@ -1,4 +1,4 @@
-FROM alpine:3.7 
+FROM alpine:3.8
 
 ENV PORT 8080
 EXPOSE 8080
