@@ -1,4 +1,4 @@
-const {BadRequest, NotFound} = require('../lib/exceptions')
+const { BadRequest, NotFound } = require('../lib/exceptions')
 const express = require('express')
 
 const router = express.Router()
@@ -52,7 +52,7 @@ router.get('/:id-images-:number', async (req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  res.render('tweet.html', {tweet: req.tweet})
+  res.render('tweet.html', { tweet: req.tweet })
 })
 
 router.get('/:id', (req, res) => {

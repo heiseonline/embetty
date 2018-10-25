@@ -1,4 +1,4 @@
-const {start} = require('@heise/request-promise-native-record')
+const { start } = require('@heise/request-promise-native-record')
 const assert = require('assert')
 const path = require('path')
 const request = require('supertest')
@@ -35,7 +35,7 @@ describe('Video', () => {
       assert.ok(Buffer.isBuffer(response.body))
       const imageLength = Buffer.byteLength(response.body)
       assert.ok(imageLength > 100)
-      assert.equal(response.headers['content-length'], imageLength)
+      assert.strictEqual(response.headers['content-length'], `${imageLength}`)
     })
   })
 
@@ -70,7 +70,7 @@ describe('Video', () => {
       assert.ok(Buffer.isBuffer(response.body))
       const imageLength = Buffer.byteLength(response.body)
       assert.ok(imageLength > 100)
-      assert.equal(response.headers['content-length'], imageLength)
+      assert.strictEqual(response.headers['content-length'], `${imageLength}`)
     })
   })
 
@@ -105,7 +105,7 @@ describe('Video', () => {
       assert.ok(Buffer.isBuffer(response.body))
       const imageLength = Buffer.byteLength(response.body)
       assert.ok(imageLength > 100)
-      assert.equal(response.headers['content-length'], imageLength)
+      assert.strictEqual(response.headers['content-length'], `${imageLength}`)
     })
   })
 })

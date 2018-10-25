@@ -16,6 +16,6 @@ describe('embetty-server', () => {
 
   it('should provide the version', async () => {
     const response = await request(app).get('/version')
-    assert.equal(response.text, require('../package.json').version)
+    assert.strictEqual(response.text, require('../package.json').version)
   })
 })

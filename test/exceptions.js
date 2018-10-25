@@ -3,10 +3,10 @@ const Exceptions = require('../lib/exceptions')
 
 describe('Exceptions', () => {
   it('#BadRequest', () => {
-    assert.equal(Exceptions.BadRequest.statusCode, 400)
+    assert.strictEqual(Exceptions.BadRequest.statusCode, 400)
   })
 
   it('#NotFound', () => {
-    assert.equal(Exceptions.NotFound.statusCode, 404)
+    assert.strictEqual(Exceptions.NotFound.statusCode, 404)
   })
 })

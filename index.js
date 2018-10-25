@@ -1,5 +1,5 @@
-const {NotFound} = require('./lib/exceptions')
-const {URL} = require('url')
+const { NotFound } = require('./lib/exceptions')
+const { URL } = require('url')
 const Embetty = require('@heise/embetty-base')
 const express = require('express')
 const helmet = require('helmet')
