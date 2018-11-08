@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.1.5, 2018-11-08
 
 - Fixed video styles.
 
