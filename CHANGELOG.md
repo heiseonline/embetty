@@ -1,5 +1,9 @@
 # embetty
 
+## v1.1.5, 2018-11-08
+
+- Fixed video styles.
+
 ## v1.1.4, 2018-10-25
 
 - Upgraded dependencies.
