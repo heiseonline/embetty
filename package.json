@@ -83,7 +83,7 @@
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
     "puppeteer": "^1.0.0",
-    "raw-loader": "^0.5.1",
+    "raw-loader": "^1.0.0",
     "sass-loader": "^7.0.0",
     "webpack": "^4.0.0",
     "webpack-bundle-analyzer": "^3.0.3",
