@@ -4,6 +4,7 @@
 
 - Replaced play button.
 - Removed background gradient.
+- Updated YouTube `iframe` code.
 
 ## v1.1.5, 2018-11-08
 
