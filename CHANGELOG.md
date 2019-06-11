@@ -1,6 +1,10 @@
 # embetty
 
-# v1.1.6, 2019-03-08
+## Unreleased
+
+- Upgraded dependencies.
+
+## v1.1.6, 2019-03-08
 
 - Replaced play button.
 - Removed background gradient.
