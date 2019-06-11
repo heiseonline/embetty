@@ -1,5 +1,9 @@
 # embetty-base
 
+## v1.0.4, 2019-06-11
+
+- Upgraded dependencies.
+
 ## v1.0.3, 2018-10-25
 
 - Upgraded dependencies.
