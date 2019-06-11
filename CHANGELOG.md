@@ -1,5 +1,9 @@
 # embetty-base
 
+## Unreleased
+
+- Upgraded dependencies.
+
 ## v1.0.3, 2018-10-25
 
 - Upgraded dependencies.
