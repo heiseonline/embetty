@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.2.3, 2019-06-11
 
 - Upgraded dependencies.
 
