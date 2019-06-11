@@ -60,7 +60,7 @@ describe('Tweet', () => {
   it('/tweet/:id-profile-image => 200', async () => {
     const response = await request(app)
       .get(`/tweet/${Tweets.s200}-profile-image`)
-      .expect('Content-Type', /png/)
+      .expect('Content-Type', /png|jpg|jpeg/)
       .expect(200)
 
     assert.ok(Buffer.isBuffer(response.body))
