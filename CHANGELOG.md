@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v1.1.7, 2019-06-11
 
 - Upgraded dependencies.
 
