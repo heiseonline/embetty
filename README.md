@@ -100,9 +100,9 @@ document.querySelector('embetty-tweet').addEventistener('initialized', function(
 ## Testing
 
 1. Clone this repository.
-2. yarn
+2. `yarn`
 3. export the `TWITTER_` tokens mentioned in https://github.com/heiseonline/embetty-server
-4. yarn test
+4. `yarn test`
 
 
 ## Caveats
