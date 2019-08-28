@@ -24,7 +24,7 @@ Example:
   <script async src="embetty.js"></script>
 </head>
 <body>
-  <embetty-tweet status="950371792874557440"></embetty-tweet>
+  <embetty-tweet status="1166685910030790662"></embetty-tweet>
 </body>
 </html>
 ```
