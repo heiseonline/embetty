@@ -97,6 +97,14 @@ Example code:
 document.querySelector('embetty-tweet').addEventistener('initialized', function(e) { ... })
 ```
 
+## Testing
+
+1. Clone this repository.
+2. yarn
+3. export the `TWITTER_` tokens mentioned in https://github.com/heiseonline/embetty-server
+4. yarn test
+
+
 ## Caveats
 
 The Embetty server component **does not proxy video data**. This means that **the tracking protection becomes ineffective after the play button has been clicked**.
