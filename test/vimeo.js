@@ -8,7 +8,7 @@ describe('Vimeo Video', () => {
     const { query } = await createVimeoVideo('1084537')
     assert.strictEqual(
       query('img').getAttribute('src'),
-      '/video/vimeo/1084537-poster-image'
+      'video/vimeo/1084537-poster-image'
     )
   })
 
