@@ -24,7 +24,7 @@ Example:
   <script async src="embetty.js"></script>
 </head>
 <body>
-  <embetty-tweet status="950371792874557440"></embetty-tweet>
+  <embetty-tweet status="1166685910030790662"></embetty-tweet>
 </body>
 </html>
 ```
@@ -96,6 +96,14 @@ Example code:
 ```js
 document.querySelector('embetty-tweet').addEventistener('initialized', function(e) { ... })
 ```
+
+## Testing
+
+1. Clone this repository.
+2. `yarn`
+3. export the `TWITTER_` tokens mentioned in https://github.com/heiseonline/embetty-server
+4. `yarn test`
+
 
 ## Caveats
 

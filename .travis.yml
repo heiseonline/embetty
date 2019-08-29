@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - '8'
 - '10'
+- '12'
 dist: trusty
 sudo: required
 addons:
@@ -36,7 +37,7 @@ deploy:
       node_js: '8'
   - provider: releases
     api_key:
-      secure: "L60l7vyNfWmyEvLhVSY4EKb3Y61Sq0VVBinmZOEIGf4lYPGaFKiOZOgVOiIe9juvB2kJ5meyHkEstdnWaarTAmzufnjW1SO55Q9bF/ZZ2N7l0q2+7Gh57H5Wp+DFwslD8ymOQdI/0xtoOlXkxDCOCwaw2esJpqRxNR2MfEkGis54/uUaahyx6zsXWvzzefpxIB/uZjOFdklqJVxHfvyYDSK8oHAHGbdNaqpf761FyV9tcnGQ2oMSzR+oI9sg8CXQABiGaJKsFjmJF2XuzwG3blCxpk3e8E1aucxsqnd7pq0rloPM+AQgFBhnBh4rtUMmQ1w7hmCRZPXc9bpg08XNbRmd5YOiHuFrF3cvdTQMAjW0jT1H/DlpwteKy4BYn8ucG+H3bxjnjh1M2zjUXuvzrdqJQM+6DdkJ7/x0T4nlcLVCUSKNfOuc7rvCc3HJZ8206yRKItGj9m/hEPFwNic05WLNDwkUwr59RR6qSogycNDL976mgGwqaR1Pi/W7KalcSQjfIT6lxcHYUgQvpmnLs1VAX6xjPy1soDwGK8BZ24ZS3Ou+enYEhzS5svCJrwmWM6ian+CP08YooCIxOdfd2yM+R2yAxeJ+butZQRHmOtrxjg6xdjDcjrdGsgwN2OB3ruRwhAc0ZN6yj85RrvxutMMpx3LDgklwkXd7nVHgZNA="
+      secure: "pQTUUSHprolW8fE7MerxZBRoxk2HleoYyfwgFZI9ZQ50Tx6jtUKRgwTJc5jckJpgNLu9FVM0D0Z8v037CRk4Wd4UWSSc0OCmR0FKqlhGD1sppRVPRhvayfviCMsTRlUgD3ge2kjpuN+XfGzntem6Jfq69tf3q7/xfMW7RXEga8+KE2l+jB3Bhc8y18rI547jwiDN4n/Dwf2AlndZp+a0ssVklC7sY6IomyoSstpJG6tKDNBgIfIDM0lszd/mjhEzlDaEKqJVF9v00OSFt5p+jqnJAfZfCDiX1w0NFgjwbRMyCYJLmmYLi1ge/KEDQ1b1TAVO4tuMvQAZ/FextJvimqx9cIPzfLXHdjTMh3tBFAK1fNPeoK8+ZMce3TE3H17YDUbUKnQZXW+Dr02bFlXvP3zW0CAOYjhCDsoiVjuUyQF2NcNgvSgDGplp8xu2WrEzRh7DRxuBhfQwe6Y1YIo+TvDy9qj0gxbUf98W+f680drpIf6v/Io7XVTIj2BZZYM9ulZywberCP0XWN4pal/nLQCloEXUZjTBOIBuBdimOBl5IwYBKZX+Km0oMtKtKEcIydn+KxRlyVpbqCI4MNMdnR0hJ0UfYgOeF+K+QGJZwxtgxMw7UQGgxaASYWY37jS+LkECI1+ZYS0cNx6del9eC/24E/EJu9u/neCSSv4YMwI="
     file:
       - $BASE_NAME.zip
       - $BASE_NAME.tar.gz

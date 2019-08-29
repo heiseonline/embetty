@@ -53,6 +53,14 @@ describe('Tweet', () => {
     })
   })
 
+  it('tweet link should contain the username and the tweet id', async () => {
+    const { element } = await createTweet(Tweets.text)
+    const links = [...element.shadowRoot.querySelectorAll('.tweet__link')]
+    assert.strictEqual(links.length, 1)
+    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'));
+    assert.ok(links[0].getAttribute('href').includes('934029337019416579'));
+  })
+
   describe('Tweet body', () => {
     it('should replace hash tags', async () => {
       const { query } = await createTweet(Tweets.hashTag.valid)
