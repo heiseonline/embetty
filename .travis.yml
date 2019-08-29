@@ -25,7 +25,6 @@ before_script: greenkeeper-lockfile-update
 before_deploy: yarn build:zip
 after_script: greenkeeper-lockfile-upload
 deploy:
-  matrix:
   - provider: npm
     skip_cleanup: true
     email: mick@heise.de
