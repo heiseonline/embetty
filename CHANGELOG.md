@@ -1,5 +1,9 @@
 # embetty
 
+## v1.1.9, 2019-08-29
+
+- Debug npm release
+
 ## v1.1.8, 2019-08-29
 
 - Fix by @leto to adjust to new Twitter API.
