@@ -1,5 +1,9 @@
 # embetty
 
+## v1.1.10, 2019-08-29
+
+- update password for auto-build
+
 ## v1.1.9, 2019-08-29
 
 - Debug npm release
