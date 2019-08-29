@@ -8,7 +8,7 @@ describe('YouTube Video', () => {
     const { query } = await createYoutubeVideo('m6UOo2YGbIE')
     assert.strictEqual(
       query('img').getAttribute('src'),
-      '/video/youtube/m6UOo2YGbIE-poster-image'
+      'video/youtube/m6UOo2YGbIE-poster-image'
     )
   })
 

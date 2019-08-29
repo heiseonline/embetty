@@ -2,7 +2,9 @@ import { createTweet } from './lib/util'
 import assert from 'assert'
 import Tweets from '@heise/embetty-base/test/tweets.json'
 
-afterEach(() => { document.body.innerHTML = '' })
+afterEach(() => {
+  document.body.innerHTML = ''
+})
 
 describe('Tweet', () => {
   it('should have a max width', async () => {
@@ -64,7 +66,9 @@ describe('Tweet', () => {
   describe('Tweet body', () => {
     it('should replace hash tags', async () => {
       const { query } = await createTweet(Tweets.hashTag.valid)
-      const a = query('article a[href="https://twitter.com/hashtag/Wochenende"]')
+      const a = query(
+        'article a[href="https://twitter.com/hashtag/Wochenende"]'
+      )
       assert.ok(a)
       assert.strictEqual(a.innerText, '#Wochenende')
     })

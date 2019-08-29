@@ -1,4 +1,3 @@
-require('babel-polyfill')
 require('whatwg-fetch')
 
 try {
@@ -8,3 +7,5 @@ try {
 
 require('@webcomponents/webcomponentsjs')
 require('intersection-observer')
+require('core-js/web/url')
+require('regenerator-runtime/runtime')
