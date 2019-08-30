@@ -7,5 +7,5 @@ try {
 
 require('@webcomponents/webcomponentsjs')
 require('intersection-observer')
-require('core-js/web/url')
+require('core-js/stable')
 require('regenerator-runtime/runtime')
