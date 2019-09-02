@@ -8,11 +8,7 @@ const WebpackDevServer = require('webpack-dev-server')
 
 const PORT = process.env.PORT || 9000
 
-config.entry.embetty = config.entry.embetty.concat([
-  `webpack-dev-server/client?http://localhost:${PORT}`,
-  'webpack/hot/dev-server',
-])
-config.plugins.push(new webpack.HotModuleReplacementPlugin())
+config.entry = config.entry.embetty
 
 const server = new WebpackDevServer(webpack(config), {
   hot: true,
