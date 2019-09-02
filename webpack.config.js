@@ -25,9 +25,6 @@ module.exports = {
   },
   devtool: (prod && 'none') || 'inline-source-map',
   mode: (prod && 'production') || 'development',
-  optimization: {
-    minimize: false,
-  }, // debug`
   module: {
     rules: [
       {
