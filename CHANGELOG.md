@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.2.5+6, 2019-09-05
+## v1.2.5-7, 2019-09-05
 
-- Chore: fix travis deployment
+- Chore: fix travis and docker deployment
 
 ## v1.2.4, 2019-09-05
 
