@@ -37,7 +37,7 @@ describe('CLI', () => {
     const { stderr } = spawnSync(embettyBin, ['start', '--debug'], { timeout: 3000 })
     const out = stderr.toString()
     assert.ok(out.includes('express:router'))
-    assert.ok(out.includes('embetty.base'))
+    assert.ok(out.includes('embetty-base'))
   })
 
   it('embetty start --cache <cache>', () => {
