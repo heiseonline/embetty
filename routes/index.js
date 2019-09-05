@@ -1,6 +1,6 @@
 const { Forbidden } = require('../lib/exceptions')
 const cors = require('cors')
-const debug = require('debug')('embetty.web:server')
+const debug = require('debug')('embetty-server:index')
 const express = require('express')
 const fs = require('fs')
 const tweet = require('./tweet')

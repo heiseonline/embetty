@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty-server",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "index.js",
   "repository": "git@github.com:heiseonline/embetty-server.git",
   "author": "Philipp Busse <pmb@heise.de>",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@heise/embetty": "^1.1.0",
-    "@heise/embetty-base": "^1.0.0-beta.5",
+    "@heise/embetty-base": "^1.0.9",
     "commander": "^2.15.1",
     "cors": "^2.8.4",
     "debug": "^4.1.0",
