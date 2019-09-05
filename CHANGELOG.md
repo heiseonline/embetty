@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5, 2019-09-05
+
+- Chore: fix travis deployment
+
 ## v1.2.4, 2019-09-05
 
 - Upgrade embetty-base, fix cloudflare error
