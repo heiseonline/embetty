@@ -1,8 +1,8 @@
 # embetty-base
 
-## v1.0.8, 2019-09-05
+## v1.0.6--1.0.9, 2019-09-05
 
-- Chore: update travis build script
+- Chore: update travis build script (needs tagged releases to build...)
 
 ## v1.0.5, 2019-09-05
 
