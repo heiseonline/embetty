@@ -1,6 +1,6 @@
 # embetty-base
 
-## UNRELEASED 2019-09-05
+## v1.0.5, 2019-09-05
 
 - Fix: twitter-embedded links could 403 (e.g. due to cloudflare), which broke the process.
 
