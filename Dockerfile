@@ -1,10 +1,9 @@
-FROM alpine:3.8
+FROM node:12-alpine
 
 ENV PORT 8080
 EXPOSE 8080
 
-RUN apk add --update --no-cache nodejs git yarn \
-    && addgroup embetty && adduser embetty -D -G embetty \
+RUN addgroup embetty && adduser embetty -D -G embetty \
     && mkdir /app \
     && chown -R embetty:embetty /app/
 

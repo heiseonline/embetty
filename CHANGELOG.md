@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Use Node.js 12 Docker image.
+
 ## v1.2.5-7, 2019-09-05
 
 - Chore: fix travis and docker deployment
