@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.4, 2019-09-05
+
+- Upgrade embetty-base, fix cloudflare error
+
 ## v1.2.3, 2019-06-11
 
 - Upgraded dependencies.
