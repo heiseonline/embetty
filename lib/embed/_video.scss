@@ -16,7 +16,7 @@
     }
   }
 
-  #playbutton {
+  #playbutton {  // id hardcoded in video.js
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -28,9 +28,17 @@
     background: none;
     cursor: pointer;
     transition: opacity 150ms;
+  }
+
+  .video-playbutton {
+    min-width: 3.75rem;
+    width: 13%;
+    max-width: 6rem;
+    transition: transform 300ms ease-out;
+    will-change: transform;
 
     &:hover {
-      opacity: 1;
+      transform: scale(1.07);
     }
   }
 
