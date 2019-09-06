@@ -57,7 +57,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@heise/embetty-server": "^1.0.0-beta.2",
+    "@heise/embetty-server": "^1.2.7",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.0",
