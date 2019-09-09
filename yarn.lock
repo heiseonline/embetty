@@ -18,10 +18,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@heise/embetty-base@^1.0.0-beta.5":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@heise/embetty-base/-/embetty-base-1.0.4.tgz#3b68d56f94d92c93701c9c46fb99585ae907d95c"
-  integrity sha512-uVZFI6nwuVgQJFMQSuZ3OXGmurEdFytnTgGBtr2u+fOFSnW/zgOEibM3eGHKkyBzwp4qBAAWv8xd02gentJUGw==
+"@heise/embetty-base@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@heise/embetty-base/-/embetty-base-1.0.9.tgz#4a60cde434ed4be3c9aeca7b736da1b54d885fab"
+  integrity sha512-8He1IusgUkyzpa8eJPiUeCKoOYs5PsV6xR8HElFCU/+64nEzJaIoQzAq6o4HHeX25xRjKzqJtAP+1KJ50tl8PQ==
   dependencies:
     "@heise/request-promise-native-record" "^1.0.1"
     cheerio "^1.0.0-rc.2"
@@ -32,13 +32,13 @@
     request "^2.83.0"
     request-promise-native "^1.0.5"
 
-"@heise/embetty-server@^1.0.0-beta.2":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@heise/embetty-server/-/embetty-server-1.2.3.tgz#6afe4e3a3972769879bc46ee830d409a182fb2ae"
-  integrity sha512-mAoGrts6IommeKpNE2P17hVFc24+80tUE06hlP6OOZSJ15Z0zIWG0SLvkGqIIpRJ2C5wufO5tcyys8EBb6KqJA==
+"@heise/embetty-server@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@heise/embetty-server/-/embetty-server-1.2.7.tgz#f497292bdf9d63d8a18b173c458e1f9214dda11a"
+  integrity sha512-5HJV8KL90gnw8cy9I59DXc5x7mFhB2eQ7LcJfZQV6PfGSsPVgHDsU0Ckr6mDk1EffEegy4Af2p2NvBkXsQFcqg==
   dependencies:
     "@heise/embetty" "^1.1.0"
-    "@heise/embetty-base" "^1.0.0-beta.5"
+    "@heise/embetty-base" "^1.0.9"
     commander "^2.15.1"
     cors "^2.8.4"
     debug "^4.1.0"
