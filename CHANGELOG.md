@@ -1,5 +1,9 @@
 # embetty
 
+## v1.2.0, 2019-09-09
+
+- improve video play button visibility
+
 ## v1.1.11, 2019-08-29
 
 - fix branch not permitted

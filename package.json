@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "1.1.11",
+  "version": "1.2.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -49,14 +49,16 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
+    "core-js": "3",
     "hogan.js": "^3.0.2",
     "intersection-observer": "^0.7.0",
+    "regenerator-runtime": "^0.13.3",
+    "url-join": "^4.0.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@heise/embetty-server": "^1.0.0-beta.2",
-    "@webcomponents/webcomponentsjs": "^1.0.19",
+    "@heise/embetty-server": "^1.2.7",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
     "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
