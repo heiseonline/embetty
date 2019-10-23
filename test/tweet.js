@@ -59,8 +59,8 @@ describe('Tweet', () => {
     const { element } = await createTweet(Tweets.text)
     const links = [...element.shadowRoot.querySelectorAll('.tweet__link')]
     assert.strictEqual(links.length, 1)
-    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'));
-    assert.ok(links[0].getAttribute('href').includes('934029337019416579'));
+    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'))
+    assert.ok(links[0].getAttribute('href').includes('934029337019416579'))
   })
 
   describe('Tweet body', () => {
