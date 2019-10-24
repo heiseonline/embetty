@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-
 const config = require('./webpack.config')
 const Embetty = require('@heise/embetty-base')
-const embettyRoutes = require('@heise/embetty-server/routes')
+const tweet = require('@heise/embetty-server/routes/tweet')
+const video = require('@heise/embetty-server/routes/video')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
@@ -20,7 +20,8 @@ const server = new WebpackDevServer(webpack(config), {
   contentBase: './example',
   before: app => {
     app.set('embetty', new Embetty())
-    app.use(embettyRoutes)
+    app.use('/tweet', tweet)
+    app.use('/video', video)
   },
   disableHostCheck: true,
   stats: {
