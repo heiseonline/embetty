@@ -11,7 +11,7 @@
     "dev": "./dev-server.js",
     "watch": "karma start",
     "test": "karma start --single-run",
-    "lint": "eslint ."
+    "lint": "eslint . --cache"
   },
   "husky": {
     "hooks": {
