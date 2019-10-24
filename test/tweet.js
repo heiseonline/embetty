@@ -85,5 +85,15 @@ describe('Tweet', () => {
       const text = element.fullText
       assert.ok(!text.includes('https://t.co/wLy5Asq3z0'))
     })
+
+    it('should show tweet that this tweet replied to', async () => {
+      const { element } = await createTweet(Tweets.reply)
+      assert.ok(element.shadowRoot.querySelector('embetty-tweet'))
+    })
+
+    it('should show tweet only due to no-thread attribute', async () => {
+      const { element } = await createTweet(Tweets.reply, { 'no-thread': '' })
+      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+    })
   })
 })
