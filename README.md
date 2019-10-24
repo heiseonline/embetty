@@ -67,6 +67,12 @@ Use the `status` attribute to embed a tweet with its tweet ID. Example:
 <embetty-tweet status="950371792874557440"></embetty-tweet>
 ```
 
+Use the `no-thread` attribute to show only the tweet and not the thread. Example:
+
+```html
+<embetty-tweet status="950371792874557440" no-thread></embetty-tweet>
+```
+
 #### Video
 
 Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set the `video-id` attribute to the video ID.
