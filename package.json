@@ -13,6 +13,11 @@
     "test": "karma start --single-run",
     "lint": "eslint ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "author": {
     "name": "Philipp Busse",
     "email": "pmb@heise.de"
@@ -75,6 +80,7 @@
     "file-loader": "^4.0.0",
     "fs-extra": "^8.0.1",
     "gh-pages": "^2.0.1",
+    "husky": "^3.0.9",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
