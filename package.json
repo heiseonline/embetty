@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -62,13 +62,13 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
     "@heise/embetty-server": "^1.2.7",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "autoprefixer": "^9.3.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-loader": "^8.0.6",
     "cache-loader": "^4.0.0",
     "css-loader": "^1.0.0",
     "eslint": "^6.5.1",
