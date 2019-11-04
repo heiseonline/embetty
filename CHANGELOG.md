@@ -1,5 +1,9 @@
 # embetty
 
+## v2.0.1, 2019-11-04
+
+- Upgraded Babel to v7.
+
 ## v2.0.0, 2019-11-04
 
 - embetty no longer includes the Twitter-thread by default
