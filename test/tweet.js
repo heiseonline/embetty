@@ -59,8 +59,8 @@ describe('Tweet', () => {
     const { element } = await createTweet(Tweets.text)
     const links = [...element.shadowRoot.querySelectorAll('.tweet__link')]
     assert.strictEqual(links.length, 1)
-    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'));
-    assert.ok(links[0].getAttribute('href').includes('934029337019416579'));
+    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'))
+    assert.ok(links[0].getAttribute('href').includes('934029337019416579'))
   })
 
   describe('Tweet body', () => {
@@ -84,6 +84,16 @@ describe('Tweet', () => {
       const { element } = await createTweet(Tweets.image)
       const text = element.fullText
       assert.ok(!text.includes('https://t.co/wLy5Asq3z0'))
+    })
+
+    it('should show tweet only without include-thread attribute', async () => {
+      const { element } = await createTweet(Tweets.reply)
+      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+    })
+
+    it('should show tweet and thread due to include-thread attribute', async () => {
+      const { element } = await createTweet(Tweets.reply, { 'include-thread': '' })
+      assert.ok(element.shadowRoot.querySelector('embetty-tweet'))
     })
   })
 })

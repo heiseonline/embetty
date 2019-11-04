@@ -12,7 +12,7 @@ export const createElement = (tag, attrs) => {
   })
 }
 
-export const createTweet = status => createElement('embetty-tweet', { status })
+export const createTweet = (status, attrs = {}) => createElement('embetty-tweet', { status, ...attrs })
 
 export const createVideo = (videoId, type, attrs = {}) => {
   return createElement('embetty-video', { ...attrs, 'video-id': videoId, type })
