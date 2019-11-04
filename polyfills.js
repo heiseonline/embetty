@@ -1,3 +1,5 @@
+require('core-js')
+require('regenerator-runtime/runtime')
 require('whatwg-fetch')
 
 try {
@@ -7,5 +9,3 @@ try {
 
 require('@webcomponents/webcomponentsjs')
 require('intersection-observer')
-require('core-js/stable')
-require('regenerator-runtime/runtime')
