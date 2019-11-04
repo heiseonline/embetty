@@ -1,5 +1,9 @@
 # embetty
 
+## v2.0.2, 2019-11-04
+
+- Fixed broken embetty logo in embeds.
+
 ## v2.0.1, 2019-11-04
 
 - Upgraded Babel to v7.
