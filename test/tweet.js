@@ -2,7 +2,9 @@ import { createTweet } from './lib/util'
 import assert from 'assert'
 import Tweets from '@heise/embetty-base/test/tweets.json'
 
-afterEach(() => { document.body.innerHTML = '' })
+afterEach(() => {
+  document.body.innerHTML = ''
+})
 
 describe('Tweet', () => {
   it('should have a max width', async () => {
@@ -57,14 +59,16 @@ describe('Tweet', () => {
     const { element } = await createTweet(Tweets.text)
     const links = [...element.shadowRoot.querySelectorAll('.tweet__link')]
     assert.strictEqual(links.length, 1)
-    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'));
-    assert.ok(links[0].getAttribute('href').includes('934029337019416579'));
+    assert.ok(links[0].getAttribute('href').includes('SiLVAFiSH'))
+    assert.ok(links[0].getAttribute('href').includes('934029337019416579'))
   })
 
   describe('Tweet body', () => {
     it('should replace hash tags', async () => {
       const { query } = await createTweet(Tweets.hashTag.valid)
-      const a = query('article a[href="https://twitter.com/hashtag/Wochenende"]')
+      const a = query(
+        'article a[href="https://twitter.com/hashtag/Wochenende"]'
+      )
       assert.ok(a)
       assert.strictEqual(a.innerText, '#Wochenende')
     })
@@ -80,6 +84,16 @@ describe('Tweet', () => {
       const { element } = await createTweet(Tweets.image)
       const text = element.fullText
       assert.ok(!text.includes('https://t.co/wLy5Asq3z0'))
+    })
+
+    it('should show tweet only without include-thread attribute', async () => {
+      const { element } = await createTweet(Tweets.reply)
+      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+    })
+
+    it('should show tweet and thread due to include-thread attribute', async () => {
+      const { element } = await createTweet(Tweets.reply, { 'include-thread': '' })
+      assert.ok(element.shadowRoot.querySelector('embetty-tweet'))
     })
   })
 })
