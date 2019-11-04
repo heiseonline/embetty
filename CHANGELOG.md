@@ -1,5 +1,10 @@
 # embetty
 
+## v2.0.0, 2019-11-04
+
+- embetty no longer includes the Twitter-thread by default
+- a new attribute `include-thread` was added to re-enable threads
+
 ## v1.2.0, 2019-09-09
 
 - improve video play button visibility
