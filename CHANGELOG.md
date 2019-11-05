@@ -1,5 +1,9 @@
 # embetty
 
+## Unreleased
+
+- Upgrading to Babel 7 introduced an uglifier bug. Fixed.
+
 ## v2.0.2, 2019-11-04
 
 - Fixed broken embetty logo in embeds.
