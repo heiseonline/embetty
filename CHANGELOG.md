@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v2.0.3, 2019-11-05
 
 - Upgrading to Babel 7 introduced an uglifier bug. Fixed.
 
