@@ -33,7 +33,8 @@
     }
   ],
   "engines": {
-    "yarn": ">=1.3.2 <2.0.0"
+    "yarn": ">=1.3.2 <2.0.0",
+    "node": ">=10"
   },
   "bugs": "https://github.com/heiseonline/embetty/issues",
   "homepage": "https://github.com/heiseonline/embetty",
