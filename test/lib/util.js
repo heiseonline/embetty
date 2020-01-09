@@ -20,3 +20,4 @@ export const createVideo = (videoId, type, attrs = {}) => {
 
 export const createYoutubeVideo = (videoId, attrs) => createVideo(videoId, 'youtube', attrs)
 export const createVimeoVideo = (videoId, attrs) => createVideo(videoId, 'vimeo', attrs)
+export const createFacebookVideo = (videoId, attrs) => createVideo(videoId, 'facebook', attrs)
