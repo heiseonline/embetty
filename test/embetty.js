@@ -3,24 +3,29 @@ import { defineElement } from '../lib/util'
 import assert from 'assert'
 import Embed from '../lib/embed'
 
-defineElement('embetty-test', class EmbettyTest extends Embed {
-  get someApiUrl() {
-    return this._api('/some-url')
-  }
+defineElement(
+  'embetty-test',
+  class EmbettyTest extends Embed {
+    get someApiUrl() {
+      return this._api('/some-url')
+    }
 
-  async connectedCallback() {
-    await super.connectedCallback()
-    this.becomesVisible()
-  }
+    async connectedCallback() {
+      await super.connectedCallback()
+      this.becomesVisible()
+    }
 
-  static get template() {
-    return 'Embetty test'
+    static get template() {
+      return 'Embetty test'
+    }
   }
-})
+)
 
 describe('Embetty', () => {
   it('should set the API url', async () => {
-    const { element } = await createElement('embetty-test', { 'server-url': '/foo' })
+    const { element } = await createElement('embetty-test', {
+      'server-url': '/foo',
+    })
     assert.strictEqual(element.serverUrl, '/foo')
     assert.strictEqual(element.someApiUrl, '/foo/some-url')
   })

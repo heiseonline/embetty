@@ -1,7 +1,9 @@
 import { createVimeoVideo } from './lib/util'
 import assert from 'assert'
 
-afterEach(() => { document.body.innerHTML = '' })
+afterEach(() => {
+  document.body.innerHTML = ''
+})
 
 describe('Vimeo Video', () => {
   it('should provide the poster image', async () => {
@@ -20,9 +22,14 @@ describe('Vimeo Video', () => {
   })
 
   it('[start-at]', async () => {
-    const { element, query } = await createVimeoVideo('1084537', { 'start-at': '97' })
+    const { element, query } = await createVimeoVideo('1084537', {
+      'start-at': '97',
+    })
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.strictEqual(iframeSrc, 'https://player.vimeo.com/video/1084537?autoplay=1#t=97')
+    assert.strictEqual(
+      iframeSrc,
+      'https://player.vimeo.com/video/1084537?autoplay=1#t=97'
+    )
   })
 })

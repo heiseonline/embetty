@@ -1,12 +1,13 @@
 {
   "root": true,
-  "extends": "standard",
-  "rules": {
-    "comma-dangle": [1, "only-multiline"],
-    "indent": ["error", 2, {"MemberExpression": 1 }],
-    "space-before-function-paren": 0
+  "extends": "@heise",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
   },
+  "rules": {},
   "env": {
+    "browser": true,
     "node": true,
     "mocha": true,
     "es6": true

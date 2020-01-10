@@ -11,29 +11,30 @@ const request = require('request-promise-native')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const createServer = config => new Promise((resolve, reject) => {
-  config.devtool = 'none'
-  const compiler = webpack(config, (err, stats) => {
-    if (err) return reject(err)
+const createServer = config =>
+  new Promise((resolve, reject) => {
+    config.devtool = 'none'
+    const compiler = webpack(config, (err, _stats) => {
+      if (err) return reject(err)
 
-    const server = new WebpackDevServer(compiler, {
-      contentBase: './example',
-      before: app => {
-        app.set('embetty', new Embetty())
-        app.use(embettyRoutes)
-      },
-      disableHostCheck: true,
-    }).listen()
-    resolve(server)
+      const server = new WebpackDevServer(compiler, {
+        contentBase: './example',
+        before: app => {
+          app.set('embetty', new Embetty())
+          app.use(embettyRoutes)
+        },
+        disableHostCheck: true,
+      }).listen()
+      return resolve(server)
+    })
   })
-})
 
 const downloadAsset = async (url, baseDir) => {
   const { pathname } = new URL(url)
   const targetFile = path.join(baseDir, pathname)
   if (await fs.pathExists(targetFile)) {
     console.log('skipping download:', targetFile)
-    return
+    return undefined
   }
 
   const response = await request.get(url, { encoding: null })
@@ -53,8 +54,12 @@ const download = async (baseDir, url) => {
   const page = await browser.newPage()
   const urls = []
 
-  page.on('request', request => { urls.push(request.url()) })
-  page.on('console', msg => { console[msg.type()](msg.text()) })
+  page.on('request', request => {
+    urls.push(request.url())
+  })
+  page.on('console', msg => {
+    console[msg.type()](msg.text())
+  })
 
   await page.goto(url, { waitUntil: 'networkidle0' })
   await page.evaluate(async () => {
@@ -65,13 +70,15 @@ const download = async (baseDir, url) => {
           const answeredTweets = element.answeredTweets
           if (!answeredTweets) return resolve()
           await Promise.all([...answeredTweets].map(resolveOnInitialized))
-          resolve()
+          return resolve()
         })
         element.becomesVisible()
       })
     }
 
-    const embeds = [...document.querySelectorAll('embetty-tweet, embetty-video')]
+    const embeds = [
+      ...document.querySelectorAll('embetty-tweet, embetty-video'),
+    ]
     return Promise.all(embeds.map(resolveOnInitialized))
   })
 

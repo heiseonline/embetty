@@ -39,17 +39,19 @@ describe('Tweet', () => {
 
   it('should contain a time tag', async () => {
     const { query } = await createTweet(Tweets.text)
+    const minTextLength = 5
     const time = query('time')
     assert.ok(time)
     const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z$/
     assert.ok(datePattern.test(time.getAttribute('datetime')))
-    assert.ok(time.innerText.length > 5)
+    assert.ok(time.innerText.length > minTextLength)
   })
 
   it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
     const { element } = await createTweet(Tweets.link)
+    const expectedLinksLength = 4
     const links = [...element.shadowRoot.querySelectorAll('a[target=_blank')]
-    assert.strictEqual(links.length, 4)
+    assert.strictEqual(links.length, expectedLinksLength)
     links.forEach(link => {
       assert.strictEqual(link.getAttribute('rel'), 'noopener')
     })
@@ -88,11 +90,16 @@ describe('Tweet', () => {
 
     it('should show tweet only without include-thread attribute', async () => {
       const { element } = await createTweet(Tweets.reply)
-      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+      assert.strictEqual(
+        element.shadowRoot.querySelector('embetty-tweet'),
+        null
+      )
     })
 
     it('should show thread and inherit include-thread attribute on being set', async () => {
-      const { element } = await createTweet(Tweets.reply, { 'include-thread': '' })
+      const { element } = await createTweet(Tweets.reply, {
+        'include-thread': '',
+      })
       const parent = element.shadowRoot.querySelector('embetty-tweet')
       assert.ok(parent && parent.hasAttribute('include-thread'))
     })
