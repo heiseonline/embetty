@@ -6,7 +6,7 @@ try {
   /* eslint no-eval: "warn" */
   eval(require('@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'))
 } catch (error) {
-  throw new Error(error)
+  console.log(error)
 }
 
 require('@webcomponents/webcomponentsjs')
