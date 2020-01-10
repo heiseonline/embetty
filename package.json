@@ -10,6 +10,9 @@
     "embetty": "bin/embetty",
     "embetty-start": "bin/embetty-start"
   },
+  "engine": {
+    "node": ">=10"
+  },
   "scripts": {
     "start": "./bin/www",
     "dev": "nodemon ./bin/www",
@@ -29,7 +32,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "mocha": "^6.1.4",
-    "nodemon": "^2.0.1",
+    "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
