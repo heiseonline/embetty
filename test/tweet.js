@@ -39,19 +39,17 @@ describe('Tweet', () => {
 
   it('should contain a time tag', async () => {
     const { query } = await createTweet(Tweets.text)
-    const minTextLength = 5
     const time = query('time')
     assert.ok(time)
     const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z$/
     assert.ok(datePattern.test(time.getAttribute('datetime')))
-    assert.ok(time.innerText.length > minTextLength)
+    assert.ok(time.innerText.length > 5)
   })
 
   it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
     const { element } = await createTweet(Tweets.link)
-    const expectedLinksLength = 4
     const links = [...element.shadowRoot.querySelectorAll('a[target=_blank')]
-    assert.strictEqual(links.length, expectedLinksLength)
+    assert.strictEqual(links.length, 4)
     links.forEach(link => {
       assert.strictEqual(link.getAttribute('rel'), 'noopener')
     })
