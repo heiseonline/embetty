@@ -15,8 +15,10 @@ const createServer = config =>
   new Promise((resolve, reject) => {
     config.devtool = 'none'
     const compiler = webpack(config, (err, _stats) => {
-      if (err) return reject(err)
-
+      if (err) {
+        reject(err)
+        return
+      }
       const server = new WebpackDevServer(compiler, {
         contentBase: './example',
         before: app => {
@@ -25,7 +27,7 @@ const createServer = config =>
         },
         disableHostCheck: true,
       }).listen()
-      return resolve(server)
+      resolve(server)
     })
   })
 
@@ -68,9 +70,12 @@ const download = async (baseDir, url) => {
         element.on('initialized', async () => {
           console.log('initialized:', element.outerHTML)
           const answeredTweets = element.answeredTweets
-          if (!answeredTweets) return resolve()
+          if (!answeredTweets) {
+            resolve()
+            return
+          }
           await Promise.all([...answeredTweets].map(resolveOnInitialized))
-          return resolve()
+          resolve()
         })
         element.becomesVisible()
       })
