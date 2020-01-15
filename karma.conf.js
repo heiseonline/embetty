@@ -22,7 +22,7 @@ module.exports = function(config) {
         browser: 'ie',
         device: null,
         browser_version: '11.0',
-      }
+      },
     },
     files: [
       'polyfills.js',
@@ -40,7 +40,7 @@ module.exports = function(config) {
       '**/*.js': ['webpack', 'sourcemap'],
     },
     proxies: {
-      '/': `http://localhost:${port}/`
+      '/': `http://localhost:${port}/`,
     },
     reporters: ['mocha'],
     // reporters: ['mocha', 'BrowserStack'],

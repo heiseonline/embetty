@@ -88,11 +88,16 @@ describe('Tweet', () => {
 
     it('should show tweet only without include-thread attribute', async () => {
       const { element } = await createTweet(Tweets.reply)
-      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+      assert.strictEqual(
+        element.shadowRoot.querySelector('embetty-tweet'),
+        null
+      )
     })
 
     it('should show thread and inherit include-thread attribute on being set', async () => {
-      const { element } = await createTweet(Tweets.reply, { 'include-thread': '' })
+      const { element } = await createTweet(Tweets.reply, {
+        'include-thread': '',
+      })
       const parent = element.shadowRoot.querySelector('embetty-tweet')
       assert.ok(parent && parent.hasAttribute('include-thread'))
     })

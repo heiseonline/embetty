@@ -6,7 +6,8 @@ const video = require('@heise/embetty-server/routes/video')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const PORT = process.env.PORT || 9000
+const DEFAULT_PORT = 9000
+const PORT = process.env.PORT || DEFAULT_PORT
 
 config.entry.embetty = config.entry.embetty.concat([
   `webpack-dev-server/client?http://localhost:${PORT}`,
@@ -25,7 +26,7 @@ const server = new WebpackDevServer(webpack(config), {
   },
   disableHostCheck: true,
   stats: {
-    colors: true
+    colors: true,
   },
 })
 
