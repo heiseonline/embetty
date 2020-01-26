@@ -92,7 +92,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "mocha": "^6.1.4",
+    "mocha": "^7.0.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
     "puppeteer": "^2.0.0",
