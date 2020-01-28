@@ -772,10 +772,10 @@
     url-join "^4.0.1"
     whatwg-fetch "^3.0.0"
 
-"@heise/eslint-config@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/@heise/eslint-config/-/eslint-config-6.0.0.tgz#acb70e8d09f18a3440557435742843af3a4a7433"
-  integrity sha512-UCeYIXR7U2qb/JX10zazg7kyHMT+gCxf6XUoKe38yFZPwz37kX41CGqHOQmhaY7Tuay815hOY6I8k8a3HnzC4g==
+"@heise/eslint-config@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@heise/eslint-config/-/eslint-config-7.0.0.tgz#c4c978cde6f542eacfdee2594ed9b2dd1d199a9a"
+  integrity sha512-8BiR8Bbd2eYC6LQUoBch24Y5aan5USKi0YdPbzHWMF1Vt/Exb0M5jnaMOo0K7FpzOEKk1I3P54QbrBVwo1h7Sw==
   dependencies:
     eslint ">= 6"
     eslint-config-prettier "^6.0.0"
