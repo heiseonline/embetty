@@ -101,6 +101,6 @@
     "webpack": "^4.0.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.0.3",
-    "webpack-dev-server": "^3.0.0"
+    "webpack-dev-server": "^3.10.3"
   }
 }
