@@ -82,7 +82,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-sonarjs": "^0.5.0",
     "eslint-plugin-standard": "^4.0.0",
-    "file-loader": "^4.3.0",
+    "file-loader": "^5.1.0",
     "fs-extra": "^8.0.1",
     "gh-pages": "^2.0.1",
     "husky": "^4.2.3",
