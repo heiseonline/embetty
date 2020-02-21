@@ -4,14 +4,24 @@
 :host {
   width: 100%;
   position: relative;
+  background-color: #333;
 
   #poster {
     position: relative;
     overflow: hidden;
-    max-height: (100 / 16 * 9)px;
+
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 100/16*9 * 1%;
+    }
 
     img {
-      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      height: 100%;
       width: 100%;
     }
   }
