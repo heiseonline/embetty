@@ -1,5 +1,10 @@
 # embetty
 
+## unreleased
+
+- Default posterimage for Facebook is now empty
+- attribute `poster-image` was added to overwrite poster-images
+
 ## v2.0.3, 2019-11-05
 
 - Upgrading to Babel 7 introduced an uglifier bug. Fixed.
