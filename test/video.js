@@ -96,7 +96,8 @@ describe('Video', () => {
       assert.ok(response.text.includes(expected))
     })
 
-    it('should provide the poster image', async () => {
+    // Facebook does not provide poster image anymore without api access
+    it.skip('should provide the poster image', async () => {
       const response = await request(app)
         .get('/video/facebook/10156049485672318-poster-image')
         .expect('Content-Type', /jpeg/)
