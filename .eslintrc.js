@@ -6,6 +6,9 @@ module.exports = {
     'indent': ['error', 2, {MemberExpression: 1 }],
     'space-before-function-paren': 0
   },
+  parserOptions: {
+    'ecmaVersion': 2018
+  },
   env: {
     node: true,
     mocha: true,
