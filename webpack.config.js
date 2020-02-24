@@ -13,7 +13,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const path = require('path')
 const webpack = require('webpack')
 
-const prod = process.argv.indexOf('-p') !== -1
+const prod = process.argv.includes('-p')
 
 module.exports = {
   entry: {
