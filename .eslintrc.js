@@ -1,10 +1,9 @@
 module.exports = {
   root: true,
-  extends: 'standard',
+  extends: '@heise',
   rules: {
-    'comma-dangle': [1, 'only-multiline'],
-    'indent': ['error', 2, {MemberExpression: 1 }],
-    'space-before-function-paren': 0
+    'toplevel/no-toplevel-side-effect': 'off',
+    'no-prototype-builtins': 'off'
   },
   env: {
     node: true,

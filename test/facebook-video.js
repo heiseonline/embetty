@@ -4,7 +4,7 @@ const path = require('path')
 
 start({ folder: path.join(__dirname, 'fixtures') })
 
-const Embetty = require('../')
+const Embetty = require('..')
 const FacebookVideo = require('../lib/facebook-video')
 
 afterEach(restore)
@@ -12,9 +12,11 @@ afterEach(restore)
 const embetty = new Embetty()
 const createVideo = id => new FacebookVideo(id, { embetty })
 
-describe('Vimeo Video', () => {
+describe('Facebook Video', () => {
   it('should construct', () => {
-    assert.doesNotThrow(() => { createVideo('123') })
+    assert.doesNotThrow(() => {
+      createVideo('123')
+    })
   })
 
   it('should of the type "facebook"', () => {
@@ -25,13 +27,9 @@ describe('Vimeo Video', () => {
   it('should resolve the canonical url of the video', async () => {
     const t = createVideo('10156049485672318')
     await t.retrieve()
-    assert.strictEqual(t.canonicalUrl, 'https://www.facebook.com/heiseonline/videos/10156049485672318/')
-  })
-
-  it('should provide the poster image', async () => {
-    const t = createVideo('10156049485672318')
-    const image = await t.getPosterImage()
-    assert.strictEqual(image.type, 'image/jpeg')
-    assert.ok(image.data.length > 100)
+    assert.strictEqual(
+      t.canonicalUrl,
+      'https://www.facebook.com/heiseonline/videos/10156049485672318/'
+    )
   })
 })

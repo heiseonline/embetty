@@ -30,7 +30,10 @@ describe('LRU Cache', () => {
     })
 
     it('should parse multiple options', () => {
-      assert.deepStrictEqual(LRU.parse('lru://foo:bar,bar:baz'), { foo: 'bar', bar: 'baz' })
+      assert.deepStrictEqual(LRU.parse('lru://foo:bar,bar:baz'), {
+        foo: 'bar',
+        bar: 'baz',
+      })
     })
   })
 })

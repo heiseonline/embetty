@@ -8,7 +8,9 @@ start({ folder: path.join(__dirname, 'fixtures') })
 const Embetty = require('../lib/embetty')
 
 after(restore)
-afterEach(() => { delete process.env.EMBETTY_CACHE })
+afterEach(() => {
+  delete process.env.EMBETTY_CACHE
+})
 
 describe('Embetty', () => {
   it('uses LRU as default cache engine', () => {
@@ -37,7 +39,10 @@ describe('Embetty', () => {
     const v = await embetty.loadYoutubeVideo('m6UOo2YGbIE')
     assert.ok(v instanceof Embetty.YoutubeVideo)
     assert.strictEqual(v.posterMaxResImageIsAvailable, false)
-    assert.strictEqual(v.posterImageUrl, 'https://img.youtube.com/vi/m6UOo2YGbIE/hqdefault.jpg')
+    assert.strictEqual(
+      v.posterImageUrl,
+      'https://img.youtube.com/vi/m6UOo2YGbIE/hqdefault.jpg'
+    )
   })
 
   it('should load a youtube video with a max res image', async () => {
@@ -45,22 +50,31 @@ describe('Embetty', () => {
     const v = await embetty.loadYoutubeVideo('aEjL5z0j5E0')
     assert.ok(v instanceof Embetty.YoutubeVideo)
     assert.strictEqual(v.posterMaxResImageIsAvailable, true)
-    assert.strictEqual(v.posterImageUrl, 'https://img.youtube.com/vi/aEjL5z0j5E0/maxresdefault.jpg')
+    assert.strictEqual(
+      v.posterImageUrl,
+      'https://img.youtube.com/vi/aEjL5z0j5E0/maxresdefault.jpg'
+    )
   })
 
   it('should load a vimeo video', async () => {
     const embetty = new Embetty()
     const v = await embetty.loadVimeoVideo('223099532')
     assert.ok(v instanceof Embetty.VimeoVideo)
-    assert.strictEqual(v.posterImageUrl, 'https://i.vimeocdn.com/video/642067351_640.jpg')
+    assert.strictEqual(
+      v.posterImageUrl,
+      'https://i.vimeocdn.com/video/642067351_640.jpg'
+    )
   })
 
   it('should load a facebook video', async () => {
     const embetty = new Embetty()
     const v = await embetty.loadFacebookVideo('10156049485672318')
     assert.ok(v instanceof Embetty.FacebookVideo)
-    assert.strictEqual(v.canonicalUrl, 'https://www.facebook.com/heiseonline/videos/10156049485672318/')
-    assert.strictEqual(v.posterImageUrl, 'https://graph.facebook.com/10156049485672318/picture')
+    assert.strictEqual(
+      v.canonicalUrl,
+      'https://www.facebook.com/heiseonline/videos/10156049485672318/'
+    )
+    assert.strictEqual(v.posterImageUrl, '')
   })
 
   it('should be possible to select a cache engine by providing an env var', async () => {
