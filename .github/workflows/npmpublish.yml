@@ -3,7 +3,7 @@ name: Publish eslint-config-heise
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
 
 jobs:
   build:
