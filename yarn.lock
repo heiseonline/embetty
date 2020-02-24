@@ -32,10 +32,10 @@
     request "^2.83.0"
     request-promise-native "^1.0.5"
 
-"@heise/embetty@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/@heise/embetty/-/embetty-2.0.3.tgz#0a161a9d505930e75729e40ada3905356cb6ea9f"
-  integrity sha512-O/f6LIrcXOGOKqf6pXCUPB7LULWTJDRRvZiD2ha+9M8dZh/2rD+mjLaCszYENUKNYP3GI4NLAyN7m6RV3nUiXw==
+"@heise/embetty@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@heise/embetty/-/embetty-3.0.1.tgz#ee591d1882bd0ddc1bb2b00dc336ac09c10747aa"
+  integrity sha512-Vsq+TlKKwJJc+mZvRtYpmb52BMsMP7wq5aRXaVFk3xoj/4S/yApR2oxMKo8DXo+Q9rwNmXOCF1m/ASxTrWv9Eg==
   dependencies:
     core-js "3"
     hogan.js "^3.0.2"
