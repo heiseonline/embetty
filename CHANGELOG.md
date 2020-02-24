@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1, 2020-02-24
+
+- Fixed broken AMP routes by upgrading `@heise/embetty` to `3.0.2`.
+
 ## v2.0.0, 2020-02-24
 
 This release contains breaking changes:
