@@ -28,4 +28,3 @@ describe('Facebook Video', () => {
     assert.strictEqual(t.canonicalUrl, 'https://www.facebook.com/heiseonline/videos/10156049485672318/')
   })
 })
-
