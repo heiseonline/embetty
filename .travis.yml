@@ -16,7 +16,7 @@ deploy:
     on:
       tags: true
       repo: heiseonline/embetty-server
-      node_js: '8'
+      node_js: '10'
   - provider: releases
     api_key:
       secure: Vo1gHWeP+02o3kTRqC5LjdowXkXmd1wgnuyzBWnYYqt3+Q2k67QxgqxzWXK1lGPKSy/1fqdnRcczd7QG81vAmCbSA6Apykr/9tYi+bSUfRpPSdlnL1Eq/GaV8zOlt8U22xxtUTiCcw6N5W89Mzi42EoYuDF4/16Y8d289lIwyZuBS61BRPpaIXCp0cLIcz9XVnxeCdAI/gtTCKMSc29CaUDYRFR8YQUvbQOsdSGDVzgDNhR+vuD5q2WJgFW/rqIIcq4oSlDVK0FmRmS21aR+s5EWxlNIs2PN/0UL3ubpnlJbMpNK0FGdnBQSORKE0y4DrQ6sLAT+dw/3UwNcpx7w486+fgkuzmsqtqnzpe8n9tMpduQYjl+6oF14xgevGDorKEr7Vy/GRThM+adfZmzpJ9z2iT6cpIC1ZvQ9hXC+dO0QRv44T30W0xB+40pI2e+9biDBOg5YEm/BD0n3KLkBFhFPSlOJSah3d0Pp4BxW+fsCHrkUehbcZ5uMuCPfgx4Rjx37uaVp81fvRL1SGLFtTz8oOPrqt1exl84MCTqdt0mSdoi9+HUUkLvFIfGM7et3x4rsb81HLGfY2cecNCqR9Vw/Hxe3SBBEoNWnpn6EmNgL/zF7zcJYuV58fEp/o7ytQnNAvAFBcepH24Xh7D6Ik2oIvN48ityHY5x+vBFyLao=

@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- Use Node.js 12 Docker image.
+This release contains breaking changes:
+
+- Dropped support for Node.js v8.
 
 ## v1.2.5-7, 2019-09-05
 
