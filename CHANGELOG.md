@@ -1,6 +1,6 @@
 # embetty
 
-## Unreleased
+## v3.0.1, 2020-02-24
 
 - Default posterimage for Facebook is now empty.
 - Attribute `poster-image` was added to overwrite poster images.
