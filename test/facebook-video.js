@@ -12,7 +12,7 @@ afterEach(restore)
 const embetty = new Embetty()
 const createVideo = id => new FacebookVideo(id, { embetty })
 
-describe('Vimeo Video', () => {
+describe('Facebook Video', () => {
   it('should construct', () => {
     assert.doesNotThrow(() => { createVideo('123') })
   })
