@@ -1,4 +1,4 @@
-name: Publish eslint-config-heise
+name: Release
 
 on:
   push:
