@@ -60,7 +60,7 @@ describe('Embetty', () => {
     const v = await embetty.loadFacebookVideo('10156049485672318')
     assert.ok(v instanceof Embetty.FacebookVideo)
     assert.strictEqual(v.canonicalUrl, 'https://www.facebook.com/heiseonline/videos/10156049485672318/')
-    assert.strictEqual(v.posterImageUrl, 'https://graph.facebook.com/10156049485672318/picture')
+    assert.strictEqual(v.posterImageUrl, '')
   })
 
   it('should be possible to select a cache engine by providing an env var', async () => {
