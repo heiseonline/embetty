@@ -65,7 +65,7 @@
     "@babel/core": "^7.8.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
     "@babel/preset-env": "^7.8.2",
-    "@heise/embetty-server": "^1.2.7",
+    "@heise/embetty-server": "^2.0.1",
     "@heise/eslint-config": "^8.0.1",
     "@webcomponents/webcomponentsjs": "^2.2.10",
     "autoprefixer": "^9.3.1",
