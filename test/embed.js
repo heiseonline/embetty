@@ -44,7 +44,7 @@ describe('Embed', () => {
   it('should cancel long running requests', async () => {
     const e = new MyEmbed(123, {
       embetty: new EmbettyMock(200),
-      requestTimeout: 20,
+      requestTimeout: 1,
     })
     try {
       await e.retrieve()
