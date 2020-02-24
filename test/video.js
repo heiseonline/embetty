@@ -95,18 +95,5 @@ describe('Video', () => {
       const expected = '<embetty-video type="facebook" video-id="10156049485672318"></embetty-video>'
       assert.ok(response.text.includes(expected))
     })
-
-    // Facebook does not provide poster image anymore without api access
-    it.skip('should provide the poster image', async () => {
-      const response = await request(app)
-        .get('/video/facebook/10156049485672318-poster-image')
-        .expect('Content-Type', /jpeg/)
-        .expect(200)
-
-      assert.ok(Buffer.isBuffer(response.body))
-      const imageLength = Buffer.byteLength(response.body)
-      assert.ok(imageLength > 100)
-      assert.strictEqual(response.headers['content-length'], `${imageLength}`)
-    })
   })
 })
