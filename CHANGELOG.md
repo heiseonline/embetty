@@ -5,6 +5,7 @@
 This release contains breaking changes:
 
 - Dropped support for Node.js v8.
+- Removed support for Facebook poster images.
 
 ## v1.2.5-7, 2019-09-05
 
