@@ -1,14 +1,25 @@
 {
   "root": true,
-  "extends": "standard",
+  "extends": "@heise",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
   "rules": {
-    "comma-dangle": [1, "only-multiline"],
-    "indent": ["error", 2, {"MemberExpression": 1 }],
-    "space-before-function-paren": 0
+    "toplevel/no-toplevel-side-effect": "off"
   },
   "env": {
+    "browser": true,
     "node": true,
     "mocha": true,
     "es6": true
-  }
+  },
+  "overrides": [
+    {
+     "files": ["test/*.js"],
+        "rules": {
+           "no-magic-numbers": "off"
+        }
+    }
+  ],
 }

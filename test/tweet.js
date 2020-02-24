@@ -43,7 +43,7 @@ describe('Tweet', () => {
     assert.ok(time)
     const datePattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z$/
     assert.ok(datePattern.test(time.getAttribute('datetime')))
-    assert.ok(time.innerText.length > 5)
+    assert.ok(time.textContent.length > 5)
   })
 
   it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
@@ -70,14 +70,14 @@ describe('Tweet', () => {
         'article a[href="https://twitter.com/hashtag/Wochenende"]'
       )
       assert.ok(a)
-      assert.strictEqual(a.innerText, '#Wochenende')
+      assert.strictEqual(a.textContent, '#Wochenende')
     })
 
     it('should replace @user', async () => {
       const { query } = await createTweet(Tweets.answeredTweet)
       const a = query('article a[href="https://twitter.com/VictorVEnciso"]')
       assert.ok(a)
-      assert.strictEqual(a.innerText, '@VictorVEnciso')
+      assert.strictEqual(a.textContent, '@VictorVEnciso')
     })
 
     it('should not output the image link when displaying the image', async () => {
@@ -88,12 +88,18 @@ describe('Tweet', () => {
 
     it('should show tweet only without include-thread attribute', async () => {
       const { element } = await createTweet(Tweets.reply)
-      assert.strictEqual(element.shadowRoot.querySelector('embetty-tweet'), null)
+      assert.strictEqual(
+        element.shadowRoot.querySelector('embetty-tweet'),
+        null
+      )
     })
 
-    it('should show tweet and thread due to include-thread attribute', async () => {
-      const { element } = await createTweet(Tweets.reply, { 'include-thread': '' })
-      assert.ok(element.shadowRoot.querySelector('embetty-tweet'))
+    it('should show thread and inherit include-thread attribute on being set', async () => {
+      const { element } = await createTweet(Tweets.reply, {
+        'include-thread': '',
+      })
+      const parent = element.shadowRoot.querySelector('embetty-tweet')
+      assert.ok(parent && parent.hasAttribute('include-thread'))
     })
   })
 })

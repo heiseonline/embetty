@@ -1,7 +1,9 @@
 import { createYoutubeVideo } from './lib/util'
 import assert from 'assert'
 
-afterEach(() => { document.body.innerHTML = '' })
+afterEach(() => {
+  document.body.innerHTML = ''
+})
 
 describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
@@ -10,6 +12,14 @@ describe('YouTube Video', () => {
       query('img').getAttribute('src'),
       'video/youtube/m6UOo2YGbIE-poster-image'
     )
+  })
+
+  it('should provide the poster image overwritten via attribute', async () => {
+    const posterImage = 'http://www.test.de/youtube'
+    const { query } = await createYoutubeVideo('m6UOo2YGbIE', {
+      'poster-image': posterImage,
+    })
+    assert.strictEqual(query('img').getAttribute('src'), posterImage)
   })
 
   it('should load the youtube player after click', async () => {
@@ -27,9 +37,14 @@ describe('YouTube Video', () => {
   })
 
   it('[start-at]', async () => {
-    const { element, query } = await createYoutubeVideo('XvDZLjaCJuw', { 'start-at': '37' })
+    const { element, query } = await createYoutubeVideo('XvDZLjaCJuw', {
+      'start-at': '37',
+    })
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.strictEqual(iframeSrc, '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37')
+    assert.strictEqual(
+      iframeSrc,
+      '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37'
+    )
   })
 })
