@@ -1,9 +1,14 @@
 # embetty
 
-## unreleased
+## Unreleased
 
-- Default posterimage for Facebook is now empty
-- attribute `poster-image` was added to overwrite poster-images
+- Default posterimage for Facebook is now empty.
+- Attribute `poster-image` was added to overwrite poster images.
+- Upgraded dependencies.
+
+This release contains breaking changes:
+
+- Dropped support for Node.js v8.
 
 ## v2.0.3, 2019-11-05
 
