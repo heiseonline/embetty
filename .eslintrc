@@ -5,7 +5,9 @@
     "sourceType": "module",
     "ecmaVersion": 2018
   },
-  "rules": {},
+  "rules": {
+    "toplevel/no-toplevel-side-effect": "off"
+  },
   "env": {
     "browser": true,
     "node": true,
@@ -16,7 +18,7 @@
     {
      "files": ["test/*.js"],
         "rules": {
-           "no-magic-numbers": "off"   
+           "no-magic-numbers": "off"
         }
     }
   ],
