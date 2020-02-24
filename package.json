@@ -8,6 +8,9 @@
     "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
     "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
   },
+  "engines": {
+    "node": ">=10"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "http://registry.npmjs.org"
