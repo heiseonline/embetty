@@ -28,7 +28,7 @@ describe('Vimeo Video', () => {
     assert.strictEqual(t.canonicalUrl, 'https://www.facebook.com/heiseonline/videos/10156049485672318/')
   })
 
-  it('should provide the poster image', async () => {
+  it.skip('should provide the poster image', async () => {
     const t = createVideo('10156049485672318')
     const image = await t.getPosterImage()
     assert.strictEqual(image.type, 'image/jpeg')
