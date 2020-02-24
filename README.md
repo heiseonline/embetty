@@ -81,6 +81,12 @@ Use the `type` attribute with a value of `facebook`, `vimeo` or `youtube`. Set t
 <embetty-video type="facebook" video-id="10156049485672318"></embetty-video>
 ```
 
+Use the `poster-image` attribute with an URL. This overwrites the preview image of the video.
+
+```html
+<embetty-video type="facebook" video-id="10156049485672318" poster-image="www.test.com/image.jpg"></embetty-video>
+```
+
 For videos of type `vimeo` or `youtube`, it's also possible to set a `start-at` attribute with a value of time in seconds to start the video at a specific timecode.
 
 ```html
