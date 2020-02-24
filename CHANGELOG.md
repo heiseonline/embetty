@@ -1,5 +1,9 @@
 # embetty
 
+## v3.0.2, 2020-02-24
+
+- Added missing build artifacts.
+
 ## v3.0.1, 2020-02-24
 
 - Default posterimage for Facebook is now empty.
