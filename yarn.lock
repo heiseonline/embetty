@@ -729,14 +729,14 @@
     request "^2.83.0"
     request-promise-native "^1.0.5"
 
-"@heise/embetty-server@^1.2.7":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@heise/embetty-server/-/embetty-server-1.2.7.tgz#f497292bdf9d63d8a18b173c458e1f9214dda11a"
-  integrity sha512-5HJV8KL90gnw8cy9I59DXc5x7mFhB2eQ7LcJfZQV6PfGSsPVgHDsU0Ckr6mDk1EffEegy4Af2p2NvBkXsQFcqg==
+"@heise/embetty-server@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@heise/embetty-server/-/embetty-server-2.0.1.tgz#de54cdb7862e2d20e078523ebdeb0d5cd01495d5"
+  integrity sha512-hJ1S1e+YDbpB3VQyk8R3SG+XXNXJOArle0Ba3T9T5Mp9YdsFusJr8RF4o5fE+PpbaBA3kaLPi1KpYw8TeN4GOA==
   dependencies:
-    "@heise/embetty" "^1.1.0"
+    "@heise/embetty" "^3.0.1"
     "@heise/embetty-base" "^1.0.9"
-    commander "^2.15.1"
+    commander "^4.1.1"
     cors "^2.8.4"
     debug "^4.1.0"
     express "^4.16.2"
@@ -744,10 +744,10 @@
     morgan "^1.9.0"
     nunjucks "^3.1.3"
 
-"@heise/embetty@^1.1.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@heise/embetty/-/embetty-1.2.0.tgz#ca4c219a6dd8e1abe7008fe2bdf3ee226ede66cc"
-  integrity sha512-lldQnmfGj2bxxCmAx0ezqJLqIIROKKXM4JAM8tL7c+8Ee+czmtXfxH6iihaFZwrIYIIhMCddOhVTz+/SOeM5fQ==
+"@heise/embetty@^3.0.1":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@heise/embetty/-/embetty-3.0.2.tgz#70c039ba018df769d6a76656ea6c1cb2243ab1cc"
+  integrity sha512-+5aqW4fsOYmDcUy8XShYx7UVbTnSdud2pbhBGkNYoR/MMuV1Z6vVb5wJZb3YEhJEcryuF+8MwYMfQu9KzxoN0g==
   dependencies:
     core-js "3"
     hogan.js "^3.0.2"
@@ -2040,10 +2040,15 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.15.1, commander@^2.18.0, commander@^2.20.0:
+commander@^2.18.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
+commander@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
+  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
 commondir@^1.0.1:
   version "1.0.1"
