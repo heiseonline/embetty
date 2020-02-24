@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const app = require('../')
-const debug = require('debug')('embetty.web:server')
+const debug = require('debug')('embetty-server:www')
 const http = require('http')
 
 const port = normalizePort(process.env.PORT || '3000')

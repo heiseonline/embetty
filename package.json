@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty-server",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "git@github.com:heiseonline/embetty-server.git",
   "author": "Philipp Busse <pmb@heise.de>",
@@ -9,6 +9,9 @@
   "bin": {
     "embetty": "bin/embetty",
     "embetty-start": "bin/embetty-start"
+  },
+  "engine": {
+    "node": ">=10"
   },
   "scripts": {
     "start": "./bin/www",
@@ -22,20 +25,20 @@
   },
   "devDependencies": {
     "@heise/request-promise-native-record": "^1.0.1",
-    "eslint": "^5.7.0",
-    "eslint-config-standard": "^12.0.0",
+    "eslint": "^6.0.0",
+    "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.10.0",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "mocha": "^6.1.4",
-    "nodemon": "^1.12.1",
+    "mocha": "^7.0.1",
+    "nodemon": "^2.0.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "@heise/embetty": "^1.1.0",
-    "@heise/embetty-base": "^1.0.0-beta.5",
-    "commander": "^2.15.1",
+    "@heise/embetty": "^3.0.1",
+    "@heise/embetty-base": "^1.0.9",
+    "commander": "^4.1.1",
     "cors": "^2.8.4",
     "debug": "^4.1.0",
     "express": "^4.16.2",

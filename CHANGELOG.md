@@ -1,5 +1,20 @@
 # Changelog
 
+## v2.0.0, 2020-02-24
+
+This release contains breaking changes:
+
+- Dropped support for Node.js v8.
+- Removed support for Facebook poster images.
+
+## v1.2.5-7, 2019-09-05
+
+- Chore: fix travis and docker deployment
+
+## v1.2.4, 2019-09-05
+
+- Upgrade embetty-base, fix cloudflare error
+
 ## v1.2.3, 2019-06-11
 
 - Upgraded dependencies.
