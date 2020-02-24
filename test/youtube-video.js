@@ -5,7 +5,7 @@ const SimpleCache = require('./lib/simple-cache')
 
 start({ folder: path.join(__dirname, 'fixtures') })
 
-const Embetty = require('../')
+const Embetty = require('..')
 const YoutubeVideo = require('../lib/youtube-video')
 
 afterEach(restore)
@@ -15,7 +15,9 @@ const createVideo = id => new YoutubeVideo(id, { embetty })
 
 describe('Youtube Video', () => {
   it('should construct', () => {
-    assert.doesNotThrow(() => { createVideo('abc123') })
+    assert.doesNotThrow(() => {
+      createVideo('abc123')
+    })
   })
 
   it('should of the type "youtube"', () => {

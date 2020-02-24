@@ -14,8 +14,14 @@ describe('Util', () => {
   })
 
   it('#hash()', () => {
-    assert.strictEqual(hash({ z: 1, a: 2, x: { z: 1, a: 2 } }), 'a+e4a7mHXQSDMlDb0THIL2IJ13PxWwHYZnPjFX3YxEk=')
-    assert.strictEqual(hash({ x: { z: 1, a: 2 }, a: 2, z: 1 }), 'a+e4a7mHXQSDMlDb0THIL2IJ13PxWwHYZnPjFX3YxEk=')
+    assert.strictEqual(
+      hash({ z: 1, a: 2, x: { z: 1, a: 2 } }),
+      'a+e4a7mHXQSDMlDb0THIL2IJ13PxWwHYZnPjFX3YxEk='
+    )
+    assert.strictEqual(
+      hash({ x: { z: 1, a: 2 }, a: 2, z: 1 }),
+      'a+e4a7mHXQSDMlDb0THIL2IJ13PxWwHYZnPjFX3YxEk='
+    )
   })
 
   it('#hashRequest()', () => {

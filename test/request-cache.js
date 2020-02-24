@@ -5,13 +5,15 @@ const nock = require('nock')
 const SimpleCache = require('./lib/simple-cache')
 const SleepyCache = require('./lib/sleepy-cache')
 
-let server = http
+const server = http
   .createServer((req, res) => {
     if (req.url.includes('buffer')) {
-      return res.end(Buffer.from('Buffer: ok'))
+      res.end(Buffer.from('Buffer: ok'))
+      return
     }
     if (req.url.includes('empty')) {
-      return res.end('{"foo": {"bar": null}}')
+      res.end('{"foo": {"bar": null}}')
+      return
     }
     res.end('ok')
   })
@@ -59,7 +61,11 @@ describe('Request cache', () => {
 
     const data = await request(options)
     assert.ok(Buffer.isBuffer(data))
-    assert.ok(Buffer.isBuffer(cache._cache['QT+pKmR6ILOMRHaBdDppCPUBPwKKMKONZM/WFbrznNk=']))
+    assert.ok(
+      Buffer.isBuffer(
+        cache._cache['QT+pKmR6ILOMRHaBdDppCPUBPwKKMKONZM/WFbrznNk=']
+      )
+    )
 
     // cached
     const data2 = await request(options)

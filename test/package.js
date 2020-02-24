@@ -4,7 +4,9 @@ const Tweet = require('../lib/tweet')
 
 describe('Package', () => {
   it('should provide a main script', () => {
-    assert.doesNotThrow(() => { require('..') })
+    assert.doesNotThrow(() => {
+      require('..')
+    })
   })
 
   it('exports the Embetty class', () => {
