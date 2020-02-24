@@ -32,7 +32,7 @@ deploy:
     on:
       tags: true
       repo: heiseonline/embetty
-      node_js: '8'
+      node_js: '10'
   - provider: releases
     api_key:
       secure: pQTUUSHprolW8fE7MerxZBRoxk2HleoYyfwgFZI9ZQ50Tx6jtUKRgwTJc5jckJpgNLu9FVM0D0Z8v037CRk4Wd4UWSSc0OCmR0FKqlhGD1sppRVPRhvayfviCMsTRlUgD3ge2kjpuN+XfGzntem6Jfq69tf3q7/xfMW7RXEga8+KE2l+jB3Bhc8y18rI547jwiDN4n/Dwf2AlndZp+a0ssVklC7sY6IomyoSstpJG6tKDNBgIfIDM0lszd/mjhEzlDaEKqJVF9v00OSFt5p+jqnJAfZfCDiX1w0NFgjwbRMyCYJLmmYLi1ge/KEDQ1b1TAVO4tuMvQAZ/FextJvimqx9cIPzfLXHdjTMh3tBFAK1fNPeoK8+ZMce3TE3H17YDUbUKnQZXW+Dr02bFlXvP3zW0CAOYjhCDsoiVjuUyQF2NcNgvSgDGplp8xu2WrEzRh7DRxuBhfQwe6Y1YIo+TvDy9qj0gxbUf98W+f680drpIf6v/Io7XVTIj2BZZYM9ulZywberCP0XWN4pal/nLQCloEXUZjTBOIBuBdimOBl5IwYBKZX+Km0oMtKtKEcIydn+KxRlyVpbqCI4MNMdnR0hJ0UfYgOeF+K+QGJZwxtgxMw7UQGgxaASYWY37jS+LkECI1+ZYS0cNx6del9eC/24E/EJu9u/neCSSv4YMwI=
@@ -43,4 +43,4 @@ deploy:
     on:
       tags: true
       repo: heiseonline/embetty
-      node_js: '8'
+      node_js: '10'
