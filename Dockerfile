@@ -11,7 +11,7 @@ WORKDIR /app
 USER embetty
 
 ADD package.json yarn.lock /app/
-RUN yarn install
+RUN yarn install --frozen-lockfile
 ADD . /app
 
 CMD yarn start
