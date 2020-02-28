@@ -11,19 +11,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set Release
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
       - name: Build project
         run: |
           yarn --frozen-lockfile
           yarn build
-          zip -r --junk-paths embetty-${{ github.ref }} dist
+          zip -r --junk-paths embetty-$RELEASE_VERSION dist
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: $RELEASE_VERSION
+          release_name: Release $RELEASE_VERSION
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -33,8 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./embetty-${{ github.ref }}
-          asset_name: embetty-${{ github.ref }}
+          asset_path: ./embetty-$RELEASE_VERSION
+          asset_name: embetty-$RELEASE_VERSION
           asset_content_type: application/zip
 
   publish-npm:
