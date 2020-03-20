@@ -1,4 +1,4 @@
-# embetty-base · [![Build Status](https://travis-ci.org/heiseonline/embetty-base.svg?branch=master)](https://travis-ci.org/heiseonline/embetty-base) [![Greenkeeper badge](https://badges.greenkeeper.io/heiseonline/embetty-base.svg)](https://greenkeeper.io/) [![Dependency Status](https://david-dm.org/heiseonline/embetty-base.svg)](https://david-dm.org/heiseonline/embetty-base) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# embetty-base · [![Build Status](https://travis-ci.org/heiseonline/embetty-base.svg?branch=master)](https://travis-ci.org/heiseonline/embetty-base)  [![Dependency Status](https://david-dm.org/heiseonline/embetty-base.svg)](https://david-dm.org/heiseonline/embetty-base) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 [Embetty](https://github.com/heiseonline/embetty) displays remote content like tweets or YouTube videos without compromising your privacy. `embetty-base` is the API used to retrieve the necessary data.
 
