@@ -14,6 +14,14 @@ describe('Vimeo Video', () => {
     )
   })
 
+  it('should provide the poster image overwritten via attribute', async () => {
+    const posterImage = 'http://www.test.de/vimeo'
+    const { query } = await createVimeoVideo('1084537', {
+      'poster-image': posterImage,
+    })
+    assert.strictEqual(query('img').getAttribute('src'), posterImage)
+  })
+
   it('should load the vimeo player after click', async () => {
     const { query, element } = await createVimeoVideo('1084537')
     assert.ok(!query('iframe'))

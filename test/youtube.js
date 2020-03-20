@@ -14,6 +14,14 @@ describe('YouTube Video', () => {
     )
   })
 
+  it('should provide the poster image overwritten via attribute', async () => {
+    const posterImage = 'http://www.test.de/youtube'
+    const { query } = await createYoutubeVideo('m6UOo2YGbIE', {
+      'poster-image': posterImage,
+    })
+    assert.strictEqual(query('img').getAttribute('src'), posterImage)
+  })
+
   it('should load the youtube player after click', async () => {
     const { query, element } = await createYoutubeVideo('m6UOo2YGbIE')
     assert.ok(!query('iframe'))

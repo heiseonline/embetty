@@ -1,5 +1,19 @@
 # embetty
 
+## v3.0.2, 2020-02-24
+
+- Added missing build artifacts.
+
+## v3.0.1, 2020-02-24
+
+- Default posterimage for Facebook is now empty.
+- Attribute `poster-image` was added to overwrite poster images.
+- Upgraded dependencies.
+
+This release contains breaking changes:
+
+- Dropped support for Node.js v8.
+
 ## v2.0.3, 2019-11-05
 
 - Upgrading to Babel 7 introduced an uglifier bug. Fixed.

@@ -1,14 +1,14 @@
-export const createElement = (tag, attrs) => {
+export const createElement = (tag, attrs = {}) => {
   return new Promise(resolve => {
     const element = document.createElement(tag)
-    for (const attr in attrs) {
+    Object.keys(attrs).forEach(attr => {
       element.setAttribute(attr, attrs[attr])
-    }
+    })
     element.addEventListener('initialized', _e => {
       const query = element.shadowRoot.querySelector.bind(element.shadowRoot)
       resolve({ element, query })
     })
-    document.body.appendChild(element)
+    document.body.append(element)
   })
 }
 

@@ -33,7 +33,7 @@ describe('Embetty', () => {
   it('should use meta[data-embetty-server] as API url fallback', async () => {
     const meta = document.createElement('meta')
     meta.dataset.embettyServer = '/embetty-server'
-    document.head.appendChild(meta)
+    document.head.append(meta)
 
     const { element } = await createElement('embetty-test')
     assert.strictEqual(element.serverUrl, '/embetty-server')
