@@ -12,9 +12,23 @@
     "test": "karma start --single-run",
     "lint": "eslint . --cache"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,html,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
+      "pre-commit": "lint-staged"
     }
   },
   "author": {
@@ -83,6 +97,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
+    "lint-staged": "^10.0.8",
     "mocha": "^7.0.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
