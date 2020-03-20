@@ -87,7 +87,7 @@
     "cache-loader": "^4.0.0",
     "css-loader": "^3.3.0",
     "eslint": "^6.5.1",
-    "file-loader": "^4.3.0",
+    "file-loader": "^6.0.0",
     "fs-extra": "^8.0.1",
     "gh-pages": "^2.0.1",
     "husky": "^4.2.3",
