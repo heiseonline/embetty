@@ -20,7 +20,7 @@
     "cheerio": "^1.0.0-rc.2",
     "content-type": "^1.0.4",
     "debug": "^4.0.0",
-    "ioredis": "^4.0.0",
+    "ioredis": "^4.16.1",
     "lru-cache": "^4.1.2",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
