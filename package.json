@@ -82,7 +82,7 @@
     "@heise/embetty-server": "^2.0.3",
     "@heise/eslint-config": "^8.0.1",
     "@webcomponents/webcomponentsjs": "^2.4.3",
-    "autoprefixer": "^9.7.5",
+    "autoprefixer": "^9.7.6",
     "babel-loader": "^8.0.6",
     "cache-loader": "^4.0.0",
     "css-loader": "^3.3.0",
