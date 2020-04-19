@@ -1,7 +1,7 @@
 {
   "name": "@heise/embetty",
   "version": "4.0.0-beta",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
