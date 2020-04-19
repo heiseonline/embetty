@@ -50,7 +50,7 @@ describe('Tweet', () => {
     const { element } = await createTweet(Tweets.link)
     const links = [...element.shadowRoot.querySelectorAll('a[target=_blank')]
     assert.strictEqual(links.length, 4)
-    links.forEach(link => {
+    links.forEach((link) => {
       assert.strictEqual(link.getAttribute('rel'), 'noopener')
     })
   })

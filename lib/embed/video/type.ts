@@ -1,8 +1,13 @@
+import Video from '../video'
+
 const DEFAULT_WIDTH = 1600
 const DEFAULT_HEIGHT = 900
 
-export default class BaseType {
-  constructor(element) {
+export default abstract class BaseType {
+  element: Video
+  url: any
+
+  constructor(element: Video) {
     this.element = element
   }
 
@@ -13,4 +18,7 @@ export default class BaseType {
   get height() {
     return this.element.getAttribute('height') || DEFAULT_HEIGHT
   }
+
+  abstract get iframe(): string
+  abstract get posterImageUrl(): string
 }

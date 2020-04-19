@@ -1,10 +1,10 @@
 export const createElement = (tag, attrs = {}) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const element = document.createElement(tag)
-    Object.keys(attrs).forEach(attr => {
+    Object.keys(attrs).forEach((attr) => {
       element.setAttribute(attr, attrs[attr])
     })
-    element.addEventListener('initialized', _e => {
+    element.addEventListener('initialized', (_e) => {
       const query = element.shadowRoot.querySelector.bind(element.shadowRoot)
       resolve({ element, query })
     })
