@@ -9,6 +9,8 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Berlin
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
