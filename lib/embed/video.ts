@@ -1,11 +1,12 @@
 import * as Videos from './video/types'
-import { defineElement } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
 import BaseType from './video/type'
+import { webcomponent } from '../decorators'
 
 const CSS = require('!css-loader!postcss-loader!sass-loader!./_video.scss').toString()
 
+@webcomponent('embetty-video')
 export default class Video extends Observable(Embed) {
   impl!: BaseType
 
@@ -95,6 +96,3 @@ export default class Video extends Observable(Embed) {
     `
   }
 }
-
-// eslint-disable-next-line toplevel/no-toplevel-side-effect
-defineElement('embetty-video', Video)

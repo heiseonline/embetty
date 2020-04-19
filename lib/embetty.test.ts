@@ -1,8 +1,9 @@
 import { createElement } from '../test/lib/util'
-import { defineElement } from './util'
 import assert from 'assert'
 import Embed from './embed'
+import { webcomponent } from './decorators'
 
+@webcomponent('embetty-test')
 class EmbettyTest extends Embed {
   get someApiUrl() {
     return this._api('/some-url')
@@ -17,8 +18,6 @@ class EmbettyTest extends Embed {
     return 'Embetty test'
   }
 }
-
-defineElement('embetty-test', EmbettyTest)
 
 describe('Embetty', () => {
   it('should set the API url', async () => {

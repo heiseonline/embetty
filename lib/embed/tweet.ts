@@ -1,11 +1,13 @@
-import { defineElement, height, parseHostname } from '../util'
+import { height, parseHostname } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
+import { webcomponent } from '../decorators'
 
 const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').toString()
 
 const HEIGHT_OFFSET = 2
 
+@webcomponent('embetty-tweet')
 export class Tweet extends Observable(Embed) {
   parent: any
 
@@ -200,6 +202,3 @@ export class Tweet extends Observable(Embed) {
     }
   }
 }
-
-// eslint-disable-next-line toplevel/no-toplevel-side-effect
-defineElement('embetty-tweet', Tweet)
