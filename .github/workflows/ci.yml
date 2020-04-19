@@ -17,7 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
-    - run: yarn install --frozen-lockfile
+      with:
+        node-version: 12
+    - run: yarn --frozen-lockfile
     - run: yarn lint
     - run: yarn test
 
