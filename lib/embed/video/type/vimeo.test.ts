@@ -1,5 +1,6 @@
-import { createVimeoVideo } from './lib/util'
+import { createVimeoVideo } from '../../../../test/lib/util'
 import assert from 'assert'
+import '../../video'
 
 afterEach(() => {
   document.body.innerHTML = ''

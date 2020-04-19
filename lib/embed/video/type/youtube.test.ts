@@ -1,5 +1,6 @@
-import { createYoutubeVideo } from './lib/util'
+import { createYoutubeVideo } from '../../../../test/lib/util'
 import assert from 'assert'
+import '../../video'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -33,7 +34,9 @@ describe('YouTube Video', () => {
     const { query, element } = await createYoutubeVideo('m6UOo2YGbIE')
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.ok(/^\/\/www\.youtube-nocookie\.com\//.test(iframeSrc))
+    expect(iframeSrc).toBe(
+      '//www.youtube-nocookie.com/embed/m6UOo2YGbIE?autoplay=1&start=0'
+    )
   })
 
   it('[start-at]', async () => {

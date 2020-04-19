@@ -6,7 +6,7 @@ const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').toStr
 
 const HEIGHT_OFFSET = 2
 
-class Tweet extends Observable(Embed) {
+export class Tweet extends Observable(Embed) {
   parent: any
 
   constructor(status: string, parent: any, options = {}) {

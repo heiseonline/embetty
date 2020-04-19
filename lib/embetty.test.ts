@@ -1,29 +1,28 @@
-import { createElement } from './lib/util'
-import { defineElement } from '../lib/util'
+import { createElement } from '../test/lib/util'
+import { defineElement } from './util'
 import assert from 'assert'
-import Embed from '../lib/embed'
+import Embed from './embed'
 
-defineElement(
-  'embetty-test',
-  class EmbettyTest extends Embed {
-    get someApiUrl() {
-      return this._api('/some-url')
-    }
-
-    async connectedCallback() {
-      await super.connectedCallback()
-      this.becomesVisible()
-    }
-
-    static get template() {
-      return 'Embetty test'
-    }
+class EmbettyTest extends Embed {
+  get someApiUrl() {
+    return this._api('/some-url')
   }
-)
+
+  async connectedCallback() {
+    await super.connectedCallback()
+    this.becomesVisible()
+  }
+
+  static get template() {
+    return 'Embetty test'
+  }
+}
+
+defineElement('embetty-test', EmbettyTest)
 
 describe('Embetty', () => {
   it('should set the API url', async () => {
-    const { element } = await createElement('embetty-test', {
+    const { element } = await createElement<EmbettyTest>('embetty-test', {
       'server-url': '/foo',
     })
     assert.strictEqual(element.serverUrl, '/foo')
@@ -35,7 +34,7 @@ describe('Embetty', () => {
     meta.dataset.embettyServer = '/embetty-server'
     document.head.append(meta)
 
-    const { element } = await createElement('embetty-test')
+    const { element } = await createElement<EmbettyTest>('embetty-test')
     assert.strictEqual(element.serverUrl, '/embetty-server')
     assert.strictEqual(element.someApiUrl, '/embetty-server/some-url')
 
