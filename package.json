@@ -18,18 +18,9 @@
     "lint": "eslint . --cache --ext .ts,.js"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,html,md}": [
-      "prettier --write"
+    "*.{ts,js}": [
+      "eslint --fix"
     ]
-  },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5"
   },
   "husky": {
     "hooks": {
