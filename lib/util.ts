@@ -42,7 +42,12 @@ export function defineElement(name: string, Class: any) {
 
   Class.compiledTemplate =
     Class.compiledTemplate || hogan.compile(Class.template)
-  window.addEventListener('WebComponentsReady', function () {
+  // @ts-ignore
+  if (window.WebComponents.ready) {
     window.customElements.define(name, Class)
-  })
+  } else {
+    window.addEventListener('WebComponentsReady', function () {
+      window.customElements.define(name, Class)
+    })
+  }
 }
