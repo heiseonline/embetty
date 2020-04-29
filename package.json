@@ -1,6 +1,6 @@
 {
   "name": "@heise/embetty",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -12,9 +12,23 @@
     "test": "karma start --single-run",
     "lint": "eslint . --cache"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,html,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint"
+      "pre-commit": "lint-staged"
     }
   },
   "author": {
@@ -62,19 +76,19 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.0",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.2",
-    "@heise/embetty-server": "^1.2.7",
+    "@babel/preset-env": "^7.9.0",
+    "@heise/embetty-server": "^2.0.3",
     "@heise/eslint-config": "^8.0.1",
-    "@webcomponents/webcomponentsjs": "^2.2.10",
-    "autoprefixer": "^9.3.1",
+    "@webcomponents/webcomponentsjs": "^2.4.3",
+    "autoprefixer": "^9.7.5",
     "babel-loader": "^8.0.6",
     "cache-loader": "^4.0.0",
     "css-loader": "^3.3.0",
     "eslint": "^6.5.1",
-    "file-loader": "^4.3.0",
-    "fs-extra": "^8.0.1",
+    "file-loader": "^6.0.0",
+    "fs-extra": "^9.0.0",
     "gh-pages": "^2.0.1",
     "husky": "^4.2.3",
     "karma": "^4.1.0",
@@ -83,13 +97,14 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
+    "lint-staged": "^10.0.8",
     "mocha": "^7.0.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
     "puppeteer": "^2.1.1",
-    "raw-loader": "^3.1.0",
+    "raw-loader": "^4.0.0",
     "sass-loader": "^8.0.0",
-    "webpack": "^4.41.6",
+    "webpack": "^4.42.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.10.3"
