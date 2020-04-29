@@ -1,10 +1,10 @@
 # embetty-server  · [![Build Status](https://travis-ci.org/heiseonline/embetty-server.svg?branch=master)](https://travis-ci.org/heiseonline/embetty-server)  [![Dependency Status](https://img.shields.io/david/heiseonline/embetty-server.svg?style=flat-square)](https://david-dm.org/heiseonline/embetty-server) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+[Embetty](https://github.com/heiseonline/embetty) displays remote content like tweets or YouTube videos without compromising your privacy. `embetty-server` acts as a proxy and provides the necessary data.
+
 <p align="center">
   <img alt="Embetty" src="assets/embetty.png" width="360">
 </p>
-
-[Embetty](https://github.com/heiseonline/embetty) displays remote content like tweets or YouTube videos without compromising your privacy. `embetty-server` acts as a proxy and provides the necessary data.
 
 Embetty server can be run in two different ways:
 
