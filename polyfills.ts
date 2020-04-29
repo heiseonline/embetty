@@ -1,6 +1,6 @@
-require('core-js')
-require('regenerator-runtime/runtime')
-require('whatwg-fetch')
+// import 'core-js'
+// import 'regenerator-runtime/runtime
+import 'whatwg-fetch'
 
 try {
   /* eslint no-eval: "warn" */
@@ -9,5 +9,5 @@ try {
   console.log(error)
 }
 
-require('@webcomponents/webcomponentsjs')
-require('intersection-observer')
+import '@webcomponents/webcomponentsjs'
+import 'intersection-observer'

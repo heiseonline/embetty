@@ -1,16 +1,24 @@
 import { wait } from './util'
 import urljoin from 'url-join'
 
+// @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
 
-export default class Embed extends window.HTMLElement {
-  constructor() {
-    super()
-    this._fetched = false
+declare global {
+  interface Window {
+    ShadyCSS: any
   }
+}
+
+export default class Embed extends window.HTMLElement {
+  _fetched = false
+  url: any
+  _data: any
 
   get serverUrl() {
-    const baseUrl = document.querySelector('meta[data-embetty-server]')
+    const baseUrl = document.querySelector<HTMLElement>(
+      'meta[data-embetty-server]'
+    )
     return (
       this.getAttribute('server-url') ||
       (baseUrl && baseUrl.dataset.embettyServer) ||
@@ -22,21 +30,21 @@ export default class Embed extends window.HTMLElement {
     return window.getComputedStyle(this).display !== 'none'
   }
 
-  _api(url) {
+  _api(url: string) {
     return urljoin(this.serverUrl, url)
   }
 
-  emit(name, data) {
+  emit(name: string, data?: any) {
     this.dispatchEvent(new window.CustomEvent(name, data))
   }
 
-  on(name, cb) {
+  on(name: string, cb: EventListenerOrEventListenerObject) {
     this.addEventListener(name, cb, false)
   }
 
   async becomesVisible() {
     if (this.url) await this.fetchData()
-    this.shadowRoot.innerHTML = this.render()
+    this.shadowRoot!.innerHTML = this.render()
 
     await wait() // wait for ShadyDOM to render
     window.ShadyCSS.styleElement(this)
@@ -49,7 +57,7 @@ export default class Embed extends window.HTMLElement {
   }
 
   get wrapper() {
-    return this.shadowRoot.querySelector('.wrapper')
+    return this.shadowRoot!.querySelector('.wrapper')
   }
 
   get embettyLogo() {
@@ -63,6 +71,7 @@ export default class Embed extends window.HTMLElement {
   }
 
   render() {
+    // @ts-ignore
     return this.constructor.compiledTemplate.render(this)
   }
 }

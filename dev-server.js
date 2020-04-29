@@ -19,7 +19,7 @@ const server = new WebpackDevServer(webpack(config), {
   hot: true,
   compress: true,
   contentBase: './example',
-  before: app => {
+  before: (app) => {
     app.set('embetty', new Embetty())
     app.use('/tweet', tweet)
     app.use('/video', video)

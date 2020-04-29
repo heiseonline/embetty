@@ -11,7 +11,7 @@ const request = require('request-promise-native')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-const createServer = config =>
+const createServer = (config) =>
   new Promise((resolve, reject) => {
     config.devtool = 'none'
     const compiler = webpack(config, (err, _stats) => {
@@ -21,7 +21,7 @@ const createServer = config =>
       }
       const server = new WebpackDevServer(compiler, {
         contentBase: './example',
-        before: app => {
+        before: (app) => {
           app.set('embetty', new Embetty())
           app.use(embettyRoutes)
         },
@@ -56,17 +56,17 @@ const download = async (baseDir, url) => {
   const page = await browser.newPage()
   const urls = []
 
-  page.on('request', request => {
+  page.on('request', (request) => {
     urls.push(request.url())
   })
-  page.on('console', msg => {
+  page.on('console', (msg) => {
     console[msg.type()](msg.text())
   })
 
   await page.goto(url, { waitUntil: 'networkidle0' })
   await page.evaluate(async () => {
-    const resolveOnInitialized = element => {
-      return new Promise(resolve => {
+    const resolveOnInitialized = (element) => {
+      return new Promise((resolve) => {
         element.on('initialized', async () => {
           console.log('initialized:', element.outerHTML)
           const answeredTweets = element.answeredTweets
@@ -88,7 +88,7 @@ const download = async (baseDir, url) => {
   })
 
   console.log('Downloading assets ...')
-  await Promise.all(urls.map(url => downloadAsset(url, baseDir)))
+  await Promise.all(urls.map((url) => downloadAsset(url, baseDir)))
   console.log('Assets downloaded.')
   await browser.close()
 }
