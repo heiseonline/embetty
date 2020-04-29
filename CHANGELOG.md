@@ -1,5 +1,9 @@
 # embetty
 
+## v3.0.3, 2020-04-29
+
+- Replaced Embetty SVG with a smaller version
+
 ## v3.0.2, 2020-02-24
 
 - Added missing build artifacts.
