@@ -36,7 +36,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "@heise/embetty": "^3.0.1",
+    "@heise/embetty": "^3.0.3",
     "@heise/embetty-base": "^1.0.9",
     "commander": "^4.1.1",
     "cors": "^2.8.4",
