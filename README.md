@@ -106,7 +106,7 @@ Embetty triggers the following events:
 Example code:
 
 ```js
-document.querySelector('embetty-tweet').addEventistener('initialized', function(e) { ... })
+document.querySelector('embetty-tweet').addEventListener('initialized', function(e) { ... })
 ```
 
 ## Testing
