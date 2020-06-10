@@ -6,38 +6,35 @@ on:
       - '*'
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-  #     - name: Set Release
-  #       run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
-  #     - name: Build project
-  #       run: |
-  #         yarn --frozen-lockfile
-  #         yarn build
-  #         zip -r --junk-paths embetty-$RELEASE_VERSION dist
-  #     - name: Create Release
-  #       id: create_release
-  #       uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       with:
-  #         tag_name: $RELEASE_VERSION
-  #         release_name: Release $RELEASE_VERSION
-  #         draft: false
-  #         prerelease: false
-  #     - name: Upload Release Asset
-  #       id: upload-release-asset
-  #       uses: actions/upload-release-asset@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       with:
-  #         upload_url: ${{ steps.create_release.outputs.upload_url }}
-  #         asset_path: ./embetty-$RELEASE_VERSION
-  #         asset_name: embetty-$RELEASE_VERSION
-  #         asset_content_type: application/zip
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set Release
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+      - name: Build project
+        run: zip -r embetty .
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: $RELEASE_VERSION
+          release_name: Release $RELEASE_VERSION
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./embetty.zip
+          asset_name: embetty.zip
+          asset_content_type: application/zip
 
   publish-npm:
     runs-on: ubuntu-latest
