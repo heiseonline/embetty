@@ -88,7 +88,7 @@
     "css-loader": "^3.5.3",
     "eslint": "^6.5.1",
     "file-loader": "^6.0.0",
-    "fs-extra": "^9.0.0",
+    "fs-extra": "^9.0.1",
     "gh-pages": "^2.0.1",
     "husky": "^4.2.3",
     "karma": "^4.1.0",
