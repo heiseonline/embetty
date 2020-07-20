@@ -44,6 +44,6 @@
     "express": "^4.16.2",
     "helmet": "^3.23.1",
     "morgan": "^1.10.0",
-    "nunjucks": "^3.2.1"
+    "nunjucks": "^3.2.2"
   }
 }
