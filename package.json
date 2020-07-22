@@ -23,7 +23,7 @@
     "ioredis": "^4.16.2",
     "lru-cache": "^4.1.2",
     "request": "^2.83.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.9"
   },
   "devDependencies": {
     "@heise/eslint-config": "^8.0.1",
