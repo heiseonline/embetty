@@ -98,7 +98,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lint-staged": "^10.2.2",
-    "mocha": "^7.0.1",
+    "mocha": "^8.1.0",
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
     "puppeteer": "^2.1.1",
