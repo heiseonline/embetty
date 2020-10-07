@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "extends": "@heise",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "toplevel/no-toplevel-side-effect": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+     "files": ["test/*.js"],
+        "rules": {
+           "no-magic-numbers": "off"
+        }
+    }
+  ],
+}
