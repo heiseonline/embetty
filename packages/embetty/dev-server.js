@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+
 const config = require('./webpack.config')
-const Embetty = require('@heise/embetty-base')
-const tweet = require('@heise/embetty-server/routes/tweet')
-const video = require('@heise/embetty-server/routes/video')
+const Embetty = require('../base')
+const tweet = require('../server/routes/tweet')
+const video = require('../server/routes/video')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
