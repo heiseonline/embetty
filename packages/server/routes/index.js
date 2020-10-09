@@ -17,8 +17,10 @@ router.use(
   cors({
     origin: (origin, cb) => {
       const validOrigins = getValidOrigins()
-      if (validOrigins[0] === '*' || !origin || validOrigins.includes(origin))
-        return cb(null, true)
+      if (validOrigins[0] === '*' || !origin || validOrigins.includes(origin)) {
+        cb(null, true)
+        return
+      }
 
       debug('Invalid origin:', origin, 'Valid:', validOrigins)
       cb(Forbidden)

@@ -1,3 +1,4 @@
+// eslint-disable-next-line security/detect-child-process
 const { spawn } = require('child_process')
 const path = require('path')
 
@@ -17,7 +18,10 @@ module.exports = class Util {
       })
 
       cmd.on('close', (exitCode) => {
-        if (exitCode === 0) return resolve({ cmd, exitCode, stdout })
+        if (exitCode === 0) {
+          resolve({ cmd, exitCode, stdout })
+          return
+        }
         const error = new Error(exitCode)
         error.stdout = stdout
         error.exitCode = exitCode

@@ -14,14 +14,20 @@ router.param('id', async (req, res, next, id) => {
 })
 
 router.param('number', (req, res, next, number) => {
-  if (!/^\d+$/.test(number)) return next(BadRequest)
+  if (!/^\d+$/.test(number)) {
+    next(BadRequest)
+    return
+  }
   next()
 })
 
 router.get('/:id-profile-image', async (req, res, next) => {
   try {
     const image = await req.tweet.getProfileImage()
-    if (!image) return next(NotFound)
+    if (!image) {
+      next(NotFound)
+      return
+    }
     res.type(image.type)
     res.send(image.data)
   } catch (error) {
@@ -32,7 +38,10 @@ router.get('/:id-profile-image', async (req, res, next) => {
 router.get('/:id-link-image', async (req, res, next) => {
   try {
     const image = await req.tweet.getLinkImage()
-    if (!image) return next(NotFound)
+    if (!image) {
+      next(NotFound)
+      return
+    }
     res.type(image.type)
     res.send(image.data)
   } catch (error) {
@@ -43,7 +52,10 @@ router.get('/:id-link-image', async (req, res, next) => {
 router.get('/:id-images-:number', async (req, res, next) => {
   try {
     const image = await req.tweet.getImage(req.params.number)
-    if (!image) return next(NotFound)
+    if (!image) {
+      next(NotFound)
+      return
+    }
     res.type(image.type)
     res.send(image.data)
   } catch (error) {

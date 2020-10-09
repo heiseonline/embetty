@@ -25,7 +25,7 @@ app.set('embetty', new Embetty())
 
 app.use(
   logger(process.env.NODE_ENV === 'production' ? 'short' : 'dev', {
-    skip: (req, res) => process.env.NODE_ENV === 'test',
+    skip: (_req, _res) => process.env.NODE_ENV === 'test',
   })
 )
 

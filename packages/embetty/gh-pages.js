@@ -74,7 +74,9 @@ const download = async (baseDir, url) => {
             resolve()
             return
           }
-          await Promise.all([...answeredTweets].map(resolveOnInitialized))
+          await Promise.all(
+            [...answeredTweets].map((element) => resolveOnInitialized(element))
+          )
           resolve()
         })
         element.becomesVisible()
@@ -84,7 +86,7 @@ const download = async (baseDir, url) => {
     const embeds = [
       ...document.querySelectorAll('embetty-tweet, embetty-video'),
     ]
-    return Promise.all(embeds.map(resolveOnInitialized))
+    return Promise.all(embeds.map((element) => resolveOnInitialized(element)))
   })
 
   console.log('Downloading assets ...')
