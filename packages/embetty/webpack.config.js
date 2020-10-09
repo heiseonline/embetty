@@ -49,7 +49,7 @@ module.exports = {
       banner: `${title || name} - v${version} - ${new Date().toGMTString()}
 ${homepage}
 Copyright (c) ${new Date().getFullYear()} Heise Medien GmbH & Co. KG
-Contributors: ${author.name}, ${contributors.map(c => c.name).join(', ')}
+Contributors: ${author.name}, ${contributors.map((c) => c.name).join(', ')}
 Licensed under the ${license} license`,
     }),
   ],

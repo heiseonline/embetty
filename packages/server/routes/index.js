@@ -13,15 +13,18 @@ function getValidOrigins() {
   return _validOrigins.length > 0 ? _validOrigins.split(',') : []
 }
 
-router.use(cors({
-  origin: (origin, cb) => {
-    const validOrigins = getValidOrigins()
-    if (validOrigins[0] === '*' || !origin || validOrigins.indexOf(origin) !== -1) return cb(null, true)
+router.use(
+  cors({
+    origin: (origin, cb) => {
+      const validOrigins = getValidOrigins()
+      if (validOrigins[0] === '*' || !origin || validOrigins.includes(origin))
+        return cb(null, true)
 
-    debug('Invalid origin:', origin, 'Valid:', validOrigins)
-    cb(Forbidden)
-  }
-}))
+      debug('Invalid origin:', origin, 'Valid:', validOrigins)
+      cb(Forbidden)
+    },
+  })
+)
 
 router.use('/embetty.js', (req, res, next) => {
   const embettyPath = require.resolve('@heise/embetty/dist/embetty.js')

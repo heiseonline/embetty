@@ -11,7 +11,7 @@ export default class Video extends Observable(Embed) {
     await super.connectedCallback()
     this.playButton.addEventListener(
       'click',
-      _e => {
+      (_e) => {
         this.activate()
       },
       { once: true }

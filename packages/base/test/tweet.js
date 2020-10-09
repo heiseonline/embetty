@@ -12,7 +12,7 @@ const Tweet = require('../lib/tweet')
 afterEach(restore)
 
 const embetty = new Embetty(new SimpleCache())
-const createTweet = id => new Tweet(id, { embetty })
+const createTweet = (id) => new Tweet(id, { embetty })
 
 describe('Tweet', () => {
   it('should construct', () => {
@@ -76,7 +76,7 @@ describe('Tweet', () => {
       assert.strictEqual(url, await t.getImageUrl(0))
     })
 
-    it('should not throw an exception if an image does not exist', done => {
+    it('should not throw an exception if an image does not exist', (done) => {
       const t = createTweet(Tweets.image)
       t.getImageUrl(999)
         .then(() => done())
@@ -91,7 +91,7 @@ describe('Tweet', () => {
       assert.ok(image.data.length > 100, 'Image is > 100 bytes')
     })
 
-    it('should not throw an exception if an image does not exist', done => {
+    it('should not throw an exception if an image does not exist', (done) => {
       const t = createTweet(Tweets.image)
       t.getImage(999)
         .then(() => done())

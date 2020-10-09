@@ -26,13 +26,19 @@ describe('CORS', () => {
     const response = await request(app)
       .get('/')
       .set('Origin', 'http://a.example.com')
-    assert.strictEqual(response.headers['access-control-allow-origin'], 'http://a.example.com')
+    assert.strictEqual(
+      response.headers['access-control-allow-origin'],
+      'http://a.example.com'
+    )
     assert.strictEqual(response.status, 404)
 
     const response2 = await request(app)
       .get('/')
       .set('Origin', 'http://b.example.com')
-    assert.strictEqual(response2.headers['access-control-allow-origin'], 'http://b.example.com')
+    assert.strictEqual(
+      response2.headers['access-control-allow-origin'],
+      'http://b.example.com'
+    )
     assert.strictEqual(response2.status, 404)
 
     const response3 = await request(app)

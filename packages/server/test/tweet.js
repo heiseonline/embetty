@@ -9,23 +9,23 @@ const app = require('..')
 const Tweets = {
   s200: '934029337019416579',
   s404: '999999999999999999999999999999999999999999999999',
-  s400: 'abc'
+  s400: 'abc',
 }
 
 describe('Tweet', () => {
-  before(() => { process.env.URL_BASE = 'https://example.com/embetty-server' })
-  after(() => { delete process.env.URL_BASE })
+  before(() => {
+    process.env.URL_BASE = 'https://example.com/embetty-server'
+  })
+  after(() => {
+    delete process.env.URL_BASE
+  })
 
   it('/tweet/:id => 404', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s404}`)
-      .expect(404)
+    await request(app).get(`/tweet/${Tweets.s404}`).expect(404)
   })
 
   it('/tweet/:id => 400', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s400}`)
-      .expect(400)
+    await request(app).get(`/tweet/${Tweets.s400}`).expect(400)
   })
 
   it('/tweet/:id.amp => 200', async () => {
@@ -33,7 +33,8 @@ describe('Tweet', () => {
       .get(`/tweet/${Tweets.s200}.amp`)
       .expect('Content-Type', /html/)
       .expect(200)
-    const expected = '<embetty-tweet status="934029337019416579"></embetty-tweet>'
+    const expected =
+      '<embetty-tweet status="934029337019416579"></embetty-tweet>'
     assert.ok(response.text.includes(expected))
   })
 
@@ -46,15 +47,11 @@ describe('Tweet', () => {
   })
 
   it('/tweet/:id-profile-image => 404', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s404}/profile-image`)
-      .expect(404)
+    await request(app).get(`/tweet/${Tweets.s404}/profile-image`).expect(404)
   })
 
   it('/tweet/:id-profile-image => 400', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s400}-profile-image`)
-      .expect(400)
+    await request(app).get(`/tweet/${Tweets.s400}-profile-image`).expect(400)
   })
 
   it('/tweet/:id-profile-image => 200', async () => {
@@ -70,15 +67,11 @@ describe('Tweet', () => {
   })
 
   it('/tweet/:id-images-:number => 400', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s200}-images-abc`)
-      .expect(400)
+    await request(app).get(`/tweet/${Tweets.s200}-images-abc`).expect(400)
   })
 
   it('/tweet/:id-images-:number => 404', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s200}-images-99`)
-      .expect(404)
+    await request(app).get(`/tweet/${Tweets.s200}-images-99`).expect(404)
   })
 
   it('/tweet/:id-images-:number => 200', async () => {
@@ -106,8 +99,6 @@ describe('Tweet', () => {
   })
 
   it('/tweet/:id-link-image => 404', async () => {
-    await request(app)
-      .get(`/tweet/${Tweets.s200}-link-image`)
-      .expect(404)
+    await request(app).get(`/tweet/${Tweets.s200}-link-image`).expect(404)
   })
 })

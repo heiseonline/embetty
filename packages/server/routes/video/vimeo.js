@@ -8,8 +8,8 @@ router.param('id', async (req, res, next, id) => {
     if (!/^\d+$/.test(id)) throw BadRequest
     req.video = await req.app.get('embetty').loadVimeoVideo(id)
     next()
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -19,8 +19,8 @@ router.get('/:id-poster-image', async (req, res, next) => {
     if (!data) return next()
     res.type(type)
     res.send(data)
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 

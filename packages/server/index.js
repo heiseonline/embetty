@@ -12,9 +12,9 @@ const app = express()
 nunjucks
   .configure('views', {
     autoescape: true,
-    express: app
+    express: app,
   })
-  .addGlobal('urlFor', path => {
+  .addGlobal('urlFor', (path) => {
     const urlBase = process.env.URL_BASE
     if (!urlBase) throw new Error('URL_BASE not set.')
     const url = new URL(path, urlBase)
@@ -23,14 +23,18 @@ nunjucks
 
 app.set('embetty', new Embetty())
 
-app.use(logger(process.env.NODE_ENV === 'production' ? 'short' : 'dev', {
-  skip: (req, res) => process.env.NODE_ENV === 'test'
-}))
+app.use(
+  logger(process.env.NODE_ENV === 'production' ? 'short' : 'dev', {
+    skip: (req, res) => process.env.NODE_ENV === 'test',
+  })
+)
 
-app.use(helmet({
-  frameguard: false,
-  hsts: false,
-}))
+app.use(
+  helmet({
+    frameguard: false,
+    hsts: false,
+  })
+)
 app.use('/', routes)
 
 app.use((req, res, next) => {

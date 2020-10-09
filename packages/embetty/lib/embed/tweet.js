@@ -89,7 +89,7 @@ class Tweet extends Observable(Embed) {
       .replace(/@(\w+)/g, (name, word) => {
         return `<a href="https://twitter.com/${word}">${name}</a>`
       })
-      .replace(/(https:\/\/\S+)$/, link => {
+      .replace(/(https:\/\/\S+)$/, (link) => {
         if (this.hasMedia && this.media[0].url === link) return ''
         return link
       })
@@ -192,7 +192,7 @@ class Tweet extends Observable(Embed) {
 
     const linkImage = this.shadowRoot.querySelector('#links img')
     if (linkImage) {
-      linkImage.addEventListener('error', _e => {
+      linkImage.addEventListener('error', (_e) => {
         linkImage.remove()
       })
     }

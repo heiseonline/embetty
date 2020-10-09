@@ -24,8 +24,8 @@ module.exports = class LRU {
     string
       .replace(lruPattern, '')
       .split(',')
-      .filter(e => e.length > 0)
-      .forEach(option => {
+      .filter((e) => e.length > 0)
+      .forEach((option) => {
         const [key, value] = option.split(':')
         options[key] = value
       })

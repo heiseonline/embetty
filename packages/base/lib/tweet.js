@@ -110,9 +110,9 @@ module.exports = class Tweet extends Embed {
   async _retrieveMetas() {
     this.links = (
       await Promise.all(
-        this.links.map(l => this._retrieveMeta(l.expanded_url || l.url))
+        this.links.map((l) => this._retrieveMeta(l.expanded_url || l.url))
       )
-    ).filter(meta => typeof meta !== 'undefined')
+    ).filter((meta) => typeof meta !== 'undefined')
   }
 
   async retrieve() {

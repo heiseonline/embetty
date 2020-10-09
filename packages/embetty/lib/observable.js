@@ -1,4 +1,4 @@
-export default Base =>
+export default (Base) =>
   class Observable extends Base {
     constructor() {
       super(...arguments)
@@ -10,7 +10,7 @@ export default Base =>
     async connectedCallback() {
       await super.connectedCallback()
 
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         new window.IntersectionObserver(
           async ([entry]) => {
             if (!this.isVisible()) return

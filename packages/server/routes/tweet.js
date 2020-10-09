@@ -8,8 +8,8 @@ router.param('id', async (req, res, next, id) => {
     if (!/^\d+$/.test(id)) throw BadRequest
     req.tweet = await req.app.get('embetty').loadTweet(id)
     next()
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -24,8 +24,8 @@ router.get('/:id-profile-image', async (req, res, next) => {
     if (!image) return next(NotFound)
     res.type(image.type)
     res.send(image.data)
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -35,8 +35,8 @@ router.get('/:id-link-image', async (req, res, next) => {
     if (!image) return next(NotFound)
     res.type(image.type)
     res.send(image.data)
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 
@@ -46,8 +46,8 @@ router.get('/:id-images-:number', async (req, res, next) => {
     if (!image) return next(NotFound)
     res.type(image.type)
     res.send(image.data)
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 

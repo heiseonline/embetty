@@ -70,8 +70,8 @@ module.exports = class Embetty {
     const wantedEngine = connection.match(/(\w+):\/\//)[1]
 
     const Engine = Object.keys(Embetty.cacheEngines)
-      .filter(name => name.toLowerCase() === wantedEngine)
-      .map(name => Embetty.cacheEngines[name])[0]
+      .filter((name) => name.toLowerCase() === wantedEngine)
+      .map((name) => Embetty.cacheEngines[name])[0]
 
     if (!Engine) throw new Error(`Unsupported cache engine: ${wantedEngine}`)
 

@@ -2,7 +2,7 @@ const SimpleCache = require('./simple-cache')
 
 module.exports = class SleepyCache extends SimpleCache {
   _sleep(ms) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => resolve(), ms)
     })
   }

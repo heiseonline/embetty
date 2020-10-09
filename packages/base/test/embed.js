@@ -16,7 +16,7 @@ class EmbettyMock extends Embetty {
   }
 
   async get(url, options) {
-    await new Promise(resolve => {
+    await new Promise((resolve) => {
       setTimeout(resolve, this.sleep)
     })
     return super.get(url, options)

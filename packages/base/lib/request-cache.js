@@ -2,7 +2,7 @@ const { hashRequest } = require('./util')
 const debug = require('debug')('embetty-base:request-cache')
 const request = require('request-promise-native')
 
-module.exports = cache => {
+module.exports = (cache) => {
   const set = (key, value) => {
     return cache.set(key, value)
   }
@@ -21,14 +21,14 @@ module.exports = cache => {
     return Promise.all([set(`${key}_body`, body), setJSON(key, value)])
   }
 
-  const get = async key => {
+  const get = async (key) => {
     const value = await cache.get(key)
     if (!value) return undefined
     if (Buffer.isBuffer(value)) return value
     return JSON.parse(value)
   }
 
-  const getBinary = async key => {
+  const getBinary = async (key) => {
     const [body, response] = await Promise.all([
       cache.get(`${key}_body`, { isBinary: true }),
       get(key),
@@ -38,7 +38,7 @@ module.exports = cache => {
     return response
   }
 
-  return async options => {
+  return async (options) => {
     const key = hashRequest(options)
     const debugId = `${options.method || 'GET'} ${options.uri} ["${key}"]`
     const isBinary = options.encoding === null

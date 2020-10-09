@@ -7,14 +7,16 @@ start({ folder: path.join(__dirname, 'fixtures') })
 const app = require('..')
 
 describe('Video', () => {
-  before(() => { process.env.URL_BASE = 'https://example.com/embetty-server' })
-  after(() => { delete process.env.URL_BASE })
+  before(() => {
+    process.env.URL_BASE = 'https://example.com/embetty-server'
+  })
+  after(() => {
+    delete process.env.URL_BASE
+  })
 
   describe('Youtube', () => {
     it('should respond with 404', async () => {
-      await request(app)
-        .get('/video/youtube/123/profile-image')
-        .expect(404)
+      await request(app).get('/video/youtube/123/profile-image').expect(404)
     })
 
     it('should support AMP', async () => {
@@ -22,7 +24,8 @@ describe('Video', () => {
         .get('/video/youtube/m6UOo2YGbIE.amp')
         .expect('Content-Type', /html/)
         .expect(200)
-      const expected = '<embetty-video type="youtube" video-id="m6UOo2YGbIE"></embetty-video>'
+      const expected =
+        '<embetty-video type="youtube" video-id="m6UOo2YGbIE"></embetty-video>'
       assert.ok(response.text.includes(expected))
     })
 
@@ -41,15 +44,11 @@ describe('Video', () => {
 
   describe('Vimeo', () => {
     it('should respond with 400', async () => {
-      await request(app)
-        .get('/video/vimeo/abc')
-        .expect(400)
+      await request(app).get('/video/vimeo/abc').expect(400)
     })
 
     it('should respond with 404', async () => {
-      await request(app)
-        .get('/video/vimeo/9')
-        .expect(404)
+      await request(app).get('/video/vimeo/9').expect(404)
     })
 
     it('should support AMP', async () => {
@@ -57,7 +56,8 @@ describe('Video', () => {
         .get('/video/vimeo/223099532.amp')
         .expect('Content-Type', /html/)
         .expect(200)
-      const expected = '<embetty-video type="vimeo" video-id="223099532"></embetty-video>'
+      const expected =
+        '<embetty-video type="vimeo" video-id="223099532"></embetty-video>'
       assert.ok(response.text.includes(expected))
     })
 
@@ -76,15 +76,11 @@ describe('Video', () => {
 
   describe('Facebook', () => {
     it('should respond with 400', async () => {
-      await request(app)
-        .get('/video/facebook/abc')
-        .expect(400)
+      await request(app).get('/video/facebook/abc').expect(400)
     })
 
     it('should respond with 404', async () => {
-      await request(app)
-        .get('/video/facebook/0')
-        .expect(404)
+      await request(app).get('/video/facebook/0').expect(404)
     })
 
     it('should support AMP', async () => {
@@ -92,7 +88,8 @@ describe('Video', () => {
         .get('/video/facebook/10156049485672318.amp')
         .expect('Content-Type', /html/)
         .expect(200)
-      const expected = '<embetty-video type="facebook" video-id="10156049485672318"></embetty-video>'
+      const expected =
+        '<embetty-video type="facebook" video-id="10156049485672318"></embetty-video>'
       assert.ok(response.text.includes(expected))
     })
   })

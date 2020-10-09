@@ -4,9 +4,7 @@ const request = require('supertest')
 
 describe('embetty-server', () => {
   it('/ is 404', async () => {
-    await request(app)
-      .get('/')
-      .expect(404)
+    await request(app).get('/').expect(404)
   })
 
   it('should not send a "x-powered-by" header', async () => {

@@ -12,9 +12,11 @@ module.exports = class Util {
 
       const cmd = spawn(command, args)
 
-      cmd.stdout.on('data', d => { stdout += d.toString() })
+      cmd.stdout.on('data', (d) => {
+        stdout += d.toString()
+      })
 
-      cmd.on('close', exitCode => {
+      cmd.on('close', (exitCode) => {
         if (exitCode === 0) return resolve({ cmd, exitCode, stdout })
         const error = new Error(exitCode)
         error.stdout = stdout

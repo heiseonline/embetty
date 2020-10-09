@@ -1,7 +1,7 @@
 import hogan from 'hogan.js'
 
 export function wait(ms = undefined) {
-  return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 export function computedStyle(element, key) {
@@ -37,7 +37,7 @@ export function defineElement(name, Class) {
 
   Class.compiledTemplate =
     Class.compiledTemplate || hogan.compile(Class.template)
-  window.addEventListener('WebComponentsReady', function() {
+  window.addEventListener('WebComponentsReady', function () {
     window.customElements.define(name, Class)
   })
 }

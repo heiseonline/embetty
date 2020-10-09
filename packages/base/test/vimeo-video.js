@@ -11,7 +11,7 @@ const VimeoVideo = require('../lib/vimeo-video')
 afterEach(restore)
 
 const embetty = new Embetty(new SimpleCache())
-const createVideo = id => new VimeoVideo(id, { embetty })
+const createVideo = (id) => new VimeoVideo(id, { embetty })
 
 describe('Vimeo Video', () => {
   it('should construct', () => {

@@ -10,7 +10,7 @@ const FacebookVideo = require('../lib/facebook-video')
 afterEach(restore)
 
 const embetty = new Embetty()
-const createVideo = id => new FacebookVideo(id, { embetty })
+const createVideo = (id) => new FacebookVideo(id, { embetty })
 
 describe('Facebook Video', () => {
   it('should construct', () => {

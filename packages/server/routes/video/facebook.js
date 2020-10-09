@@ -8,8 +8,8 @@ router.param('id', async (req, res, next, id) => {
     if (!/^\d+$/.test(id)) throw BadRequest
     req.video = await req.app.get('embetty').loadFacebookVideo(id)
     next()
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 })
 

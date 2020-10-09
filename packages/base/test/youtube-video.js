@@ -11,7 +11,7 @@ const YoutubeVideo = require('../lib/youtube-video')
 afterEach(restore)
 
 const embetty = new Embetty(new SimpleCache())
-const createVideo = id => new YoutubeVideo(id, { embetty })
+const createVideo = (id) => new YoutubeVideo(id, { embetty })
 
 describe('Youtube Video', () => {
   it('should construct', () => {
