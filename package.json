@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@heise/eslint-config": "^11",
-    "lerna": "^3.22.1"
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.4.0"
   }
 }
