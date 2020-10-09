@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    env:
+      TWITTER_ACCESS_TOKEN_KEY: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
+      TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+      TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - run: yarn install --frozen-lockfile
+    - run: yarn lint
+    - run: yarn test
