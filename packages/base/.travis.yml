@@ -1,0 +1,30 @@
+language: node_js
+sudo: false
+node_js:
+- '10'
+- '12'
+script:
+- yarn test
+before_install: yarn global add greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+deploy:
+  - provider: npm
+    email: mick@heise.de
+    api_key:
+      secure: "yTEQf+mgG0tb+Zc9YORndSQzI09WBMvCRpAKDbNrAr4UMbBNQ819tG9t75dGJclEbS3dRy6bP3VDk/NqPtermPmEhBjn38lvDX7JJxzA3BdCxTVrL0+lqdn+regZQlLLS3QpE/syZDCPHplMj+ibrzdHJlQVHXfsHj9vaWuR5A/SCIVzDTg2F09BVSUtUj7xJenwNq1R8Fex2F5KwTIABR7xumI8a29VqPQy2eUnGxZ2crjN+txs+0+Pil+KCe+Rg/hHoxrofzoBPm3VVV5Puo92UZaJYQbU4+RbdMYrhafKV373Ino4GGV1zU5tAmvSW5ViFvegbE0A2BfK6SGGec+tfYoB6GZgOPKIg/PbcfCtgCHRswojeFa4CbTIoGv48D1FxNRXM8EqG38w2SaHxp9+wpOo11TguzWwx+aYreN9ITq0eWflq8Cq+zWSCscNwydmxcUEqRgAg7TujFYknHVsscSKBjpjBmLx5fLJWtgBImMUhWVLP0BAUOrpppglCJl8h4AtCTRAV5KhrxD3ijb/WIflCFoQtqh9C4l6E0knkJLpdcDCny0uIjKMNHhiu/86sRJFUjMaI7lNx9re98M83bUo2Dl9dmHMg93d4c7sBpB7Fx9W0aqr5bxna+xZNSGFcNjNKSQXdUV7dIOY3LMQNDOYYTZyVm8ZHx2PVfc="
+    on:
+      tags: true
+      repo: heiseonline/embetty-base
+      node_js: '10'
+  - provider: releases
+    api_key:
+      secure: WGCs1D0dygZ1QMAlBYxXFxA1i2PELeSs9MhS96PNj4mnxzp8FATFgZtbqIb1XoUxZrbmfcOyHo4POxA0fh6WtLaJI8dkUU5Hmggt3ebm+zZrwMy8N0xevyqlZlP0gpDbbbr4450+76HRNeeP41qvX6mnef5VlQsA2hL5ghobgoZr/pgz0jK2uLlWKk0BcEX6jxEqZyuIlyjJN6D9l86Jlasmjr8bGfyuhawOGQRcoZtQ1CTO9k47ZMH1u00RZJK0EpYx6hePaN5ogeCWrJzi+ew8QQh1PnqUf6QmOCrY0lhv6WgmU6/acghPHr2ZdjwXhU2cP7RIbxhTFh7lCucMro1xW3UFNl8kkDHWPs6FJ34dbzySu7PSUDXfQ7n0CuTzqGMIxYXazysO8M1Lpq9WP66X7Ncdss8pe9ghYEUgJtWTfPkZ48K7IegLOXx5UtOd1WshNmFhjJUjOwaImJoLImUHCqud3DUvESIF1St7+vnmwDBnXWzoNOEbivarrXBsEN74AT+P4okH5Sx1c0DyrVOaAYVJelbe861tv6Ik1AGpihLIQYTpZy5Zz/mJKU4r5JxYUTfuqfqRvdyz6AjlNHjFtYudys/AzYTd7fOTG6kyGAnAvSqLxD30LPV6k6YmU77jhdcrmxhpXMmYSu0l4+dE6ee7+1Dk2xRN+DXlJLI=
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: heiseonline/embetty-base
+      node_js: '10'
+env:
+  global:
+  - BASE_NAME=embetty-base-$TRAVIS_TAG

@@ -1,0 +1,34 @@
+{
+  "name": "@heise/embetty-base",
+  "version": "2.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --cache .",
+    "test": "NOCK_BACK_MODE=lockdown mocha --bail --check-leaks",
+    "dev": "NOCK_BACK_MODE=record mocha -R min --check-leaks -w"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@heise/request-promise-native-record": "^1.0.1",
+    "cheerio": "^1.0.0-rc.2",
+    "content-type": "^1.0.4",
+    "debug": "^4.0.0",
+    "ioredis": "^4.16.2",
+    "lru-cache": "^4.1.2",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.9"
+  },
+  "devDependencies": {
+    "@heise/eslint-config": "^8.0.1",
+    "eslint": "^6.8.0",
+    "mocha": "^7.1.1",
+    "nock": "^12.0.3"
+  }
+}
