@@ -2,12 +2,16 @@
   "name": "root",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "lint": "eslint --cache ."
+  },
   "workspaces": {
     "packages": [
       "packages/*"
     ]
   },
   "dependencies": {
+    "@heise/eslint-config": "^11",
     "lerna": "^3.22.1"
   }
 }
