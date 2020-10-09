@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@heise/embetty": "^3.0.3",
-    "@heise/embetty-base": "^1.0.9",
+    "@heise/embetty-base": "^2.0.0",
     "commander": "^4.1.1",
     "cors": "^2.8.4",
     "debug": "^4.1.0",
