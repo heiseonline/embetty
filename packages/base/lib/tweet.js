@@ -92,7 +92,9 @@ module.exports = class Tweet extends Embed {
       url: response.request.uri.href,
       description: $('meta[name=description]').attr('content'),
       image: $('meta[property="og:image"]').attr('content'),
-      title: $('title').text(),
+      title:
+        $('meta[property="og:title"]').attr('content') ||
+        $('head title').text(),
     }
   }
 
