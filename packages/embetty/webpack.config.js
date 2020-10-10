@@ -52,5 +52,8 @@ Copyright (c) ${new Date().getFullYear()} Heise Medien GmbH & Co. KG
 Contributors: ${author.name}, ${contributors.map((c) => c.name).join(', ')}
 Licensed under the ${license} license`,
     }),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(version),
+    }),
   ],
 }

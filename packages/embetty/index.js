@@ -3,5 +3,6 @@ function debugEnabled() {
   return window.localStorage.embettyDebug === 'true'
 }
 if (debugEnabled()) {
-  console.log(`embetty-version: ${require('./package.json').version}`)
+  // eslint-disable-next-line no-undef
+  console.log(`embetty-version: ${VERSION}`)
 }
