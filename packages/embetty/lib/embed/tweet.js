@@ -1,8 +1,7 @@
-import { defineElement, height, parseHostname } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
-
-const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').toString()
+import { defineElement, height, parseHostname } from '../util'
+import CSS from './tweet.scss'
 
 const HEIGHT_OFFSET = 2
 
@@ -145,6 +144,7 @@ class Tweet extends Observable(Embed) {
   }
 
   static get template() {
+    console.log(CSS)
     return `
     <style>${CSS}</style>
       <header>

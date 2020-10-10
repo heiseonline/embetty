@@ -2,8 +2,7 @@ import * as Videos from './video/types'
 import { defineElement } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
-
-const CSS = require('!css-loader!postcss-loader!sass-loader!./_video.scss').toString()
+import CSS from './_video.scss'
 
 export default class Video extends Observable(Embed) {
   async connectedCallback() {
