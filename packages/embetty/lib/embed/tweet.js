@@ -144,7 +144,6 @@ class Tweet extends Observable(Embed) {
   }
 
   static get template() {
-    console.log(CSS)
     return `
     <style>${CSS}</style>
       <header>
