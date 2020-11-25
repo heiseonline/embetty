@@ -70,7 +70,7 @@
   "dependencies": {
     "core-js": "3",
     "hogan.js": "^3.0.2",
-    "intersection-observer": "^0.7.0",
+    "intersection-observer": "^0.11.0",
     "regenerator-runtime": "^0.13.3",
     "url-join": "^4.0.1",
     "whatwg-fetch": "^3.0.0"
