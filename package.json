@@ -76,7 +76,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.1",
+    "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
     "@babel/preset-env": "^7.12.7",
     "@heise/embetty-server": "^2.0.3",
