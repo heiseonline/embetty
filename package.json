@@ -73,7 +73,7 @@
     "intersection-observer": "^0.11.0",
     "regenerator-runtime": "^0.13.3",
     "url-join": "^4.0.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",
