@@ -10,7 +10,8 @@
     "dev": "./dev-server.js",
     "watch": "karma start",
     "test": "karma start --single-run",
-    "lint": "eslint . --cache"
+    "lint": "eslint . --cache",
+    "prepublishOnly": "yarn build"
   },
   "lint-staged": {
     "*.js": [
