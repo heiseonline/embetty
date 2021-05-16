@@ -1,3 +1,10 @@
+## [3.0.6](https://github.com/heiseonline/embetty/compare/v3.0.5...v3.0.6) (2021-05-16)
+
+
+### Bug Fixes
+
+* include correct Embetty version in build artifacts ([90e3d26](https://github.com/heiseonline/embetty/commit/90e3d266880bddd01527756d7f5f8478f45c64b5))
+
 ## [3.0.5](https://github.com/heiseonline/embetty/compare/v3.0.4...v3.0.5) (2021-05-16)
 
 
