@@ -39,26 +39,3 @@ jobs:
           asset_name: embetty.zip
           asset_content_type: application/zip
 
-  publish-npm:
-    name: Release
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-
-      - name: Build
-        run: yarn build
-
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        run: yarn semantic-release
-
