@@ -15,12 +15,10 @@
     "mocha": true,
     "es6": true
   },
-  "overrides": [
-    {
-     "files": ["test/*.js"],
-        "rules": {
-           "no-magic-numbers": "off"
-        }
+  "overrides": [{
+    "files": ["test/*.js"],
+    "rules": {
+      "no-magic-numbers": "off"
     }
-  ],
+  }],
 }
