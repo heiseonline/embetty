@@ -1,5 +1,5 @@
   {
-  "branches": ["master"],f
+  "branches": ["master"],
   "repositoryUrl": "git@github.com:heiseonline/embetty.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
