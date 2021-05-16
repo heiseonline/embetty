@@ -5,7 +5,7 @@ on:
     branches:
       - master
   workflow_run:
-    workflows: ["test"]
+    workflows: ["Tests"]
     types: [completed]
 
 jobs:
