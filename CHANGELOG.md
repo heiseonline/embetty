@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/heiseonline/embetty/compare/v3.0.4...v3.0.5) (2021-05-16)
+
+
+### Bug Fixes
+
+* fix broken Github release upload ([e816e26](https://github.com/heiseonline/embetty/commit/e816e2622167de3dbc5e4eb6ef8e36c626e8e43a))
+
 ## [3.0.4](https://github.com/heiseonline/embetty/compare/v3.0.3...v3.0.4) (2021-05-16)
 
 
