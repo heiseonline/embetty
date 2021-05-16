@@ -1,3 +1,12 @@
+## [3.0.4](https://github.com/heiseonline/embetty/compare/v3.0.3...v3.0.4) (2021-05-16)
+
+
+### Bug Fixes
+
+* define custom element directly if web components already loaded ([b64f7fa](https://github.com/heiseonline/embetty/commit/b64f7fa61d64b298256b67548eea93aae5d4eba1))
+* only define custom element if not defined before ([8c75cd1](https://github.com/heiseonline/embetty/commit/8c75cd1cf004ecd5ee06c59cf5d703ff09cc013b))
+* upgrade deps ([40f9abc](https://github.com/heiseonline/embetty/commit/40f9abc19fd4bcdc9d7823f96ad963e58b6a3dde))
+
 # embetty
 
 ## v3.0.3, 2020-04-29
