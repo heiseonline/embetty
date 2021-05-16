@@ -106,7 +106,7 @@
     "mocha": "^8.2.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^3.0.0",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^9.1.1",
     "raw-loader": "^4.0.2",
     "sass-loader": "^8.0.0",
     "semantic-release": "^17.4.3",
