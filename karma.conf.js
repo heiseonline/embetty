@@ -14,6 +14,11 @@ module.exports = function(config) {
       accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
     },
     clearContext: false,
+    client: {
+      mocha: {
+        timeout: 10000,
+      },
+    },
     customLaunchers: {
       bs_ie11_windows: {
         base: 'BrowserStack',
