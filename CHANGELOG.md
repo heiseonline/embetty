@@ -1,3 +1,10 @@
+## [3.0.7](https://github.com/heiseonline/embetty/compare/v3.0.6...v3.0.7) (2021-05-16)
+
+
+### Bug Fixes
+
+* **CSS:** optimize for recommended browserlist ([05eeacd](https://github.com/heiseonline/embetty/commit/05eeacdec32f1da4e81ff6528dcfb31259ed377e))
+
 ## [3.0.6](https://github.com/heiseonline/embetty/compare/v3.0.5...v3.0.6) (2021-05-16)
 
 
