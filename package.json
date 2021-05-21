@@ -93,7 +93,7 @@
     "autoprefixer": "^9.7.5",
     "babel-loader": "^8.0.6",
     "cache-loader": "^4.0.0",
-    "css-loader": "^3.5.3",
+    "css-loader": "^5.2.5",
     "file-loader": "^6.0.0",
     "fs-extra": "^9.0.1",
     "gh-pages": "^2.0.1",
