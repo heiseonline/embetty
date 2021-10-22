@@ -1,3 +1,10 @@
+## [3.0.8](https://github.com/heiseonline/embetty/compare/v3.0.7...v3.0.8) (2021-10-22)
+
+
+### Bug Fixes
+
+* node-sass durch dart-sass (sass) ersetzen ([e87bba7](https://github.com/heiseonline/embetty/commit/e87bba792ea6ced8bc6175f68f76638bc0814d24))
+
 ## [3.0.7](https://github.com/heiseonline/embetty/compare/v3.0.6...v3.0.7) (2021-05-16)
 
 
