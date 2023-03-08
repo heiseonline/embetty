@@ -32,9 +32,7 @@ module.exports = {
     rules: [
       {
         test: /\.[jt]sx?$/,
-        exclude: /custom-elements-es5-adapter/,
         use: [
-          'cache-loader',
           {
             loader: 'ts-loader',
             options: {
@@ -47,10 +45,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['css-loader', 'postcss-loader', 'sass-loader'],
-      },
-      {
-        test: /^custom-elements-es5-adapter\.js$/,
-        use: ['raw-loader'],
       },
     ],
   },
