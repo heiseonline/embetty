@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* update build target to es6 and remove some polyfills ([fd55092](https://github.com/heiseonline/embetty/commit/fd550929143f10a8e4b467657eeff119a0374943))
+
+
+### BREAKING CHANGES
+
+* requires es6 support from browsers
+
 ## [3.0.8](https://github.com/heiseonline/embetty/compare/v3.0.7...v3.0.8) (2021-10-22)
 
 
