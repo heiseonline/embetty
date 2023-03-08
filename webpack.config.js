@@ -29,16 +29,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /custom-elements-es5-adapter/,
         use: ['cache-loader', 'babel-loader'],
       },
       {
         test: /\.scss$/,
         use: ['css-loader', 'postcss-loader', 'sass-loader'],
-      },
-      {
-        test: /^custom-elements-es5-adapter\.js$/,
-        use: ['raw-loader'],
       },
     ],
   },
