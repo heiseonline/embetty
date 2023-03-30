@@ -13,7 +13,7 @@ export default <TBase extends Constructor<Embed>>(Base: TBase) =>
     async connectedCallback() {
       await super.connectedCallback()
 
-      await new Promise((resolve) => {
+      await new Promise<void>((resolve) => {
         new window.IntersectionObserver(
           async ([entry]) => {
             if (!this.isVisible()) return

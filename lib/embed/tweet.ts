@@ -64,6 +64,7 @@ export class Tweet extends Observable(Embed) {
     return this.shadowRoot?.querySelectorAll('embetty-tweet')
   }
 
+  // @ts-ignore
   get url() {
     return this._api(`/tweet/${this.getAttribute('status')}`)
   }

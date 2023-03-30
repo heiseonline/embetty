@@ -31,6 +31,7 @@ export default class Video extends Observable(Embed) {
     return this.shadowRoot!.querySelector('#playbutton')
   }
 
+  // @ts-ignore
   get url() {
     return this.impl.url
   }
