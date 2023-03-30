@@ -44,10 +44,14 @@ export function defineElement(name: string, Class: any) {
     Class.compiledTemplate || hogan.compile(Class.template)
   // @ts-ignore
   if (window.WebComponents.ready) {
-    window.customElements.define(name, Class)
+    if (!window.customElements.get(name)) {
+      window.customElements.define(name, Class)
+    }
   } else {
     window.addEventListener('WebComponentsReady', function () {
-      window.customElements.define(name, Class)
+      if (!window.customElements.get(name)) {
+        window.customElements.define(name, Class)
+      }
     })
   }
 }
