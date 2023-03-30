@@ -14,7 +14,7 @@
     "deploy:gh-pages": "yarn build:gh-pages && gh-pages -d .gh-pages",
     "dev": "./dev-server.js",
     "copy:assets": "cpy 'assets' 'lib/**/*.scss' 'dist' --parents",
-    "test": "jest",
+    "test": "TZ=Europe/Berlin jest",
     "lint": "eslint . --cache --ext .ts,.js"
   },
   "lint-staged": {
