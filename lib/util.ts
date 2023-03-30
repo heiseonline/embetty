@@ -12,17 +12,17 @@ export function computedStyle(
 }
 
 export function marginHeight(element: Element) {
-  // @ts-ignore
-  const top = Number.parseFloat(computedStyle(element, 'marginTop'))
-  // @ts-ignore
-  const bottom = Number.parseFloat(computedStyle(element, 'marginBottom'))
+  const top = Number.parseFloat(computedStyle(element, 'marginTop') as string)
+  const bottom = Number.parseFloat(
+    computedStyle(element, 'marginBottom') as string
+  )
   return top + bottom
 }
 
 export function height(element: Element) {
   return (
-    // @ts-ignore
-    Number.parseFloat(computedStyle(element, 'height')) + marginHeight(element)
+    Number.parseFloat(computedStyle(element, 'height') as string) +
+    marginHeight(element)
   )
 }
 
