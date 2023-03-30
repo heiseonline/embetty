@@ -36,6 +36,7 @@ export function createTemplate(content: string, css: string) {
   return template
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function defineElement(name: string, Class: any) {
   const template = createTemplate(Class.template, Class.css)
   window.ShadyCSS.prepareTemplate(template, name)
