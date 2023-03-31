@@ -1,10 +1,10 @@
 # embetty · [![Build Status](https://travis-ci.org/heiseonline/embetty.svg?branch=master)](https://travis-ci.org/heiseonline/embetty)  [![Dependency Status](https://img.shields.io/david/heiseonline/embetty.svg?style=flat-square)](https://david-dm.org/heiseonline/embetty) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+Embetty displays remote content like tweets or videos without compromising your privacy.
+
 <p align="center">
   <img alt="Embetty" src="assets/embetty.png" width="360">
 </p>
-
-Embetty displays remote content like tweets or videos without compromising your privacy.
 
 See it in action on our [demo pages](https://heiseonline.github.io/embetty/).
 
@@ -106,7 +106,7 @@ Embetty triggers the following events:
 Example code:
 
 ```js
-document.querySelector('embetty-tweet').addEventistener('initialized', function(e) { ... })
+document.querySelector('embetty-tweet').addEventListener('initialized', function(e) { ... })
 ```
 
 ## Testing

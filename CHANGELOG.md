@@ -1,4 +1,57 @@
+# [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
+
+
+### Bug Fixes
+
+* update build target to es6 and remove some polyfills ([fd55092](https://github.com/heiseonline/embetty/commit/fd550929143f10a8e4b467657eeff119a0374943))
+
+
+### BREAKING CHANGES
+
+* requires es6 support from browsers
+
+## [3.0.8](https://github.com/heiseonline/embetty/compare/v3.0.7...v3.0.8) (2021-10-22)
+
+
+### Bug Fixes
+
+* node-sass durch dart-sass (sass) ersetzen ([e87bba7](https://github.com/heiseonline/embetty/commit/e87bba792ea6ced8bc6175f68f76638bc0814d24))
+
+## [3.0.7](https://github.com/heiseonline/embetty/compare/v3.0.6...v3.0.7) (2021-05-16)
+
+
+### Bug Fixes
+
+* **CSS:** optimize for recommended browserlist ([05eeacd](https://github.com/heiseonline/embetty/commit/05eeacdec32f1da4e81ff6528dcfb31259ed377e))
+
+## [3.0.6](https://github.com/heiseonline/embetty/compare/v3.0.5...v3.0.6) (2021-05-16)
+
+
+### Bug Fixes
+
+* include correct Embetty version in build artifacts ([90e3d26](https://github.com/heiseonline/embetty/commit/90e3d266880bddd01527756d7f5f8478f45c64b5))
+
+## [3.0.5](https://github.com/heiseonline/embetty/compare/v3.0.4...v3.0.5) (2021-05-16)
+
+
+### Bug Fixes
+
+* fix broken Github release upload ([e816e26](https://github.com/heiseonline/embetty/commit/e816e2622167de3dbc5e4eb6ef8e36c626e8e43a))
+
+## [3.0.4](https://github.com/heiseonline/embetty/compare/v3.0.3...v3.0.4) (2021-05-16)
+
+
+### Bug Fixes
+
+* define custom element directly if web components already loaded ([b64f7fa](https://github.com/heiseonline/embetty/commit/b64f7fa61d64b298256b67548eea93aae5d4eba1))
+* only define custom element if not defined before ([8c75cd1](https://github.com/heiseonline/embetty/commit/8c75cd1cf004ecd5ee06c59cf5d703ff09cc013b))
+* upgrade deps ([40f9abc](https://github.com/heiseonline/embetty/commit/40f9abc19fd4bcdc9d7823f96ad963e58b6a3dde))
+
 # embetty
+
+## v3.0.3, 2020-04-29
+
+- Replaced Embetty SVG with a smaller version
 
 ## v3.0.2, 2020-02-24
 
