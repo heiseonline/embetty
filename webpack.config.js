@@ -13,18 +13,19 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const path = require('path')
 const webpack = require('webpack')
 
-const prod = process.argv.includes('-p')
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    embetty: ['./polyfills.ts', './index.ts'],
+    embetty: ['./index.ts'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    chunkFilename: `js/[name].js`,
     filename: '[name].js',
   },
-  devtool: (prod && 'none') || 'inline-source-map',
-  mode: (prod && 'production') || 'development',
+  devtool: devMode ? 'inline-source-map' : 'nosources-source-map',
+  mode: devMode ? 'development' : 'production',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -49,7 +50,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.IgnorePlugin(/vertx/), // see https://github.com/parcel-bundler/parcel/issues/141
+    new webpack.IgnorePlugin({resourceRegExp: /vertx/}), // see https://github.com/parcel-bundler/parcel/issues/141
     new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false }),
     new webpack.BannerPlugin({
       banner: `${title || name} - v${version} - ${new Date().toGMTString()}

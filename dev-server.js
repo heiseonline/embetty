@@ -18,16 +18,13 @@ config.plugins.push(new webpack.HotModuleReplacementPlugin())
 const server = new WebpackDevServer(webpack(config), {
   hot: true,
   compress: true,
-  contentBase: './example',
-  before: (app) => {
-    app.set('embetty', new Embetty())
-    app.use('/tweet', tweet)
-    app.use('/video', video)
+  static: './example',
+  onBeforeSetupMiddleware: (app) => {
+    app.app.set('embetty', new Embetty())
+    app.app.use('/tweet', tweet)
+    app.app.use('/video', video)
   },
-  disableHostCheck: true,
-  stats: {
-    colors: true,
-  },
+  allowedHosts: 'all',
 })
 
-server.listen(PORT)
+server.start(PORT)

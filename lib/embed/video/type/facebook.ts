@@ -1,6 +1,6 @@
 import BaseType from '../type'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').toString()
+const CSS = require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
 
 export class FacebookVideo extends BaseType {
   get css() {

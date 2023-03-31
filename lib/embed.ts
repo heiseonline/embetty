@@ -1,14 +1,6 @@
-import { wait } from './util'
-import urljoin from 'url-join'
 
 // @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
-
-declare global {
-  interface Window {
-    ShadyCSS: any
-  }
-}
 
 export default class Embed extends window.HTMLElement {
   _fetched = false
@@ -31,7 +23,7 @@ export default class Embed extends window.HTMLElement {
   }
 
   _api(url: string) {
-    return urljoin(this.serverUrl, url)
+    return this.serverUrl + url
   }
 
   emit(name: string, data?: any) {
@@ -46,14 +38,11 @@ export default class Embed extends window.HTMLElement {
     if (this.url) await this.fetchData()
     this.shadowRoot!.innerHTML = this.render()
 
-    await wait() // wait for ShadyDOM to render
-    window.ShadyCSS.styleElement(this)
     this.emit('initialized')
   }
 
   async connectedCallback() {
     this.attachShadow({ mode: 'open' })
-    await wait()
   }
 
   get wrapper() {

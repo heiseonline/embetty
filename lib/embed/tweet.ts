@@ -3,7 +3,7 @@ import Embed from '../embed'
 import Observable from '../observable'
 import { webcomponent } from '../decorators'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').toString()
+const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').default.toString()
 
 const HEIGHT_OFFSET = 2
 

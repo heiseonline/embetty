@@ -1,9 +1,5 @@
 import hogan from 'hogan.js'
 
-export function wait(ms = undefined) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
-
 export function computedStyle(
   element: Element,
   key: keyof CSSStyleDeclaration
@@ -41,21 +37,8 @@ export function createTemplate(content: string, css: string) {
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function defineElement(name: string, Class: any) {
-  const template = createTemplate(Class.template, Class.css)
-  window.ShadyCSS.prepareTemplate(template, name)
-
   Class.compiledTemplate =
     Class.compiledTemplate || hogan.compile(Class.template)
-  // @ts-ignore
-  if (window.WebComponents.ready) {
-    if (!window.customElements.get(name)) {
-      window.customElements.define(name, Class)
-    }
-  } else {
-    window.addEventListener('WebComponentsReady', function () {
-      if (!window.customElements.get(name)) {
-        window.customElements.define(name, Class)
-      }
-    })
-  }
+
+  window.customElements.define(name, Class)
 }
