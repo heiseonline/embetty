@@ -1,13 +1,17 @@
-import { createFacebookVideo } from './lib/util'
-import assert from 'assert'
+import { createFacebookVideo, getFetchSpy } from '../../../../test/lib/util'
+import '../../video'
 
 describe('Facebook Video', () => {
-  // flaky
-  it.skip('should provide no poster image', async () => {
+  beforeAll(async () => {
+    await getFetchSpy('10156049485672318')
+  })
+
+  it('should provide no poster image', async () => {
+    await getFetchSpy('10156049485672318')
     const { query } = await createFacebookVideo('10156049485672318', {
       'poster-image': '',
     })
-    assert.ok(!query('img'))
+    expect(query('img')).toBeNull()
   })
 
   // flaky
@@ -16,13 +20,13 @@ describe('Facebook Video', () => {
     const { query } = await createFacebookVideo('10156049485672318', {
       'poster-image': posterImage,
     })
-    assert.strictEqual(query('img').getAttribute('src'), posterImage)
+    expect(query('img').getAttribute('src')).toBe(posterImage)
   })
 
   it('should load the facebook player after click', async () => {
     const { query, element } = await createFacebookVideo('10156049485672318')
-    assert.ok(!query('iframe'))
+    expect(query('iframe')).toBeNull()
     element.activate()
-    assert.ok(query('iframe'))
+    expect(query('iframe')).toBeDefined()
   })
 })

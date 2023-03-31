@@ -1,13 +1,17 @@
-import { defineElement, height, parseHostname } from '../util'
+import { height, parseHostname } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
+import { webcomponent } from '../decorators'
 
 const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').toString()
 
 const HEIGHT_OFFSET = 2
 
-class Tweet extends Observable(Embed) {
-  constructor(status, parent, options = {}) {
+@webcomponent('embetty-tweet')
+export class Tweet extends Observable(Embed) {
+  parent: any
+
+  constructor(status: string, parent: any, options = {}) {
     super()
     if (status) this.setAttribute('status', status)
     if ('include-thread' in options) this.setAttribute('include-thread', '')
@@ -27,7 +31,7 @@ class Tweet extends Observable(Embed) {
       'include-thread': '',
     })
     answered.classList.add('answered')
-    this.shadowRoot.insertBefore(answered, this.shadowRoot.firstChild)
+    this.shadowRoot!.insertBefore(answered, this.shadowRoot!.firstChild)
   }
 
   // TODO: Reduce complexity of fitCardHeight()
@@ -35,15 +39,15 @@ class Tweet extends Observable(Embed) {
   fitCardHeight() {
     if (!this.hasLinks) return
 
-    const section = this.shadowRoot.querySelector('#links')
-    const linkBody = this.shadowRoot.querySelector('#link-body')
+    const section = this.shadowRoot!.querySelector('#links')!
+    const linkBody = this.shadowRoot!.querySelector('#link-body')!
 
     if (section.clientWidth === linkBody.clientWidth) return
 
     const p = section.querySelector('p')
     if (!p) return
 
-    const imgHeight = height(section.querySelector('img'))
+    const imgHeight = height(section.querySelector('img')!)
     let counter = 0
     let last = ''
 
@@ -51,15 +55,16 @@ class Tweet extends Observable(Embed) {
     while (height(section) - HEIGHT_OFFSET > imgHeight) {
       if (++counter > 200) break
       if (last === p.textContent) break
-      last = p.textContent
-      p.textContent = `${p.textContent.replace(/\W*\s(\S)*$/, '')}…`
+      last = p.textContent!
+      p.textContent = `${p.textContent?.replace(/\W*\s(\S)*$/, '')}…`
     }
   }
 
   get answeredTweets() {
-    return this.shadowRoot.querySelectorAll('embetty-tweet')
+    return this.shadowRoot?.querySelectorAll('embetty-tweet')
   }
 
+  // @ts-ignore
   get url() {
     return this._api(`/tweet/${this.getAttribute('status')}`)
   }
@@ -83,13 +88,13 @@ class Tweet extends Observable(Embed) {
 
   get fullText() {
     return this._data.full_text
-      .replace(/#([^\s-]+)/g, (hashTag, word) => {
+      .replace(/#([^\s-]+)/g, (hashTag: string, word: string) => {
         return `<a href="https://twitter.com/hashtag/${word}">${hashTag}</a>`
       })
-      .replace(/@(\w+)/g, (name, word) => {
+      .replace(/@(\w+)/g, (name: string, word: string) => {
         return `<a href="https://twitter.com/${word}">${name}</a>`
       })
-      .replace(/(https:\/\/\S+)$/, link => {
+      .replace(/(https:\/\/\S+)$/, (link: string) => {
         if (this.hasMedia && this.media[0].url === link) return ''
         return link
       })
@@ -106,7 +111,7 @@ class Tweet extends Observable(Embed) {
   get media() {
     const extended = this._data.extended_entities || {}
     const media = extended.media || []
-    return media.map((m, idx) => {
+    return media.map((m: { imageUrl: string }, idx: number) => {
       m.imageUrl = `${this.url}-images-${idx}`
       return m
     })
@@ -190,13 +195,11 @@ class Tweet extends Observable(Embed) {
   async becomesVisible() {
     await super.becomesVisible()
 
-    const linkImage = this.shadowRoot.querySelector('#links img')
+    const linkImage = this.shadowRoot!.querySelector('#links img')
     if (linkImage) {
-      linkImage.addEventListener('error', _e => {
+      linkImage.addEventListener('error', () => {
         linkImage.remove()
       })
     }
   }
 }
-
-defineElement('embetty-tweet', Tweet)

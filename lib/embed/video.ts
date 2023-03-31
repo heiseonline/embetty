@@ -1,17 +1,21 @@
 import * as Videos from './video/types'
-import { defineElement } from '../util'
 import Embed from '../embed'
 import Observable from '../observable'
+import BaseType from './video/type'
+import { webcomponent } from '../decorators'
 
 const CSS = require('!css-loader!postcss-loader!sass-loader!./_video.scss').toString()
 
+@webcomponent('embetty-video')
 export default class Video extends Observable(Embed) {
+  impl!: BaseType
+
   async connectedCallback() {
     this.impl = new this.Type(this)
     await super.connectedCallback()
-    this.playButton.addEventListener(
+    this.playButton?.addEventListener(
       'click',
-      _e => {
+      () => {
         this.activate()
       },
       { once: true }
@@ -19,29 +23,34 @@ export default class Video extends Observable(Embed) {
   }
 
   activate() {
-    this.shadowRoot.innerHTML = this.impl.iframe
+    this.shadowRoot!.innerHTML = this.impl.iframe
     this.emit('activated')
   }
 
   get playButton() {
-    return this.shadowRoot.querySelector('#playbutton')
+    return this.shadowRoot!.querySelector('#playbutton')
   }
 
+  // @ts-ignore
   get url() {
     return this.impl.url
   }
 
   get Type() {
     const className = this.typeClass
+
+    // @ts-ignore
     if (!Videos[this.typeClass]) {
       console.error(`"${className}" does not exist.`)
       return undefined
     }
+
+    // @ts-ignore
     return Videos[className]
   }
 
   get typeClass() {
-    return `${this.type.charAt(0).toUpperCase() + this.type.slice(1)}Video`
+    return `${this.type!.charAt(0).toUpperCase() + this.type!.slice(1)}Video`
   }
 
   get type() {
@@ -88,5 +97,3 @@ export default class Video extends Observable(Embed) {
     `
   }
 }
-
-defineElement('embetty-video', Video)

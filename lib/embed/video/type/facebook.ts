@@ -7,6 +7,7 @@ export class FacebookVideo extends BaseType {
     return CSS
   }
 
+  // @ts-ignore
   get url() {
     return this.element._api(`/video/facebook/${this.element.videoId}`)
   }

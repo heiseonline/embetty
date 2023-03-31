@@ -17,7 +17,7 @@ const prod = process.argv.includes('-p')
 
 module.exports = {
   entry: {
-    embetty: ['./polyfills.js', './index.js'],
+    embetty: ['./polyfills.ts', './index.ts'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -25,11 +25,22 @@ module.exports = {
   },
   devtool: (prod && 'none') || 'inline-source-map',
   mode: (prod && 'production') || 'development',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: ['cache-loader', 'babel-loader'],
+        test: /\.[jt]sx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              configFile: 'tsconfig.build.json',
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
@@ -44,7 +55,7 @@ module.exports = {
       banner: `${title || name} - v${version} - ${new Date().toGMTString()}
 ${homepage}
 Copyright (c) ${new Date().getFullYear()} Heise Medien GmbH & Co. KG
-Contributors: ${author.name}, ${contributors.map(c => c.name).join(', ')}
+Contributors: ${author.name}, ${contributors.map((c) => c.name).join(', ')}
 Licensed under the ${license} license`,
     }),
   ],

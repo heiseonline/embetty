@@ -1,5 +1,5 @@
-import { createYoutubeVideo } from './lib/util'
-import assert from 'assert'
+import { createYoutubeVideo } from '../../../../test/lib/util'
+import '../../video'
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -8,8 +8,7 @@ afterEach(() => {
 describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
     const { query } = await createYoutubeVideo('m6UOo2YGbIE')
-    assert.strictEqual(
-      query('img').getAttribute('src'),
+    expect(query('img').getAttribute('src')).toBe(
       'video/youtube/m6UOo2YGbIE-poster-image'
     )
   })
@@ -19,21 +18,23 @@ describe('YouTube Video', () => {
     const { query } = await createYoutubeVideo('m6UOo2YGbIE', {
       'poster-image': posterImage,
     })
-    assert.strictEqual(query('img').getAttribute('src'), posterImage)
+    expect(query('img').getAttribute('src')).toBe(posterImage)
   })
 
   it('should load the youtube player after click', async () => {
     const { query, element } = await createYoutubeVideo('m6UOo2YGbIE')
-    assert.ok(!query('iframe'))
+    expect(query('iframe')).toBeNull()
     element.activate()
-    assert.ok(query('iframe'))
+    expect(query('iframe')).toBeDefined()
   })
 
   it('should use the privacy-enhanced mode', async () => {
     const { query, element } = await createYoutubeVideo('m6UOo2YGbIE')
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.ok(/^\/\/www\.youtube-nocookie\.com\//.test(iframeSrc))
+    expect(iframeSrc).toBe(
+      '//www.youtube-nocookie.com/embed/m6UOo2YGbIE?autoplay=1&start=0'
+    )
   })
 
   it('[start-at]', async () => {
@@ -42,8 +43,7 @@ describe('YouTube Video', () => {
     })
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
-    assert.strictEqual(
-      iframeSrc,
+    expect(iframeSrc).toBe(
       '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37'
     )
   })

@@ -1,24 +1,23 @@
 {
   "root": true,
   "extends": "@heise",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018
-  },
-  "parser": "@babel/eslint-parser",
-  "rules": {
-    "toplevel/no-toplevel-side-effect": "off"
+    "sourceType": "module"
   },
   "env": {
-    "browser": true,
-    "node": true,
-    "mocha": true,
-    "es6": true
+    "browser": true
   },
-  "overrides": [{
-    "files": ["test/*.js"],
-    "rules": {
-      "no-magic-numbers": "off"
+  "rules": {
+    "no-unused-vars": "off"
+  },
+  "overrides": [
+    {
+     "files": ["test/*.ts", "**/*.test.ts", "*.js"],
+        "rules": {
+          "toplevel/no-toplevel-side-effect": "off",
+          "no-magic-numbers": "off"
+        }
     }
-  }],
+  ]
 }

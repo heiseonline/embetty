@@ -1,5 +1,3 @@
-@use "sass:math";
-
 @import '../element';
 @import 'powered-by';
 
@@ -18,7 +16,7 @@ $quoteLineWidth: 4px;
 
   article {
     border-left: $quoteLineWidth solid #bbb;
-    margin-left: math.div($profile-image-width, 2) - math.div($quoteLineWidth, 2);
+    margin-left: $profile-image-width / 2 - $quoteLineWidth / 2;
     padding-left: 2rem;
     padding-bottom: 1rem;
 
