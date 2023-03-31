@@ -8,6 +8,10 @@ beforeEach(() => {
   jest
     .spyOn(Date.prototype, 'toLocaleString')
     .mockReturnValue('10/03/2013, 15:07:53')
+
+  jest
+    .spyOn(Date.prototype, 'toISOString')
+    .mockReturnValue('2013-03-10T14:07:53.000Z')
 })
 
 describe('Tweet', () => {
