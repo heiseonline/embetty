@@ -57,7 +57,9 @@
   },
   "dependencies": {
     "core-js": "3.29.1",
-    "hogan.js": "^3.0.2"
+    "hogan.js": "^3.0.2",
+    "intersection-observer": "^0.12.2",
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
     "@heise/embetty-server": "^2.0.3",
@@ -66,6 +68,7 @@
     "@types/hogan.js": "^3.0.1",
     "@types/jest": "^29.5.0",
     "@typescript-eslint/parser": "^5.57.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
     "autoprefixer": "^10.4.14",
     "cache-loader": "^4.0.0",
     "cpy-cli": "^4.2.0",

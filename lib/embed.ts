@@ -1,6 +1,13 @@
 
 // @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
+import { wait } from './util'
+
+declare global {
+  interface Window {
+    ShadyCSS: any
+  }
+}
 
 export default class Embed extends window.HTMLElement {
   _fetched = false
@@ -38,11 +45,14 @@ export default class Embed extends window.HTMLElement {
     if (this.url) await this.fetchData()
     this.shadowRoot!.innerHTML = this.render()
 
+    await wait() // wait for ShadyDOM to render
+    window.ShadyCSS.styleElement(this)
     this.emit('initialized')
   }
 
   async connectedCallback() {
     this.attachShadow({ mode: 'open' })
+    await wait()
   }
 
   get wrapper() {
