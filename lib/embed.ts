@@ -4,7 +4,9 @@ import { wait } from './util'
 
 declare global {
   interface Window {
-    ShadyCSS: any
+    ShadyCSS: {
+      prepareTemplate(template: HTMLTemplateElement, name: string): void
+    }
   }
 }
 
