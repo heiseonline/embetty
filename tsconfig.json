@@ -68,5 +68,5 @@
 
     "resolveJsonModule": true
   },
-  "include": ["index.ts", "lib/**/*", "components/**/*"]
+  "include": ["index.ts", "lib", "components"]
 }
