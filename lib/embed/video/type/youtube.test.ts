@@ -9,7 +9,7 @@ describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
     const { query } = await createYoutubeVideo('m6UOo2YGbIE')
     expect(query('img').getAttribute('src')).toBe(
-      'video/youtube/m6UOo2YGbIE-poster-image'
+      '/video/youtube/m6UOo2YGbIE-poster-image',
     )
   })
 

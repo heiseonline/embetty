@@ -3,10 +3,12 @@ module.exports = {
   collectCoverageFrom: ['index.ts', 'lib/**/*.ts'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
   moduleNameMapper: {
-    '([^/]+\\.(scss|svg))$': '<rootDir>/__mocks__/$1.js',
+    '([^/]+\\.(scss|svg))$': '<rootDir>/__mocks__/$1.ts',
   },
   preset: 'ts-jest',
   testPathIgnorePatterns: ['/dist/'],
-  testEnvironment: 'jest-environment-jsdom-sixteen',
   setupFilesAfterEnv: ['./test/setup.js'],
+  testEnvironment: 'jest-environment-jsdom',
+  verbose: true,
+  testURL: "http://localhost/",
 }

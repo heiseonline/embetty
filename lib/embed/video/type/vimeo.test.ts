@@ -9,7 +9,7 @@ describe('Vimeo Video', () => {
   it('should provide the poster image', async () => {
     const { query } = await createVimeoVideo('1084537')
     expect(query('img').getAttribute('src')).toBe(
-      'video/vimeo/1084537-poster-image'
+      '/video/vimeo/1084537-poster-image',
     )
   })
 
@@ -35,7 +35,7 @@ describe('Vimeo Video', () => {
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
     expect(iframeSrc).toBe(
-      'https://player.vimeo.com/video/1084537?autoplay=1#t=97'
+      'https://player.vimeo.com/video/1084537?autoplay=1#t=97',
     )
   })
 })

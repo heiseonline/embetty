@@ -1,5 +1,6 @@
 /* eslint-disable security/detect-non-literal-fs-filename */
 import { createTweet, getFetchSpy } from '../../test/lib/util'
+// eslint-disable-next-line node/no-extraneous-import
 import Tweets from '@heise/embetty-base/test/tweets.json'
 import './tweet'
 
@@ -20,7 +21,7 @@ describe('Tweet', () => {
     const { element } = await createTweet(Tweets.text)
     expect(element._data.id_str).toEqual(Tweets.text)
     expect(element._fetched).toBeTruthy()
-    expect(spy).toBeCalledWith('tweet/934029337019416579')
+    expect(spy).toHaveBeenCalledWith('/tweet/934029337019416579')
   })
 
   it('should generate the tweet header', async () => {
@@ -58,7 +59,7 @@ describe('Tweet', () => {
     await getFetchSpy(Tweets.link)
     const { element } = await createTweet(Tweets.link)
     const links = [...element.shadowRoot!.querySelectorAll('a[target=_blank')]
-    expect(links.length).toBe(4)
+    expect(links).toHaveLength(4)
 
     links.forEach((link) => {
       expect(link.getAttribute('rel')).toBe('noopener')
@@ -71,7 +72,7 @@ describe('Tweet', () => {
     const links = [...element.shadowRoot!.querySelectorAll('.tweet__link')]
     expect(links).toHaveLength(1)
     expect(links[0].getAttribute('href')).toBe(
-      'https://twitter.com/SiLVAFiSH/status/934029337019416579'
+      'https://twitter.com/SiLVAFiSH/status/934029337019416579',
     )
   })
 
@@ -80,7 +81,7 @@ describe('Tweet', () => {
       await getFetchSpy(Tweets.text)
       const { query } = await createTweet(Tweets.text)
       const a = query(
-        'article a[href="https://twitter.com/hashtag/Wochenende"]'
+        'article a[href="https://twitter.com/hashtag/Wochenende"]',
       )
       expect(a.textContent).toBe('#Wochenende')
     })
