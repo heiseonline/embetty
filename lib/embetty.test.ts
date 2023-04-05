@@ -10,7 +10,7 @@ class EmbettyTest extends Embed {
 
   async connectedCallback() {
     await super.connectedCallback()
-    this.becomesVisible()
+    void this.becomesVisible()
   }
 
   static get template() {

@@ -3,7 +3,9 @@ import Embed from '../embed'
 import Observable from '../observable'
 import { webcomponent } from '../decorators'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./tweet.scss').default.toString()
+const CSS =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./tweet.scss').default.toString()
 
 const HEIGHT_OFFSET = 2
 
@@ -13,8 +15,12 @@ export class Tweet extends Observable(Embed) {
 
   constructor(status: string, parent: any, options = {}) {
     super()
-    if (status) this.setAttribute('status', status)
-    if ('include-thread' in options) this.setAttribute('include-thread', '')
+    if (status) {
+      this.setAttribute('status', status)
+    }
+    if ('include-thread' in options) {
+      this.setAttribute('include-thread', '')
+    }
     this.parent = parent
 
     this.on('initialized', () => {
@@ -26,7 +32,9 @@ export class Tweet extends Observable(Embed) {
   }
 
   appendAnsweredTweet() {
-    if (!this.isReply || !this.hasAttribute('include-thread')) return
+    if (!this.isReply || !this.hasAttribute('include-thread')) {
+      return
+    }
     const answered = new Tweet(this.answeredTweetId, this, {
       'include-thread': '',
     })
@@ -37,24 +45,34 @@ export class Tweet extends Observable(Embed) {
   // TODO: Reduce complexity of fitCardHeight()
   // eslint-disable-next-line sonarjs/cognitive-complexity, complexity
   fitCardHeight() {
-    if (!this.hasLinks) return
+    if (!this.hasLinks) {
+      return
+    }
 
     const section = this.shadowRoot!.querySelector('#links')!
     const linkBody = this.shadowRoot!.querySelector('#link-body')!
 
-    if (section.clientWidth === linkBody.clientWidth) return
+    if (section.clientWidth === linkBody.clientWidth) {
+      return
+    }
 
     const p = section.querySelector('p')
-    if (!p) return
+    if (!p) {
+      return
+    }
 
     const imgHeight = height(section.querySelector('img')!)
     let counter = 0
     let last = ''
 
-    // eslint-disable-next-line no-loops/no-loops
     while (height(section) - HEIGHT_OFFSET > imgHeight) {
-      if (++counter > 200) break
-      if (last === p.textContent) break
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      if (++counter > 200) {
+        break
+      }
+      if (last === p.textContent) {
+        break
+      }
       last = p.textContent!
       p.textContent = `${p.textContent?.replace(/\W*\s(\S)*$/, '')}…`
     }
@@ -95,7 +113,9 @@ export class Tweet extends Observable(Embed) {
         return `<a href="https://twitter.com/${word}">${name}</a>`
       })
       .replace(/(https:\/\/\S+)$/, (link: string) => {
-        if (this.hasMedia && this.media[0].url === link) return ''
+        if (this.hasMedia && this.media[0].url === link) {
+          return ''
+        }
         return link
       })
   }

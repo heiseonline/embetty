@@ -4,7 +4,9 @@ import Observable from '../observable'
 import BaseType from './video/type'
 import { webcomponent } from '../decorators'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./_video.scss').default.toString()
+const CSS =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./_video.scss').default.toString()
 
 @webcomponent('embetty-video')
 export default class Video extends Observable(Embed) {
@@ -18,7 +20,7 @@ export default class Video extends Observable(Embed) {
       () => {
         this.activate()
       },
-      { once: true }
+      { once: true },
     )
   }
 

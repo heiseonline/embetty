@@ -1,6 +1,8 @@
 import BaseType from '../type'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
+const CSS =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
 
 export class FacebookVideo extends BaseType {
   get css() {
@@ -22,7 +24,7 @@ export class FacebookVideo extends BaseType {
 
   get iframeSrc() {
     return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
-      this.canonicalUrl
+      this.canonicalUrl,
     )}&show_text=0&autoplay=1&mute=0&width=${this.width}`
   }
 

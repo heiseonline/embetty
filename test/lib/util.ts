@@ -1,11 +1,11 @@
 import { Tweet } from '../../lib/embed/tweet'
 import Video from '../../lib/embed/video'
-import { join } from 'path'
+import path from 'path'
 import { readJson } from 'fs-extra'
 
 export function createElement<T extends HTMLElement>(
   tag: string,
-  attrs: { [name: string]: string } = {}
+  attrs: { [name: string]: string } = {},
 ): Promise<{
   element: T
   query: (...args: Parameters<typeof document.querySelector>) => T
@@ -48,7 +48,9 @@ export const createFacebookVideo = (videoId: string, attrs = {}) =>
 
 const fetchSpy = jest.spyOn(window, 'fetch')
 export async function getFetchSpy(status: string) {
-  const json = await readJson(join(__dirname, `../responses/${status}.json`))
+  const json = await readJson(
+    path.join(__dirname, `../responses/${status}.json`),
+  )
   return fetchSpy.mockReturnValue({
     // @ts-ignore
     json() {

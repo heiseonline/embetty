@@ -1,2 +1,4 @@
 dist/
 coverage
+*.js
+__mocks__/

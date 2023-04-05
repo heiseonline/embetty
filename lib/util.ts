@@ -6,7 +6,7 @@ export function wait(ms = undefined) {
 
 export function computedStyle(
   element: Element,
-  key: keyof CSSStyleDeclaration
+  key: keyof CSSStyleDeclaration,
 ) {
   return window.getComputedStyle(element)[key]
 }
@@ -14,7 +14,7 @@ export function computedStyle(
 export function marginHeight(element: Element) {
   const top = Number.parseFloat(computedStyle(element, 'marginTop') as string)
   const bottom = Number.parseFloat(
-    computedStyle(element, 'marginBottom') as string
+    computedStyle(element, 'marginBottom') as string,
   )
   return top + bottom
 }
