@@ -22,11 +22,6 @@
       "eslint --fix"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "author": {
     "name": "Philipp Busse",
     "email": "pmb@heise.de"
