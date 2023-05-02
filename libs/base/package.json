@@ -1,0 +1,35 @@
+{
+  "name": "@embetty/base",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --cache .",
+    "build": "tsc --build tsconfig.build.json",
+    "test": "jest"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.2",
+    "content-type": "^1.0.4",
+    "debug": "^4.0.0",
+    "ioredis": "^5.3.2",
+    "lru-cache": "^9.1.1",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@embetty/eslint-config": "workspace:*",
+    "@embetty/jest-config": "workspace:^",
+    "@embetty/tsconfig": "workspace:*",
+    "@embetty/types": "workspace:^",
+    "@types/content-type": "^1.1.5",
+    "@types/debug": "^4.1.7",
+    "@types/jest": "^29.5.0",
+    "eslint": "^6.8.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5"
+  }
+}

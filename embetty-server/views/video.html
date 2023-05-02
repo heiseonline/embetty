@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+
+{% block embed %}
+<embetty-video type="{{ video.type }}" video-id="{{ video.id }}"{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}></embetty-video>
+{% endblock %}

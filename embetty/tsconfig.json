@@ -1,0 +1,23 @@
+{
+  "extends": "@embetty/tsconfig",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "importHelpers": false,
+    "target": "ES2015",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2016",
+      "ES2020"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "references": []
+}

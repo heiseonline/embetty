@@ -1,0 +1,19 @@
+{
+  "extends": "@embetty/tsconfig",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "jest"
+    ],
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "references": []
+}

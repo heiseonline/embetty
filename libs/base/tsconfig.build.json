@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/vendors/**",
+    "**/__mocks__/**",
+    "**/test/**"
+  ],
+  "references": [
+    {
+      "path": "../types/tsconfig.build.json"
+    }
+  ]
+}
