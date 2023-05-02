@@ -1,12 +1,12 @@
-import { wait } from './util'
-import urljoin from 'url-join'
-
 // @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
+import { wait } from './util'
 
 declare global {
   interface Window {
-    ShadyCSS: any
+    ShadyCSS: {
+      prepareTemplate(template: HTMLTemplateElement, name: string): void
+    }
   }
 }
 
@@ -17,7 +17,7 @@ export default class Embed extends window.HTMLElement {
 
   get serverUrl() {
     const baseUrl = document.querySelector<HTMLElement>(
-      'meta[data-embetty-server]'
+      'meta[data-embetty-server]',
     )
     return (
       this.getAttribute('server-url') ||
@@ -31,7 +31,7 @@ export default class Embed extends window.HTMLElement {
   }
 
   _api(url: string) {
-    return urljoin(this.serverUrl, url)
+    return this.serverUrl + url
   }
 
   emit(name: string, data?: any) {
@@ -43,7 +43,9 @@ export default class Embed extends window.HTMLElement {
   }
 
   async becomesVisible() {
-    if (this.url) await this.fetchData()
+    if (this.url) {
+      await this.fetchData()
+    }
     this.shadowRoot!.innerHTML = this.render()
 
     await wait() // wait for ShadyDOM to render

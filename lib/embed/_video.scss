@@ -13,7 +13,7 @@
     &::before {
       content: '';
       display: block;
-      padding-top: 100/16*9 * 1%;
+      padding-top: calc(100/16*9 * 1%);
     }
 
     img {

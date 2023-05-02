@@ -1,6 +1,8 @@
 import BaseType from '../type'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').toString()
+const CSS =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
 
 export class VimeoVideo extends BaseType {
   get css() {
@@ -9,7 +11,7 @@ export class VimeoVideo extends BaseType {
 
   get posterImageUrl() {
     return this.element._api(
-      `/video/vimeo/${this.element.videoId}-poster-image`
+      `/video/vimeo/${this.element.videoId}-poster-image`,
     )
   }
 

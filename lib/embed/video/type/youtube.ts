@@ -1,6 +1,8 @@
 import BaseType from '../type'
 
-const CSS = require('!css-loader!postcss-loader!sass-loader!./youtube.scss').toString()
+const CSS =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./youtube.scss').default.toString()
 
 export class YoutubeVideo extends BaseType {
   get css() {
@@ -9,7 +11,7 @@ export class YoutubeVideo extends BaseType {
 
   get posterImageUrl() {
     return this.element._api(
-      `/video/youtube/${this.element.videoId}-poster-image`
+      `/video/youtube/${this.element.videoId}-poster-image`,
     )
   }
 

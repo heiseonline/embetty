@@ -16,7 +16,7 @@ $quoteLineWidth: 4px;
 
   article {
     border-left: $quoteLineWidth solid #bbb;
-    margin-left: $profile-image-width / 2 - $quoteLineWidth / 2;
+    margin-left: calc($profile-image-width / 2 - $quoteLineWidth / 2);
     padding-left: 2rem;
     padding-bottom: 1rem;
 

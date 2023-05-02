@@ -15,10 +15,17 @@ export default <TBase extends Constructor<Embed>>(Base: TBase) =>
 
       await new Promise<void>((resolve) => {
         new window.IntersectionObserver(
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           async ([entry]) => {
-            if (!this.isVisible()) return
-            if (entry.intersectionRatio === 0) return
-            if (this.initialized) return
+            if (!this.isVisible()) {
+              return
+            }
+            if (entry.intersectionRatio === 0) {
+              return
+            }
+            if (this.initialized) {
+              return
+            }
 
             this.initialized = true
             await this.becomesVisible()
@@ -28,7 +35,7 @@ export default <TBase extends Constructor<Embed>>(Base: TBase) =>
             root: this.observableRoot,
             rootMargin: this.observableRootMargin,
             threshold: this.observableRootThreshold,
-          }
+          },
         ).observe(this)
       })
     }

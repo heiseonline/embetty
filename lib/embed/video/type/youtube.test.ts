@@ -9,7 +9,7 @@ describe('YouTube Video', () => {
   it('should provide the poster image', async () => {
     const { query } = await createYoutubeVideo('m6UOo2YGbIE')
     expect(query('img').getAttribute('src')).toBe(
-      'video/youtube/m6UOo2YGbIE-poster-image'
+      '/video/youtube/m6UOo2YGbIE-poster-image',
     )
   })
 
@@ -33,7 +33,7 @@ describe('YouTube Video', () => {
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
     expect(iframeSrc).toBe(
-      '//www.youtube-nocookie.com/embed/m6UOo2YGbIE?autoplay=1&start=0'
+      '//www.youtube-nocookie.com/embed/m6UOo2YGbIE?autoplay=1&start=0',
     )
   })
 
@@ -44,7 +44,7 @@ describe('YouTube Video', () => {
     element.activate()
     const iframeSrc = query('iframe').getAttribute('src')
     expect(iframeSrc).toBe(
-      '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37'
+      '//www.youtube-nocookie.com/embed/XvDZLjaCJuw?autoplay=1&start=37',
     )
   })
 })
