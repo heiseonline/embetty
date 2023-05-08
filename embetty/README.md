@@ -3,7 +3,7 @@
 Embetty displays remote content like tweets or videos without compromising your privacy.
 
 <p align="center">
-  <img alt="Embetty" src="/heiseonline/embetty/refactor/monorepo/embetty.png" width="360">
+  <img alt="Embetty" src="/embetty.png" width="360">
 </p>
 
 See it in action on our [demo pages](https://heiseonline.github.io/embetty/).
