@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- c18a469: fix embetty-server cli
+- Updated dependencies [c18a469]
+  - @embetty/base@2.0.1
+  - @embetty/component@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@embetty/types",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint --cache .",
