@@ -153,9 +153,6 @@ importers:
       '@embetty/component':
         specifier: workspace:*
         version: link:../embetty
-      '@embetty/tsconfig':
-        specifier: workspace:*
-        version: link:../tools/tsconfig
       commander:
         specifier: ^10.0.1
         version: 10.0.1
@@ -190,6 +187,9 @@ importers:
       '@embetty/jest-config':
         specifier: workspace:^
         version: link:../tools/jest-config
+      '@embetty/tsconfig':
+        specifier: workspace:*
+        version: link:../tools/tsconfig
       '@types/cors':
         specifier: ^2.8.13
         version: 2.8.13
