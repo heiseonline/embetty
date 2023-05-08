@@ -19,7 +19,8 @@
     "build": "tsc --build tsconfig.build.json",
     "build:deploy": "rm -fr .dockerbuild && pnpm --filter server deploy .dockerbuild && cp Dockerfile .dockerbuild ",
     "build:docker": "cd .dockerbuild && docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag heiseonline/embetty-server:latest --tag heiseonline/embetty-server:$(cat package.json | jq -r .version) --push .",
-    "start:docker": "docker run --env URL_BASE=http://localhost:8080 --env EMBETTY_CACHE= -p8080:8080 --rm --env-file .env heiseonline/embetty-server"
+    "start:docker": "docker run --env URL_BASE=http://localhost:8080 --env EMBETTY_CACHE= -p8080:8080 --rm --env-file .env heiseonline/embetty-server",
+    "release:docker": "pnpm build:deploy && pnpm build:docker"
   },
   "publishConfig": {
     "access": "public",
