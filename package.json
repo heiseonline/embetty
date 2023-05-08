@@ -6,7 +6,9 @@
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "bump": "changeset version",
+    "release": "changeset publish"
   },
   "dependencies": {
     "ts-node": "^10.9.1",
