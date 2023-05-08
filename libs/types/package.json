@@ -1,0 +1,18 @@
+{
+  "name": "@embetty/types",
+  "version": "2.0.2",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint --cache .",
+    "build": "tsc --build tsconfig.build.json"
+  },
+  "devDependencies": {
+    "@embetty/eslint-config": "workspace:*",
+    "@embetty/tsconfig": "workspace:*",
+    "tslib": "^2.4.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

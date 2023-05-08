@@ -1,0 +1,6 @@
+packages:
+  # - .meta-updater
+  - libs/*
+  - tools/*
+  - embetty
+  - embetty-server

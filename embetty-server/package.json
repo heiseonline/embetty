@@ -1,0 +1,56 @@
+{
+  "name": "@embetty/server",
+  "version": "2.0.1",
+  "main": "dist/index.js",
+  "author": "Philipp Busse <pmb@heise.de>",
+  "license": "MIT",
+  "bin": {
+    "embetty": "bin/embetty",
+    "embetty-start": "bin/embetty-start"
+  },
+  "engine": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "start": "./bin/www",
+    "dev": "tsc-watch  --build tsconfig.build.json --onSuccess 'node --inspect=0.0.0.0:9229 --enable-source-maps --dns-result-order=ipv4first -r dotenv/config dist/server' --preserveWatchOutput",
+    "test": "jest",
+    "lint": "eslint --cache .",
+    "build": "tsc --build tsconfig.build.json",
+    "build:deploy": "rm -fr .dockerbuild && pnpm --filter server deploy .dockerbuild",
+    "build:docker": "cd .dockerbuild && docker build -t heiseonline/embetty-server ."
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "@embetty/tsconfig": "workspace:*",
+    "@embetty/jest-config": "workspace:^",
+    "@types/cors": "^2.8.13",
+    "@types/debug": "^4.1.7",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.0",
+    "@types/morgan": "^1.9.4",
+    "@types/nunjucks": "^3.2.2",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.5",
+    "tsc-watch": "^6.0.4"
+  },
+  "dependencies": {
+    "@embetty/base": "workspace:*",
+    "@embetty/component": "workspace:*",
+    "commander": "^10.0.1",
+    "cors": "^2.8.4",
+    "debug": "^4.3.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.16.2",
+    "helmet": "^6.1.5",
+    "http-status": "^1.6.2",
+    "morgan": "^1.10.0",
+    "nunjucks": "^3.2.2",
+    "tslib": "^2.4.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@embetty/tsconfig",
+  "version": "1.0.1",
+  "private": true,
+  "description": "",
+  "main": "tsconfig.json",
+  "license": "UNLICENSED"
+}

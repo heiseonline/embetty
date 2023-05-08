@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const { version } = require('../package.json')
+const program = require('commander')
+
+program
+  .version(version)
+  .description('🐙 Proxy and provider of data for embetty/server')
+  .usage('<command> [options]')
+  .command('start', 'start the embetty server')
+  .parse(process.argv)

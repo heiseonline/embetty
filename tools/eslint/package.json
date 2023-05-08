@@ -1,0 +1,11 @@
+{
+  "name": "@embetty/eslint-config",
+  "version": "1.0.1",
+  "description": "",
+  "main": ".eslintrc",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@heise/eslint-config": "^20.0.41"
+  },
+  "private": true
+}

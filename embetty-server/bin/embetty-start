@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+const program = require('commander')
+
+program
+  .option(
+    '-p, --port <port>',
+    'The HTTP port you want to start embetty on. Default: 3000',
+  )
+  .option('-v, --verbose', 'output verbose messages on internal operations')
+  .option('-d, --debug', 'output debug messages')
+  .option(
+    '-c, --cache <cache>',
+    'Connection string of a cache adapter. Default: "redis://"',
+  )
+  .parse(process.argv)
+
+process.env.NODE_ENV = 'production'
+
+if (program.cache) process.env.EMBETTY_CACHE = program.cache
+if (program.debug) process.env.DEBUG = '*'
+if (program.port) process.env.PORT = program.port
+if (program.verbose) process.env.DEBUG = 'embetty.*'
+
+require('../dist/server')
