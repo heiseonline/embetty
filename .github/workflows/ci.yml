@@ -1,0 +1,42 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        node:
+          - '16.14'
+          - '18'
+          - '20'
+        platform:
+          - ubuntu-latest
+
+    name: '${{matrix.platform}} / Node.js ${{ matrix.node }}'
+    runs-on: ${{matrix.platform}}
+
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: next-8
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
+      - name: Install npm@7
+        run: npm add --global npm@7
+      - name: pnpm install
+        run: pnpm install
+      - name: Audit
+        run: pnpm audit
+      - name: test
+        run: pnpm run test
