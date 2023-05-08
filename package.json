@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "build": "pnpm -r build",
     "test": "pnpm -r test",
     "prepare": "husky install"
   },

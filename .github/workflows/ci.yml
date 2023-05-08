@@ -38,5 +38,7 @@ jobs:
         run: pnpm install
       - name: Audit
         run: pnpm audit
+      - name: build
+        run: pnpm run build
       - name: test
         run: pnpm run test
