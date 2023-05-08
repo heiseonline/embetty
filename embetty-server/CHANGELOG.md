@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- 5000352: disable resource/opener policies
+
 ## 3.0.2
 
 ### Patch Changes
