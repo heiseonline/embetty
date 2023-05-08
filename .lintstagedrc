@@ -1,4 +1,4 @@
 {
-  "*.{js,jsx,ts,tsx}": "eslint --cache --report-unused-disable-directives --quiet --fix",
-  "*.!{js,jsx,ts,tsx}": "prettier --check --ignore-unknown"
+  "*.{js,jsx,ts,tsx}": "eslint --cache --cache-strategy content --report-unused-disable-directives --quiet --fix",
+  "*.*": "prettier --check --ignore-unknown --cache  --write"
 }
