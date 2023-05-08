@@ -1,5 +1,11 @@
 # @embetty/types
 
+## 2.0.1
+
+### Patch Changes
+
+- 0a576aa: fix npm package contents
+
 ## 2.0.0
 
 ### Major Changes
