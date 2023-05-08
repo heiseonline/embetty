@@ -25,6 +25,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
+    "@embetty/tsconfig": "workspace:*",
     "@embetty/jest-config": "workspace:^",
     "@types/cors": "^2.8.13",
     "@types/debug": "^4.1.7",
@@ -41,7 +42,6 @@
   "dependencies": {
     "@embetty/base": "workspace:*",
     "@embetty/component": "workspace:*",
-    "@embetty/tsconfig": "workspace:*",
     "commander": "^10.0.1",
     "cors": "^2.8.4",
     "debug": "^4.3.1",
