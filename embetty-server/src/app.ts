@@ -31,6 +31,7 @@ app.use(
     frameguard: false,
     hsts: false,
     contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
   }),
 )
 app.use('/', routes)
