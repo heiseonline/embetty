@@ -18,7 +18,8 @@
     "lint": "eslint --cache .",
     "build": "tsc --build tsconfig.build.json",
     "build:deploy": "rm -fr .dockerbuild && pnpm --filter server deploy .dockerbuild && cp Dockerfile .dockerbuild ",
-    "build:docker": "cd .dockerbuild && docker build -t heiseonline/embetty-server ."
+    "build:docker": "cd .dockerbuild && docker build -t heiseonline/embetty-server .",
+    "start:docker": "docker run --env URL_BASE=http://localhost:8080 --env EMBETTY_CACHE= -p8080:8080 --rm --env-file .env heiseonline/embetty-server"
   },
   "publishConfig": {
     "access": "public",
