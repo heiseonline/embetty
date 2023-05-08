@@ -1,6 +1,19 @@
 # Changelog
 
-## v2.0.3, 2020-02-25 
+## 2.0.0
+
+### Major Changes
+
+- d3548b9: Configured embetty mono-repo and migrated embetty-tweet to Twitter API V2
+
+### Patch Changes
+
+- 683cd44: Fixed dependencies
+- Updated dependencies [d3548b9]
+  - @embetty/base@2.0.0
+  - @embetty/component@2.0.0
+
+## v2.0.3, 2020-02-25
 
 - Fixed Dockerfile issues.
 
