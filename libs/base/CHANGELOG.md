@@ -1,5 +1,11 @@
 # @embetty/base
 
+## 2.0.2
+
+### Patch Changes
+
+- e84df2e: Properly use EMBETTY_CACHE env var
+
 ## 2.0.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [e84df2e]
+  - @embetty/base@2.0.2
+
 ## 3.0.0
 
 ### Major Changes

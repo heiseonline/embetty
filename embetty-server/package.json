@@ -1,6 +1,6 @@
 {
   "name": "@embetty/server",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "dist/index.js",
   "author": "Philipp Busse <pmb@heise.de>",
   "license": "MIT",
