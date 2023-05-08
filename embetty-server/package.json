@@ -9,7 +9,7 @@
     "embetty-start": "bin/embetty-start"
   },
   "engine": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "start": "./bin/www",
