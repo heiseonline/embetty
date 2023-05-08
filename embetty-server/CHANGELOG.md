@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.2
+
+### Patch Changes
+
+- 1607a91: Disabled Cross-Origin-Embedder-Policy
+
 ## 3.0.1
 
 ### Patch Changes
