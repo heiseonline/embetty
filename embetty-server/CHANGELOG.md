@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- 4dc7b4f: Release heiseonline/embetty-server v3 docker image
+
 ## 2.0.1
 
 ### Patch Changes
