@@ -1,8 +1,8 @@
 import VideoImplementation from '../type'
 
 const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString() as string
 
 export class VimeoVideo extends VideoImplementation<never> {
   get css() {

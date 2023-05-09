@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { defineElement } from './util'
 
 export function webcomponent(tag: string, _options?: ElementDefinitionOptions) {
-  return (target: Function) => {
+  return (target: CustomElementConstructor) => {
     defineElement(tag, target)
   }
 }
 
 export function observable() {
-  return (target: Function) => {
+  // eslint-disable-next-line sonarjs/cognitive-complexity
+  return (target: CustomElementConstructor) => {
     const origConnectedCallback = target.prototype.connectedCallback
 
     target.prototype.initialized = false
@@ -39,6 +41,7 @@ export function observable() {
             rootMargin: this.observableRootMargin,
             threshold: this.observableRootThreshold,
           },
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         ).observe(this)
       })
     }

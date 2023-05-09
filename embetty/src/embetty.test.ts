@@ -10,8 +10,8 @@ class EmbettyTest extends Embed<unknown> {
     return this._api('/some-url')
   }
 
-  override async connectedCallback() {
-    await super.connectedCallback()
+  override connectedCallback() {
+    super.connectedCallback()
     void this.becomesVisible()
   }
 

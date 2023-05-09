@@ -1,5 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
+import { Template } from 'hogan.js'
 
 declare global {
   interface Window {
@@ -33,7 +35,7 @@ export default abstract class Embed<T> extends HTMLElement {
     return this.serverUrl + url
   }
 
-  emit(name: string, data?: any) {
+  emit(name: string, data?: CustomEventInit<unknown> | undefined) {
     this.dispatchEvent(new window.CustomEvent(name, data))
   }
 
@@ -51,7 +53,7 @@ export default abstract class Embed<T> extends HTMLElement {
     this.emit('initialized')
   }
 
-  async connectedCallback() {
+  connectedCallback() {
     this.attachShadow({ mode: 'open' })
   }
 
@@ -71,7 +73,8 @@ export default abstract class Embed<T> extends HTMLElement {
   }
 
   render() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.constructor.compiledTemplate.render(this)
+    return (this.constructor.compiledTemplate as Template).render(this)
   }
 }

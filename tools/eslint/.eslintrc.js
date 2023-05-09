@@ -1,8 +1,8 @@
 module.exports = {
   extends: ['@heise'],
-  root: true,
+  root: false,
   parserOptions: {
-    allowAutomaticSingleRunInference: true,
+    // allowAutomaticSingleRunInference: true,
     project: ['./tsconfig.json'],
   },
   rules: {
@@ -16,8 +16,12 @@ module.exports = {
     'unicorn/no-abusive-eslint-disable': 'off',
     'unicorn/no-array-method-this-argument': 'off',
     'unicorn/consistent-destructuring': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
   },
-  overrides: [{
+  overrides: [
+    {
       files: ['jest.config.ts', 'jest.config.*.ts'],
       rules: {
         'node/no-extraneous-import': 'off',
@@ -46,6 +50,6 @@ module.exports = {
       rules: {
         'node/no-unpublished-import': 'off',
       },
-    }
+    },
   ],
 }

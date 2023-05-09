@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import assert from 'assert'
 import request from 'supertest'
 import { app } from '../app'
@@ -14,7 +15,9 @@ describe('embetty-server', () => {
 
   it('should provide the version', async () => {
     const response = await request(app).get('/version')
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
     const expected = require('../../package.json').version
+
     expect(response.text).toBe(JSON.stringify({ version: expected }))
   })
 })

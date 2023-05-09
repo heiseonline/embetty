@@ -35,7 +35,9 @@ export abstract class Embed<T, U = T> {
   }
 
   async retrieve() {
-    if (this._retrieved || !this._requestOptions) return
+    if (this._retrieved || !this._requestOptions) {
+      return
+    }
 
     debug(`request: ${JSON.stringify(this._requestOptions)}`)
 

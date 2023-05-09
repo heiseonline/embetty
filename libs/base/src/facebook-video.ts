@@ -2,7 +2,7 @@ import axios from 'axios'
 import { EmbettyRequest } from './embed'
 import { Video } from './video'
 
-export interface FacebookVideoData {}
+export type FacebookVideoData = never
 
 export class FacebookVideo extends Video<
   FacebookVideoData,

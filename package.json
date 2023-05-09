@@ -8,7 +8,8 @@
     "test": "pnpm -r test",
     "prepare": "husky install",
     "bump": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "lint": "pnpm run -r --stream lint --quiet"
   },
   "dependencies": {
     "ts-node": "^10.9.1",

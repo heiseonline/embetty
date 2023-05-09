@@ -7,12 +7,7 @@
     "build": "NODE_ENV=production webpack",
     "clean": "rimraf dist",
     "test": "jest",
-    "lint": "eslint . --cache --ext .ts,.js"
-  },
-  "lint-staged": {
-    "*.{ts,js}": [
-      "eslint --fix"
-    ]
+    "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives"
   },
   "author": {
     "name": "Philipp Busse",
@@ -54,7 +49,6 @@
     "@types/fs-extra": "^11.0.1",
     "@types/hogan.js": "^3.0.1",
     "@types/jest": "^29.5.0",
-    "@typescript-eslint/parser": "^5.57.0",
     "autoprefixer": "^10.4.14",
     "cpy-cli": "^4.2.0",
     "css-loader": "^6.7.3",

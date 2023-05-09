@@ -25,7 +25,9 @@ export const cachedRequest = <T>(cache: EmbettyCache): EmbettyRequest<T> => {
     options: AxiosRequestConfig,
   ): Promise<CacheEntry<T> | undefined> => {
     const key = hashRequest(options)
-    const debugId = `${options.method || 'GET'} ${options.url} ["${key}"]`
+    const debugId = `${options.method || 'GET'} ${
+      options.url ?? '(unknown)'
+    } ["${key}"]`
 
     let value: CacheEntry<T> | undefined = await cache.get<T>(key)
 

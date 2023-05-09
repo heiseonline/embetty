@@ -15,7 +15,7 @@
     "start": "./bin/www",
     "dev": "tsc-watch  --build tsconfig.build.json --onSuccess 'node --inspect=0.0.0.0:9229 --enable-source-maps --dns-result-order=ipv4first -r dotenv/config dist/server' --preserveWatchOutput",
     "test": "jest",
-    "lint": "eslint --cache .",
+    "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives",
     "build": "tsc --build tsconfig.build.json",
     "build:deploy": "rm -fr .dockerbuild && pnpm --filter server deploy .dockerbuild && cp Dockerfile .dockerbuild ",
     "build:docker": "cd .dockerbuild && docker buildx build --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag heiseonline/embetty-server:latest --tag heiseonline/embetty-server:$(cat package.json | jq -r .version) --push .",

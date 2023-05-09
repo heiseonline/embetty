@@ -19,12 +19,10 @@ router.use(
   cors({
     origin: (origin, cb) => {
       const validOrigins = getValidOrigins()
-      if (
-        validOrigins[0] === '*' ||
-        !origin ||
-        validOrigins.indexOf(origin) !== -1
-      )
-        return cb(null, true)
+      if (validOrigins[0] === '*' || !origin || validOrigins.includes(origin)) {
+        cb(null, true)
+        return
+      }
 
       debug('Invalid origin:', origin, 'Valid:', validOrigins)
       cb(new ForbiddenException())
@@ -42,6 +40,7 @@ router.use('/tweet', tweet)
 router.use('/video', video)
 
 router.get('/version', (_req, res) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
   res.send({ version: require('../../package.json').version })
 })
 

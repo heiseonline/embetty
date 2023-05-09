@@ -4,17 +4,17 @@ import Embed from '../embed'
 import { height, parseHostname } from '../util'
 
 const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./tweet.scss').default.toString()
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./tweet.scss').default.toString() as string
 
 const HEIGHT_OFFSET = 2
 
 @webcomponent('embetty-tweet')
 @observable()
 export class Tweet extends Embed<EmbettyTweet> {
-  parent: any
+  parent?: Tweet
 
-  constructor(status: string, parent: any, options = {}) {
+  constructor(status: string, parent?: Tweet, options = {}) {
     super()
     if (status) {
       this.setAttribute('status', status)
@@ -26,8 +26,6 @@ export class Tweet extends Embed<EmbettyTweet> {
 
     this.on('initialized', () => {
       this.appendAnsweredTweet()
-    })
-    this.on('initialized', () => {
       this.fitCardHeight()
     })
   }
@@ -49,7 +47,7 @@ export class Tweet extends Embed<EmbettyTweet> {
   }
 
   // TODO: Reduce complexity of fitCardHeight()
-  // eslint-disable-next-line sonarjs/cognitive-complexity, complexity
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   fitCardHeight() {
     if (!this.hasLinks) {
       return
@@ -67,7 +65,7 @@ export class Tweet extends Embed<EmbettyTweet> {
       return
     }
 
-    const imgHeight = height(section.querySelector('img')!)
+    const imgHeight = height(section.querySelector<HTMLImageElement>('img')!)
     let counter = 0
     let last = ''
 
@@ -80,7 +78,7 @@ export class Tweet extends Embed<EmbettyTweet> {
         break
       }
       last = p.textContent!
-      p.textContent = `${p.textContent?.replace(/\W*\s(\S)*$/, '')}…`
+      p.textContent = `${p.textContent?.replace(/\W*\s(\S)*$/, '') ?? ''}…`
     }
   }
 

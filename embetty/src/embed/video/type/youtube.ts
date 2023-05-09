@@ -1,8 +1,8 @@
 import VideoImplementation from '../type'
 
 const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./youtube.scss').default.toString()
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
+  require('!css-loader!postcss-loader!sass-loader!./youtube.scss').default.toString() as string
 
 export class YoutubeVideo extends VideoImplementation<never> {
   get css() {

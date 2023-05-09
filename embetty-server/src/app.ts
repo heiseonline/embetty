@@ -1,5 +1,3 @@
-/* eslint-disable toplevel/no-toplevel-side-effect */
-
 import express, { Express, NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
 import { INTERNAL_SERVER_ERROR } from 'http-status'

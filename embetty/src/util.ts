@@ -35,7 +35,10 @@ export function createTemplate(content: string, css: string) {
   return template
 }
 
-export function defineElement(name: string, Class: any) {
+export function defineElement(name: string, Class: CustomElementConstructor) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   Class.compiledTemplate ||= hogan.compile(Class.template)
 
   window.customElements.define(name, Class)

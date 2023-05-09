@@ -11,12 +11,14 @@ export default abstract class VideoImplementation<T> {
     this.element = element
   }
 
-  get width() {
-    return this.element.getAttribute('width') || DEFAULT_WIDTH
+  get width(): number {
+    const width = this.element.getAttribute('width')
+    return width ? parseInt(width) : DEFAULT_WIDTH
   }
 
   get height() {
-    return this.element.getAttribute('height') || DEFAULT_HEIGHT
+    const height = this.element.getAttribute('height')
+    return height ? parseInt(height) : DEFAULT_HEIGHT
   }
 
   abstract get iframe(): string

@@ -1,2 +1,6 @@
+export * from './embed'
 export * from './embetty'
+export * from './twitter/tweet'
 export * from './twitter/twitter-api-exception'
+export * from './vimeo-video'
+export * from './youtube-video'

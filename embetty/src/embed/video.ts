@@ -5,8 +5,8 @@ import VideoImplementation from './video/type'
 import * as Videos from './video/types'
 
 const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./_video.scss').default.toString()
+  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access
+  require('!css-loader!postcss-loader!sass-loader!./_video.scss').default.toString() as string
 
 @webcomponent('embetty-video')
 @observable()
@@ -30,6 +30,7 @@ export default class Video<T> extends Embed<T> {
   }
 
   activate() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     this.shadowRoot!.innerHTML = this.impl.iframe
     this.emit('activated')
   }
@@ -45,11 +46,13 @@ export default class Video<T> extends Embed<T> {
   get Type(): Constructor<VideoImplementation<T>> {
     const className = this.typeClass
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (!Videos[this.typeClass]) {
       throw new Error(`"${className}" does not exist.`)
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return Videos[className]
   }
@@ -68,8 +71,14 @@ export default class Video<T> extends Embed<T> {
     return this.getAttribute('type')
   }
 
-  get videoId() {
-    return this.getAttribute('video-id')
+  get videoId(): string {
+    const videoId = this.getAttribute('video-id')
+
+    if (!videoId) {
+      throw new Error('No video ID specified.')
+    }
+
+    return videoId
   }
 
   get posterImageUrl() {

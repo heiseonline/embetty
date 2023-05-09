@@ -1,7 +1,7 @@
-import { Embed } from './embed'
+import { Embed, EmbedOptions } from './embed'
 
 export abstract class Video<T, U = T> extends Embed<T, U> {
-  constructor(id: string, options: any) {
+  constructor(id: string, options: EmbedOptions<T>) {
     super(id, options)
   }
 

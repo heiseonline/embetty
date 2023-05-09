@@ -1,7 +1,5 @@
-/* eslint-disable security/detect-non-literal-fs-filename */
-import { createTweet, getFetchSpy } from '../test/lib/util'
-// eslint-disable-next-line node/no-extraneous-import
 import Tweets from '.../../../tweets.json'
+import { createTweet, getFetchSpy } from '../test/lib/util'
 import './tweet'
 
 beforeEach(() => {

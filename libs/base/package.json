@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint --cache .",
+    "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives",
     "build": "tsc --build tsconfig.build.json",
     "test": "jest"
   },

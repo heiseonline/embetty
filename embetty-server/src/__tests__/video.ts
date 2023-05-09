@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-duplicate-string */
+/* eslint-disable jest/no-disabled-tests */
 import assert from 'assert'
 import request from 'supertest'
 import { app } from '../app'
@@ -34,6 +36,7 @@ describe('Video', () => {
       assert.ok(Buffer.isBuffer(response.body))
       const imageLength = Buffer.byteLength(response.body)
       assert.ok(imageLength > 100)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       assert.strictEqual(response.headers['content-length'], `${imageLength}`)
     })
   })
@@ -66,6 +69,7 @@ describe('Video', () => {
       assert.ok(Buffer.isBuffer(response.body))
       const imageLength = Buffer.byteLength(response.body)
       assert.ok(imageLength > 100)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       assert.strictEqual(response.headers['content-length'], `${imageLength}`)
     })
   })

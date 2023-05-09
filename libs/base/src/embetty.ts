@@ -14,6 +14,7 @@ import { YoutubeVideo, YoutubeVideoData } from './youtube-video'
 
 const debug = debug_('embetty-base:embetty')
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ClassOf<T> = new (...args: any[]) => T
 
 export class Embetty<T> {
@@ -25,16 +26,16 @@ export class Embetty<T> {
     this.request = cachedRequest(this.cache)
   }
 
-  close() {
+  async close() {
     if (this.cache.disconnect) {
-      this.cache.disconnect()
+      await this.cache.disconnect()
     }
   }
 
   async get<T>(
     options: AxiosRequestConfig = {},
   ): Promise<CacheEntry<T> | undefined> {
-    debug(`GET ${options.url} ...`)
+    debug(`GET ${options.url ?? '(unknown)'} ...`)
     return this.request(options) as Promise<CacheEntry<T> | undefined>
   }
 
@@ -104,7 +105,7 @@ export class Embetty<T> {
       .map((name) => Embetty.cacheEngines[name])[0]
 
     if (!Engine) {
-      throw new Error(`Unsupported cache engine: ${wantedEngine}`)
+      throw new Error(`Unsupported cache engine: ${wantedEngine ?? '(none)'}`)
     }
 
     debug(`Using ${Engine.name} cache ...`)

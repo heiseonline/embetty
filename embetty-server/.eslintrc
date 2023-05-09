@@ -1,4 +1,6 @@
 {
-  "extends": "@embetty"
+  "extends": "@embetty",
+  "rules": {
+    "toplevel/no-toplevel-side-effect": "off"
+  }
 }
-

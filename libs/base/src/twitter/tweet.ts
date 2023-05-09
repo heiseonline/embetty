@@ -29,8 +29,8 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
     super(id, options)
   }
 
-  assertTweetData(data: any): asserts data is TweetData {
-    const error = data.errors?.[0]
+  assertTweetData(data: TweetResponse | undefined): asserts data is TweetData {
+    const error = data !== undefined && !('data' in data) && data.errors?.[0]
 
     if (error) {
       throw new TwitterApiException(error)
@@ -72,12 +72,13 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   get rateLimitRemaining() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return parseInt(this._response?.headers['x-rate-limit-remaining'], 10)
   }
 
   get rateLimitReset() {
     const reset =
-      // eslint-disable-next-line no-magic-numbers
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-magic-numbers
       parseInt(this._response?.headers['x-rate-limit-reset'], 10) * 1000
     return new Date(reset)
   }
@@ -194,6 +195,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
     const authorId = includedTweet?.author_id
 
     return {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
       url: this.tweetData.data.entities.urls[0]?.expanded_url!,
       description: includedTweet?.text,
       image: this.tweetData.includes.users

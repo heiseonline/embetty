@@ -1,8 +1,8 @@
 import VideoImplementation from '../type'
 
 const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString()
+  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access
+  require('!css-loader!postcss-loader!sass-loader!./vimeo.scss').default.toString() as string
 
 export class FacebookVideo extends VideoImplementation<{
   canonicalUrl: string
@@ -11,6 +11,7 @@ export class FacebookVideo extends VideoImplementation<{
     return CSS
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   get url() {
     return this.element._api(`/video/facebook/${this.element.videoId}`)
