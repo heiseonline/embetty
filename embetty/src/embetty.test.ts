@@ -1,8 +1,8 @@
 import { webcomponent } from './decorators'
-import Embed from './embed'
+import { Embed } from './embed'
 import { createElement } from './test/lib/util'
 
-@webcomponent('embetty-test')
+@webcomponent('embetty-test', '')
 class EmbettyTest extends Embed<unknown> {
   url = '/'
 

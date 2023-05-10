@@ -1,5 +1,3 @@
-import hogan from 'hogan.js'
-
 export function computedStyle(
   element: Element,
   key: keyof CSSStyleDeclaration,
@@ -35,11 +33,10 @@ export function createTemplate(content: string, css: string) {
   return template
 }
 
-export function defineElement(name: string, Class: CustomElementConstructor) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  Class.compiledTemplate ||= hogan.compile(Class.template)
-
-  window.customElements.define(name, Class)
+export function defineElement(
+  name: string,
+  Class: CustomElementConstructor,
+  options?: ElementDefinitionOptions,
+) {
+  window.customElements.define(name, Class, options)
 }

@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import hogan from 'hogan.js'
 import { defineElement } from './util'
 
-export function webcomponent(tag: string, _options?: ElementDefinitionOptions) {
+export const TEMPLATE_METADATA_KEY = 'template'
+
+export function webcomponent(tag: string, template: string) {
   return (target: CustomElementConstructor) => {
+    Reflect.defineProperty(target, TEMPLATE_METADATA_KEY, {
+      value: hogan.compile(template),
+    })
     defineElement(tag, target)
   }
 }

@@ -2,6 +2,7 @@
 // @ts-ignore
 import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
 import { Template } from 'hogan.js'
+import { TEMPLATE_METADATA_KEY } from './decorators'
 
 declare global {
   interface Window {
@@ -11,7 +12,7 @@ declare global {
   }
 }
 
-export default abstract class Embed<T> extends HTMLElement {
+export abstract class Embed<T> extends HTMLElement {
   _fetched = false
   abstract get url(): string
   _data?: T
@@ -73,8 +74,14 @@ export default abstract class Embed<T> extends HTMLElement {
   }
 
   render() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return (this.constructor.compiledTemplate as Template).render(this)
+    const template = Reflect.get(this.constructor, TEMPLATE_METADATA_KEY) as
+      | Template
+      | undefined
+
+    if (!template) {
+      throw new Error(`Template not found for class ${this.constructor.name}`)
+    }
+
+    return template.render(this)
   }
 }
