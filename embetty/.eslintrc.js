@@ -5,4 +5,7 @@ module.exports = {
   },
   root: true,
   extends: '@embetty',
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+  },
 }
