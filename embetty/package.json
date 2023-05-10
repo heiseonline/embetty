@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack",
+    "dev": "webpack -w",
     "clean": "rimraf dist",
     "test": "jest",
     "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives"
