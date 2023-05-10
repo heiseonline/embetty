@@ -4,14 +4,6 @@ import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
 import { Template } from 'hogan.js'
 import { TEMPLATE_METADATA_KEY } from './decorators'
 
-declare global {
-  interface Window {
-    ShadyCSS: {
-      prepareTemplate(template: HTMLTemplateElement, name: string): void
-    }
-  }
-}
-
 export abstract class Embed<T> extends HTMLElement {
   _fetched = false
   abstract get url(): string
