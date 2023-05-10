@@ -7,6 +7,7 @@ const {
   title,
   version,
 } = require('./package.json')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -57,6 +58,7 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /vertx/,
     }), // see https://github.com/parcel-bundler/parcel/issues/141
+    new ForkTsCheckerWebpackPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
