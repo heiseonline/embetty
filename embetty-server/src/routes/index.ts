@@ -3,6 +3,7 @@ import debug_ from 'debug'
 import { Router } from 'express'
 import fs from 'fs'
 import { ForbiddenException } from '../exceptions'
+import mastodon from './mastodon'
 import tweet from './tweet'
 import video from './video'
 
@@ -38,6 +39,7 @@ router.use('/embetty.js', (_req, res, _next) => {
 
 router.use('/tweet', tweet)
 router.use('/video', video)
+router.use('/mastodon', mastodon)
 
 router.get('/version', (_req, res) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
