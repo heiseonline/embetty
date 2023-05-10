@@ -1,0 +1,86 @@
+{
+  // Editor
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": true,
+  "diffEditor.codeLens": true,
+  "editor.semanticHighlighting.enabled": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/temp": true,
+    "**/dist": true,
+    "**/.jest-cache": true
+  },
+  "search.followSymlinks": false,
+  // Git
+  "git.autofetch": true,
+  "git.inputValidationSubjectLength": 100,
+  "git.inputValidationLength": 100,
+  // Node
+  "npm.packageManager": "pnpm",
+  "npm.autoDetect": "off",
+  // JavaScript
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // TypeScript
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.tsc.autoDetect": "off",
+  // CSS
+  "css.validate": false,
+  // ESLint
+  "eslint.debug": false,
+  "eslint.useESLintClass": true,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.format.enable": true,
+  "eslint.lintTask.enable": false,
+  "eslint.onIgnoredFiles": "warn",
+  "eslint.options": {
+    "cache": true,
+    "reportUnusedDisableDirectives": "error",
+    "cacheStrategy": "content"
+  },
+  // "eslint.packageManager": "pnpm",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  // Prettier
+  "prettier.enable": true,
+  "prettier.ignorePath": "./.prettierignore",
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": true,
+  // JavaScript
+  "[javascript]": {
+    "editor.rulers": [80],
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // TypeScript
+  "[typescript]": {
+    "editor.rulers": [80],
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "[xml]": {
+    "editor.defaultFormatter": "PrateekMahendrakar.prettyxml"
+  }
+}

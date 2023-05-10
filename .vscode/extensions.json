@@ -1,0 +1,32 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    // Remote - Containers
+    // "ms-vscode-remote.remote-containers",
+    // Jest
+    "orta.vscode-jest",
+    // GraphQL
+    "graphql.vscode-graphql",
+    // ESLint
+    "dbaeumer.vscode-eslint",
+    // Prettier
+    "esbenp.prettier-vscode",
+    // EditorConfig
+    "editorconfig.editorconfig",
+    // DotENV
+    "mikestead.dotenv",
+    // PlantUML
+    "jebbs.plantuml",
+    // PostCSS Language Support
+    "csstools.postcss",
+    // Tailwind
+    "bradlc.vscode-tailwindcss",
+    // Headwind
+    "heybourn.headwind"
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": []
+}

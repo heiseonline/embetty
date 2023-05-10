@@ -1,0 +1,61 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "group": "build",
+      "command": "rush build",
+      "problemMatcher": {
+        "base": "$tsc"
+      }
+    },
+    {
+      "label": "build:watch",
+      "type": "shell",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "rush build:watch",
+      "problemMatcher": {
+        "base": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Detected changes in \\d+ project",
+          "endsPattern": "^Watching for changes to \\d+ project"
+        }
+      },
+      "isBackground": true
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "command": "rush test"
+    },
+    {
+      "label": "test:e2e",
+      "type": "shell",
+      "group": "test",
+      "command": "rush test:e2e"
+    },
+    {
+      "label": "docker-compose:up",
+      "type": "docker-compose",
+      "group": "none",
+      "dockerCompose": {
+        "up": {
+          "detached": true,
+          "build": true
+        },
+        "files": ["${workspaceFolder}/docker-compose.yml"]
+      }
+    }
+  ]
+}
