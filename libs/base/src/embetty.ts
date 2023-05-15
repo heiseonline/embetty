@@ -1,3 +1,4 @@
+import { MastodonStatusData } from '@embetty/types'
 import { AxiosRequestConfig } from 'axios'
 import contentType from 'content-type'
 import debug_ from 'debug'
@@ -7,6 +8,7 @@ import { LRU } from './cache/lru'
 import { Redis } from './cache/redis'
 import { Embed, EmbedOptions } from './embed'
 import { FacebookVideo, FacebookVideoData } from './facebook-video'
+import { MastodonStatus } from './mastodon'
 import { EmbettyRequest, cachedRequest } from './request-cache'
 import { Tweet } from './twitter/tweet'
 import { VimeoVideo, VimeoVideoData } from './vimeo-video'
@@ -90,6 +92,13 @@ export class Embetty<T> {
 
   loadFacebookVideo(id: string, options?: EmbedOptions<FacebookVideoData>) {
     return this.loadEmbed(FacebookVideo, id, options)
+  }
+
+  loadMastodonStatus(
+    id: string,
+    options?: EmbedOptions<MastodonStatusData>,
+  ): Promise<MastodonStatus> {
+    return this.loadEmbed(MastodonStatus, id, options)
   }
 
   static get cacheEngines(): Record<string, ClassOf<EmbettyCache>> {

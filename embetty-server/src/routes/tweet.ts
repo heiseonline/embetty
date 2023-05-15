@@ -102,4 +102,4 @@ router.get('/:id', (_req, res, next) => {
   res.send(res.locals.tweet)
 })
 
-export default router
+export const tweetRouter = router

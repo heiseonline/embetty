@@ -3,8 +3,9 @@ import debug_ from 'debug'
 import { Router } from 'express'
 import fs from 'fs'
 import { ForbiddenException } from '../exceptions'
-import tweet from './tweet'
-import video from './video'
+import { mastodonRouter } from './mastodon'
+import { tweetRouter } from './tweet'
+import { videoRouter } from './video'
 
 const debug = debug_('embetty-server:index')
 
@@ -36,8 +37,9 @@ router.use('/embetty.js', (_req, res, _next) => {
   fs.createReadStream(embettyPath, { encoding: 'utf8' }).pipe(res)
 })
 
-router.use('/tweet', tweet)
-router.use('/video', video)
+router.use('/tweet', tweetRouter)
+router.use('/video', videoRouter)
+router.use('/mastodon', mastodonRouter)
 
 router.get('/version', (_req, res) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
