@@ -102,6 +102,16 @@ For videos of type `vimeo` or `youtube`, it's also possible to set a `start-at` 
 <embetty-video type="vimeo" start-at="96" video-id="223099532"></embetty-video>
 ```
 
+#### Mastodon Status
+
+Use the `status` attribute with the link of the corresponding status. Embetty will retrieve the data from the corresponding Mastodon instance.
+
+```html
+<embetty-mastodon
+  status="https://social.heise.de/@heiseonline/110372412617177781"
+></embetty-mastodon>
+```
+
 ### Events
 
 Embetty triggers the following events:
