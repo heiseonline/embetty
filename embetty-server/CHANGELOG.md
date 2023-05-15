@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.1.1
+
+### Patch Changes
+
+- 5275b34: fix published files
+- Updated dependencies [5275b34]
+  - @embetty/component@2.1.1
+  - @embetty/base@2.1.1
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @embetty/base
 
+## 2.1.1
+
+### Patch Changes
+
+- 5275b34: fix published files
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.1.1
+
+### Patch Changes
+
+- 5275b34: fix published files
+
 ## 2.1.0
 
 ### Minor Changes
