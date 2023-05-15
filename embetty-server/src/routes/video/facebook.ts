@@ -26,4 +26,4 @@ router.get('/:id', (_req, res) => {
   res.send(res.locals.video)
 })
 
-export default router
+export const facebookRouter = router

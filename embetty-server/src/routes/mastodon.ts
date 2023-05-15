@@ -100,4 +100,4 @@ router.get('/:statusUrl(*)', (_req, res, next) => {
   res.send(res.locals.mastodon)
 })
 
-export default router
+export const mastodonRouter = router
