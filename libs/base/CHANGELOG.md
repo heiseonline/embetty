@@ -1,5 +1,15 @@
 # @embetty/base
 
+## 2.1.0
+
+### Minor Changes
+
+- 6b6b6c1: This version adds support for mastodon statuses via embetty-mastodon
+
+### Patch Changes
+
+- f71aa16: Fixed runtime issues
+
 ## 2.0.2
 
 ### Patch Changes

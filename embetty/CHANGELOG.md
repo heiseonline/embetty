@@ -1,5 +1,15 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.1.0
+
+### Minor Changes
+
+- 6b6b6c1: This version adds support for mastodon statuses via embetty-mastodon
+
+### Patch Changes
+
+- f71aa16: Fixed runtime issues
+
 ## 2.0.1
 
 ### Patch Changes

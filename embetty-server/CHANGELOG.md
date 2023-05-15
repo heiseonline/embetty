@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.1.0
+
+### Minor Changes
+
+- 6b6b6c1: This version adds support for mastodon statuses via embetty-mastodon
+
+### Patch Changes
+
+- f71aa16: Fixed runtime issues
+- Updated dependencies [6b6b6c1]
+- Updated dependencies [f71aa16]
+  - @embetty/component@2.1.0
+  - @embetty/base@2.1.0
+
 ## 3.0.3
 
 ### Patch Changes
