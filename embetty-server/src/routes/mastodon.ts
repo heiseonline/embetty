@@ -1,7 +1,7 @@
 import { MastodonStatus } from '@embetty/base'
 import { NextFunction, Request, Response, Router } from 'express'
 import { embetty } from '../embetty'
-import { BadRequestException } from '../exceptions'
+import { BadRequestException, NotFoundException } from '../exceptions'
 
 const router: Router = Router()
 
@@ -92,13 +92,15 @@ router.get('/:statusUrl(*)/images/:number', async (req, res, next) => {
   }
 })
 
-// router.get('/:id.amp', (_req, res) => {
-//   if (!res.locals.tweet) {
-//     throw new NotFoundException()
-//   }
+router.get('/:statusUrl(*).amp', (_req, res) => {
+  if (!res.locals.mastodon) {
+    throw new NotFoundException()
+  }
 
-//   res.render('tweet.html', { tweet: res.locals.tweet as Tweet })
-// })
+  res.render('mastodon.html', {
+    mastodon: res.locals.mastodon as MastodonStatus,
+  })
+})
 
 router.get('/:statusUrl(*)', (_req, res, next) => {
   if (!res.locals.mastodon) {

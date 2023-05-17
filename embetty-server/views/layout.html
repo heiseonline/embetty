@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta data-embetty-server="{{ urlFor('./') }}">
-  <style>
-    body {
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
-{% block embed %}{% endblock %}
-<script>
+  <head>
+    <meta data-embetty-server="{{ urlFor('./') }}" />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
 
-var counter = 0;
-var interval;
-function postHeight() {
-  window.parent.postMessage({
-    sentinel: 'amp',
-    type: 'embed-size',
-    height: document.body.scrollHeight
-  }, '*');
-  if (++counter === 200) clearInterval(interval)
-}
+  <body>
+    {% block embed %}{% endblock %}
+    <script>
+      var counter = 0
+      var interval
+      function postHeight() {
+        window.parent.postMessage(
+          {
+            sentinel: 'amp',
+            type: 'embed-size',
+            height: document.body.scrollHeight,
+          },
+          '*',
+        )
+        if (++counter === 200) clearInterval(interval)
+      }
 
-document
-  .querySelector('embetty-tweet,embetty-video')
-  .addEventListener('initialized', function(e) {
-    interval = setInterval(postHeight, 100)
-  });
-</script>
-<script async src="{{ urlFor('./embetty.js') }}"></script>
-</body>
+      document
+        .querySelector('embetty-tweet,embetty-video,embetty-mastodon')
+        .addEventListener('initialized', function (e) {
+          interval = setInterval(postHeight, 100)
+        })
+    </script>
+    <script async src="{{ urlFor('./embetty.js') }}"></script>
+  </body>
 </html>
