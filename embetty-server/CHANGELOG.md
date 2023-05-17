@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.1
+
+### Patch Changes
+
+- 0c4a28a: Fixed docker image to include the views folder
+
 ## 3.2.0
 
 ### Minor Changes
