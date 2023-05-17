@@ -75,7 +75,7 @@ export class Mastodon extends Embed<MastodonStatusData> {
   // }
 
   get url() {
-    return this._api(`mastodon/${this.status}`)
+    return this._api(`/mastodon/${this.status}`)
   }
 
   get mastodonUrl() {
