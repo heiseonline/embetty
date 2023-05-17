@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- 47dc31a: Added support for mastodon AMP routing
+
+### Patch Changes
+
+- 569948d: embetty-server now fixes URL paths where `//` have been replaced by `/` from the schema component by nginx.
+- Updated dependencies [15cbba7]
+  - @embetty/component@2.1.2
+
 ## 3.1.1
 
 ### Patch Changes
