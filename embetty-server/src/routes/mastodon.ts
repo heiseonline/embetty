@@ -1,9 +1,19 @@
 import { MastodonStatus } from '@embetty/base'
-import { Router } from 'express'
+import { NextFunction, Request, Response, Router } from 'express'
 import { embetty } from '../embetty'
 import { BadRequestException } from '../exceptions'
 
 const router: Router = Router()
+
+// Default nginx setup uses `merge_slashes` which causes the request URL to be
+// `https:/{url}` instead of `https://{url}`. This middleware fixes that.
+function fixNginxSlashMerge(req: Request, _res: Response, next: NextFunction) {
+  req.url = req.url.replace(/^\/https?:\/([^/]+)\/(.*)$/, '/https://$1/$2')
+
+  next()
+}
+
+router.use(fixNginxSlashMerge)
 
 router.param('statusUrl', async (_req, res, next, statusUrl: string) => {
   try {
@@ -91,12 +101,11 @@ router.get('/:statusUrl(*)/images/:number', async (req, res, next) => {
 // })
 
 router.get('/:statusUrl(*)', (_req, res, next) => {
-  console.log(_req.params)
   if (!res.locals.mastodon) {
     next()
     return
   }
-  console.log('send local')
+
   res.send(res.locals.mastodon)
 })
 
