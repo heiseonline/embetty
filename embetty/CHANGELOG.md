@@ -1,5 +1,11 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.2.0
+
+### Minor Changes
+
+- c997c8a: adds reply count, repost count and favourite count to mastodon post
+
 ## 2.1.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.2.2
+
+### Patch Changes
+
+- c997c8a: adds reply count, repost count and favourite count to mastodon post
+- Updated dependencies [c997c8a]
+  - @embetty/component@2.2.0
+  - @embetty/base@2.1.2
+
 ## 3.2.1
 
 ### Patch Changes

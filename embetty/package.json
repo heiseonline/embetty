@@ -1,6 +1,6 @@
 {
   "name": "@embetty/component",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "main": "dist/embetty.js",
   "license": "MIT",
   "scripts": {
