@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { Config } from '@jest/types'
-import findPackages, { Project } from '@pnpm/find-workspace-packages'
+import { findWorkspacePackages, Project } from '@pnpm/workspace.find-packages'
 import { defaults } from 'jest-config'
 import path from 'path'
 
 const workspaceRoot = path.join(__dirname, '../..')
 
 export async function findPackage(dir: string): Promise<Project | undefined> {
-  const packages = await findPackages(workspaceRoot)
+  const packages = await findWorkspacePackages(workspaceRoot)
 
   return packages.find((pkg) => pkg.dir === dir)
 }
@@ -52,7 +52,7 @@ export const createDefaultJestConfig = (
 })
 
 const config: () => Promise<Config.InitialOptions> = async () => {
-  const packages = await findPackages(workspaceRoot)
+  const packages = await findWorkspacePackages(workspaceRoot)
 
   // const projects = packages
   //   .filter((pkg) => pkg.manifest.name !== '@embetty/monorepo')
