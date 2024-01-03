@@ -5,7 +5,7 @@
   "main": ".eslintrc",
   "license": "UNLICENSED",
   "dependencies": {
-    "@heise/eslint-config": "^20.0.41"
+    "@heise/eslint-config": "^21.0.2"
   },
   "private": true
 }
