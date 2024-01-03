@@ -152,6 +152,24 @@ $quoteLineWidth: 4px;
     }
   }
 
+  .meta-bar {
+    display: flex;
+    justify-content: flex-end;
+    color: #777;
+    stroke: #777;
+    box-sizing: border-box;
+    gap: 1rem;
+    margin: 0.5rem;
+    text-decoration: none;
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+
   #links {
     border: 1px solid var(--embetty-border-color, $embetty-border-color);
     border-width: 1px;
