@@ -47,7 +47,7 @@ $quoteLineWidth: 4px;
   header {
     display: flex;
     align-items: center;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 
     img {
       width: $profile-image-width;
@@ -81,14 +81,14 @@ $quoteLineWidth: 4px;
     p {
       margin: 0 auto 0.5rem;
       line-height: 1.4;
-      letter-spacing: .01em;
+      letter-spacing: 0.01em;
 
       @media (min-width: 600px) {
         font-size: 18px;
       }
 
       a {
-        color: #012469;
+        color: var(--embetty-link-color, $embetty-link-color);
         text-decoration: none;
       }
 
@@ -159,8 +159,9 @@ $quoteLineWidth: 4px;
 
     &:hover {
       background-color: rgb(245, 248, 250);
-      border-color: rgba(136,153,166,.5);
-      transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
+      border-color: rgba(136, 153, 166, 0.5);
+      transition: background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out;
     }
 
     @media (min-width: 600px) {
@@ -184,12 +185,12 @@ $quoteLineWidth: 4px;
     }
 
     #link-body {
-      padding: .5rem;
+      padding: 0.5rem;
 
       @media (min-width: 600px) {
         display: flex;
         flex-direction: column;
-        padding: .5rem .8rem;
+        padding: 0.5rem 0.8rem;
       }
     }
 
@@ -197,7 +198,7 @@ $quoteLineWidth: 4px;
       font-size: 14px;
       line-height: 1.3;
       margin: 0;
-      margin-bottom: .3em;
+      margin-bottom: 0.3em;
     }
 
     p {
@@ -210,7 +211,7 @@ $quoteLineWidth: 4px;
         line-height: 18px;
         font-size: 14px;
         margin: 0;
-        margin-bottom: .3em;
+        margin-bottom: 0.3em;
       }
     }
 
@@ -221,7 +222,7 @@ $quoteLineWidth: 4px;
   }
 
   #created-at {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     display: block;
     font-size: 14px;
     color: #777;

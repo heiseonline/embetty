@@ -93,7 +93,7 @@ $quoteLineWidth: 4px;
       }
 
       a {
-        color: #012469;
+        color: var(--embetty-link-color, $embetty-link-color);
         text-decoration: none;
       }
 
