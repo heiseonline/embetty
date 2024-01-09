@@ -9,12 +9,13 @@ html {
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
   margin: auto;
   padding: 1rem;
 }
 
-embetty-tweet, pre {
+embetty-tweet,
+pre {
   margin: 1rem auto !important;
 }
 
@@ -39,5 +40,6 @@ pre {
 
 .my-theme {
   --embetty-border-color: red;
-  --embetty-font-family: 'Comic Sans MS'
+  --embetty-font-family: 'Comic Sans MS';
+  --embetty-link-color: red;
 }
