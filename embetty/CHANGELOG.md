@@ -1,5 +1,11 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.3.0
+
+### Minor Changes
+
+- f162d56: link-color can be configured via variable
+
 ## 2.2.0
 
 ### Minor Changes
