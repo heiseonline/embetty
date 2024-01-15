@@ -41,8 +41,8 @@ const template = `
 
         <a href="{{twitterUrl}}" target="_blank" rel="noopener" id="created-at" class="tweet__link">
           <time datetime="{{createdAt.toISOString}}">{{createdAt.toLocaleString}}</time>
-          via Twitter
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"/></svg>
+          via X (Twitter)
+          <svg id="xcorp-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22.1 20" preserveAspectRatio="xMinYMin" style="height: 12px"><path id="path2" d="M17.4,0h3.4l-7.4,8.5L22.1,20h-6.8L10,13l-6.1,7H0.4l7.9-9.1L0,0h7l4.8,6.4L17.4,0z M16.2,18h1.9L6,1.9H4 L16.2,18z"/></svg>
         </a>
 
         <a href="https://www.heise.de/embetty?wt_mc=link.embetty.poweredby" target="_blank" rel="noopener" id="powered-by" title="embetty - displaying remote content without compromising your privacy.">
