@@ -1,5 +1,11 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.3.1
+
+### Patch Changes
+
+- 11c7406: feat: update twitter branding to x branding
+
 ## 2.3.0
 
 ### Minor Changes
