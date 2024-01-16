@@ -1,5 +1,4 @@
-# embetty · [![Build Status](https://travis-ci.org/heiseonline/embetty.svg?branch=master)](https://travis-ci.org/heiseonline/embetty) [![Dependency Status](https://img.shields.io/david/heiseonline/embetty.svg?style=flat-square)](https://david-dm.org/heiseonline/embetty) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
+# embetty 
 Embetty displays remote content like tweets or videos without compromising your privacy.
 
 <p align="center">
