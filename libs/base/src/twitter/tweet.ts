@@ -88,7 +88,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   get links() {
-    return this.tweetData?.data.entities.urls ?? []
+    return this.tweetData?.data.entities?.urls ?? []
   }
 
   get profileImageUrl() {
@@ -154,7 +154,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   async getLinkImageUrl(): Promise<string | undefined> {
-    const url = this.tweetData.data.entities.urls[0]?.expanded_url
+    const url = this.tweetData.data.entities?.urls[0]?.expanded_url
 
     if (!url) {
       return undefined
@@ -195,8 +195,8 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
     const authorId = includedTweet?.author_id
 
     return {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
-      url: this.tweetData.data.entities.urls[0]?.expanded_url!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      url: this.tweetData.data.entities?.urls[0]?.expanded_url!,
       description: includedTweet?.text,
       image: this.tweetData.includes.users
         .find((u) => u.id === authorId)
