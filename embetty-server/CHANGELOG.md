@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.5
+
+### Patch Changes
+
+- Updated dependencies [fd3b8e3]
+  - @embetty/base@2.1.3
+  - @embetty/component@2.3.1
+
 ## 3.2.4
 
 ### Patch Changes
