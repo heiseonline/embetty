@@ -28,7 +28,7 @@ export interface TwitterError {
 export interface Data {
   public_metrics: PublicMetrics
   created_at: string
-  entities: Entities
+  entities?: Entities
   id: string
   edit_history_tweet_ids: string[]
   reply_settings: string
