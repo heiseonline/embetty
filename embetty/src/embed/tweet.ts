@@ -20,13 +20,13 @@ const template = `
       </header>
       <article>
         <p>{{{ fullText }}}</p>
-        {{#hasMedia}}
-          <section class="media-{{media.length}}" id="media">
-            {{#media}}
+        {{#hasImages}}
+          <section class="media-{{images.length}}" id="media">
+            {{#images}}
               <a target="_blank" href="{{imageUrl}}"><img src="{{imageUrl}}"></a>
-            {{/media}}
+            {{/images}}
           </section>
-        {{/hasMedia}}
+        {{/hasImages}}
 
         {{#hasLinks}}
           <a href="{{link.url}}" target="_blank" rel="noopener" id="links">
@@ -34,6 +34,7 @@ const template = `
             <section id="link-body">
               <h3>{{link.title}}</h3>
               {{#link.description}}<p>{{link.description}}</p>{{/link.description}}
+              <p>{{#hasAdditionalMedia}}Weitere Inhalte des Posts auf x.com{{/hasAdditionalMedia}}</p>
               <span>{{linkHostname}}</span>
             </section>
           </a>
@@ -166,11 +167,16 @@ export class Tweet extends Embed<EmbettyTweet> {
   }
 
   get fullText() {
-    return this._data?.data.text
-      .replace(/#([^\s-]+)/g, (hashTag: string, word: string) => {
+    const text = this._data?.data.note_tweet
+      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        this._data?.data.note_tweet.text
+      : this._data?.data.text
+
+    return (text ?? '')
+      .replaceAll(/#([^\s-]+)/g, (hashTag: string, word: string) => {
         return `<a href="https://twitter.com/hashtag/${word}">${hashTag}</a>`
       })
-      .replace(/@(\w+)/g, (name: string, word: string) => {
+      .replaceAll(/@(\w+)/g, (name: string, word: string) => {
         return `<a href="https://twitter.com/${word}">${name}</a>`
       })
     // .replace(/(https:\/\/\S+)$/, (link: string) => {
@@ -204,16 +210,30 @@ export class Tweet extends Embed<EmbettyTweet> {
     return this.user?.username
   }
 
-  get media() {
-    return (this._data?.data.attachments?.media_keys ?? []).map(
-      (_key, index) => ({
-        imageUrl: `${this.url}/images/${index}`,
-      }),
+  get images() {
+    const images = (this._data?.includes.media ?? []).filter(
+      (include) => include.type === 'photo',
+    )
+
+    return (images ?? []).map((_key, index) => ({
+      imageUrl: `${this.url}/images/${index}`,
+    }))
+  }
+
+  get hasAdditionalMedia() {
+    console.log(
+      'hasAdditionalMedia',
+      this.images.length,
+      this._data?.data.attachments?.media_keys.length,
+    )
+    return (
+      this.images.length <
+      (this._data?.data.attachments?.media_keys.length ?? 0)
     )
   }
 
-  get hasMedia() {
-    return this.media.length > 0
+  get hasImages() {
+    return this.images.length > 0
   }
 
   get links() {
@@ -247,6 +267,7 @@ export class Tweet extends Embed<EmbettyTweet> {
     await super.becomesVisible()
 
     const linkImage = this.shadowRoot!.querySelector('#links img')
+
     if (linkImage) {
       linkImage.addEventListener('error', () => {
         linkImage.remove()

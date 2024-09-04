@@ -5,19 +5,9 @@
     "outDir": "./dist",
     "importHelpers": false,
     "target": "ES2015",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2016",
-      "ES2020"
-    ]
+    "lib": ["DOM", "DOM.Iterable", "ES2016", "ES2020", "ES2021.String"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ],
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"],
   "references": []
 }

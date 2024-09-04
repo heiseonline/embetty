@@ -54,7 +54,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
       params: {
         // tweet_mode: 'extended',
         'tweet.fields':
-          'attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld,edit_history_tweet_ids,edit_controls',
+          'attachments,author_id,context_annotations,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,possibly_sensitive,public_metrics,referenced_tweets,reply_settings,source,text,withheld,edit_history_tweet_ids,edit_controls,note_tweet',
         expansions:
           'attachments.poll_ids,attachments.media_keys,author_id,geo.place_id,in_reply_to_user_id,referenced_tweets.id,entities.mentions.username,referenced_tweets.id.author_id,edit_history_tweet_ids',
         'user.fields': 'id,name,username,profile_image_url',
@@ -106,7 +106,9 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   get media() {
     return (this.tweetData?.data.attachments?.media_keys ?? [])
       .map((key) =>
-        this.tweetData?.includes.media.find((media) => media.media_key === key),
+        this.tweetData?.includes.media.find(
+          (media) => media.media_key === key && media.type === 'photo',
+        ),
       )
       .filter(isDefined)
   }
