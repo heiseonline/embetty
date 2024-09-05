@@ -1,6 +1,6 @@
 {
   "name": "@embetty/base",
-  "version": "2.1.3",
+  "version": "2.1.2",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
