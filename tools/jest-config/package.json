@@ -11,8 +11,8 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "@pnpm/logger": "^5.0.0",
-    "@pnpm/workspace.find-packages": "^1.1.8",
-    "tslib": "^2.6.2"
+    "@pnpm/logger": "^5.2.0",
+    "@pnpm/workspace.find-packages": "^1.1.12",
+    "tslib": "^2.7.0"
   }
 }
