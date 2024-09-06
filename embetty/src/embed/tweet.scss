@@ -96,6 +96,20 @@ $quoteLineWidth: 4px;
         text-decoration: underline;
       }
     }
+
+    .media-hint {
+      background-color: #e8e8e8;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+
+      a {
+        color: #444;
+        font-size: 14px;
+        text-decoration: underline;
+      }
+    }
   }
 
   #media {

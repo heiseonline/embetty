@@ -27,6 +27,13 @@ const template = `
             {{/images}}
           </section>
         {{/hasImages}}
+        {{#hasAdditionalMedia}}
+          <section class="media-hint">
+            <a href="{{twitterUrl}}" target="_blank" rel="noopener">
+              Weitere Inhalte des Posts auf x.com
+            </a>
+          </section>
+        {{/hasAdditionalMedia}}
 
         {{#hasLinks}}
           <a href="{{link.url}}" target="_blank" rel="noopener" id="links">
@@ -34,7 +41,6 @@ const template = `
             <section id="link-body">
               <h3>{{link.title}}</h3>
               {{#link.description}}<p>{{link.description}}</p>{{/link.description}}
-              <p>{{#hasAdditionalMedia}}Weitere Inhalte des Posts auf x.com{{/hasAdditionalMedia}}</p>
               <span>{{linkHostname}}</span>
             </section>
           </a>
@@ -168,8 +174,7 @@ export class Tweet extends Embed<EmbettyTweet> {
 
   get fullText() {
     const text = this._data?.data.note_tweet
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        this._data?.data.note_tweet.text
+      ? this._data?.data.note_tweet.text
       : this._data?.data.text
 
     return (text ?? '')
@@ -221,11 +226,6 @@ export class Tweet extends Embed<EmbettyTweet> {
   }
 
   get hasAdditionalMedia() {
-    console.log(
-      'hasAdditionalMedia',
-      this.images.length,
-      this._data?.data.attachments?.media_keys.length,
-    )
     return (
       this.images.length <
       (this._data?.data.attachments?.media_keys.length ?? 0)
