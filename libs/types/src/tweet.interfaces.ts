@@ -34,6 +34,7 @@ export interface Data {
   reply_settings: string
   possibly_sensitive: boolean
   edit_controls: EditControls
+  note_tweet?: NoteTweet
   conversation_id: string
   lang: string
   author_id: string
@@ -41,6 +42,10 @@ export interface Data {
   context_annotations: ContextAnnotation[]
   attachments?: Attachments
   referenced_tweets?: ReferencedTweet[]
+}
+
+export interface NoteTweet {
+  text: string
 }
 
 export interface ReferencedTweet {
