@@ -1,5 +1,11 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 2.4.0
+
+### Minor Changes
+
+- 3a87762: added media hint and full tweets are now displayed
+
 ## 2.3.1
 
 ### Patch Changes

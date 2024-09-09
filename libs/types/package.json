@@ -1,6 +1,6 @@
 {
   "name": "@embetty/types",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives",
