@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.8
+
+### Patch Changes
+
+- 0c9282f: docker setup
+
 ## 3.2.7
 
 ### Patch Changes
