@@ -8,7 +8,7 @@
     "test": "pnpm -r test",
     "prepare": "husky install",
     "bump": "changeset version",
-    "release": "changeset publish",
+    "release": "pnpm build && changeset publish",
     "lint": "pnpm run -r --stream lint --quiet"
   },
   "dependencies": {
