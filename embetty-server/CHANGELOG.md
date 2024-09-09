@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.7
+
+### Patch Changes
+
+- 2af27bb: (docker version bump)
+
 ## 3.2.6
 
 ### Patch Changes
