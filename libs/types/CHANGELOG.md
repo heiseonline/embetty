@@ -1,5 +1,12 @@
 # @embetty/types
 
+## 2.1.3
+
+### Patch Changes
+
+- fd3b8e3: fixes runtime error where the app tries to access an undefined entities property
+- 3a87762: added media hint and full tweets are now displayed
+
 ## 2.1.2
 
 ### Patch Changes

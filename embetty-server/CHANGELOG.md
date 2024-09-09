@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.2.5
+
+### Patch Changes
+
+- 3a87762: added media hint and full tweets are now displayed
+- Updated dependencies [fd3b8e3]
+- Updated dependencies [3a87762]
+  - @embetty/base@2.1.3
+  - @embetty/component@2.4.0
+
 ## 3.2.4
 
 ### Patch Changes
