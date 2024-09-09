@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.10
+
+### Patch Changes
+
+- b50d31d: docker release
+
 ## 3.2.9
 
 ### Patch Changes
