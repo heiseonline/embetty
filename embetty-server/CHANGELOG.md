@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.12
+
+### Patch Changes
+
+- 2b69884: Mention embetty server version on bootstrap'
+
 ## 3.2.7-3.2.11
 
 Fixed docker CI setup
