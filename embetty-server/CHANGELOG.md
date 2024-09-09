@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.9
+
+### Patch Changes
+
+- 9f26bcb: docker deploy
+
 ## 3.2.8
 
 ### Patch Changes
