@@ -1,34 +1,8 @@
 # Changelog
 
-## 3.2.11
+## 3.2.7-3.2.11
 
-### Patch Changes
-
-- 3463707: docker release
-
-## 3.2.10
-
-### Patch Changes
-
-- b50d31d: docker release
-
-## 3.2.9
-
-### Patch Changes
-
-- 9f26bcb: docker deploy
-
-## 3.2.8
-
-### Patch Changes
-
-- 0c9282f: docker setup
-
-## 3.2.7
-
-### Patch Changes
-
-- 2af27bb: (docker version bump)
+Fixed docker CI setup
 
 ## 3.2.6
 
