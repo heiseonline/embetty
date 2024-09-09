@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.6
+
+### Patch Changes
+
+- b5af2d5: upgraded deps
+
 ## 3.2.5
 
 ### Patch Changes
