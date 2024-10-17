@@ -12,6 +12,6 @@ export class YoutubeVideo extends Video<YoutubeVideoData> {
   }
 
   get posterImageUrl() {
-    return `https://img.youtube.com/vi/${this.id}/hqdefault.jpg`
+    return `https://img.youtube.com/vi/${this.id}/maxresdefault.jpg`
   }
 }
