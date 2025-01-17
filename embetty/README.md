@@ -9,7 +9,7 @@ See it in action on our [demo pages](https://heiseonline.github.io/embetty/).
 
 ## Quick Start
 
-1. Setup your [embetty-server](https://github.com/heiseonline/embetty-server).
+1. Setup your [embetty-server](https://github.com/heiseonline/embetty/blob/master/embetty-server/README.md).
 2. Include the embetty lib into your HTML document.
 3. Insert an embed by using a custom tag (see embeds section below).
 
@@ -32,7 +32,7 @@ Example:
 
 ### Configure the Embetty server
 
-Embetty needs a [server component](https://github.com/heiseonline/embetty-server) that you need to run on your infrastructure. Configure the server URL for embetty using a `<meta data-embetty-server>` tag:
+Embetty needs a [server component](https://github.com/heiseonline/embetty/blob/master/embetty-server/README.md) that you need to run on your infrastructure. Configure the server URL for embetty using a `<meta data-embetty-server>` tag:
 
 ```html
 <head>
