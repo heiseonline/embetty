@@ -16,7 +16,8 @@ $quoteLineWidth: 4px;
   }
 
   article {
-    border-left: $quoteLineWidth solid #bbb;
+    border-left: $quoteLineWidth solid
+      var(--embetty-quote-line-color, $embetty-quote-line-color);
     margin-left: calc($profile-image-width / 2 - $quoteLineWidth / 2);
     padding-left: 2rem;
     padding-bottom: 1rem;
@@ -77,7 +78,7 @@ $quoteLineWidth: 4px;
     a,
     a:hover {
       font-size: 14px;
-      color: #697882;
+      color: var(--embetty-secondary-font-color, $embetty-secondary-font-color);
       text-decoration: none;
     }
   }
@@ -155,8 +156,8 @@ $quoteLineWidth: 4px;
   .meta-bar {
     display: flex;
     justify-content: flex-end;
-    color: #777;
-    stroke: #777;
+    color: var(--embetty-secondary-font-color, $embetty-secondary-font-color);
+    stroke: var(--embetty-secondary-font-color, $embetty-secondary-font-color);
     box-sizing: border-box;
     gap: 1rem;
     margin: 0.5rem;
@@ -177,12 +178,25 @@ $quoteLineWidth: 4px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    color: #14171a;
+    color: var(
+      --embetty-links-primary-font-color,
+      $embetty-links-primary-font-color
+    );
+    background: var(
+      --embetty-links-background-color,
+      $embetty-links-background-color
+    );
     font-size: 14px;
 
     &:hover {
-      background-color: rgb(245, 248, 250);
-      border-color: rgba(136, 153, 166, 0.5);
+      background-color: var(
+        --embetty-links-hover-background-color,
+        $embetty-links-hover-background-color
+      );
+      border-color: var(
+        --embetty-links-hover-border-color,
+        $embetty-links-hover-border-color
+      );
       transition: background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out;
     }
@@ -240,7 +254,10 @@ $quoteLineWidth: 4px;
 
     span {
       margin-top: auto;
-      color: #999;
+      color: var(
+        --embetty-links-secondary-font-color,
+        $embetty-links-secondary-font-color
+      );
     }
   }
 
@@ -248,7 +265,7 @@ $quoteLineWidth: 4px;
     margin-top: 0.5rem;
     display: block;
     font-size: 14px;
-    color: #777;
+    color: var(--embetty-secondary-font-color, $embetty-secondary-font-color);
     text-decoration: none;
 
     svg {
