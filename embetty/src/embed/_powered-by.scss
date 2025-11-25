@@ -1,3 +1,5 @@
+@import '../vars';
+
 #powered-by {
   position: absolute;
   z-index: 3;
@@ -5,9 +7,9 @@
   bottom: 0px;
   padding: 20px 46px 5px 20px;
   font-size: 14px;
-  color: #777;
+  color: var(--embetty-secondary-font-color, $embetty-secondary-font-color);
   text-decoration: none;
-  opacity: .3;
+  opacity: 0.3;
 
   &:hover {
     opacity: 1;
