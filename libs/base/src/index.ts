@@ -1,5 +1,6 @@
 export * from './embed'
 export * from './embetty'
+export * from './guarded-http-client'
 export * from './mastodon'
 export * from './twitter/tweet'
 export * from './twitter/twitter-api-exception'

@@ -1,7 +1,11 @@
 import { MastodonStatus } from '@embetty/base'
 import { NextFunction, Request, Response, Router } from 'express'
 import { embetty } from '../embetty'
-import { BadRequestException, NotFoundException } from '../exceptions'
+import {
+  BadRequestException,
+  ForbiddenException,
+  NotFoundException,
+} from '../exceptions'
 
 const router: Router = Router()
 
@@ -15,11 +19,36 @@ function fixNginxSlashMerge(req: Request, _res: Response, next: NextFunction) {
 
 router.use(fixNginxSlashMerge)
 
+// Unset means every instance is allowed. Private addresses are rejected by
+// @embetty/base regardless.
+function getAllowedInstances(): ReadonlySet<string> | undefined {
+  const instances = (process.env.MASTODON_INSTANCES ?? '')
+    .split(',')
+    .map((instance) => instance.trim().toLowerCase())
+    .filter((instance) => instance.length > 0)
+
+  return instances.length > 0 ? new Set(instances) : undefined
+}
+
+function parseStatusUrl(statusUrl: string) {
+  try {
+    return MastodonStatus.parseUrl(statusUrl)
+  } catch {
+    throw new BadRequestException()
+  }
+}
+
+function assertAllowedInstance(statusUrl: string) {
+  const { instance } = parseStatusUrl(statusUrl)
+  const allowedInstances = getAllowedInstances()
+  if (allowedInstances && !allowedInstances.has(instance)) {
+    throw new ForbiddenException()
+  }
+}
+
 router.param('statusUrl', async (_req, res, next, statusUrl: string) => {
   try {
-    if (!/^https?:\/\/([^/]+)\/@[^/]+\/(\d+)$/.test(statusUrl)) {
-      throw new BadRequestException()
-    }
+    assertAllowedInstance(statusUrl)
 
     res.locals.mastodon = await embetty.loadMastodonStatus(statusUrl)
     next()

@@ -1,7 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import { AxiosInstance, AxiosRequestConfig } from 'axios'
 import debug_ from 'debug'
-import { Agent as HttpAgent } from 'http'
-import { Agent as HttpsAgent } from 'https'
 import { CacheEntry, EmbettyCache } from './cache/cache'
 import { hashRequest } from './util'
 
@@ -11,16 +9,10 @@ export type EmbettyRequest<T> = (
   options: AxiosRequestConfig,
 ) => Promise<CacheEntry<T> | undefined>
 
-export const http = axios.create({
-  httpAgent: new HttpAgent({ keepAlive: true }),
-  httpsAgent: new HttpsAgent({ keepAlive: true }),
-  headers: {
-    'User-Agent':
-      'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
-  },
-})
-
-export const cachedRequest = <T>(cache: EmbettyCache): EmbettyRequest<T> => {
+export const cachedRequest = <T>(
+  cache: EmbettyCache,
+  http: AxiosInstance,
+): EmbettyRequest<T> => {
   return async (
     options: AxiosRequestConfig,
   ): Promise<CacheEntry<T> | undefined> => {
@@ -37,7 +29,7 @@ export const cachedRequest = <T>(cache: EmbettyCache): EmbettyRequest<T> => {
     }
 
     debug(`Requesting ${debugId} ...`)
-    const response = await axios.request<T>(options)
+    const response = await http.request<T>(options)
 
     debug(`Caching ${debugId} ...`)
     value = {

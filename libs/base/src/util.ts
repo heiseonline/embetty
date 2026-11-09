@@ -21,4 +21,8 @@ export const hash = (object: object) => {
   return sha256.digest('base64').toString()
 }
 
-export const hashRequest = ({ url }: AxiosRequestConfig) => hash({ url })
+// Bumped to discard entries cached before outgoing requests were guarded.
+const CACHE_KEY_VERSION = 2
+
+export const hashRequest = ({ url }: AxiosRequestConfig) =>
+  hash({ url, version: CACHE_KEY_VERSION })

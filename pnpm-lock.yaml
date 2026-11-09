@@ -230,8 +230,8 @@ importers:
   libs/base:
     dependencies:
       axios:
-        specifier: ^1.20.0
-        version: 1.20.0(debug@4.3.7)
+        specifier: ^1.21.0
+        version: 1.21.0(debug@4.3.7)
       cheerio:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
@@ -244,6 +244,9 @@ importers:
       ioredis:
         specifier: ^5.4.1
         version: 5.4.1
+      ipaddr.js:
+        specifier: ^2.2.0
+        version: 2.2.0
       lru-cache:
         specifier: ^9.1.2
         version: 9.1.2
@@ -2466,10 +2469,10 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
-  axios@1.20.0:
+  axios@1.21.0:
     resolution:
       {
-        integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==,
+        integrity: sha512-YCzXMB53Q9PZBsh7yN7wtapit4WepwcHS2fP8QhGsBxSz5YtgYobV7GGlWlAJi+RxfU77GQTQi2DSLUma42EYA==,
       }
 
   babel-jest@29.7.0:
@@ -10652,7 +10655,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.0.0
 
-  axios@1.20.0(debug@4.3.7):
+  axios@1.21.0(debug@4.3.7):
     dependencies:
       follow-redirects: 1.16.3(debug@4.3.7)
       form-data: 4.0.6

@@ -1,5 +1,5 @@
 import { MastodonStatusData } from '@embetty/types'
-import { AxiosRequestConfig } from 'axios'
+import { AxiosInstance, AxiosRequestConfig } from 'axios'
 import contentType from 'content-type'
 import debug_ from 'debug'
 import { TweetResponse } from '../../types/src/tweet.interfaces'
@@ -8,6 +8,7 @@ import { LRU } from './cache/lru'
 import { Redis } from './cache/redis'
 import { Embed, EmbedOptions } from './embed'
 import { FacebookVideo, FacebookVideoData } from './facebook-video'
+import { createGuardedHttpClient } from './guarded-http-client'
 import { MastodonStatus } from './mastodon'
 import { EmbettyRequest, cachedRequest } from './request-cache'
 import { Tweet } from './twitter/tweet'
@@ -16,6 +17,24 @@ import { YoutubeVideo, YoutubeVideoData } from './youtube-video'
 
 const debug = debug_('embetty-base:embetty')
 
+// Images are served from Embetty's own origin, so anything a browser might
+// execute (text/html, image/svg+xml, ...) must never pass through.
+const IMAGE_CONTENT_TYPES: ReadonlySet<string> = new Set([
+  'image/avif',
+  'image/gif',
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+])
+
+export class UnsupportedContentTypeError extends Error {
+  override name = 'UnsupportedContentTypeError'
+
+  constructor(readonly contentType: string) {
+    super(`Unsupported content type: ${contentType}`)
+  }
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ClassOf<T> = new (...args: any[]) => T
 
@@ -23,9 +42,12 @@ export class Embetty<T> {
   cache: EmbettyCache
   request: EmbettyRequest<T>
 
-  constructor(cache: EmbettyCache = Embetty.createCache()) {
+  constructor(
+    cache: EmbettyCache = Embetty.createCache(),
+    http: AxiosInstance = createGuardedHttpClient(),
+  ) {
     this.cache = cache
-    this.request = cachedRequest(this.cache)
+    this.request = cachedRequest(this.cache, http)
   }
 
   async close() {
@@ -41,8 +63,8 @@ export class Embetty<T> {
     return this.request(options) as Promise<CacheEntry<T> | undefined>
   }
 
-  async getBinary<T>(options: AxiosRequestConfig) {
-    const response = await this.get<T>({
+  async getBinary(options: AxiosRequestConfig) {
+    const response = await this.get<Buffer>({
       ...options,
       responseType: 'arraybuffer',
     })
@@ -57,7 +79,17 @@ export class Embetty<T> {
     }
   }
 
-  async loadEmbed<T extends Embed<any>>(
+  async getImage(options: AxiosRequestConfig) {
+    const binary = await this.getBinary(options)
+
+    if (binary && !IMAGE_CONTENT_TYPES.has(binary.type)) {
+      throw new UnsupportedContentTypeError(binary.type)
+    }
+
+    return binary
+  }
+
+  async loadEmbed<T extends Embed<unknown, unknown>>(
     Class: ClassOf<T>,
     id: string,
     options = {},

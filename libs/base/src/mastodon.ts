@@ -5,6 +5,22 @@ function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined
 }
 
+export interface MastodonStatusUrl {
+  /** Host including a non-default port, e.g. `mastodon.social`. */
+  instance: string
+  statusId: string
+}
+
+const STATUS_PATH = /^\/@[^/]+\/(\d+)$/
+
+function tryParseUrl(url: string): URL | undefined {
+  try {
+    return new URL(url)
+  } catch {
+    return undefined
+  }
+}
+
 export class MastodonStatus extends Embed<MastodonStatusData> {
   instance: string
   statusId: string
@@ -12,14 +28,28 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
   constructor(id: string, options: EmbedOptions<MastodonStatusData>) {
     super(id, options)
 
-    const [, host, statusId] =
-      id.match(/^https?:\/\/([^/]+)\/@[^/]+\/(\d+)$/) || []
-    if (!host || !statusId) {
+    const { instance, statusId } = MastodonStatus.parseUrl(id)
+    this.instance = instance
+    this.statusId = statusId
+  }
+
+  static parseUrl(statusUrl: string): MastodonStatusUrl {
+    const url = tryParseUrl(statusUrl)
+    const statusId = url?.pathname.match(STATUS_PATH)?.[1]
+
+    if (
+      !url ||
+      !statusId ||
+      !['http:', 'https:'].includes(url.protocol) ||
+      url.username ||
+      url.password ||
+      url.search ||
+      url.hash
+    ) {
       throw new Error('Invalid mastodon status url')
     }
 
-    this.instance = host
-    this.statusId = statusId
+    return { instance: url.host, statusId }
   }
 
   get apiUrl(): string {
@@ -50,7 +80,7 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
 
   getProfileImage() {
     const url = this.profileImageUrl
-    return url ? this.embetty.getBinary({ url }) : undefined
+    return url ? this.embetty.getImage({ url }) : undefined
   }
 
   get media() {
@@ -66,7 +96,7 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
   async getImage(index = 0) {
     const imageUrl = this.getImageUrl(index)
 
-    return imageUrl ? this.embetty.getBinary({ url: imageUrl }) : undefined
+    return imageUrl ? this.embetty.getImage({ url: imageUrl }) : undefined
   }
 
   get linkImageUrl(): string {
@@ -81,7 +111,7 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
       return undefined
     }
 
-    return this.embetty.getBinary({ url })
+    return this.embetty.getImage({ url })
   }
 
   get _requestOptions(): EmbettyRequest {

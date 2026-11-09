@@ -12,6 +12,6 @@ export abstract class Video<T, U = T> extends Embed<T, U> {
       return undefined
     }
 
-    return this.embetty.getBinary({ url: this.posterImageUrl })
+    return this.embetty.getImage({ url: this.posterImageUrl })
   }
 }

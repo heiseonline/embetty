@@ -100,7 +100,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
 
   getProfileImage() {
     const url = this.profileImageUrl
-    return url ? this.embetty.getBinary({ url }) : undefined
+    return url ? this.embetty.getImage({ url }) : undefined
   }
 
   get media() {
@@ -122,7 +122,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   async getImage(idx = 0) {
     const imageUrl = await this.getImageUrl(idx)
 
-    return imageUrl ? this.embetty.getBinary({ url: imageUrl }) : undefined
+    return imageUrl ? this.embetty.getImage({ url: imageUrl }) : undefined
   }
 
   async _retrieveMeta(url: string): Promise<UrlMeta | undefined> {
@@ -174,7 +174,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
       return undefined
     }
 
-    return this.embetty.getBinary({ url })
+    return this.embetty.getImage({ url })
   }
 
   get referencedTweet() {
@@ -207,15 +207,17 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   async _retrieveMetas() {
-    this.linkMetas = this.referencedTweetMeta
-      ? [this.referencedTweetMeta]
-      : (
-          await Promise.all(
-            this.links.map((link) =>
-              this._retrieveMeta(link.expanded_url || link.url),
-            ),
-          )
-        ).filter(isDefined)
+    if (this.referencedTweetMeta) {
+      this.linkMetas = [this.referencedTweetMeta]
+      return
+    }
+
+    const metas = await Promise.all(
+      this.links.map((link) =>
+        this._retrieveMeta(link.expanded_url || link.url),
+      ),
+    )
+    this.linkMetas = metas.filter(isDefined)
   }
 
   override async retrieve() {

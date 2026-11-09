@@ -1,6 +1,10 @@
+import {
+  ForbiddenTargetError,
+  UnsupportedContentTypeError,
+} from '@embetty/base'
 import express, { Express, NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
-import { INTERNAL_SERVER_ERROR } from 'http-status'
+import { BAD_GATEWAY, FORBIDDEN, INTERNAL_SERVER_ERROR } from 'http-status'
 import logger from 'morgan'
 import nunjucks from 'nunjucks'
 import { URL } from 'url'
@@ -42,11 +46,35 @@ app.use((_req, _res, next) => {
   next(new NotFoundException())
 })
 
-app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-  let statusCode: number = INTERNAL_SERVER_ERROR
+const hasCause = (error: unknown): error is { cause: unknown } =>
+  typeof error === 'object' &&
+  error !== null &&
+  'cause' in error &&
+  error.cause !== undefined
+
+// axios and follow-redirects wrap errors raised by @embetty/base's guard.
+function rootCause(error: unknown): unknown {
+  return hasCause(error) ? rootCause(error.cause) : error
+}
+
+function statusCodeOf(err: unknown): number {
   if (err instanceof HttpException) {
-    statusCode = err.statusCode
+    return err.statusCode
   }
+
+  const cause = rootCause(err)
+  if (cause instanceof ForbiddenTargetError) {
+    return FORBIDDEN
+  }
+  if (cause instanceof UnsupportedContentTypeError) {
+    return BAD_GATEWAY
+  }
+
+  return INTERNAL_SERVER_ERROR
+}
+
+app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+  const statusCode = statusCodeOf(err)
 
   if (statusCode >= INTERNAL_SERVER_ERROR) {
     console.error(err)
