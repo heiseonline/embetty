@@ -9,7 +9,8 @@
     "prepare": "git config core.hooksPath .githooks",
     "bump": "changeset version && bun install",
     "release": "bun run build && bun scripts/publish.ts",
-    "typecheck": "bun check -b"
+    "typecheck": "bun check -b",
+    "demo": "bun run --filter \"@embetty/base...\" build && bun scripts/demo.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
