@@ -2,10 +2,7 @@ import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
 import VideoImplementation, { VideoImplementationClass } from './video/type'
 import * as Videos from './video/types'
-
-const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access
-  require('!css-loader!postcss-loader!sass-loader!./_video.scss').default.toString() as string
+import CSS from './_video.scss'
 
 @webcomponent(
   'embetty-video',
@@ -33,12 +30,10 @@ const CSS =
 )
 @observable()
 export default class Video<T> extends Embed<T> {
-  impl: VideoImplementation<T>
+  #impl?: VideoImplementation<T>
 
   constructor() {
     super()
-
-    this.impl = new this.Type(this)
 
     this.on('initialized', () => {
       this.playButton?.addEventListener(
@@ -49,6 +44,13 @@ export default class Video<T> extends Embed<T> {
         { once: true },
       )
     })
+  }
+
+  // Custom element constructors must not read attributes: elements created
+  // via document.createElement() or innerHTML get them only afterwards.
+  get impl(): VideoImplementation<T> {
+    this.#impl ??= new this.Type(this)
+    return this.#impl
   }
 
   activate() {

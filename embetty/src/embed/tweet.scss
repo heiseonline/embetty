@@ -174,7 +174,8 @@ $quoteLineWidth: 4px;
     &:hover {
       background-color: rgb(245, 248, 250);
       border-color: rgba(136, 153, 166, 0.5);
-      transition: background-color 0.15s ease-in-out,
+      transition:
+        background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out;
     }
 
@@ -221,6 +222,7 @@ $quoteLineWidth: 4px;
       @media (min-width: 600px) {
         display: block;
         flex-grow: 1;
+        -webkit-hyphens: auto;
         hyphens: auto;
         line-height: 18px;
         font-size: 14px;

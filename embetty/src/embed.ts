@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import EMBETTY_LOGO from '!raw-loader!../assets/embetty.svg'
+import EMBETTY_LOGO from '../assets/embetty.svg' with { type: 'text' }
 import { Template } from 'hogan.js'
 import { TEMPLATE_METADATA_KEY } from './decorators'
 

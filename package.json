@@ -8,17 +8,13 @@
     "test": "bun run --filter \"*\" test",
     "prepare": "git config core.hooksPath .githooks",
     "bump": "changeset version && bun install",
-    "release": "bun run build && bun scripts/publish.ts"
-  },
-  "dependencies": {
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "release": "bun run build && bun scripts/publish.ts",
+    "typecheck": "bun check -b"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@embetty/tsconfig": "workspace:^",
     "@types/bun": "^1.4.4",
-    "@types/jest": "^29.5.12",
     "@types/node": "^24.19.2"
   },
   "workspaces": [
@@ -26,8 +22,5 @@
     "tools/*",
     "embetty",
     "embetty-server"
-  ],
-  "overrides": {
-    "typescript": "5.5.3"
-  }
+  ]
 }

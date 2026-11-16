@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'bun:test'
 import { MastodonStatus } from './mastodon'
 
 describe(`${MastodonStatus.name}.parseUrl`, () => {

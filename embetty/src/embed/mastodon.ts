@@ -2,10 +2,7 @@ import { MastodonStatusData } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
 import { parseHostname } from '../util'
-
-const CSS =
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  require('!css-loader!postcss-loader!sass-loader!./mastodon.scss').default.toString() as string
+import CSS from './mastodon.scss'
 
 const template = `
     <style>${CSS}</style>

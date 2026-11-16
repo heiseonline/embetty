@@ -67,3 +67,5 @@ jobs:
         run: bun install --frozen-lockfile
       - name: Lint
         run: bun lint --max-warnings=0
+      - name: Typecheck
+        run: bun run typecheck

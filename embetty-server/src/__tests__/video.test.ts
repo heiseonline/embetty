@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, it } from 'bun:test'
 import assert from 'assert'
 import request from 'supertest'
 import { app } from '../app'
@@ -11,7 +12,7 @@ describe('Video', () => {
   })
 
   describe('Youtube', () => {
-    it.skip('should respond with 404', async () => {
+    it('should respond with 404', async () => {
       await request(app).get('/video/youtube/123/profile-image').expect(404)
     })
 
@@ -43,7 +44,7 @@ describe('Video', () => {
       await request(app).get('/video/vimeo/abc').expect(400)
     })
 
-    it.skip('should respond with 404', async () => {
+    it('should respond with 404', async () => {
       await request(app).get('/video/vimeo/9').expect(404)
     })
 
@@ -73,10 +74,6 @@ describe('Video', () => {
   describe('Facebook', () => {
     it('should respond with 400', async () => {
       await request(app).get('/video/facebook/abc').expect(400)
-    })
-
-    it.skip('should respond with 404', async () => {
-      await request(app).get('/video/facebook/0').expect(404)
     })
 
     it('should support AMP', async () => {

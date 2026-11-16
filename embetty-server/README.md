@@ -32,9 +32,9 @@ $ docker run \
 
 ## Running Embetty server with a process manager
 
-This requires Node.js version 8 or later.
+This requires Node.js 24 or later.
 
-1. Install Embetty server by running `yarn global add @embetty/server`. This makes the `embetty` command available on the server.
+1. Install Embetty server by running `npm install --global @embetty/server`. This makes the `embetty` command available on the server.
 2. Setup a process manager like [Forever](https://github.com/foreverjs/forever), [PM2](https://github.com/Unitech/pm2) or [StrongLoop Process Manager](http://strong-pm.io/).
 3. Configure the Process manager to run `embetty start`. The command `embetty start --help` prints a list of all supported options.
 

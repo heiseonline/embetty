@@ -1,4 +1,4 @@
-import { FacebookVideo } from '@embetty/base/src/facebook-video'
+import { FacebookVideo } from '@embetty/base'
 import { Router } from 'express'
 import { embetty } from '../../embetty'
 import { BadRequestException } from '../../exceptions'

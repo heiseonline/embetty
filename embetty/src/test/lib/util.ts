@@ -1,7 +1,6 @@
-import { readJson } from 'fs-extra'
-import { join } from 'path'
-import { Tweet } from '../../embed/tweet'
+import { spyOn } from 'bun:test'
 import Video from '../../embed/video'
+import { respondWith } from './fetch'
 
 export function createElement<T extends HTMLElement>(
   tag: string,
@@ -32,10 +31,6 @@ export function createElement<T extends HTMLElement>(
   })
 }
 
-export function createTweet(status: string, attrs = {}) {
-  return createElement<Tweet>('embetty-tweet', { status, ...attrs })
-}
-
 export const createVideo = (videoId: string, type: string, attrs = {}) => {
   return createElement<Video<unknown>>('embetty-video', {
     ...attrs,
@@ -53,20 +48,6 @@ export const createVimeoVideo = (videoId: string, attrs = {}) =>
 export const createFacebookVideo = (videoId: string, attrs = {}) =>
   createVideo(videoId, 'facebook', attrs)
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window.fetch = jest.fn(() =>
-  Promise.resolve({ json: () => Promise.resolve({}) }),
-)
-
-const fetchSpy = jest.spyOn(window, 'fetch')
-export async function getFetchSpy(status: string) {
-  const json = await readJson(join(__dirname, `../responses/${status}.json`))
-  return fetchSpy.mockReturnValue({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    json() {
-      return Promise.resolve(json)
-    },
-  })
-}
+// Embeds fetch their data from the Embetty server once visible.
+export const mockServerResponse = (data: unknown) =>
+  spyOn(window, 'fetch').mockImplementation(respondWith(data))

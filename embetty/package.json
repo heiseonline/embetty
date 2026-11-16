@@ -4,10 +4,9 @@
   "main": "dist/embetty.js",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production webpack",
-    "dev": "webpack -w",
-    "clean": "rimraf dist",
-    "test": "jest"
+    "build": "rm -rf dist && bun build.ts",
+    "dev": "bun build.ts --watch",
+    "test": "bun test --preload ./src/test/setup.ts ./src"
   },
   "author": {
     "name": "Philipp Busse",
@@ -23,9 +22,6 @@
       "email": "stko@heise.de"
     }
   ],
-  "engines": {
-    "node": ">=14"
-  },
   "bugs": "https://github.com/heiseonline/embetty/issues",
   "homepage": "https://github.com/heiseonline/embetty",
   "repository": {
@@ -37,37 +33,13 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "core-js": "3.29.1",
     "hogan.js": "^3.0.2"
   },
   "devDependencies": {
-    "@embetty/jest-config": "workspace:*",
     "@embetty/tsconfig": "workspace:*",
     "@embetty/types": "workspace:^",
-    "@types/fs-extra": "^11.0.4",
+    "@happy-dom/global-registrator": "^21.0.4",
     "@types/hogan.js": "^3.0.5",
-    "@types/jest": "^29.5.12",
-    "autoprefixer": "^10.4.20",
-    "cpy-cli": "^4.2.0",
-    "css-loader": "^6.11.0",
-    "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "fs-extra": "^11.2.0",
-    "gh-pages": "^5.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "postcss": "^8.4.45",
-    "postcss-loader": "^7.3.4",
-    "raw-loader": "^4.0.2",
-    "rimraf": "^5.0.10",
-    "sass": "^1.78.0",
-    "sass-loader": "^13.3.3",
-    "ts-jest": "^29.2.5",
-    "ts-loader": "^9.5.1",
-    "typescript": "5.5.3",
-    "webpack": "^5.94.0",
-    "webpack-bundle-analyzer": "^4.10.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.2"
+    "sass": "^1.78.0"
   }
 }

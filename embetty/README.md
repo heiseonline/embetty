@@ -1,4 +1,5 @@
-# embetty 
+# embetty
+
 Embetty displays remote content like tweets or videos without compromising your privacy.
 
 <p align="center">
@@ -45,13 +46,13 @@ Embetty needs a [server component](https://github.com/heiseonline/embetty-server
 There are three options.
 
 1. Download an Embetty archive from the [releases page](https://github.com/heiseonline/embetty/releases). Make `embetty.js` available on your site.
-2. Use Embetty in your npm project: `yarn add @embetty/component` or `npm install @embetty/component --save`. Then import embetty into your main script (i.e. `import '@embetty/component'`).
+2. Use Embetty in your npm project: `npm install @embetty/component` (or `bun add @embetty/component`). Then import embetty into your main script (i.e. `import '@embetty/component'`).
 3. Clone this repository and build `./dist/embetty.js`:
    ```sh
    $ git clone https://github.com/heiseonline/embetty
    $ cd embetty
-   $ yarn
-   $ yarn build
+   $ bun install
+   $ bun run build
    ```
 
 ### Supported embed types
@@ -129,9 +130,8 @@ document.querySelector('embetty-tweet').addEventListener('initialized', function
 ## Testing
 
 1. Clone this repository.
-2. `yarn`
-3. export the `TWITTER_` tokens mentioned in https://github.com/heiseonline/embetty-server
-4. `yarn test`
+2. `bun install`
+3. `bun run test`
 
 ## Caveats
 

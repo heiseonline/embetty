@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'bun:test'
 import { webcomponent } from './decorators'
 import { Embed } from './embed'
 import { createElement } from './test/lib/util'

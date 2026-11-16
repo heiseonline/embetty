@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "libs/types" },
+    { "path": "libs/base" },
+    { "path": "embetty" },
+    { "path": "embetty-server" },
+    { "path": "scripts" }
+  ]
+}

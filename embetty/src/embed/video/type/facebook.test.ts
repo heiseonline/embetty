@@ -1,13 +1,22 @@
-import { createFacebookVideo, getFetchSpy } from '../../../test/lib/util'
+import { afterEach, beforeEach, describe, expect, it } from 'bun:test'
+import { createFacebookVideo, mockServerResponse } from '../../../test/lib/util'
 import '../../video'
 
-describe.skip('Facebook Video', () => {
-  beforeAll(async () => {
-    await getFetchSpy('10156049485672318')
+describe('Facebook Video', () => {
+  let fetch: ReturnType<typeof mockServerResponse>
+
+  beforeEach(() => {
+    fetch = mockServerResponse({
+      canonicalUrl: 'https://www.facebook.com/10156049485672318',
+    })
+  })
+
+  afterEach(() => {
+    fetch.mockRestore()
+    document.body.innerHTML = ''
   })
 
   it('should provide no poster image', async () => {
-    await getFetchSpy('10156049485672318')
     const { query } = await createFacebookVideo('10156049485672318', {
       'poster-image': '',
     })

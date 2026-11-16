@@ -1,10 +1,16 @@
 import {
   ForbiddenTargetError,
+  HttpStatusError,
   UnsupportedContentTypeError,
 } from '@embetty/base'
 import express, { Express, NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
-import { BAD_GATEWAY, FORBIDDEN, INTERNAL_SERVER_ERROR } from 'http-status'
+import {
+  BAD_GATEWAY,
+  FORBIDDEN,
+  INTERNAL_SERVER_ERROR,
+  NOT_FOUND,
+} from 'http-status'
 import logger from 'morgan'
 import nunjucks from 'nunjucks'
 import { URL } from 'url'
@@ -53,6 +59,10 @@ function statusCodeOf(err: unknown): number {
 
   if (err instanceof ForbiddenTargetError) {
     return FORBIDDEN
+  }
+  // Unknown upstream IDs (a deleted video, ...) are unknown here as well.
+  if (err instanceof HttpStatusError && err.status === NOT_FOUND) {
+    return NOT_FOUND
   }
   if (err instanceof UnsupportedContentTypeError) {
     return BAD_GATEWAY

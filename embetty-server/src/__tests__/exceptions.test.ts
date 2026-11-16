@@ -1,3 +1,4 @@
+import { describe, it } from 'bun:test'
 import assert from 'assert'
 import { BadRequestException, NotFoundException } from '../exceptions'
 
