@@ -22,7 +22,7 @@
     },
     "embetty-server": {
       "name": "@embetty/server",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "bin": {
         "embetty": "bin/embetty",
         "embetty-start": "bin/embetty-start",
@@ -44,7 +44,7 @@
     },
     "libs/base": {
       "name": "@embetty/base",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "dependencies": {
         "@embetty/types": "workspace:^",
         "cheerio": "^1.2.0",
