@@ -1,13 +1,7 @@
-import hogan from 'hogan.js'
 import { defineElement } from './util'
 
-export const TEMPLATE_METADATA_KEY = 'template'
-
-export function webcomponent(tag: string, template: string) {
+export function webcomponent(tag: string) {
   return (target: CustomElementConstructor) => {
-    Reflect.defineProperty(target, TEMPLATE_METADATA_KEY, {
-      value: hogan.compile(template),
-    })
     defineElement(tag, target)
   }
 }

@@ -1,0 +1,121 @@
+{
+  "id": "116929144390213579",
+  "created_at": "2026-07-16T10:19:09.512Z",
+  "in_reply_to_id": null,
+  "in_reply_to_account_id": null,
+  "sensitive": false,
+  "spoiler_text": "",
+  "visibility": "public",
+  "language": "en",
+  "uri": "https://mastodon.social/users/Mastodon/statuses/116929144390213579",
+  "url": "https://mastodon.social/@Mastodon/116929144390213579",
+  "replies_count": 20,
+  "reblogs_count": 362,
+  "favourites_count": 522,
+  "quotes_count": 23,
+  "edited_at": null,
+  "content": "<p>New in Mastodon 4.6: Newsletters 📬</p><p>Mastodon servers now support email newsletters, which allow people without a social web account to subscribe to your posts via email. This feature is opt-in at the server level.</p><p>We&#39;re building Mastodon for people and institutions that want independence from corporate-controlled social networks, so they can reach their audience directly wherever those people are. </p><p>Explore Mastodon 4.6&#39;s other new features: <a href=\"https://blog.joinmastodon.org/2026/06/mastodon-4.6/\" target=\"_blank\" rel=\"nofollow noopener\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">blog.joinmastodon.org/2026/06/</span><span class=\"invisible\">mastodon-4.6/</span></a></p>",
+  "reblog": null,
+  "application": {
+    "name": "Fedica",
+    "website": "https://fedica.com"
+  },
+  "account": {
+    "id": "13179",
+    "username": "Mastodon",
+    "acct": "Mastodon",
+    "display_name": "Mastodon",
+    "locked": false,
+    "bot": false,
+    "discoverable": true,
+    "indexable": true,
+    "group": false,
+    "created_at": "2016-11-23T00:00:00.000Z",
+    "note": "<p>Our mission is to connect the world through thriving online communities.</p><p>This is the primary account for the Mastodon project.</p><p>For technical software updates, follow <span class=\"h-card\" translate=\"no\"><a href=\"https://mastodon.social/@MastodonEngineering\" class=\"u-url mention\">@<span>MastodonEngineering</span></a></span></p><p>For news and updates on the Mastodon servers that we operate (like this one!), follow <span class=\"h-card\" translate=\"no\"><a href=\"https://mastodon.social/@staff\" class=\"u-url mention\">@<span>staff</span></a></span></p>",
+    "url": "https://mastodon.social/@Mastodon",
+    "uri": "https://mastodon.social/users/Mastodon",
+    "avatar": "https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png",
+    "avatar_static": "https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png",
+    "avatar_description": "The Mastodon logo: a white shape of a stylised elephant head; a bold lower-case m shape is cut out, showing a soothing purple gradient.",
+    "header": "https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png",
+    "header_static": "https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png",
+    "header_description": "An image of a mobile device displaying the Mastodon app, on a cartoon background featuring rolling hills and white fluffy clouds.",
+    "followers_count": 878836,
+    "following_count": 51,
+    "statuses_count": 568,
+    "last_status_at": "2026-11-16",
+    "hide_collections": false,
+    "show_media": true,
+    "show_media_replies": true,
+    "show_featured": true,
+    "noindex": false,
+    "feature_approval": {
+      "automatic": ["public"],
+      "manual": [],
+      "current_user": "denied"
+    },
+    "emojis": [],
+    "roles": [],
+    "fields": [
+      {
+        "name": "Homepage",
+        "value": "<a href=\"https://joinmastodon.org\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">joinmastodon.org</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2018-10-31T04:11:00.076+00:00"
+      },
+      {
+        "name": "Source Code",
+        "value": "<a href=\"https://github.com/mastodon\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">github.com/mastodon</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2023-07-21T13:27:45.996+00:00"
+      },
+      {
+        "name": "Blog",
+        "value": "<a href=\"https://blog.joinmastodon.org\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">blog.joinmastodon.org</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2025-11-24T15:45:57.501+00:00"
+      },
+      {
+        "name": "Donate",
+        "value": "<a href=\"https://joinmastodon.org/sponsors#donate\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">joinmastodon.org/sponsors#dona</span><span class=\"invisible\">te</span></a>",
+        "verified_at": "2025-11-24T15:37:03.351+00:00"
+      }
+    ]
+  },
+  "media_attachments": [
+    {
+      "id": "116929144353146667",
+      "type": "image",
+      "url": "https://files.mastodon.social/media_attachments/files/116/929/144/353/146/667/original/4541caf1a6f64af8.png",
+      "preview_url": "https://files.mastodon.social/media_attachments/files/116/929/144/353/146/667/small/4541caf1a6f64af8.png",
+      "remote_url": null,
+      "preview_remote_url": null,
+      "text_url": null,
+      "meta": {
+        "original": {
+          "width": 734,
+          "height": 517,
+          "size": "734x517",
+          "aspect": 1.4197292069632494
+        },
+        "small": {
+          "width": 572,
+          "height": 403,
+          "size": "572x403",
+          "aspect": 1.4193548387096775
+        }
+      },
+      "description": "The Mastodon profile page for Sage, the demo cat. Underneath Sage's profile information and bio, there is a field which says, \"Sign up for email updates from Sage,\" followed by a text field for the visitor's email and a \"Subscribe\" button. ",
+      "blurhash": "UIRW0cjWVut74mV?M{M{D#M{RPM{9Et6t7Rk"
+    }
+  ],
+  "mentions": [],
+  "tags": [],
+  "emojis": [],
+  "tagged_collections": [],
+  "quote": null,
+  "card": null,
+  "poll": null,
+  "quote_approval": {
+    "automatic": ["public"],
+    "manual": [],
+    "current_user": "denied"
+  }
+}

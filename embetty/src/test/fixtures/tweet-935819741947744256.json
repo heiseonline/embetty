@@ -1,0 +1,175 @@
+{
+  "data": {
+    "attachments": {
+      "media_keys": [
+        "3_935819594039746560",
+        "3_935819650373509120",
+        "3_935819709290831872"
+      ]
+    },
+    "author_id": "935818538249523200",
+    "conversation_id": "935819741947744256",
+    "created_at": "2017-11-29T10:36:27.000Z",
+    "edit_controls": {
+      "editable_until": "2017-11-29T11:06:27.000Z",
+      "edits_remaining": 5,
+      "is_edit_eligible": true
+    },
+    "edit_history_tweet_ids": ["935819741947744256"],
+    "entities": {
+      "urls": [
+        {
+          "display_url": "pic.x.com/5LbQddT2Ok",
+          "end": 40,
+          "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/1",
+          "media_key": "3_935819594039746560",
+          "start": 17,
+          "url": "https://t.co/5LbQddT2Ok"
+        },
+        {
+          "display_url": "pic.x.com/5LbQddT2Ok",
+          "end": 40,
+          "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/2",
+          "media_key": "3_935819650373509120",
+          "start": 17,
+          "url": "https://t.co/5LbQddT2Ok"
+        },
+        {
+          "display_url": "pic.x.com/5LbQddT2Ok",
+          "end": 40,
+          "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/3",
+          "media_key": "3_935819709290831872",
+          "start": 17,
+          "url": "https://t.co/5LbQddT2Ok"
+        }
+      ]
+    },
+    "id": "935819741947744256",
+    "lang": "de",
+    "possibly_sensitive": false,
+    "public_metrics": {
+      "bookmark_count": 0,
+      "impression_count": 0,
+      "like_count": 0,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 0
+    },
+    "reply_settings": "everyone",
+    "text": "Ein paar Bilder. https://t.co/5LbQddT2Ok"
+  },
+  "includes": {
+    "media": [
+      {
+        "height": 2419,
+        "media_key": "3_935819594039746560",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/DPyy9myW4AAl-dL.jpg",
+        "width": 3225
+      },
+      {
+        "height": 3024,
+        "media_key": "3_935819650373509120",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/DPyzA4pX4AAFIu9.jpg",
+        "width": 4032
+      },
+      {
+        "height": 3024,
+        "media_key": "3_935819709290831872",
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/DPyzEUIW4AAm1eb.jpg",
+        "width": 4032
+      }
+    ],
+    "tweets": [
+      {
+        "attachments": {
+          "media_keys": [
+            "3_935819594039746560",
+            "3_935819650373509120",
+            "3_935819709290831872"
+          ]
+        },
+        "author_id": "935818538249523200",
+        "conversation_id": "935819741947744256",
+        "created_at": "2017-11-29T10:36:27.000Z",
+        "edit_controls": {
+          "editable_until": "2017-11-29T11:06:27.000Z",
+          "edits_remaining": 5,
+          "is_edit_eligible": true
+        },
+        "edit_history_tweet_ids": ["935819741947744256"],
+        "entities": {
+          "urls": [
+            {
+              "display_url": "pic.x.com/5LbQddT2Ok",
+              "end": 40,
+              "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/1",
+              "media_key": "3_935819594039746560",
+              "start": 17,
+              "url": "https://t.co/5LbQddT2Ok"
+            },
+            {
+              "display_url": "pic.x.com/5LbQddT2Ok",
+              "end": 40,
+              "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/2",
+              "media_key": "3_935819650373509120",
+              "start": 17,
+              "url": "https://t.co/5LbQddT2Ok"
+            },
+            {
+              "display_url": "pic.x.com/5LbQddT2Ok",
+              "end": 40,
+              "expanded_url": "https://x.com/pmbtest/status/935819741947744256/photo/3",
+              "media_key": "3_935819709290831872",
+              "start": 17,
+              "url": "https://t.co/5LbQddT2Ok"
+            }
+          ]
+        },
+        "id": "935819741947744256",
+        "lang": "de",
+        "possibly_sensitive": false,
+        "public_metrics": {
+          "bookmark_count": 0,
+          "impression_count": 0,
+          "like_count": 0,
+          "quote_count": 0,
+          "reply_count": 0,
+          "retweet_count": 0
+        },
+        "reply_settings": "everyone",
+        "text": "Ein paar Bilder. https://t.co/5LbQddT2Ok"
+      }
+    ],
+    "users": [
+      {
+        "id": "935818538249523200",
+        "name": "pmbtest",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/935819157022609408/qLnuWc9i_normal.jpg",
+        "username": "pmbtest"
+      }
+    ]
+  },
+  "linkMetas": [
+    {
+      "url": "https://x.com/pmbtest/status/935819741947744256/photo/1",
+      "description": "Ein paar Bilder.",
+      "image": "https://pbs.twimg.com/media/DPyy9myW4AAl-dL?format=webp&name=large",
+      "title": "pmbtest (@pmbtest) on X"
+    },
+    {
+      "url": "https://x.com/pmbtest/status/935819741947744256/photo/2",
+      "description": "Ein paar Bilder.",
+      "image": "https://pbs.twimg.com/media/DPyy9myW4AAl-dL?format=webp&name=large",
+      "title": "pmbtest (@pmbtest) on X"
+    },
+    {
+      "url": "https://x.com/pmbtest/status/935819741947744256/photo/3",
+      "description": "Ein paar Bilder.",
+      "image": "https://pbs.twimg.com/media/DPyy9myW4AAl-dL?format=webp&name=large",
+      "title": "pmbtest (@pmbtest) on X"
+    }
+  ]
+}

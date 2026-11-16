@@ -1,13 +1,16 @@
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
+import { markup, raw, when } from '../html'
 import VideoImplementation, { VideoImplementationClass } from './video/type'
 import * as Videos from './video/types'
 import CSS from './_video.css'
 
-@webcomponent(
-  'embetty-video',
-  `
-      <style>${CSS}</style>
+@webcomponent('embetty-video')
+@observable()
+export default class Video<T> extends Embed<T> {
+  template() {
+    return markup`
+      <style>${raw(CSS)}</style>
       <button type="button" id="playbutton" aria-label="Abspielen">
         <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 2000 2000" fill="#fff" class="video-playbutton">
             <g transform="matrix(1.05356,0,0,1.03089,24.9824,-12.7689)">
@@ -19,17 +22,18 @@ import CSS from './_video.css'
         </svg>
       </button>
       <div id="poster">
-      {{#posterImageUrl}}
-        <img src="{{posterImageUrl}}">
-      {{/posterImageUrl}}
+      ${when(
+        this.posterImageUrl,
+        (posterImageUrl) => markup`
+        <img src="${posterImageUrl}">`,
+      )}
       </div>
       <a href="https://www.heise.de/embetty" target="_blank" rel="noopener" id="powered-by" title="embetty - displaying remote content without compromising your privacy.">
-        powered by {{{embettyLogo}}}
+        powered by ${raw(this.embettyLogo)}
       </a>
-    `,
-)
-@observable()
-export default class Video<T> extends Embed<T> {
+    `
+  }
+
   #impl?: VideoImplementation<T>
 
   constructor() {

@@ -1,0 +1,191 @@
+{
+  "data": {
+    "attachments": {
+      "media_keys": ["16_934028650999140357"]
+    },
+    "author_id": "779946007",
+    "context_annotations": [
+      {
+        "domain": {
+          "description": "Twitter generated Trends that occur on a daily, weekly, monthly, or yearly basis such as Monday motivation.",
+          "id": "109",
+          "name": "Reoccurring Trends"
+        },
+        "entity": {
+          "description": "#TGIF (Thank God is Friday)",
+          "id": "913875563323867141",
+          "name": "#TGIF (Thank God is Friday)"
+        }
+      }
+    ],
+    "conversation_id": "934029337019416579",
+    "created_at": "2017-11-24T12:02:02.000Z",
+    "edit_controls": {
+      "editable_until": "2017-11-24T12:32:02.000Z",
+      "edits_remaining": 5,
+      "is_edit_eligible": true
+    },
+    "edit_history_tweet_ids": ["934029337019416579"],
+    "entities": {
+      "hashtags": [
+        {
+          "end": 5,
+          "start": 0,
+          "tag": "TGIF"
+        },
+        {
+          "end": 41,
+          "start": 30,
+          "tag": "Wochenende"
+        },
+        {
+          "end": 65,
+          "start": 58,
+          "tag": "Katzen"
+        },
+        {
+          "end": 87,
+          "start": 71,
+          "tag": "Wochenenddienst"
+        },
+        {
+          "end": 102,
+          "start": 91,
+          "tag": "Callcenter"
+        }
+      ],
+      "urls": [
+        {
+          "display_url": "pic.x.com/sjf82H3rCj",
+          "end": 133,
+          "expanded_url": "https://x.com/SiLVAFiSH/status/934029337019416579/photo/1",
+          "media_key": "16_934028650999140357",
+          "start": 110,
+          "url": "https://t.co/sjf82H3rCj"
+        }
+      ]
+    },
+    "id": "934029337019416579",
+    "lang": "de",
+    "possibly_sensitive": false,
+    "public_metrics": {
+      "bookmark_count": 0,
+      "impression_count": 0,
+      "like_count": 4,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 1
+    },
+    "reply_settings": "everyone",
+    "text": "#TGIF! Möget ihr ein besseres #Wochenende haben als diese #Katzen, die #Wochenenddienst im #Callcenter haben. https://t.co/sjf82H3rCj"
+  },
+  "includes": {
+    "media": [
+      {
+        "height": 180,
+        "media_key": "16_934028650999140357",
+        "preview_image_url": "https://pbs.twimg.com/tweet_video_thumb/DPZWHADXUAUbTeJ.jpg",
+        "type": "animated_gif",
+        "width": 320
+      }
+    ],
+    "tweets": [
+      {
+        "attachments": {
+          "media_keys": ["16_934028650999140357"]
+        },
+        "author_id": "779946007",
+        "context_annotations": [
+          {
+            "domain": {
+              "description": "Twitter generated Trends that occur on a daily, weekly, monthly, or yearly basis such as Monday motivation.",
+              "id": "109",
+              "name": "Reoccurring Trends"
+            },
+            "entity": {
+              "description": "#TGIF (Thank God is Friday)",
+              "id": "913875563323867141",
+              "name": "#TGIF (Thank God is Friday)"
+            }
+          }
+        ],
+        "conversation_id": "934029337019416579",
+        "created_at": "2017-11-24T12:02:02.000Z",
+        "edit_controls": {
+          "editable_until": "2017-11-24T12:32:02.000Z",
+          "edits_remaining": 5,
+          "is_edit_eligible": true
+        },
+        "edit_history_tweet_ids": ["934029337019416579"],
+        "entities": {
+          "hashtags": [
+            {
+              "end": 5,
+              "start": 0,
+              "tag": "TGIF"
+            },
+            {
+              "end": 41,
+              "start": 30,
+              "tag": "Wochenende"
+            },
+            {
+              "end": 65,
+              "start": 58,
+              "tag": "Katzen"
+            },
+            {
+              "end": 87,
+              "start": 71,
+              "tag": "Wochenenddienst"
+            },
+            {
+              "end": 102,
+              "start": 91,
+              "tag": "Callcenter"
+            }
+          ],
+          "urls": [
+            {
+              "display_url": "pic.x.com/sjf82H3rCj",
+              "end": 133,
+              "expanded_url": "https://x.com/SiLVAFiSH/status/934029337019416579/photo/1",
+              "media_key": "16_934028650999140357",
+              "start": 110,
+              "url": "https://t.co/sjf82H3rCj"
+            }
+          ]
+        },
+        "id": "934029337019416579",
+        "lang": "de",
+        "possibly_sensitive": false,
+        "public_metrics": {
+          "bookmark_count": 0,
+          "impression_count": 0,
+          "like_count": 4,
+          "quote_count": 0,
+          "reply_count": 0,
+          "retweet_count": 1
+        },
+        "reply_settings": "everyone",
+        "text": "#TGIF! Möget ihr ein besseres #Wochenende haben als diese #Katzen, die #Wochenenddienst im #Callcenter haben. https://t.co/sjf82H3rCj"
+      }
+    ],
+    "users": [
+      {
+        "id": "779946007",
+        "name": "sfi",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1424650194692583424/O2MyXhGp_normal.jpg",
+        "username": "SiLVAFiSH"
+      }
+    ]
+  },
+  "linkMetas": [
+    {
+      "url": "https://x.com/SiLVAFiSH/status/934029337019416579/photo/1",
+      "description": "#TGIF! Möget ihr ein besseres #Wochenende haben als diese #Katzen, die #Wochenenddienst im #Callcenter haben.",
+      "image": "https://pbs.twimg.com/tweet_video_thumb/DPZWHADXUAUbTeJ?format=webp&name=large",
+      "title": "sfi (@SiLVAFiSH) on X"
+    }
+  ]
+}

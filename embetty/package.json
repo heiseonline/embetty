@@ -32,13 +32,9 @@
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
-  "dependencies": {
-    "hogan.js": "^3.0.2"
-  },
   "devDependencies": {
     "@embetty/tsconfig": "workspace:*",
     "@embetty/types": "workspace:^",
-    "@types/hogan.js": "^3.0.5",
     "happy-dom": "^21.0.4"
   }
 }

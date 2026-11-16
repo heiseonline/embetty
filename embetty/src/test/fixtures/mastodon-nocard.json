@@ -1,0 +1,95 @@
+{
+  "id": "117156549508722805",
+  "created_at": "2026-08-25T14:11:16.256Z",
+  "in_reply_to_id": null,
+  "in_reply_to_account_id": null,
+  "sensitive": false,
+  "spoiler_text": "",
+  "visibility": "public",
+  "language": "en",
+  "uri": "https://mastodon.social/users/Mastodon/statuses/117156549508722805",
+  "url": "https://mastodon.social/@Mastodon/117156549508722805",
+  "replies_count": 17,
+  "reblogs_count": 102,
+  "favourites_count": 470,
+  "quotes_count": 2,
+  "edited_at": null,
+  "content": "<p>Hannah Aubry is leaving Mastodon after her time with us as community director and board member. We’re very grateful for her contributions, ideas, and commitment to Mastodon and the fediverse. Thank you, Hannah! We wish you all the very best for what comes next.</p>",
+  "reblog": null,
+  "application": {
+    "name": "Web",
+    "website": null
+  },
+  "account": {
+    "id": "13179",
+    "username": "Mastodon",
+    "acct": "Mastodon",
+    "display_name": "Mastodon",
+    "locked": false,
+    "bot": false,
+    "discoverable": true,
+    "indexable": true,
+    "group": false,
+    "created_at": "2016-11-23T00:00:00.000Z",
+    "note": "<p>Our mission is to connect the world through thriving online communities.</p><p>This is the primary account for the Mastodon project.</p><p>For technical software updates, follow <span class=\"h-card\" translate=\"no\"><a href=\"https://mastodon.social/@MastodonEngineering\" class=\"u-url mention\">@<span>MastodonEngineering</span></a></span></p><p>For news and updates on the Mastodon servers that we operate (like this one!), follow <span class=\"h-card\" translate=\"no\"><a href=\"https://mastodon.social/@staff\" class=\"u-url mention\">@<span>staff</span></a></span></p>",
+    "url": "https://mastodon.social/@Mastodon",
+    "uri": "https://mastodon.social/users/Mastodon",
+    "avatar": "https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png",
+    "avatar_static": "https://files.mastodon.social/accounts/avatars/000/013/179/original/b4ceb19c9c54ec7e.png",
+    "avatar_description": "The Mastodon logo: a white shape of a stylised elephant head; a bold lower-case m shape is cut out, showing a soothing purple gradient.",
+    "header": "https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png",
+    "header_static": "https://files.mastodon.social/accounts/headers/000/013/179/original/1375be116fbe0f1d.png",
+    "header_description": "An image of a mobile device displaying the Mastodon app, on a cartoon background featuring rolling hills and white fluffy clouds.",
+    "followers_count": 878836,
+    "following_count": 51,
+    "statuses_count": 568,
+    "last_status_at": "2026-11-16",
+    "hide_collections": false,
+    "show_media": true,
+    "show_media_replies": true,
+    "show_featured": true,
+    "noindex": false,
+    "feature_approval": {
+      "automatic": ["public"],
+      "manual": [],
+      "current_user": "denied"
+    },
+    "emojis": [],
+    "roles": [],
+    "fields": [
+      {
+        "name": "Homepage",
+        "value": "<a href=\"https://joinmastodon.org\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">joinmastodon.org</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2018-10-31T04:11:00.076+00:00"
+      },
+      {
+        "name": "Source Code",
+        "value": "<a href=\"https://github.com/mastodon\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">github.com/mastodon</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2023-07-21T13:27:45.996+00:00"
+      },
+      {
+        "name": "Blog",
+        "value": "<a href=\"https://blog.joinmastodon.org\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">blog.joinmastodon.org</span><span class=\"invisible\"></span></a>",
+        "verified_at": "2025-11-24T15:45:57.501+00:00"
+      },
+      {
+        "name": "Donate",
+        "value": "<a href=\"https://joinmastodon.org/sponsors#donate\" target=\"_blank\" rel=\"nofollow noopener me\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">joinmastodon.org/sponsors#dona</span><span class=\"invisible\">te</span></a>",
+        "verified_at": "2025-11-24T15:37:03.351+00:00"
+      }
+    ]
+  },
+  "media_attachments": [],
+  "mentions": [],
+  "tags": [],
+  "emojis": [],
+  "tagged_collections": [],
+  "quote": null,
+  "card": null,
+  "poll": null,
+  "quote_approval": {
+    "automatic": ["public"],
+    "manual": [],
+    "current_user": "denied"
+  }
+}

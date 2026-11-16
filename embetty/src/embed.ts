@@ -1,6 +1,5 @@
 import EMBETTY_LOGO from '../assets/embetty.svg' with { type: 'text' }
-import { Template } from 'hogan.js'
-import { TEMPLATE_METADATA_KEY } from './decorators'
+import { Html } from './html'
 
 export class EmbedLoadError extends Error {
   override name = 'EmbedLoadError'
@@ -78,14 +77,9 @@ export abstract class Embed<T> extends HTMLElement {
     this._fetched = true
   }
 
+  abstract template(): Html
+
   render() {
-    const template = Reflect.get(this.constructor, TEMPLATE_METADATA_KEY) as
-      Template | undefined
-
-    if (!template) {
-      throw new Error(`Template not found for class ${this.constructor.name}`)
-    }
-
-    return template.render(this)
+    return this.template().value
   }
 }

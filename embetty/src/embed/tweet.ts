@@ -1,62 +1,73 @@
 import { EmbettyTweet, TweetData, User } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
+import { each, markup, raw, when } from '../html'
 import { height, parseHostname } from '../util'
 import CSS from './tweet.css'
 
 const HEIGHT_OFFSET = 2
 
-const template = `
-    <style>${CSS}</style>
+@webcomponent('embetty-tweet')
+@observable()
+export class Tweet extends Embed<EmbettyTweet> {
+  template() {
+    return markup`
+    <style>${raw(CSS)}</style>
       <header>
-        <img src="{{profileImageUrl}}" />
+        <img src="${this.profileImageUrl}" />
         <span>
-          <strong>{{userName}}</strong>
-          <a href="https://twitter.com/{{screenName}}" target="_blank" rel="noopener" >@{{screenName}}</a>
+          <strong>${this.userName}</strong>
+          <a href="https://twitter.com/${this.screenName}" target="_blank" rel="noopener" >@${this.screenName}</a>
         </span>
       </header>
       <article>
-        <p>{{{ fullText }}}</p>
-        {{#hasImages}}
-          <section class="media-{{images.length}}" id="media">
-            {{#images}}
-              <a target="_blank" href="{{imageUrl}}"><img src="{{imageUrl}}"></a>
-            {{/images}}
-          </section>
-        {{/hasImages}}
-        {{#hasAdditionalMedia}}
+        <p>${raw(this.fullText)}</p>
+        ${when(
+          this.hasImages,
+          () => markup`
+          <section class="media-${this.images.length}" id="media">
+            ${each(
+              this.images,
+              ({ imageUrl }) => markup`
+              <a target="_blank" href="${imageUrl}"><img src="${imageUrl}"></a>`,
+            )}
+          </section>`,
+        )}
+        ${when(
+          this.hasAdditionalMedia,
+          () => markup`
           <section class="media-hint">
-            <a href="{{twitterUrl}}" target="_blank" rel="noopener">
+            <a href="${this.twitterUrl}" target="_blank" rel="noopener">
               Weitere Inhalte des Posts auf x.com
             </a>
-          </section>
-        {{/hasAdditionalMedia}}
+          </section>`,
+        )}
 
-        {{#hasLinks}}
-          <a href="{{link.url}}" target="_blank" rel="noopener" id="links">
-            <img src="{{linkImageUrl}}">
+        ${when(
+          this.link,
+          (link) => markup`
+          <a href="${link.url}" target="_blank" rel="noopener" id="links">
+            <img src="${this.linkImageUrl}">
             <section id="link-body">
-              <h3>{{link.title}}</h3>
-              {{#link.description}}<p>{{link.description}}</p>{{/link.description}}
-              <span>{{linkHostname}}</span>
+              <h3>${link.title}</h3>
+              ${when(link.description, (description) => markup`<p>${description}</p>`)}
+              <span>${this.linkHostname}</span>
             </section>
-          </a>
-        {{/hasLinks}}
+          </a>`,
+        )}
 
-        <a href="{{twitterUrl}}" target="_blank" rel="noopener" id="created-at" class="tweet__link">
-          <time datetime="{{createdAt.toISOString}}">{{createdAt.toLocaleString}}</time>
+        <a href="${this.twitterUrl}" target="_blank" rel="noopener" id="created-at" class="tweet__link">
+          <time datetime="${this.createdAt.toISOString()}">${this.createdAt.toLocaleString()}</time>
           via X (Twitter)
           <svg id="xcorp-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22.1 20" preserveAspectRatio="xMinYMin" style="height: 12px"><path id="path2" d="M17.4,0h3.4l-7.4,8.5L22.1,20h-6.8L10,13l-6.1,7H0.4l7.9-9.1L0,0h7l4.8,6.4L17.4,0z M16.2,18h1.9L6,1.9H4 L16.2,18z"/></svg>
         </a>
 
         <a href="https://www.heise.de/embetty?wt_mc=link.embetty.poweredby" target="_blank" rel="noopener" id="powered-by" title="embetty - displaying remote content without compromising your privacy.">
-          powered by {{{embettyLogo}}}</a>
+          powered by ${raw(this.embettyLogo)}</a>
       </article>
     `
+  }
 
-@webcomponent('embetty-tweet', template)
-@observable()
-export class Tweet extends Embed<EmbettyTweet> {
   parent?: Tweet
 
   constructor(status: string, parent?: Tweet, options = {}) {

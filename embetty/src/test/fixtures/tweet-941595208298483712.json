@@ -1,0 +1,154 @@
+{
+  "data": {
+    "author_id": "43166389",
+    "context_annotations": [
+      {
+        "domain": {
+          "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain",
+          "id": "30",
+          "name": "Entities [Entity Service]"
+        },
+        "entity": {
+          "id": "781974596752842752",
+          "name": "Services"
+        }
+      },
+      {
+        "domain": {
+          "description": "Brands and Companies",
+          "id": "47",
+          "name": "Brand"
+        },
+        "entity": {
+          "id": "10026378521",
+          "name": "Google "
+        }
+      }
+    ],
+    "conversation_id": "941595208298483712",
+    "created_at": "2017-12-15T09:06:06.000Z",
+    "edit_controls": {
+      "editable_until": "2017-12-15T09:36:06.000Z",
+      "edits_remaining": 5,
+      "is_edit_eligible": true
+    },
+    "edit_history_tweet_ids": ["941595208298483712"],
+    "entities": {
+      "hashtags": [
+        {
+          "end": 105,
+          "start": 101,
+          "tag": "DNA"
+        }
+      ],
+      "urls": [
+        {
+          "display_url": "heise.de/newsticker/mel…",
+          "end": 100,
+          "expanded_url": "https://www.heise.de/newsticker/meldung/Google-veroeffentlicht-KI-Werkzeug-fuer-Interpretation-von-Sequenzierungsdaten-3915886.html",
+          "start": 77,
+          "url": "https://t.co/Jxm28p9TT7"
+        }
+      ]
+    },
+    "id": "941595208298483712",
+    "lang": "de",
+    "possibly_sensitive": false,
+    "public_metrics": {
+      "bookmark_count": 0,
+      "impression_count": 0,
+      "like_count": 1,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 1
+    },
+    "reply_settings": "everyone",
+    "text": "Google veröffentlicht KI-Werkzeug für Interpretation von Sequenzierungsdaten https://t.co/Jxm28p9TT7 #DNA"
+  },
+  "includes": {
+    "tweets": [
+      {
+        "author_id": "43166389",
+        "context_annotations": [
+          {
+            "domain": {
+              "description": "Entity Service top level domain, every item that is in Entity Service should be in this domain",
+              "id": "30",
+              "name": "Entities [Entity Service]"
+            },
+            "entity": {
+              "id": "781974596752842752",
+              "name": "Services"
+            }
+          },
+          {
+            "domain": {
+              "description": "Brands and Companies",
+              "id": "47",
+              "name": "Brand"
+            },
+            "entity": {
+              "id": "10026378521",
+              "name": "Google "
+            }
+          }
+        ],
+        "conversation_id": "941595208298483712",
+        "created_at": "2017-12-15T09:06:06.000Z",
+        "edit_controls": {
+          "editable_until": "2017-12-15T09:36:06.000Z",
+          "edits_remaining": 5,
+          "is_edit_eligible": true
+        },
+        "edit_history_tweet_ids": ["941595208298483712"],
+        "entities": {
+          "hashtags": [
+            {
+              "end": 105,
+              "start": 101,
+              "tag": "DNA"
+            }
+          ],
+          "urls": [
+            {
+              "display_url": "heise.de/newsticker/mel…",
+              "end": 100,
+              "expanded_url": "https://www.heise.de/newsticker/meldung/Google-veroeffentlicht-KI-Werkzeug-fuer-Interpretation-von-Sequenzierungsdaten-3915886.html",
+              "start": 77,
+              "url": "https://t.co/Jxm28p9TT7"
+            }
+          ]
+        },
+        "id": "941595208298483712",
+        "lang": "de",
+        "possibly_sensitive": false,
+        "public_metrics": {
+          "bookmark_count": 0,
+          "impression_count": 0,
+          "like_count": 1,
+          "quote_count": 0,
+          "reply_count": 0,
+          "retweet_count": 1
+        },
+        "reply_settings": "everyone",
+        "text": "Google veröffentlicht KI-Werkzeug für Interpretation von Sequenzierungsdaten https://t.co/Jxm28p9TT7 #DNA"
+      }
+    ],
+    "users": [
+      {
+        "id": "43166389",
+        "name": "iX",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/907150082109210626/IOobYIt9_normal.png",
+        "username": "iXmagazin"
+      }
+    ]
+  },
+  "linkMetas": [
+    {
+      "url": "https://www.heise.de/newsticker/meldung/Google-veroeffentlicht-KI-Werkzeug-fuer-Interpretation-von-Sequenzierungsdaten-3915886.html",
+      "description": "Die grobe Sequenzierung von DNA ist heutzutage relativ schnell und preisgünstig. Allerdings sind die Ergebnisse wegen ihrer Ungenauigkeit schwierig zu interpretieren. Hier soll jetzt Künstliche Intelligenz helfen.",
+      "image": "https://heise.cloudimg.io/v7/_www-heise-de_/imgs/18/2/3/3/5/1/4/7/Human_Genome_Building_-700-c0dc6b328ff86c15.jpeg?func=bound&height=1200&org_if_sml=1&q=85&width=1200",
+      "title": "Google veröffentlicht KI-Werkzeug für Interpretation von Sequenzierungsdaten"
+    }
+  ]
+}

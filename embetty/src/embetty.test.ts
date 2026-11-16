@@ -10,9 +10,10 @@ import {
 } from 'bun:test'
 import { webcomponent } from './decorators'
 import { Embed, EmbedLoadError } from './embed'
+import { markup } from './html'
 import { createElement, mockServerResponse } from './test/lib/util'
 
-@webcomponent('embetty-test', '')
+@webcomponent('embetty-test')
 class EmbettyTest extends Embed<unknown> {
   url = '/'
 
@@ -25,8 +26,8 @@ class EmbettyTest extends Embed<unknown> {
     void this.becomesVisible()
   }
 
-  static get template() {
-    return 'Embetty test'
+  template() {
+    return markup`Embetty test`
   }
 }
 

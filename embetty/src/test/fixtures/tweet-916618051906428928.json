@@ -1,0 +1,175 @@
+{
+  "data": {
+    "author_id": "15072091",
+    "conversation_id": "916610121664524288",
+    "created_at": "2017-10-07T10:55:48.000Z",
+    "edit_controls": {
+      "editable_until": "2017-10-07T11:25:48.000Z",
+      "edits_remaining": 5,
+      "is_edit_eligible": true
+    },
+    "edit_history_tweet_ids": ["916618051906428928"],
+    "entities": {
+      "mentions": [
+        {
+          "end": 10,
+          "id": "779946007",
+          "start": 0,
+          "username": "SiLVAFiSH"
+        }
+      ]
+    },
+    "id": "916618051906428928",
+    "in_reply_to_user_id": "779946007",
+    "lang": "de",
+    "possibly_sensitive": false,
+    "public_metrics": {
+      "bookmark_count": 0,
+      "impression_count": 0,
+      "like_count": 1,
+      "quote_count": 0,
+      "reply_count": 0,
+      "retweet_count": 0
+    },
+    "referenced_tweets": [
+      {
+        "id": "916610121664524288",
+        "type": "replied_to"
+      }
+    ],
+    "reply_settings": "everyone",
+    "text": "@SiLVAFiSH Die Socken 😍"
+  },
+  "includes": {
+    "tweets": [
+      {
+        "author_id": "15072091",
+        "conversation_id": "916610121664524288",
+        "created_at": "2017-10-07T10:55:48.000Z",
+        "edit_controls": {
+          "editable_until": "2017-10-07T11:25:48.000Z",
+          "edits_remaining": 5,
+          "is_edit_eligible": true
+        },
+        "edit_history_tweet_ids": ["916618051906428928"],
+        "entities": {
+          "mentions": [
+            {
+              "end": 10,
+              "id": "779946007",
+              "start": 0,
+              "username": "SiLVAFiSH"
+            }
+          ]
+        },
+        "id": "916618051906428928",
+        "in_reply_to_user_id": "779946007",
+        "lang": "de",
+        "possibly_sensitive": false,
+        "public_metrics": {
+          "bookmark_count": 0,
+          "impression_count": 0,
+          "like_count": 1,
+          "quote_count": 0,
+          "reply_count": 0,
+          "retweet_count": 0
+        },
+        "referenced_tweets": [
+          {
+            "id": "916610121664524288",
+            "type": "replied_to"
+          }
+        ],
+        "reply_settings": "everyone",
+        "text": "@SiLVAFiSH Die Socken 😍"
+      },
+      {
+        "attachments": {
+          "media_keys": ["3_916610087774490626"]
+        },
+        "author_id": "779946007",
+        "context_annotations": [
+          {
+            "domain": {
+              "description": "A grouping of interests and hobbies entities, like Novelty Food or Destinations",
+              "id": "66",
+              "name": "Interests and Hobbies Category"
+            },
+            "entity": {
+              "description": "Fashion Novelty",
+              "id": "845326060757512192",
+              "name": "Fashion Novelty"
+            }
+          },
+          {
+            "domain": {
+              "description": "Interests, opinions, and behaviors of individuals, groups, or cultures; like Speciality Cooking or Theme Parks",
+              "id": "67",
+              "name": "Interests and Hobbies"
+            },
+            "entity": {
+              "description": "Fashion Blogging",
+              "id": "845327283774640128",
+              "name": "Fashion Tags"
+            }
+          }
+        ],
+        "conversation_id": "916610121664524288",
+        "created_at": "2017-10-07T10:24:17.000Z",
+        "edit_controls": {
+          "editable_until": "2017-10-07T10:54:17.000Z",
+          "edits_remaining": 5,
+          "is_edit_eligible": true
+        },
+        "edit_history_tweet_ids": ["916610121664524288"],
+        "entities": {
+          "hashtags": [
+            {
+              "end": 30,
+              "start": 23,
+              "tag": "Outfit"
+            }
+          ],
+          "urls": [
+            {
+              "display_url": "pic.x.com/sPtBOsNhPe",
+              "end": 101,
+              "expanded_url": "https://x.com/SiLVAFiSH/status/916610121664524288/photo/1",
+              "media_key": "3_916610087774490626",
+              "start": 78,
+              "url": "https://t.co/sPtBOsNhPe"
+            }
+          ]
+        },
+        "id": "916610121664524288",
+        "lang": "de",
+        "possibly_sensitive": false,
+        "public_metrics": {
+          "bookmark_count": 0,
+          "impression_count": 0,
+          "like_count": 2,
+          "quote_count": 0,
+          "reply_count": 1,
+          "retweet_count": 0
+        },
+        "reply_settings": "everyone",
+        "text": "Ich habe heute bei der #Outfit-Wahl echt tief in die Farbpalette gegriffen. 🤡 https://t.co/sPtBOsNhPe"
+      }
+    ],
+    "users": [
+      {
+        "id": "15072091",
+        "name": "Sebastian",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1603333383874027520/FE3a360X_normal.jpg",
+        "username": "sebi_me"
+      },
+      {
+        "id": "779946007",
+        "name": "sfi",
+        "profile_image_url": "https://pbs.twimg.com/profile_images/1424650194692583424/O2MyXhGp_normal.jpg",
+        "username": "SiLVAFiSH"
+      }
+    ]
+  },
+  "linkMetas": []
+}

@@ -1,66 +1,75 @@
 import { MastodonStatusData } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
+import { each, markup, raw, when } from '../html'
 import { parseHostname } from '../util'
 import CSS from './mastodon.css'
 
-const template = `
-    <style>${CSS}</style>
+@webcomponent('embetty-mastodon')
+@observable()
+export class Mastodon extends Embed<MastodonStatusData> {
+  template() {
+    return markup`
+    <style>${raw(CSS)}</style>
       <header>
-        <img src="{{profileImageUrl}}" />
+        <img src="${this.profileImageUrl}" />
         <span>
-          <strong>{{userName}}</strong>
-          <a href="{{profileUrl}}" target="_blank" rel="noopener" >@{{screenName}}</a>
+          <strong>${this.userName}</strong>
+          <a href="${this.profileUrl}" target="_blank" rel="noopener" >@${this.screenName}</a>
         </span>
       </header>
       <article>
-        <p>{{{ fullText }}}</p>
-        {{#hasMedia}}
-          <section class="media-{{media.length}}" id="media">
-            {{#media}}
-              <a target="_blank" href="{{imageUrl}}"><img src="{{imageUrl}}"></a>
-            {{/media}}
-          </section>
-        {{/hasMedia}}
+        <p>${raw(this.fullText)}</p>
+        ${when(
+          this.hasMedia,
+          () => markup`
+          <section class="media-${this.media.length}" id="media">
+            ${each(
+              this.media,
+              ({ imageUrl }) => markup`
+              <a target="_blank" href="${imageUrl}"><img src="${imageUrl}"></a>`,
+            )}
+          </section>`,
+        )}
         <section>
-          <a href="{{mastodonUrl}}" target="_blank" rel="noopener" class="meta-bar">
+          <a href="${this.mastodonUrl}" target="_blank" rel="noopener" class="meta-bar">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 14l-4 -4l4 -4" /><path d="M5 10h11a4 4 0 1 1 0 8h-1" /></svg>
-              <span>{{repliesCount}}</span>
+              <span>${this.repliesCount}</span>
             </span>
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-repeat" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3" /><path d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3" /></svg>
-              <span>{{reblogCount}}</span>
+              <span>${this.reblogCount}</span>
             </span>
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor" /></svg>
-              <span>{{favouriteCount}}</spam>
+              <span>${this.favouriteCount}</spam>
             </span>
           </a>
         </section>
-        {{#showLinkCard}}
-          <a href="{{card.url}}" target="_blank" rel="noopener" id="links">
-            <img src="{{linkImageUrl}}">
+        ${when(
+          this.showLinkCard && this.card,
+          (card) => markup`
+          <a href="${card.url}" target="_blank" rel="noopener" id="links">
+            <img src="${this.linkImageUrl}">
             <section id="link-body">
-              <h3>{{card.title}}</h3>
-              <span>{{linkHostname}}</span>
+              <h3>${card.title}</h3>
+              <span>${this.linkHostname}</span>
             </section>
-          </a>
-        {{/showLinkCard}}
+          </a>`,
+        )}
 
-        <a href="{{mastodonUrl}}" target="_blank" rel="noopener" id="created-at" class="tweet__link">
-          <time datetime="{{createdAt.toISOString}}">{{createdAt.toLocaleString}}</time>
+        <a href="${this.mastodonUrl}" target="_blank" rel="noopener" id="created-at" class="tweet__link">
+          <time datetime="${this.createdAt.toISOString()}">${this.createdAt.toLocaleString()}</time>
           via Mastodon
         </a>
 
         <a href="https://www.heise.de/embetty?wt_mc=link.embetty.poweredby" target="_blank" rel="noopener" id="powered-by" title="embetty - displaying remote content without compromising your privacy.">
-          powered by {{{embettyLogo}}}</a>
+          powered by ${raw(this.embettyLogo)}</a>
       </article>
     `
+  }
 
-@webcomponent('embetty-mastodon', template)
-@observable()
-export class Mastodon extends Embed<MastodonStatusData> {
   constructor(status: string, _options = {}) {
     super()
 
