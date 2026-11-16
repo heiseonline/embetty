@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rm -rf dist && bun build.ts",
     "dev": "bun build.ts --watch",
-    "test": "bun test --preload ./src/test/setup.ts ./src"
+    "test": "bun test --preload ./src/test/setup.ts ./src",
+    "typecheck": "bun check"
   },
   "author": {
     "name": "Philipp Busse",

@@ -9,7 +9,7 @@
     "prepare": "git config core.hooksPath .githooks",
     "bump": "changeset version && bun install",
     "release": "bun run build && bun scripts/publish.ts",
-    "typecheck": "bun check -b",
+    "typecheck": "bun run --filter \"*\" typecheck && bun check -p scripts",
     "demo": "bun run --filter \"@embetty/base...\" build && EMBETTY_CACHE=lru:// bun --env-file=embetty-server/.env scripts/demo.ts"
   },
   "devDependencies": {
