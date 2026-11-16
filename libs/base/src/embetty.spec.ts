@@ -1,9 +1,18 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'bun:test'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+} from 'bun:test'
 import { createServer, Server } from 'http'
 import { AddressInfo } from 'net'
 import { LRU } from './cache/lru'
 import { Embetty, UnsupportedContentTypeError } from './embetty'
 import { createGuardedFetch } from './guarded-http-client'
+import { InvalidUpstreamResponseError } from './request-cache'
 
 describe(`${Embetty.name}#getImage`, () => {
   let server: Server
@@ -76,6 +85,16 @@ describe(`${Embetty.name}#get`, () => {
         query: Object.fromEntries(url.searchParams),
         authorization: req.headers.authorization,
       })
+      if (req.url!.startsWith('/page')) {
+        res.setHeader('Content-Type', 'text/html')
+        res.end(`<head><title>t</title></head>${'x'.repeat(2 * 1024 * 1024)}`)
+        return
+      }
+      if (req.url!.startsWith('/invalid')) {
+        res.setHeader('Content-Type', 'application/json')
+        res.end('{not json')
+        return
+      }
       if (req.url!.startsWith('/missing')) {
         res.writeHead(404).end('not found')
         return
@@ -173,5 +192,31 @@ describe(`${Embetty.name}#get`, () => {
     await embetty.get({ url: `${origin}/json`, params: { a: '2' } })
 
     expect(requests.map(({ query }) => query)).toEqual([{ a: '1' }, { a: '2' }])
+  })
+
+  it('reads the beginning of large web pages', async () => {
+    const page = await createEmbetty().get<string>({
+      url: `${origin}/page`,
+      responseType: 'text',
+    })
+
+    expect(page?.data?.startsWith('<head><title>t</title></head>')).toBe(true)
+  })
+
+  it('rejects malformed JSON as an invalid upstream response', async () => {
+    await expect(
+      createEmbetty().get({ url: `${origin}/invalid` }),
+    ).rejects.toBeInstanceOf(InvalidUpstreamResponseError)
+  })
+})
+
+describe(`${Embetty.name}.createCache`, () => {
+  afterEach(() => {
+    delete process.env.EMBETTY_CACHE_TTL
+  })
+
+  it.each(['1.5', '-1', 'abc'])('rejects EMBETTY_CACHE_TTL=%s', (ttl) => {
+    process.env.EMBETTY_CACHE_TTL = ttl
+    expect(() => Embetty.createCache()).toThrow('EMBETTY_CACHE_TTL')
   })
 })

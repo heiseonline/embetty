@@ -1,5 +1,6 @@
 import { MastodonStatusData, MastodonStatusResponse } from '@embetty/types'
 import { Embed, EmbedOptions, EmbettyRequest } from './embed'
+import { InvalidUpstreamResponseError } from './request-cache'
 
 function isDefined<T>(value: T | undefined): value is T {
   return value !== undefined
@@ -56,13 +57,26 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
     return `https://${this.instance}/api/v1/statuses/${this.statusId}`
   }
 
+  // Any server can answer here, so the shape is checked before use.
   assertMastodonStatusData(
     data: MastodonStatusResponse | undefined,
   ): asserts data is MastodonStatusData {
-    const error = data !== undefined && !('content' in data) && data.error
+    const invalid = (reason: string) =>
+      new InvalidUpstreamResponseError(this.apiUrl, reason)
 
-    if (error) {
-      throw new Error('Mastodon API Error')
+    if (typeof data !== 'object' || data === null) {
+      throw invalid('not an object')
+    }
+    if ('error' in data) {
+      throw invalid(`error ${JSON.stringify(data.error)}`)
+    }
+    if (
+      typeof data.content !== 'string' ||
+      typeof data.account !== 'object' ||
+      data.account === null ||
+      !Array.isArray(data.media_attachments)
+    ) {
+      throw invalid('not a status')
     }
   }
 

@@ -1,6 +1,7 @@
 import {
   ForbiddenTargetError,
   HttpStatusError,
+  InvalidUpstreamResponseError,
   ResponseTooLargeError,
   TooManyRedirectsError,
   TwitterApiException,
@@ -12,12 +13,13 @@ import { HttpStatus } from './http-status'
 const isTimeout = (error: unknown) =>
   error instanceof Error && error.name === 'TimeoutError'
 
-// Errors from the network stack: ECONNREFUSED, ENOTFOUND, ECONNRESET, ...
+// System errors of the network stack (ECONNREFUSED, ENOTFOUND, ECONNRESET,
+// ...), not Node's ERR_* codes, which signal bugs.
 const isNetworkError = (error: unknown) =>
   error instanceof Error &&
   'code' in error &&
   typeof error.code === 'string' &&
-  error.code.startsWith('E')
+  /^E[A-Z0-9]+$/.test(error.code)
 
 /**
  * The status for an error, and whether it is a failure of an upstream
@@ -46,6 +48,7 @@ export function classify(error: unknown): {
   }
   if (
     error instanceof HttpStatusError ||
+    error instanceof InvalidUpstreamResponseError ||
     error instanceof UnsupportedContentTypeError ||
     error instanceof ResponseTooLargeError ||
     error instanceof TooManyRedirectsError ||

@@ -10,6 +10,7 @@ import { CacheEntry } from '../cache/cache'
 import { Embed, EmbedOptions, EmbettyRequest } from '../embed'
 import { env } from '../util'
 import { TwitterApiException } from './twitter-api-exception'
+import { InvalidUpstreamResponseError } from '../request-cache'
 
 const debug = debug_('embetty-base:tweet')
 
@@ -30,10 +31,22 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   assertTweetData(data: TweetResponse | undefined): asserts data is TweetData {
-    const error = data !== undefined && !('data' in data) && data.errors?.[0]
+    if (typeof data !== 'object' || data === null) {
+      throw new InvalidUpstreamResponseError(
+        this._requestOptions.url,
+        'not an object',
+      )
+    }
+    const error = !('data' in data) && data.errors?.[0]
 
     if (error) {
       throw new TwitterApiException(error)
+    }
+    if (!('data' in data)) {
+      throw new InvalidUpstreamResponseError(
+        this._requestOptions.url,
+        'not a tweet',
+      )
     }
   }
 

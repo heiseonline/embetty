@@ -134,7 +134,13 @@ export class Embetty {
 
   static createCache(): EmbettyCache {
     const dsn = process.env.EMBETTY_CACHE || 'lru://'
-    const ttl = Number(process.env.EMBETTY_CACHE_TTL) || DEFAULT_CACHE_TTL
+    const ttl = Number(process.env.EMBETTY_CACHE_TTL)
+    if (process.env.EMBETTY_CACHE_TTL && !(Number.isInteger(ttl) && ttl > 0)) {
+      // Redis only takes whole seconds; failing here beats failing every set.
+      throw new Error(
+        `EMBETTY_CACHE_TTL must be a positive number of seconds, got ${process.env.EMBETTY_CACHE_TTL}`,
+      )
+    }
     const wantedEngine = dsn.match(/(\w+):\/\//)?.[1]
 
     const Engine = Object.keys(Embetty.cacheEngines)
@@ -146,6 +152,6 @@ export class Embetty {
     }
 
     debug(`Using ${Engine.name} cache ...`)
-    return new Engine(dsn, { ttl })
+    return new Engine(dsn, { ttl: ttl || DEFAULT_CACHE_TTL })
   }
 }

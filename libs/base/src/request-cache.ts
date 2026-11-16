@@ -20,6 +20,18 @@ export type CachedRequest = <T>(
   options: RequestOptions,
 ) => Promise<CacheEntry<T> | undefined>
 
+/** The upstream answered, but not with what its API promises. */
+export class InvalidUpstreamResponseError extends Error {
+  override name = 'InvalidUpstreamResponseError'
+
+  constructor(
+    readonly url: string,
+    reason: string,
+  ) {
+    super(`Invalid response from ${url}: ${reason}`)
+  }
+}
+
 export class HttpStatusError extends Error {
   override name = 'HttpStatusError'
 
@@ -72,6 +84,8 @@ export const cachedRequest =
       headers: options.headers,
       timeout: options.timeout,
       maxBytes: MAX_BYTES[responseType],
+      // Web pages are read for their <head>; JSON cut short would not parse.
+      truncate: responseType === 'text',
     })
     if (!response.ok) {
       throw new HttpStatusError(response.status, options.url)
@@ -80,7 +94,12 @@ export const cachedRequest =
     debug(`Caching ${debugId} ...`)
     const entry: CacheEntry<T> = {
       // The caller names the shape of the payload it requested.
-      data: (await decoders[responseType](response)) as T,
+      data: (await decoders[responseType](response).catch((error: unknown) => {
+        throw new InvalidUpstreamResponseError(
+          options.url,
+          error instanceof Error ? error.message : String(error),
+        )
+      })) as T,
       headers: Object.fromEntries(response.headers),
       key,
       status: response.status,

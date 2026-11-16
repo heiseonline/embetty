@@ -20,6 +20,11 @@ export interface GuardedRequestInit {
   timeout?: number
   /** Lowers the response size limit (10 MiB). */
   maxBytes?: number
+  /**
+   * Cut bodies at the limit instead of rejecting them, for documents whose
+   * beginning is enough (the <head> of a web page).
+   */
+  truncate?: boolean
 }
 
 /**
@@ -230,6 +235,7 @@ export function createGuardedFetch({
     headers: Readonly<Record<string, string>>,
     signal: AbortSignal,
     limit: number,
+    truncate: boolean,
   ): Promise<Exchange> =>
     new Promise((resolve, reject) => {
       const secure = url.protocol === 'https:'
@@ -250,34 +256,47 @@ export function createGuardedFetch({
 
       request.on('error', fail)
       request.on('response', (message) => {
-        const tooLarge = () => fail(new ResponseTooLargeError(url.href, limit))
+        const chunks: Buffer[] = []
+        let length = 0
+        const done = () => {
+          signal.removeEventListener('abort', abort)
+          resolve({ message, body: Buffer.concat(chunks) })
+        }
+        const tooLarge = () => {
+          if (!truncate) {
+            fail(new ResponseTooLargeError(url.href, limit))
+            return
+          }
+          request.destroy()
+          done()
+        }
 
-        if (Number(message.headers['content-length']) > limit) {
+        if (!truncate && Number(message.headers['content-length']) > limit) {
           tooLarge()
           return
         }
 
-        const chunks: Buffer[] = []
-        let length = 0
         message.on('data', (chunk: Buffer) => {
+          const room = limit - length
           length += chunk.length
           if (length > limit) {
+            chunks.push(chunk.subarray(0, Math.max(room, 0)))
             tooLarge()
           } else {
             chunks.push(chunk)
           }
         })
         message.on('error', fail)
-        message.on('end', () => {
-          signal.removeEventListener('abort', abort)
-          resolve({ message, body: Buffer.concat(chunks) })
-        })
+        message.on('end', done)
       })
 
       request.end()
     })
 
-  return async (input, { headers = {}, signal, timeout, maxBytes } = {}) => {
+  return async (
+    input,
+    { headers = {}, signal, timeout, maxBytes, truncate = false } = {},
+  ) => {
     const limit = Math.min(maxBytes ?? MAX_CONTENT_LENGTH, MAX_CONTENT_LENGTH)
     const deadline = AbortSignal.timeout(timeout ?? DEFAULT_TIMEOUT_MS)
     const combined = signal ? AbortSignal.any([signal, deadline]) : deadline
@@ -293,6 +312,7 @@ export function createGuardedFetch({
         requestHeaders,
         combined,
         limit,
+        truncate,
       )
       const status = message.statusCode ?? 0
       const { location } = message.headers

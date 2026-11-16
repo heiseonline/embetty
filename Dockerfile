@@ -16,14 +16,16 @@ RUN bun install --frozen-lockfile --ignore-scripts \
   && rm -rf node_modules */node_modules libs/*/node_modules tools/*/node_modules \
   && bun install --ignore-scripts --production --filter @embetty/server
 # The runtime needs the built packages and their dependencies, no sources.
-# A package without runtime dependencies has no node_modules.
+# A package without runtime dependencies has no node_modules; everything else
+# must exist.
 RUN mkdir /app \
   && for path in package.json node_modules \
     embetty-server/package.json embetty-server/dist embetty-server/node_modules \
     libs/base/package.json libs/base/dist libs/base/node_modules \
     libs/types/package.json libs/types/dist libs/types/node_modules \
     embetty/package.json embetty/dist embetty/node_modules; do \
-    if [ -e "$path" ]; then cp -a --parents "$path" /app; fi; \
+    case "$path" in */node_modules) [ -e "$path" ] || continue ;; esac; \
+    cp -a --parents "$path" /app; \
   done
 
 FROM ${NODE_IMAGE}

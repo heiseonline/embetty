@@ -1,6 +1,7 @@
 import {
   ForbiddenTargetError,
   HttpStatusError,
+  InvalidUpstreamResponseError,
   ResponseTooLargeError,
   TooManyRedirectsError,
   UnsupportedContentTypeError,
@@ -28,6 +29,20 @@ describe(classify.name, () => {
       true,
     ],
     ['network errors', networkError, 502, true],
+    [
+      'invalid upstream data',
+      new InvalidUpstreamResponseError('u', 'x'),
+      502,
+      true,
+    ],
+    [
+      'Node programming errors',
+      Object.assign(new Error('headers sent'), {
+        code: 'ERR_HTTP_HEADERS_SENT',
+      }),
+      500,
+      false,
+    ],
     ['timeouts', new DOMException('slow', 'TimeoutError'), 504, true],
     ['bugs', new TypeError('oops'), 500, false],
   ])('maps %s', (_, error, status, upstream) => {

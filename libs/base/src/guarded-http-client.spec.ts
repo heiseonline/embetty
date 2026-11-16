@@ -367,4 +367,16 @@ describe('createGuardedFetch', () => {
     )
     expect((await fetch(server.origin, { maxBytes: 4096 })).ok).toBe(true)
   })
+
+  it('cuts bodies at the limit when asked to', async () => {
+    handler = (_req, res) => res.end('a'.repeat(4096))
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+
+    const response = await fetch(server.origin, {
+      maxBytes: 1024,
+      truncate: true,
+    })
+
+    expect(await response.text()).toBe('a'.repeat(1024))
+  })
 })

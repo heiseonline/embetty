@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'bun:test'
+import { LRU } from './cache/lru'
+import { Embetty } from './embetty'
 import { MastodonStatus } from './mastodon'
+import { InvalidUpstreamResponseError } from './request-cache'
 
 describe(`${MastodonStatus.name}.parseUrl`, () => {
   it.each([
@@ -31,6 +34,23 @@ describe(`${MastodonStatus.name}.parseUrl`, () => {
   ])('rejects %s', (statusUrl) => {
     expect(() => MastodonStatus.parseUrl(statusUrl)).toThrow(
       'Invalid mastodon status url',
+    )
+  })
+})
+
+describe(`${MastodonStatus.name}#assertMastodonStatusData`, () => {
+  const status = new MastodonStatus('https://mastodon.social/@a/1', {
+    embetty: new Embetty(new LRU('lru://', { ttl: 60 })),
+  })
+
+  it.each([
+    ['null', null],
+    ['a number', 42],
+    ['an API error', { error: 'Record not found' }],
+    ['an object without status fields', { id: '1' }],
+  ])('rejects %s', (_, data) => {
+    expect(() => status.assertMastodonStatusData(data as never)).toThrow(
+      InvalidUpstreamResponseError,
     )
   })
 })
