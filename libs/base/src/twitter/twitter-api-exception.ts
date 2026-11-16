@@ -1,8 +1,11 @@
 import { TwitterError } from '@embetty/types'
 
-export const TwitterErrorType = {
-  NotFound: 'https://api.twitter.com/2/problems/resource-not-found',
-} as const
+// The API reports problem types under api.x.com since the rebranding; older
+// responses (and cached ones) use api.twitter.com.
+const NOT_FOUND_TYPES: ReadonlySet<string> = new Set([
+  'https://api.x.com/2/problems/resource-not-found',
+  'https://api.twitter.com/2/problems/resource-not-found',
+])
 
 export class TwitterApiException extends Error {
   readonly notFound: boolean
@@ -10,6 +13,6 @@ export class TwitterApiException extends Error {
   constructor(public readonly error: TwitterError) {
     super(error.detail)
 
-    this.notFound = error.type === TwitterErrorType.NotFound
+    this.notFound = NOT_FOUND_TYPES.has(error.type)
   }
 }
