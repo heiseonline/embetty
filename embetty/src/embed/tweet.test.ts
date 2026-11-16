@@ -56,7 +56,9 @@ describe.skip('Tweet', () => {
   it('a[target=_blank] should have a [rel=noopener] attribute', async () => {
     await getFetchSpy(Tweets.link)
     const { element } = await createTweet(Tweets.link)
-    const links = [...element.shadowRoot!.querySelectorAll('a[target=_blank')]
+    const links = Array.from(
+      element.shadowRoot!.querySelectorAll('a[target=_blank]'),
+    )
     expect(links).toHaveLength(4)
 
     links.forEach((link) => {
@@ -67,10 +69,11 @@ describe.skip('Tweet', () => {
   it('tweet link should contain the username and the tweet id', async () => {
     await getFetchSpy(Tweets.text)
     const { element } = await createTweet(Tweets.text)
-    const links = [...element.shadowRoot!.querySelectorAll('.tweet__link')]
+    const links = Array.from(
+      element.shadowRoot!.querySelectorAll('.tweet__link'),
+    )
     expect(links).toHaveLength(1)
-    // @ts-ignore
-    expect(links[0].getAttribute('href')).toBe(
+    expect(links[0]?.getAttribute('href')).toBe(
       'https://twitter.com/SiLVAFiSH/status/934029337019416579',
     )
   })

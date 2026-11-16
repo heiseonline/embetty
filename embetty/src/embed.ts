@@ -6,7 +6,7 @@ import { TEMPLATE_METADATA_KEY } from './decorators'
 
 export abstract class Embed<T> extends HTMLElement {
   _fetched = false
-  abstract get url(): string
+  abstract get url(): string | undefined
   _data?: T
 
   get serverUrl() {
@@ -28,7 +28,7 @@ export abstract class Embed<T> extends HTMLElement {
     return this.serverUrl + url
   }
 
-  emit(name: string, data?: CustomEventInit<unknown> | undefined) {
+  emit(name: string, data?: CustomEventInit<unknown>) {
     this.dispatchEvent(new window.CustomEvent(name, data))
   }
 
@@ -37,8 +37,9 @@ export abstract class Embed<T> extends HTMLElement {
   }
 
   async becomesVisible() {
-    if (this.url) {
-      await this.fetchData()
+    const { url } = this
+    if (url) {
+      await this.fetchData(url)
     }
 
     this.shadowRoot!.innerHTML = this.render()
@@ -58,8 +59,8 @@ export abstract class Embed<T> extends HTMLElement {
     return EMBETTY_LOGO
   }
 
-  async fetchData() {
-    const _response = await window.fetch(this.url)
+  async fetchData(url: string) {
+    const _response = await window.fetch(url)
 
     this._data = await _response.json()
     this._fetched = true
@@ -67,8 +68,7 @@ export abstract class Embed<T> extends HTMLElement {
 
   render() {
     const template = Reflect.get(this.constructor, TEMPLATE_METADATA_KEY) as
-      | Template
-      | undefined
+      Template | undefined
 
     if (!template) {
       throw new Error(`Template not found for class ${this.constructor.name}`)

@@ -1,4 +1,3 @@
-/* eslint-disable jest/expect-expect */
 import assert from 'assert'
 import request from 'supertest'
 import { app } from '../app'

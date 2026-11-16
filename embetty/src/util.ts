@@ -1,22 +1,22 @@
-export function computedStyle(
-  element: Element,
-  key: keyof CSSStyleDeclaration,
-) {
+type StyleProperty = {
+  [
+    K in keyof CSSStyleDeclaration & string
+  ]: CSSStyleDeclaration[K] extends string ? K : never
+}[keyof CSSStyleDeclaration & string]
+
+export function computedStyle(element: Element, key: StyleProperty): string {
   return window.getComputedStyle(element)[key]
 }
 
 export function marginHeight(element: Element) {
-  const top = Number.parseFloat(computedStyle(element, 'marginTop') as string)
-  const bottom = Number.parseFloat(
-    computedStyle(element, 'marginBottom') as string,
-  )
+  const top = Number.parseFloat(computedStyle(element, 'marginTop'))
+  const bottom = Number.parseFloat(computedStyle(element, 'marginBottom'))
   return top + bottom
 }
 
 export function height(element: Element) {
   return (
-    Number.parseFloat(computedStyle(element, 'height') as string) +
-    marginHeight(element)
+    Number.parseFloat(computedStyle(element, 'height')) + marginHeight(element)
   )
 }
 

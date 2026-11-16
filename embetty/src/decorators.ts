@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import hogan from 'hogan.js'
 import { defineElement } from './util'
 
@@ -13,43 +12,45 @@ export function webcomponent(tag: string, template: string) {
   }
 }
 
+interface ObservableElement extends HTMLElement {
+  connectedCallback: (this: ObservableElement) => void
+  isVisible(): boolean
+  becomesVisible(): Promise<void>
+  initialized?: boolean
+  observableRoot?: Element | Document | null
+  observableRootMargin?: string
+  observableRootThreshold?: number | number[]
+}
+
 export function observable() {
-  // eslint-disable-next-line sonarjs/cognitive-complexity
-  return (target: CustomElementConstructor) => {
+  return (target: { prototype: ObservableElement }) => {
     const origConnectedCallback = target.prototype.connectedCallback
 
     target.prototype.initialized = false
     target.prototype.observableRootMargin = '0px 0px 10% 0px'
 
-    target.prototype.connectedCallback = async function () {
+    target.prototype.connectedCallback = function (this: ObservableElement) {
       origConnectedCallback.call(this)
 
-      await new Promise<void>((resolve) => {
-        new window.IntersectionObserver(
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          async ([entry]) => {
-            if (!this.isVisible()) {
-              return
-            }
-            if (entry?.intersectionRatio === 0) {
-              return
-            }
-            if (this.initialized) {
-              return
-            }
+      new window.IntersectionObserver(
+        ([entry]) => {
+          if (
+            !this.isVisible() ||
+            entry?.intersectionRatio === 0 ||
+            this.initialized
+          ) {
+            return
+          }
 
-            this.initialized = true
-            await this.becomesVisible()
-            resolve()
-          },
-          {
-            root: this.observableRoot,
-            rootMargin: this.observableRootMargin,
-            threshold: this.observableRootThreshold,
-          },
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        ).observe(this)
-      })
+          this.initialized = true
+          this.becomesVisible().catch((error: unknown) => console.error(error))
+        },
+        {
+          root: this.observableRoot,
+          rootMargin: this.observableRootMargin,
+          threshold: this.observableRootThreshold,
+        },
+      ).observe(this)
     }
   }
 }

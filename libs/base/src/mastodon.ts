@@ -99,9 +99,9 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
     return imageUrl ? this.embetty.getImage({ url: imageUrl }) : undefined
   }
 
-  get linkImageUrl(): string {
+  get linkImageUrl(): string | undefined {
     this.assertMastodonStatusData(this.data)
-    return this.data?.card.image
+    return this.data.card?.image ?? undefined
   }
 
   getLinkImage() {

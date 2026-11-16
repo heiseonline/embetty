@@ -165,7 +165,7 @@ export class Mastodon extends Embed<MastodonStatusData> {
   }
 
   get link() {
-    return this._data?.card.url
+    return this._data?.card?.url
   }
 
   get linkHostname() {

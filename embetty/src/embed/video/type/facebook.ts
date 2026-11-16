@@ -11,9 +11,7 @@ export class FacebookVideo extends VideoImplementation<{
     return CSS
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  get url() {
+  override get url() {
     return this.element._api(`/video/facebook/${this.element.videoId}`)
   }
 

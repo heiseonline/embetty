@@ -1,11 +1,11 @@
 import { TwitterError } from '@embetty/types'
 
-export enum TwitterErrorType {
-  NotFound = 'https://api.twitter.com/2/problems/resource-not-found',
-}
+export const TwitterErrorType = {
+  NotFound: 'https://api.twitter.com/2/problems/resource-not-found',
+} as const
 
 export class TwitterApiException extends Error {
-  notFound = false
+  readonly notFound: boolean
 
   constructor(public readonly error: TwitterError) {
     super(error.detail)

@@ -3,12 +3,19 @@ import Video from '../video'
 const DEFAULT_WIDTH = 1600
 const DEFAULT_HEIGHT = 900
 
+export type VideoImplementationClass<T> = new (
+  element: Video<T>,
+) => VideoImplementation<T>
+
 export default abstract class VideoImplementation<T> {
   element: Video<T>
-  url: any
 
   constructor(element: Video<T>) {
     this.element = element
+  }
+
+  get url(): string | undefined {
+    return undefined
   }
 
   get width(): number {

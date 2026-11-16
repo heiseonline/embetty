@@ -19,7 +19,7 @@ export interface TwitterError {
   value: string
   detail: string
   title: string
-  resource_type: 'tweet' | unknown
+  resource_type: string
   parameter: string
   resource_id: string
   type: string
@@ -49,7 +49,7 @@ export interface NoteTweet {
 }
 
 export interface ReferencedTweet {
-  type: 'replied_to' | unknown
+  type: 'replied_to' | 'quoted' | 'retweeted'
   id: string
 }
 

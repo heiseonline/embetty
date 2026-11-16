@@ -95,7 +95,6 @@ export class Tweet extends Embed<EmbettyTweet> {
   }
 
   // TODO: Reduce complexity of fitCardHeight()
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   fitCardHeight() {
     if (!this.hasLinks) {
       return

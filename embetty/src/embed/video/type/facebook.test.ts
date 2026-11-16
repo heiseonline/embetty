@@ -16,7 +16,6 @@ describe.skip('Facebook Video', () => {
 
   it('should load the facebook player after click', async () => {
     const { query, element } = await createFacebookVideo('10156049485672318')
-    // @ts-ignore
     element._data = { canonicalUrl: 'abc' }
     expect(query('iframe')).toBeNull()
     element.activate()

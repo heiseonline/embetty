@@ -2,7 +2,7 @@ export interface EmbettyMastodonPost {
   id: string
   created_at: string
   url: string
-  media_attachments: any[]
+  media_attachments: MastodonMediaAttachment[]
   content: string
 }
 
@@ -14,8 +14,8 @@ export interface MastodonErrorResponse {
 export interface MastodonStatusData {
   id: string
   created_at: string
-  in_reply_to_id: any
-  in_reply_to_account_id: any
+  in_reply_to_id: string | null
+  in_reply_to_account_id: string | null
   sensitive: boolean
   spoiler_text: string
   visibility: string
@@ -25,17 +25,17 @@ export interface MastodonStatusData {
   replies_count: number
   reblogs_count: number
   favourites_count: number
-  edited_at: any
+  edited_at: string | null
   content: string
-  reblog: any
+  reblog: MastodonStatusData | null
   application: MastodonResponseApplication
   account: MastodonResponseAccount
   media_attachments: MastodonMediaAttachment[]
-  mentions: any[]
-  tags: any[]
-  emojis: any[]
-  card: MastodonResponseCard
-  poll: Poll
+  mentions: MastodonMention[]
+  tags: MastodonTag[]
+  emojis: MastodonCustomEmoji[]
+  card: MastodonResponseCard | null
+  poll: Poll | null
 }
 
 export interface MastodonMediaAttachment {
@@ -43,12 +43,12 @@ export interface MastodonMediaAttachment {
   type: string
   url: string
   preview_url: string
-  remote_url: any
-  preview_remote_url: any
-  text_url: any
+  remote_url: string | null
+  preview_remote_url: string | null
+  text_url: string | null
   meta: MastodonMedia
-  description: any
-  blurhash: string
+  description: string | null
+  blurhash: string | null
 }
 
 export interface MastodonMedia {
@@ -72,7 +72,7 @@ export interface MastodonMediaSmall {
 
 export interface MastodonResponseApplication {
   name: string
-  website: any
+  website: string | null
 }
 
 export interface MastodonResponseAccount {
@@ -96,15 +96,15 @@ export interface MastodonResponseAccount {
   statuses_count: number
   last_status_at: string
   noindex: boolean
-  emojis: any[]
-  roles: any[]
+  emojis: MastodonCustomEmoji[]
+  roles: MastodonAccountRole[]
   fields: MastodonResponseField[]
 }
 
 export interface MastodonResponseField {
   name: string
   value: string
-  verified_at: string
+  verified_at: string | null
 }
 
 export interface MastodonResponseCard {
@@ -119,9 +119,9 @@ export interface MastodonResponseCard {
   html: string
   width: number
   height: number
-  image: string
+  image: string | null
   embed_url: string
-  blurhash: string
+  blurhash: string | null
 }
 
 export interface Poll {
@@ -132,10 +132,36 @@ export interface Poll {
   votes_count: number
   voters_count: number
   options: MastodonResponseOption[]
-  emojis: any[]
+  emojis: MastodonCustomEmoji[]
 }
 
 export interface MastodonResponseOption {
   title: string
   votes_count: number
+}
+
+export interface MastodonMention {
+  id: string
+  username: string
+  url: string
+  acct: string
+}
+
+export interface MastodonTag {
+  name: string
+  url: string
+}
+
+export interface MastodonCustomEmoji {
+  shortcode: string
+  url: string
+  static_url: string
+  visible_in_picker: boolean
+  category?: string
+}
+
+export interface MastodonAccountRole {
+  id: string
+  name: string
+  color: string
 }

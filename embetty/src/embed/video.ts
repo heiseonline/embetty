@@ -1,7 +1,6 @@
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
-import { Constructor } from '../interfaces'
-import VideoImplementation from './video/type'
+import VideoImplementation, { VideoImplementationClass } from './video/type'
 import * as Videos from './video/types'
 
 const CSS =
@@ -66,7 +65,7 @@ export default class Video<T> extends Embed<T> {
     return this.impl.url
   }
 
-  get Type(): Constructor<VideoImplementation<T>> {
+  get Type(): VideoImplementationClass<T> {
     const className = this.typeClass
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

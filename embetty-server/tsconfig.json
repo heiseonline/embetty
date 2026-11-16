@@ -3,10 +3,7 @@
   "compilerOptions": {
     "types": ["node", "jest"],
     "rootDir": "./src",
-    "outDir": "./dist",
-    "paths": {
-      "express": ["./node_modules/express/"]
-    }
+    "outDir": "./dist"
   },
   "include": ["src/**/*"],
   "exclude": ["dist", "node_modules"],

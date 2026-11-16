@@ -1,15 +1,17 @@
 import { LRUCache } from 'lru-cache'
 import { CacheEntry, EmbettyCache } from './cache'
 
+const DEFAULT_MAX_ENTRIES = 100
+
+export interface LRUOptions {
+  max: number
+}
+
 export class LRU implements EmbettyCache {
   #cache: LRUCache<string, CacheEntry>
 
   constructor(dsn: string) {
-    const options = LRU.parse(dsn)
-    options
-
-    // this.#cache = new LRUCache(options as any)
-    this.#cache = new LRUCache<string, CacheEntry>({ max: 100 })
+    this.#cache = new LRUCache<string, CacheEntry>(LRU.parse(dsn))
   }
 
   get<T>(key: string): CacheEntry<T> | undefined {
@@ -20,26 +22,19 @@ export class LRU implements EmbettyCache {
     this.#cache.set(entry.key, entry)
   }
 
-  static parse(string: string) {
-    const options = {}
-    const lruPattern = /^lru:\/\//
-
-    if (!lruPattern.test(string)) {
-      return options
+  /** Parses `lru://max:500`; unknown or invalid options fall back to defaults. */
+  static parse(dsn: string): LRUOptions {
+    const params = new Map<string, string>()
+    for (const option of dsn.replace(/^lru:\/\//, '').split(',')) {
+      const [key, value] = option.split(':')
+      if (key && value !== undefined) {
+        params.set(key, value)
+      }
     }
+    const max = Number(params.get('max'))
 
-    string
-      .replace(lruPattern, '')
-      .split(',')
-      .filter((e) => e.length > 0)
-      .forEach((option) => {
-        const [key, value] = option.split(':')
-        if (key) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          options[key] = value
-        }
-      })
-    return options
+    return {
+      max: Number.isInteger(max) && max > 0 ? max : DEFAULT_MAX_ENTRIES,
+    }
   }
 }
