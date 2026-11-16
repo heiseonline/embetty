@@ -1,8 +1,10 @@
 // changesets only publishes via npm, pnpm or yarn. npm would ship
 // `workspace:` ranges verbatim, so publishing goes through `bun publish`.
-// The "New tag:" lines are what changesets/action parses to report
-// published packages to the Docker job.
+// changesets/action reads the published packages from the file named by
+// CHANGESETS_OUTPUT, then pushes their tags, creates the GitHub releases and
+// reports them to the Docker job.
 import { $, Glob } from 'bun'
+import { appendFile } from 'node:fs/promises'
 import path from 'node:path'
 
 interface Manifest {
@@ -65,15 +67,30 @@ async function publishUnreleased(
     const tag = `${manifest.name}@${manifest.version}`
     if (dryRun) {
       await $`bun publish --dry-run`.cwd(dir)
-    } else {
-      await $`bun publish`.cwd(dir)
-      // Tagging here instead of `changeset tag`: that would also tag
-      // unpublished packages and print its own "New tag:" lines, which
-      // changesets/action would turn into duplicate GitHub releases.
-      await $`git tag ${tag}`.cwd(root)
+      continue
     }
-    process.stdout.write(`New tag: ${tag}\n`)
+
+    await $`bun publish`.cwd(dir)
+    await reportTag(tag, manifest.name)
   }
+}
+
+interface GitTagEvent {
+  type: 'git-tag'
+  tag: string
+  packageName: string
+}
+
+async function reportTag(tag: string, packageName: string): Promise<void> {
+  const output = process.env.CHANGESETS_OUTPUT
+  if (!output) {
+    // Outside the action, tag locally like `changeset publish` does.
+    await $`git tag ${tag}`
+    return
+  }
+
+  const event: GitTagEvent = { type: 'git-tag', tag, packageName }
+  await appendFile(output, `${JSON.stringify(event)}\n`)
 }
 
 if (import.meta.main) {

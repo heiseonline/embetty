@@ -7,17 +7,37 @@ permissions:
 
 jobs:
   build:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v7
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: canary
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Audit
+        run: bun audit --prod --audit-level=high
+      - name: Build
+        run: bun run build
+      - name: Test
+        run: bun run test
+
+  # bun test runs on Bun; the server runs on Node.js. The SSRF guard depends
+  # on node:http/net internals, so it is checked on every supported version.
+  node:
     strategy:
       fail-fast: false
       matrix:
         node:
           - '24'
           - '26'
-        platform:
-          - ubuntu-latest
 
-    name: '${{matrix.platform}} / Node.js ${{ matrix.node }}'
-    runs-on: ${{matrix.platform}}
+    name: Guard on Node.js ${{ matrix.node }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Commit
@@ -32,13 +52,9 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install
         run: bun install --frozen-lockfile
-      - name: Audit
-        run: bun audit --prod --audit-level=high
       - name: Build
-        run: bun run build
+        run: bun run --filter '@embetty/base...' build
       - name: Test
-        run: bun run test
-      - name: Test on Node.js ${{ matrix.node }}
         run: bun run --filter @embetty/base test:node
 
   docker:
@@ -49,7 +65,7 @@ jobs:
       - name: Checkout Commit
         uses: actions/checkout@v7
       - name: Build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: false
