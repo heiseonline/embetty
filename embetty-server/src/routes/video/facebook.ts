@@ -2,6 +2,7 @@ import { FacebookVideo } from '@embetty/base'
 import { Router } from 'express'
 import { embetty } from '../../embetty'
 import { BadRequestException } from '../../exceptions'
+import { videoPage } from '../../views'
 
 const router: Router = Router()
 
@@ -19,7 +20,7 @@ router.param('id', async (_req, res, next, id: string) => {
 })
 
 router.get('/:id.amp', (_req, res) => {
-  res.render('video.html', { video: res.locals.video as FacebookVideo })
+  res.type('html').send(videoPage(res.locals.video as FacebookVideo))
 })
 
 router.get('/:id', (_req, res) => {

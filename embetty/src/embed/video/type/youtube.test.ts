@@ -1,8 +1,14 @@
-import { afterEach, describe, expect, it } from 'bun:test'
-import { createYoutubeVideo } from '../../../test/lib/util'
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, mock } from 'bun:test'
+import { createYoutubeVideo, mockServerResponse } from '../../../test/lib/util'
 import '../../video'
 
+beforeEach(() => {
+  mockServerResponse({})
+})
+
 afterEach(() => {
+  mock.restore()
   document.body.innerHTML = ''
 })
 

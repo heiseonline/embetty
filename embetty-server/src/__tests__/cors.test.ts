@@ -1,58 +1,45 @@
-import { describe, it } from 'bun:test'
-import assert from 'assert'
-import request from 'supertest'
-import { app } from '../app'
+import { afterEach, describe, expect, it } from 'bun:test'
+import { serveApp } from './lib/serve'
 
 describe('CORS', () => {
+  const get = serveApp()
+  const fromOrigin = (origin: string) =>
+    get('/', { headers: { Origin: origin } })
+
+  afterEach(() => {
+    delete process.env.VALID_ORIGINS
+  })
+
   it('should send a "http://example.com" Origin header', async () => {
     const origin = 'http://example.com'
     process.env.VALID_ORIGINS = origin
-    const response = await request(app).get('/').set('Origin', origin)
-    assert.strictEqual(response.headers['access-control-allow-origin'], origin)
-    assert.strictEqual(response.status, 404)
+    const response = await fromOrigin(origin)
+    expect(response.headers.get('access-control-allow-origin')).toBe(origin)
+    expect(response.status).toBe(404)
   })
 
   it('should send a 403 status if no valid origin has been sent', async () => {
     process.env.VALID_ORIGINS = 'http://example.com'
-    const response = await request(app)
-      .get('/')
-      .set('Origin', 'http://otherorigin.example.com')
-    assert.strictEqual(response.status, 403)
+    const response = await fromOrigin('http://otherorigin.example.com')
+    expect(response.status).toBe(403)
   })
 
   it('should send dynamic origin headers', async () => {
-    const origin = 'http://a.example.com,http://b.example.com'
-    process.env.VALID_ORIGINS = origin
+    process.env.VALID_ORIGINS = 'http://a.example.com,http://b.example.com'
 
-    const response = await request(app)
-      .get('/')
-      .set('Origin', 'http://a.example.com')
-    assert.strictEqual(
-      response.headers['access-control-allow-origin'],
-      'http://a.example.com',
-    )
-    assert.strictEqual(response.status, 404)
+    for (const origin of ['http://a.example.com', 'http://b.example.com']) {
+      const response = await fromOrigin(origin)
+      expect(response.headers.get('access-control-allow-origin')).toBe(origin)
+      expect(response.status).toBe(404)
+    }
 
-    const response2 = await request(app)
-      .get('/')
-      .set('Origin', 'http://b.example.com')
-    assert.strictEqual(
-      response2.headers['access-control-allow-origin'],
-      'http://b.example.com',
-    )
-    assert.strictEqual(response2.status, 404)
-
-    const response3 = await request(app)
-      .get('/')
-      .set('Origin', 'http://c.example.com')
-    assert.strictEqual(response3.status, 403)
+    const response = await fromOrigin('http://c.example.com')
+    expect(response.status).toBe(403)
   })
 
   it('should support "*" origin', async () => {
     process.env.VALID_ORIGINS = '*'
-    const response = await request(app)
-      .get('/')
-      .set('Origin', 'http://example.com')
-    assert.strictEqual(response.status, 404)
+    const response = await fromOrigin('http://example.com')
+    expect(response.status).toBe(404)
   })
 })

@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'bun:test'
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, mock } from 'bun:test'
 import { webcomponent } from './decorators'
 import { Embed } from './embed'
-import { createElement } from './test/lib/util'
+import { createElement, mockServerResponse } from './test/lib/util'
 
 @webcomponent('embetty-test', '')
 class EmbettyTest extends Embed<unknown> {
@@ -20,6 +21,14 @@ class EmbettyTest extends Embed<unknown> {
     return 'Embetty test'
   }
 }
+
+beforeEach(() => {
+  mockServerResponse({})
+})
+
+afterEach(() => {
+  mock.restore()
+})
 
 describe('Embetty', () => {
   it('should set the API url', async () => {

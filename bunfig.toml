@@ -1,3 +1,7 @@
+[test]
+# Component test files opt into happy-dom with @vitest-environment.
+preload = ["./embetty/src/test/setup.ts"]
+
 [lint]
 typeAware = true
 ignorePatterns = ["**/dist/", "**/coverage/", "**/*.js", "**/__mocks__/"]

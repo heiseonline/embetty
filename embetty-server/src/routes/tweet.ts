@@ -2,6 +2,7 @@ import { Tweet, TwitterApiException } from '@embetty/base'
 import { Router } from 'express'
 import { embetty } from '../embetty'
 import { BadRequestException, NotFoundException } from '../exceptions'
+import { tweetPage } from '../views'
 
 const router: Router = Router()
 
@@ -90,7 +91,7 @@ router.get('/:id.amp', (_req, res) => {
     throw new NotFoundException()
   }
 
-  res.render('tweet.html', { tweet: res.locals.tweet as Tweet })
+  res.type('html').send(tweetPage((res.locals.tweet as Tweet).id))
 })
 
 router.get('/:id', (_req, res, next) => {

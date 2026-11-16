@@ -38,8 +38,8 @@
   "devDependencies": {
     "@embetty/tsconfig": "workspace:*",
     "@embetty/types": "workspace:^",
-    "@happy-dom/global-registrator": "^21.0.4",
     "@types/hogan.js": "^3.0.5",
+    "happy-dom": "^21.0.4",
     "sass": "^1.78.0"
   }
 }

@@ -1,18 +1,17 @@
-import { afterEach, beforeEach, describe, expect, it } from 'bun:test'
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, mock } from 'bun:test'
 import { createFacebookVideo, mockServerResponse } from '../../../test/lib/util'
 import '../../video'
 
 describe('Facebook Video', () => {
-  let fetch: ReturnType<typeof mockServerResponse>
-
   beforeEach(() => {
-    fetch = mockServerResponse({
+    mockServerResponse({
       canonicalUrl: 'https://www.facebook.com/10156049485672318',
     })
   })
 
   afterEach(() => {
-    fetch.mockRestore()
+    mock.restore()
     document.body.innerHTML = ''
   })
 

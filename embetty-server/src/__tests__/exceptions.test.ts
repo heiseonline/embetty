@@ -1,13 +1,12 @@
-import { describe, it } from 'bun:test'
-import assert from 'assert'
+import { describe, expect, it } from 'bun:test'
 import { BadRequestException, NotFoundException } from '../exceptions'
 
 describe('Exceptions', () => {
   it('#BadRequest', () => {
-    assert.strictEqual(new BadRequestException().statusCode, 400)
+    expect(new BadRequestException().statusCode).toBe(400)
   })
 
   it('#NotFound', () => {
-    assert.strictEqual(new NotFoundException().statusCode, 404)
+    expect(new NotFoundException().statusCode).toBe(404)
   })
 })

@@ -9,24 +9,25 @@ import {
 } from 'bun:test'
 import { createServer, Server } from 'http'
 import { AddressInfo } from 'net'
-import request from 'supertest'
-import { app } from '../app'
+import { serveApp } from './lib/serve'
 
 describe('Mastodon', () => {
+  const get = serveApp()
+
   afterEach(() => {
     delete process.env.MASTODON_INSTANCES
   })
 
   it('should respond with 400 for malformed status URLs', async () => {
-    await request(app)
-      .get('/mastodon/https://user@mastodon.social/@user/1')
-      .expect(400)
+    const response = await get('/mastodon/https://user@mastodon.social/@user/1')
+    expect(response.status).toBe(400)
   })
 
   it('should respond with 403 for instances not in MASTODON_INSTANCES', async () => {
     process.env.MASTODON_INSTANCES = 'mastodon.social, social.heise.de'
 
-    await request(app).get('/mastodon/https://evil.test/@user/1').expect(403)
+    const response = await get('/mastodon/https://evil.test/@user/1')
+    expect(response.status).toBe(403)
   })
 
   describe('internal targets', () => {
@@ -59,7 +60,7 @@ describe('Mastodon', () => {
       ['an IP literal', () => `127.0.0.1:${port}`],
       ['a hostname', () => `localhost:${port}`],
     ])('should not connect to %s', async (_, host) => {
-      const response = await request(app).get(
+      const response = await get(
         `/mastodon/https://${host()}/@user/1/profile-image`,
       )
 

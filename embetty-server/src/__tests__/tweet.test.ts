@@ -1,7 +1,5 @@
-import { afterAll, beforeAll, describe, it } from 'bun:test'
-import assert from 'assert'
-import request from 'supertest'
-import { app } from '../app'
+import { afterAll, beforeAll, describe, expect, it } from 'bun:test'
+import { expectHtml, expectImage, serveApp } from './lib/serve'
 
 const Tweets = {
   s200: '934029337019416579',
@@ -13,6 +11,9 @@ const Tweets = {
 const itWithTwitter = it.skipIf(!process.env.TWITTER_BEARER_TOKEN)
 
 describe('Tweet', () => {
+  const get = serveApp()
+  const status = async (path: string) => (await get(path)).status
+
   beforeAll(() => {
     process.env.URL_BASE = 'https://example.com/embetty-server'
   })
@@ -21,85 +22,59 @@ describe('Tweet', () => {
   })
 
   itWithTwitter('/tweet/:id => 404', async () => {
-    await request(app).get(`/tweet/${Tweets.s404}`).expect(404)
+    expect(await status(`/tweet/${Tweets.s404}`)).toBe(404)
   })
 
   it('/tweet/:id => 400', async () => {
-    await request(app).get(`/tweet/${Tweets.s400}`).expect(400)
+    expect(await status(`/tweet/${Tweets.s400}`)).toBe(400)
   })
 
   itWithTwitter('/tweet/:id.amp => 200', async () => {
-    const response = await request(app)
-      .get(`/tweet/${Tweets.s200}.amp`)
-      .expect('Content-Type', /html/)
-      .expect(200)
-    const expected =
-      '<embetty-tweet status="934029337019416579"></embetty-tweet>'
-    assert.ok(response.text.includes(expected))
+    const page = await expectHtml(await get(`/tweet/${Tweets.s200}.amp`))
+    expect(page).toContain(
+      `<embetty-tweet include-thread status="${Tweets.s200}"></embetty-tweet>`,
+    )
   })
 
   itWithTwitter('/tweet/:id => 200', async () => {
-    const response = await request(app)
-      .get(`/tweet/${Tweets.s200}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-    const body: { id_str: string } = response.body
-    assert.strictEqual(body.id_str, Tweets.s200)
+    const response = await get(`/tweet/${Tweets.s200}`)
+    expect(response.status).toBe(200)
+    expect(response.headers.get('content-type')).toMatch(/json/)
+    expect(await response.json()).toMatchObject({ id_str: Tweets.s200 })
   })
 
   itWithTwitter('/tweet/:id-profile-image => 404', async () => {
-    await request(app).get(`/tweet/${Tweets.s404}/profile-image`).expect(404)
+    expect(await status(`/tweet/${Tweets.s404}/profile-image`)).toBe(404)
   })
 
   it('/tweet/:id-profile-image => 400', async () => {
-    await request(app).get(`/tweet/${Tweets.s400}-profile-image`).expect(400)
+    expect(await status(`/tweet/${Tweets.s400}-profile-image`)).toBe(400)
   })
 
   itWithTwitter('/tweet/:id-profile-image => 200', async () => {
-    const response = await request(app)
-      .get(`/tweet/${Tweets.s200}-profile-image`)
-      .expect('Content-Type', /png|jpg|jpeg/)
-      .expect(200)
-
-    assert.ok(Buffer.isBuffer(response.body))
-    const imageLength = Buffer.byteLength(response.body)
-    assert.ok(imageLength > 100)
-    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
+    await expectImage(
+      await get(`/tweet/${Tweets.s200}-profile-image`),
+      /png|jpg|jpeg/,
+    )
   })
 
   it('/tweet/:id-images-:number => 400', async () => {
-    await request(app).get(`/tweet/${Tweets.s200}-images-abc`).expect(400)
+    expect(await status(`/tweet/${Tweets.s200}-images-abc`)).toBe(400)
   })
 
   itWithTwitter('/tweet/:id-images-:number => 404', async () => {
-    await request(app).get(`/tweet/${Tweets.s200}-images-99`).expect(404)
+    expect(await status(`/tweet/${Tweets.s200}-images-99`)).toBe(404)
   })
 
   itWithTwitter('/tweet/:id-images-:number => 200', async () => {
-    const response = await request(app)
-      .get(`/tweet/${Tweets.s200}-images-0`)
-      .expect('Content-Type', /jpeg/)
-      .expect(200)
-
-    assert.ok(Buffer.isBuffer(response.body))
-    const imageLength = Buffer.byteLength(response.body)
-    assert.ok(imageLength > 100)
-    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
+    await expectImage(await get(`/tweet/${Tweets.s200}-images-0`), /jpeg/)
   })
 
   itWithTwitter('/tweet/:id-link-image => 200', async () => {
-    const response = await request(app)
-      .get('/tweet/934386458852495360-link-image')
-      .expect('Content-Type', /jpeg/)
-      .expect(200)
-
-    assert.ok(Buffer.isBuffer(response.body))
-    const imageLength = Buffer.byteLength(response.body)
-    assert.ok(imageLength > 100)
-    assert.strictEqual(response.headers['content-length'], `${imageLength}`)
+    await expectImage(await get('/tweet/934386458852495360-link-image'), /jpeg/)
   })
 
   itWithTwitter('/tweet/:id-link-image => 404', async () => {
-    await request(app).get(`/tweet/${Tweets.s200}-link-image`).expect(404)
+    expect(await status(`/tweet/${Tweets.s200}-link-image`)).toBe(404)
   })
 })

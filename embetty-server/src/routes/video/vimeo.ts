@@ -2,6 +2,7 @@ import { VimeoVideo } from '@embetty/base'
 import { Router } from 'express'
 import { embetty } from '../../embetty'
 import { BadRequestException } from '../../exceptions'
+import { videoPage } from '../../views'
 
 const router: Router = Router()
 
@@ -36,11 +37,7 @@ router.get('/:id-poster-image', async (_req, res, next) => {
 })
 
 router.get('/:id.amp', (req, res) => {
-  const attributes = { ...req.query }
-  res.render('video.html', {
-    video: res.locals.video as VimeoVideo,
-    attributes,
-  })
+  res.type('html').send(videoPage(res.locals.video as VimeoVideo, req.query))
 })
 
 router.get('/:id', (_req, res) => {

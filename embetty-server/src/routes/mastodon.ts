@@ -6,6 +6,7 @@ import {
   ForbiddenException,
   NotFoundException,
 } from '../exceptions'
+import { mastodonPage } from '../views'
 
 const router: Router = Router()
 
@@ -126,9 +127,9 @@ router.get('/:statusUrl(*).amp', (_req, res) => {
     throw new NotFoundException()
   }
 
-  res.render('mastodon.html', {
-    mastodon: res.locals.mastodon as MastodonStatus,
-  })
+  res
+    .type('html')
+    .send(mastodonPage((res.locals.mastodon as MastodonStatus).id))
 })
 
 router.get('/:statusUrl(*)', (_req, res, next) => {

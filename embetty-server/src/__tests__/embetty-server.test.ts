@@ -1,23 +1,21 @@
 import { describe, expect, it } from 'bun:test'
-import assert from 'assert'
-import request from 'supertest'
-import { app } from '../app'
+import { version } from '../../package.json'
+import { serveApp } from './lib/serve'
 
 describe('embetty-server', () => {
+  const get = serveApp()
+
   it('/ is 404', async () => {
-    await request(app).get('/').expect(404)
+    expect((await get('/')).status).toBe(404)
   })
 
   it('should not send a "x-powered-by" header', async () => {
-    const response = await request(app).get('/')
-    assert.ok(!('x-powered-by' in response.headers))
+    const response = await get('/')
+    expect(response.headers.has('x-powered-by')).toBe(false)
   })
 
   it('should provide the version', async () => {
-    const response = await request(app).get('/version')
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-    const expected = require('../../package.json').version
-
-    expect(response.text).toBe(JSON.stringify({ version: expected }))
+    const response = await get('/version')
+    expect(await response.json()).toEqual({ version })
   })
 })
