@@ -1,26 +1,31 @@
-ARG NODE_IMAGE=node:26-alpine
+ARG NODE_IMAGE=node:26-trixie-slim
 
-FROM ${NODE_IMAGE} AS builder
+FROM --platform=$BUILDPLATFORM oven/bun:canary AS bun
+
+# The build output and server dependencies are plain JS, so the builder
+# runs natively instead of under QEMU for every target platform.
+FROM --platform=$BUILDPLATFORM ${NODE_IMAGE} AS builder
+COPY --from=bun /usr/local/bin/bun /usr/local/bin/bun
 WORKDIR /build
 COPY . .
-# Node.js 25+ no longer ships corepack.
-RUN npm install --global corepack@0.36.0 \
-  && corepack enable \
-  && pnpm i --frozen-lockfile \
-  && pnpm build \
-  && pnpm --filter server --prod deploy .target
+# --ignore-scripts: the only install script is the git hook setup.
+# Reinstalling with --production leaves only the server's runtime
+# dependencies (incl. its workspace packages) in node_modules.
+RUN bun install --frozen-lockfile --ignore-scripts \
+  && bun run build \
+  && rm -rf node_modules */node_modules libs/*/node_modules tools/*/node_modules \
+  && bun install --frozen-lockfile --ignore-scripts --production --filter @embetty/server
 
 FROM ${NODE_IMAGE}
 
 ENV TZ=Europe/Berlin
-ENV LC_ALL=de_DE.UTF-8
+ENV LC_ALL=C.UTF-8
 ENV NODE_ENV=production
-ENV PORT 8080
+ENV PORT=8080
 ENV NODE_OPTIONS="--max-old-space-size=500 --dns-result-order=ipv4first"
 
-WORKDIR /app
-USER nobody
+USER node
+COPY --chown=node:node --from=builder /build /app
+WORKDIR /app/embetty-server
 
-COPY --chown=nobody:nobody --from=builder /build/.target /app
-
-CMD node dist/server.js
+CMD ["node", "dist/server.js"]

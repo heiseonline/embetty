@@ -1,0 +1,40 @@
+[lint]
+typeAware = true
+ignorePatterns = ["**/dist/", "**/coverage/", "**/*.js", "**/__mocks__/"]
+
+[lint.rules]
+"no-console" = ["warn", { allow = ["warn", "error"] }]
+"consistent-return" = "error"
+"curly" = "error"
+"dot-notation" = "error"
+"max-depth" = ["error", 3]
+"no-nested-ternary" = "error"
+"no-return-await" = "error"
+"no-useless-concat" = "error"
+"no-var" = "error"
+"prefer-const" = [
+  "error",
+  { destructuring = "all", ignoreReadBeforeAssign = true },
+]
+"prefer-template" = "error"
+"yoda" = ["error", "never"]
+"@typescript-eslint/no-unused-vars" = [
+  "error",
+  { argsIgnorePattern = "^(_|next)" },
+]
+"@typescript-eslint/no-unsafe-assignment" = "off"
+"@typescript-eslint/no-unsafe-call" = "off"
+"@typescript-eslint/no-unsafe-return" = "off"
+"@typescript-eslint/no-magic-numbers" = [
+  "error",
+  { ignoreArrayIndexes = true, ignore = [-1, 0, 1], ignoreEnums = true, ignoreNumericLiteralTypes = true, ignoreReadonlyClassProperties = true },
+]
+
+[[lint.overrides]]
+files = ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**"]
+rules = { "@typescript-eslint/unbound-method" = "off", "@typescript-eslint/no-magic-numbers" = "off" }
+
+[fmt]
+semi = false
+singleQuote = true
+ignorePatterns = ["bun.lock", "**/CHANGELOG.md"]

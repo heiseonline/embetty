@@ -18,31 +18,31 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v7
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.0.0
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          standalone: true
+          bun-version: canary
 
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
           node-version: 26.x
-          cache: 'pnpm'
 
-      - name: pnpm install
-        run: pnpm install
+      - name: Install
+        run: bun install --frozen-lockfile
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: pnpm release
+          version: bun run bump
+          publish: bun run release
           commit: 'chore: release package(s)'
           title: 'Version Packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
   publish-docker:
     name: Publish Docker Images

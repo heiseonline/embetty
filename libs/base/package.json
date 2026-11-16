@@ -4,7 +4,6 @@
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint --cache --cache-strategy content ./src --report-unused-disable-directives",
     "build": "tsc --build tsconfig.build.json",
     "test": "jest"
   },
@@ -26,7 +25,6 @@
     "tslib": "^2.7.0"
   },
   "devDependencies": {
-    "@embetty/eslint-config": "workspace:*",
     "@embetty/jest-config": "workspace:^",
     "@embetty/tsconfig": "workspace:*",
     "@embetty/types": "workspace:^",

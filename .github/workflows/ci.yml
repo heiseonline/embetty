@@ -22,23 +22,22 @@ jobs:
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v7
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4.0.0
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          standalone: true
+          bun-version: canary
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
-          cache: 'pnpm'
-      - name: pnpm install
-        run: pnpm install
+      - name: Install
+        run: bun install --frozen-lockfile
       - name: Audit
-        run: pnpm audit --prod --audit-level=high
-      - name: build
-        run: pnpm run build
-      - name: test
-        run: pnpm run test
+        run: bun audit --prod --audit-level=high
+      - name: Build
+        run: bun run build
+      - name: Test
+        run: bun run test
 
   docker:
     name: Docker image
@@ -52,3 +51,19 @@ jobs:
         with:
           context: .
           push: false
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v7
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: canary
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Lint
+        run: bun lint --max-warnings=0

@@ -29,7 +29,7 @@
   "git.inputValidationSubjectLength": 100,
   "git.inputValidationLength": 100,
   // Node
-  "npm.packageManager": "pnpm",
+  "npm.packageManager": "bun",
   "npm.autoDetect": "off",
   // JavaScript
   "javascript.updateImportsOnFileMove.enabled": "always",
