@@ -14,7 +14,16 @@ COPY . .
 RUN bun install --frozen-lockfile --ignore-scripts \
   && bun run build \
   && rm -rf node_modules */node_modules libs/*/node_modules tools/*/node_modules \
-  && bun install --frozen-lockfile --ignore-scripts --production --filter @embetty/server
+  && bun install --ignore-scripts --production --filter @embetty/server
+# The runtime needs the built packages and their dependencies, no sources.
+RUN mkdir /app \
+  && for path in package.json node_modules \
+    embetty-server/package.json embetty-server/dist embetty-server/node_modules \
+    libs/base/package.json libs/base/dist libs/base/node_modules \
+    libs/types/package.json libs/types/dist \
+    embetty/package.json embetty/dist embetty/node_modules; do \
+    cp -a --parents "$path" /app; \
+  done
 
 FROM ${NODE_IMAGE}
 
@@ -25,7 +34,7 @@ ENV PORT=8080
 ENV NODE_OPTIONS="--max-old-space-size=500 --dns-result-order=ipv4first"
 
 USER node
-COPY --chown=node:node --from=builder /build /app
+COPY --chown=node:node --from=builder /app /app
 WORKDIR /app/embetty-server
 
 CMD ["node", "dist/server.js"]
