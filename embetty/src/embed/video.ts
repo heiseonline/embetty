@@ -2,7 +2,7 @@ import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
 import VideoImplementation, { VideoImplementationClass } from './video/type'
 import * as Videos from './video/types'
-import CSS from './_video.scss'
+import CSS from './_video.css'
 
 @webcomponent(
   'embetty-video',

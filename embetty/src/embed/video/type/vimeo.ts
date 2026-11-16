@@ -1,5 +1,5 @@
 import VideoImplementation from '../type'
-import CSS from './vimeo.scss'
+import CSS from '../../_video.css'
 
 export class VimeoVideo extends VideoImplementation<never> {
   get css() {

@@ -2,7 +2,7 @@ import { MastodonStatusData } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
 import { parseHostname } from '../util'
-import CSS from './mastodon.scss'
+import CSS from './mastodon.css'
 
 const template = `
     <style>${CSS}</style>

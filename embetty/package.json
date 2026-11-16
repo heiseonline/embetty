@@ -39,7 +39,6 @@
     "@embetty/tsconfig": "workspace:*",
     "@embetty/types": "workspace:^",
     "@types/hogan.js": "^3.0.5",
-    "happy-dom": "^21.0.4",
-    "sass": "^1.78.0"
+    "happy-dom": "^21.0.4"
   }
 }

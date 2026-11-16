@@ -1,5 +1,5 @@
 import VideoImplementation from '../type'
-import CSS from './facebook.scss'
+import CSS from '../../_video.css'
 
 export class FacebookVideo extends VideoImplementation<{
   canonicalUrl: string

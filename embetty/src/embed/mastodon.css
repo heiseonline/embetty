@@ -1,9 +1,12 @@
-@import '../element';
-@import 'powered-by';
+@import '../_element.css';
+@import './_powered-by.css';
 
-$profile-image-width: 36px;
-$quoteLineWidth: 4px;
+:host {
+  --_profile-image-width: 36px;
+  --_quote-line-width: 4px;
+}
 
+/* copied from tweet.css */
 :host(.answered) {
   margin-top: 0;
   margin-bottom: 0.5rem;
@@ -15,8 +18,10 @@ $quoteLineWidth: 4px;
   }
 
   article {
-    border-left: $quoteLineWidth solid #bbb;
-    margin-left: calc($profile-image-width / 2 - $quoteLineWidth / 2);
+    border-left: var(--_quote-line-width) solid #bbb;
+    margin-left: calc(
+      var(--_profile-image-width) / 2 - var(--_quote-line-width) / 2
+    );
     padding-left: 2rem;
     padding-bottom: 1rem;
 
@@ -44,20 +49,28 @@ $quoteLineWidth: 4px;
     padding: 1.5rem 2rem;
   }
 
+  .invisible {
+    display: none;
+  }
+
+  .ellipsis::after {
+    content: '…';
+  }
+
   header {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
 
     img {
-      width: $profile-image-width;
-      height: $profile-image-width;
+      width: var(--_profile-image-width);
+      height: var(--_profile-image-width);
       border-radius: 50%;
     }
 
     > span {
       display: inline-block;
-      margin: 0 var(--embetty-spacing, $embetty-spacing);
+      margin: 0 var(--embetty-spacing, 1rem);
     }
 
     strong {
@@ -74,10 +87,6 @@ $quoteLineWidth: 4px;
   }
 
   article {
-    span {
-      display: block;
-    }
-
     p {
       margin: 0 auto 0.5rem;
       line-height: 1.4;
@@ -88,25 +97,11 @@ $quoteLineWidth: 4px;
       }
 
       a {
-        color: var(--embetty-link-color, $embetty-link-color);
+        color: var(--embetty-link-color, #012469);
         text-decoration: none;
       }
 
       a:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .media-hint {
-      background-color: #e8e8e8;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-
-      a {
-        color: #444;
-        font-size: 14px;
         text-decoration: underline;
       }
     }
@@ -161,8 +156,26 @@ $quoteLineWidth: 4px;
     }
   }
 
+  .meta-bar {
+    display: flex;
+    justify-content: flex-end;
+    color: #777;
+    stroke: #777;
+    box-sizing: border-box;
+    gap: 1rem;
+    margin: 0.5rem;
+    text-decoration: none;
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+
   #links {
-    border: 1px solid var(--embetty-border-color, $embetty-border-color);
+    border: 1px solid var(--embetty-border-color, #ccc);
     border-width: 1px;
     border-radius: 4px;
     text-decoration: none;

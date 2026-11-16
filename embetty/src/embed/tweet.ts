@@ -2,7 +2,7 @@ import { EmbettyTweet, TweetData, User } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
 import { height, parseHostname } from '../util'
-import CSS from './tweet.scss'
+import CSS from './tweet.css'
 
 const HEIGHT_OFFSET = 2
 

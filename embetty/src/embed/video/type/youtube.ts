@@ -1,5 +1,5 @@
 import VideoImplementation from '../type'
-import CSS from './youtube.scss'
+import CSS from '../../_video.css'
 
 export class YoutubeVideo extends VideoImplementation<never> {
   get css() {

@@ -1,6 +1,6 @@
 import { watch } from 'node:fs'
 import pkg from './package.json'
-import { scss } from './scss-plugin'
+import { inlineCss } from './css-plugin'
 
 const { name, version, homepage, license, author, contributors } = pkg
 const banner = `/*! ${name} - v${version}
@@ -20,7 +20,7 @@ async function build(): Promise<boolean> {
     minify: true,
     sourcemap: 'linked',
     banner,
-    plugins: [scss],
+    plugins: [inlineCss],
   })
 
   for (const log of result.logs) {

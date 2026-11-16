@@ -1,5 +1,5 @@
 import { plugin } from 'bun'
-import { scss } from '../../scss-plugin'
+import { inlineCss } from '../../css-plugin'
 
 // Components import their stylesheets; the bundle compiles them the same way.
-void plugin(scss)
+void plugin(inlineCss)

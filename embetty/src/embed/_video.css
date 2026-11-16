@@ -1,5 +1,5 @@
-@import '../element';
-@import 'powered-by';
+@import '../_element.css';
+@import './_powered-by.css';
 
 :host {
   width: 100%;
@@ -27,7 +27,7 @@
   }
 
   #playbutton {
-    // id hardcoded in video.js
+    /* id hardcoded in video.ts */
     box-sizing: border-box;
     display: block;
     position: absolute;

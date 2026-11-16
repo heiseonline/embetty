@@ -1,12 +1,17 @@
-@import './vars';
-
 :host {
   position: relative;
   overflow: hidden;
   display: block;
   width: 100%;
-  font-family: var(--embetty-font-family, $embetty-font-family);
-  border: 1px solid var(--embetty-border-color, $embetty-border-color);
+  font-family: var(
+    --embetty-font-family,
+    Helvetica,
+    Roboto,
+    'Segoe UI',
+    Calibri,
+    sans-serif
+  );
+  border: 1px solid var(--embetty-border-color, #ccc);
   border-width: 1px;
   border-radius: 4px;
   box-sizing: border-box;

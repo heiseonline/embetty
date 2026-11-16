@@ -1,5 +1,5 @@
-// Stylesheets compile to CSS text (see scss-plugin.ts), for shadow roots.
-declare module '*.scss' {
+// Stylesheets are bundled to CSS text (see css-plugin.ts), for shadow roots.
+declare module '*.css' {
   const css: string
   export default css
 }
