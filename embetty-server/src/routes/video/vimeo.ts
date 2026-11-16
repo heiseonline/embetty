@@ -19,7 +19,6 @@ router.param('id', async (_req, res, next, id: string) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 router.get('/:id-poster-image', async (_req, res, next) => {
   try {
     const image = await (res.locals.video as VimeoVideo).getPosterImage()

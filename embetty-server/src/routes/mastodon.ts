@@ -47,8 +47,11 @@ function assertAllowedInstance(statusUrl: string) {
   }
 }
 
-router.param('statusUrl', async (_req, res, next, statusUrl: string) => {
+// A wildcard parameter holds the path segments; the status URL is all of
+// them, including the empty one after "https:".
+router.param('statusUrl', async (_req, res, next, segments: string[]) => {
   try {
+    const statusUrl = segments.join('/')
     assertAllowedInstance(statusUrl)
 
     res.locals.mastodon = await embetty.loadMastodonStatus(statusUrl)
@@ -67,8 +70,7 @@ router.param('number', (_req, _res, next, number: string) => {
   next()
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-router.get('/:statusUrl(*)/profile-image', async (_req, res, next) => {
+router.get('/*statusUrl/profile-image', async (_req, res, next) => {
   try {
     const image = await (
       res.locals.mastodon as MastodonStatus
@@ -88,8 +90,7 @@ router.get('/:statusUrl(*)/profile-image', async (_req, res, next) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-router.get('/:statusUrl(*)/link-image', async (_req, res, next) => {
+router.get('/*statusUrl/link-image', async (_req, res, next) => {
   try {
     const image = await (res.locals.mastodon as MastodonStatus).getLinkImage()
 
@@ -105,11 +106,10 @@ router.get('/:statusUrl(*)/link-image', async (_req, res, next) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-router.get('/:statusUrl(*)/images/:number', async (req, res, next) => {
+router.get('/*statusUrl/images/:number', async (req, res, next) => {
   try {
     const image = await (res.locals.mastodon as MastodonStatus).getImage(
-      parseInt(req.params.number!),
+      parseInt(req.params.number),
     )
 
     if (!image) {
@@ -124,7 +124,7 @@ router.get('/:statusUrl(*)/images/:number', async (req, res, next) => {
   }
 })
 
-router.get('/:statusUrl(*).amp', (_req, res) => {
+router.get('/*statusUrl.amp', (_req, res) => {
   if (!res.locals.mastodon) {
     throw new NotFoundException()
   }
@@ -134,7 +134,7 @@ router.get('/:statusUrl(*).amp', (_req, res) => {
     .send(mastodonPage((res.locals.mastodon as MastodonStatus).id))
 })
 
-router.get('/:statusUrl(*)', (_req, res, next) => {
+router.get('/*statusUrl', (_req, res, next) => {
   if (!res.locals.mastodon) {
     next()
     return

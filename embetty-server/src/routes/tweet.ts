@@ -33,7 +33,6 @@ router.param('number', (_req, _res, next, number: string) => {
   next()
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 router.get('/:id/profile-image', async (_req, res, next) => {
   try {
     const image = await (res.locals.tweet as Tweet).getProfileImage()
@@ -50,7 +49,6 @@ router.get('/:id/profile-image', async (_req, res, next) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 router.get('/:id/link-image', async (_req, res, next) => {
   try {
     const image = await (res.locals.tweet as Tweet).getLinkImage()
@@ -67,7 +65,6 @@ router.get('/:id/link-image', async (_req, res, next) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 router.get('/:id/images/:number', async (req, res, next) => {
   try {
     const image = await (res.locals.tweet as Tweet).getImage(
