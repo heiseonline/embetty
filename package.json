@@ -13,7 +13,7 @@
     "demo": "bun run --filter \"@embetty/base...\" build && EMBETTY_CACHE=lru:// bun --env-file=embetty-server/.env scripts/demo.ts"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.8",
+    "@changesets/cli": "^3.0.3",
     "@embetty/tsconfig": "workspace:^",
     "@types/bun": "^1.4.4",
     "@types/node": "^24.19.2"

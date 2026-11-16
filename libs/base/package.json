@@ -26,11 +26,11 @@
   },
   "dependencies": {
     "@embetty/types": "workspace:^",
-    "cheerio": "1.0.0-rc.12",
-    "debug": "^4.3.7",
-    "ioredis": "^5.4.1",
-    "ipaddr.js": "^2.2.0",
-    "lru-cache": "^9.1.2"
+    "cheerio": "^1.2.0",
+    "debug": "^4.4.3",
+    "ioredis": "^6.0.0",
+    "ipaddr.js": "^2.5.0",
+    "lru-cache": "^11.5.3"
   },
   "devDependencies": {
     "@embetty/tsconfig": "workspace:*",
