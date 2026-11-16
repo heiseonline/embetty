@@ -136,6 +136,21 @@ describe('guardedLookup', () => {
     )
   })
 
+  it.each([
+    ['nothing', resolveTo()],
+    ['only another address family', resolveTo('2606:4700::1111')],
+  ])('rejects a hostname resolving to %s', async (_, resolve) => {
+    const lookup = guardedLookup(isPublicAddress, resolve)
+
+    await expect(
+      new Promise((ok, fail) => {
+        lookup('empty.test', { all: true, family: 4 }, (error, addresses) =>
+          error ? fail(error) : ok(addresses),
+        )
+      }),
+    ).rejects.toThrow(ForbiddenTargetError)
+  })
+
   it('returns all resolved addresses if every one is allowed', async () => {
     const lookup = guardedLookup(
       isPublicAddress,

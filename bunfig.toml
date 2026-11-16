@@ -35,8 +35,8 @@ ignorePatterns = ["**/dist/", "**/coverage/", "**/*.js", "**/__mocks__/"]
 ]
 
 [[lint.overrides]]
-files = ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**"]
-rules = { "@typescript-eslint/unbound-method" = "off", "@typescript-eslint/no-magic-numbers" = "off" }
+files = ["**/*.spec.ts", "**/*.test.ts", "**/__tests__/**", "**/node-test/**"]
+rules = { "@typescript-eslint/unbound-method" = "off", "@typescript-eslint/no-magic-numbers" = "off", "no-magic-numbers" = "off" }
 
 [fmt]
 semi = false

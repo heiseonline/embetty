@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && bun build src/index.ts --outdir dist --target node --format cjs --packages external --sourcemap=linked --dts",
-    "test": "bun test ./src"
+    "test": "bun test ./src",
+    "test:node": "node --test node-test/guarded-fetch.mjs"
   },
   "engines": {
     "node": ">=24"

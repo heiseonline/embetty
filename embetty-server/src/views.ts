@@ -83,7 +83,12 @@ function layout(embed: Html): string {
 
 // Attribute names cannot be escaped, so only those the component reads from
 // AMP pages are passed on; anything else could add an event handler.
-const VIDEO_ATTRIBUTES = ['start-at', 'poster-image'] as const
+const VIDEO_ATTRIBUTES = [
+  'start-at',
+  'poster-image',
+  'width',
+  'height',
+] as const
 
 export interface VideoView {
   type: string

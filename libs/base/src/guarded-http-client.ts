@@ -134,7 +134,7 @@ export function guardedLookup(
   const check = async (
     hostname: string,
     family: LookupOptions['family'],
-  ): Promise<LookupAddress[]> => {
+  ): Promise<[LookupAddress, ...LookupAddress[]]> => {
     const wanted = { IPv4: 4, IPv6: 6 } as const
     const addresses = await resolve(hostname)
     const forbidden = addresses.find((address) => !isAllowedAddress(address))
@@ -143,7 +143,7 @@ export function guardedLookup(
       throw new ForbiddenTargetError(hostname, `resolves to ${forbidden}`)
     }
 
-    return addresses
+    const entries = addresses
       .map((address) => ({ address, family: isIP(address) }))
       .filter(
         (entry) =>
@@ -151,18 +151,22 @@ export function guardedLookup(
           entry.family ===
             (typeof family === 'string' ? wanted[family] : family),
       )
+
+    // net.connect() assumes at least one address and throws otherwise.
+    const [first, ...rest] = entries
+    if (!first) {
+      throw new ForbiddenTargetError(hostname, 'no address')
+    }
+    return [first, ...rest]
   }
 
   return (hostname, options, callback) => {
     check(hostname, options.family).then(
       (entries) => {
-        const [first] = entries
         if (options.all) {
           callback(null, entries)
-        } else if (first) {
-          callback(null, first.address, first.family)
         } else {
-          callback(new ForbiddenTargetError(hostname, 'no address'), '')
+          callback(null, entries[0].address, entries[0].family)
         }
       },
       (error: Error) => callback(error, ''),
