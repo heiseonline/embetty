@@ -3,6 +3,7 @@ PLEASE WRITE YOUR MESSAGE IN ENGLISH. BE NICE.
 
 THANK YOU FOR CONTRIBUTING TO THIS PROJECT.
 -->
+
 ### General information
 
 - `embetty` version: HERE

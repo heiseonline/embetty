@@ -9,7 +9,11 @@ html {
 }
 
 body {
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font:
+    14px 'Lucida Grande',
+    Helvetica,
+    Arial,
+    sans-serif;
   margin: auto;
   padding: 1rem;
 }

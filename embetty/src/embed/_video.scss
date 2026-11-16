@@ -13,7 +13,7 @@
     &::before {
       content: '';
       display: block;
-      padding-top: calc(100/16*9 * 1%);
+      padding-top: calc(100 / 16 * 9 * 1%);
     }
 
     img {
@@ -26,7 +26,8 @@
     }
   }
 
-  #playbutton {  // id hardcoded in video.js
+  #playbutton {
+    // id hardcoded in video.js
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -77,7 +78,7 @@
     -webkit-font-smoothing: antialiased;
 
     color: #fff;
-    opacity: .6;
+    opacity: 0.6;
 
     &:hover {
       opacity: 1;

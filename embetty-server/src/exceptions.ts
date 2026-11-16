@@ -1,7 +1,10 @@
 import messages, { BAD_REQUEST, FORBIDDEN, NOT_FOUND } from 'http-status'
 
 export class HttpException extends Error {
-  constructor(message: string, public readonly statusCode: number) {
+  constructor(
+    message: string,
+    public readonly statusCode: number,
+  ) {
     super(message)
   }
 }
