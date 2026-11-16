@@ -31,6 +31,6 @@ process.env.NODE_ENV = 'production'
 if (values.cache) process.env.EMBETTY_CACHE = values.cache
 if (values.debug) process.env.DEBUG = '*'
 if (values.port) process.env.PORT = values.port
-if (values.verbose) process.env.DEBUG = 'embetty*'
+if (values.verbose) process.env.DEBUG = 'embetty-*'
 
 require('../dist/server')
