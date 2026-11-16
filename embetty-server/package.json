@@ -15,7 +15,7 @@
     "start": "node dist/server.js",
     "dev": "bun --watch src/server.ts",
     "test": "bun test ./src",
-    "build": "rm -rf dist && bun build src/server.ts src/index.ts --outdir dist --target node --format cjs --packages external --sourcemap=linked --dts",
+    "build": "rm -rf dist && bun build src/server.ts src/index.ts --outdir dist --target node --format cjs --packages external --define process.env.NODE_ENV=process.env.NODE_ENV --sourcemap=linked --dts",
     "start:docker": "docker run --env URL_BASE=http://localhost:8080 --env EMBETTY_CACHE= -p8080:8080 --rm --env-file .env heiseonline/embetty-server"
   },
   "publishConfig": {

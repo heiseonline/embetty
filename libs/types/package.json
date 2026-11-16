@@ -12,7 +12,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "rm -rf dist && bun build src/index.ts --outdir dist --target node --format cjs --packages external --sourcemap=linked --dts"
+    "build": "rm -rf dist && bun build src/index.ts --outdir dist --target node --format cjs --packages external --define process.env.NODE_ENV=process.env.NODE_ENV --sourcemap=linked --dts"
   },
   "devDependencies": {
     "@embetty/tsconfig": "workspace:*"
