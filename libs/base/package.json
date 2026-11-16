@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@embetty/types": "workspace:^",
-    "axios": "^1.21.0",
     "cheerio": "1.0.0-rc.12",
     "content-type": "^1.0.5",
     "debug": "^4.3.7",

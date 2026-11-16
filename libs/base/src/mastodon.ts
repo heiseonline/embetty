@@ -25,7 +25,7 @@ export class MastodonStatus extends Embed<MastodonStatusData> {
   instance: string
   statusId: string
 
-  constructor(id: string, options: EmbedOptions<MastodonStatusData>) {
+  constructor(id: string, options: EmbedOptions) {
     super(id, options)
 
     const { instance, statusId } = MastodonStatus.parseUrl(id)

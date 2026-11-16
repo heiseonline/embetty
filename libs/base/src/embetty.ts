@@ -1,19 +1,16 @@
-import { MastodonStatusData } from '@embetty/types'
-import { AxiosInstance, AxiosRequestConfig } from 'axios'
 import contentType from 'content-type'
 import debug_ from 'debug'
-import { TweetResponse } from '../../types/src/tweet.interfaces'
 import { CacheEntry, EmbettyCache } from './cache/cache'
 import { LRU } from './cache/lru'
 import { Redis } from './cache/redis'
 import { Embed, EmbedOptions } from './embed'
-import { FacebookVideo, FacebookVideoData } from './facebook-video'
-import { createGuardedHttpClient } from './guarded-http-client'
+import { FacebookVideo } from './facebook-video'
+import { createGuardedFetch, GuardedFetch } from './guarded-http-client'
 import { MastodonStatus } from './mastodon'
-import { EmbettyRequest, cachedRequest } from './request-cache'
+import { CachedRequest, cachedRequest, RequestOptions } from './request-cache'
 import { Tweet } from './twitter/tweet'
-import { VimeoVideo, VimeoVideoData } from './vimeo-video'
-import { YoutubeVideo, YoutubeVideoData } from './youtube-video'
+import { VimeoVideo } from './vimeo-video'
+import { YoutubeVideo } from './youtube-video'
 
 const debug = debug_('embetty-base:embetty')
 
@@ -38,16 +35,16 @@ export class UnsupportedContentTypeError extends Error {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ClassOf<T> = new (...args: any[]) => T
 
-export class Embetty<T> {
+export class Embetty {
   cache: EmbettyCache
-  request: EmbettyRequest<T>
+  request: CachedRequest
 
   constructor(
     cache: EmbettyCache = Embetty.createCache(),
-    http: AxiosInstance = createGuardedHttpClient(),
+    fetch: GuardedFetch = createGuardedFetch(),
   ) {
     this.cache = cache
-    this.request = cachedRequest(this.cache, http)
+    this.request = cachedRequest(this.cache, fetch)
   }
 
   async close() {
@@ -56,17 +53,15 @@ export class Embetty<T> {
     }
   }
 
-  async get<T>(
-    options: AxiosRequestConfig = {},
-  ): Promise<CacheEntry<T> | undefined> {
-    debug(`GET ${options.url ?? '(unknown)'} ...`)
-    return this.request(options) as Promise<CacheEntry<T> | undefined>
+  async get<T>(options: RequestOptions): Promise<CacheEntry<T> | undefined> {
+    debug(`GET ${options.url} ...`)
+    return this.request<T>(options)
   }
 
-  async getBinary(options: AxiosRequestConfig) {
+  async getBinary(options: RequestOptions) {
     const response = await this.get<Buffer>({
       ...options,
-      responseType: 'arraybuffer',
+      responseType: 'binary',
     })
 
     if (!response) {
@@ -75,11 +70,13 @@ export class Embetty<T> {
 
     return {
       data: response.data,
-      type: contentType.parse(response.headers['content-type'] as string).type,
+      type: contentType.parse(
+        response.headers['content-type'] ?? 'application/octet-stream',
+      ).type,
     }
   }
 
-  async getImage(options: AxiosRequestConfig) {
+  async getImage(options: RequestOptions) {
     const binary = await this.getBinary(options)
 
     if (binary && !IMAGE_CONTENT_TYPES.has(binary.type)) {
@@ -104,31 +101,25 @@ export class Embetty<T> {
     return embed
   }
 
-  loadTweet(id: string, options?: EmbedOptions<TweetResponse>): Promise<Tweet> {
+  loadTweet(id: string, options?: EmbedOptions): Promise<Tweet> {
     return this.loadEmbed(Tweet, id, options)
   }
 
-  loadYoutubeVideo(
-    id: string,
-    options?: EmbedOptions<YoutubeVideoData>,
-  ): Promise<YoutubeVideo> {
+  loadYoutubeVideo(id: string, options?: EmbedOptions): Promise<YoutubeVideo> {
     return this.loadEmbed(YoutubeVideo, id, options)
   }
 
-  loadVimeoVideo(
-    id: string,
-    options?: EmbedOptions<VimeoVideoData>,
-  ): Promise<VimeoVideo> {
+  loadVimeoVideo(id: string, options?: EmbedOptions): Promise<VimeoVideo> {
     return this.loadEmbed(VimeoVideo, id, options)
   }
 
-  loadFacebookVideo(id: string, options?: EmbedOptions<FacebookVideoData>) {
+  loadFacebookVideo(id: string, options?: EmbedOptions) {
     return this.loadEmbed(FacebookVideo, id, options)
   }
 
   loadMastodonStatus(
     id: string,
-    options?: EmbedOptions<MastodonStatusData>,
+    options?: EmbedOptions,
   ): Promise<MastodonStatus> {
     return this.loadEmbed(MastodonStatus, id, options)
   }

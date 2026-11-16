@@ -1,9 +1,8 @@
-import { AxiosResponseHeaders, RawAxiosResponseHeaders } from 'axios'
-
 export interface CacheEntry<T = unknown> {
   key: string
   data: T | undefined
-  headers: RawAxiosResponseHeaders | AxiosResponseHeaders
+  /** Lower-cased names. */
+  headers: Readonly<Record<string, string>>
   status: number
 }
 

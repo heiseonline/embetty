@@ -21,7 +21,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   urls: string[] = []
   linkMetas: UrlMeta[] = []
 
-  constructor(id: string, options: EmbedOptions<TweetResponse>) {
+  constructor(id: string, options: EmbedOptions) {
     if (Number.isInteger(id)) {
       throw new TypeError('Invalid Tweet ID')
     }
@@ -72,14 +72,13 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
   }
 
   get rateLimitRemaining() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    return parseInt(this._response?.headers['x-rate-limit-remaining'], 10)
+    return Number(this._response?.headers['x-rate-limit-remaining'])
   }
 
   get rateLimitReset() {
     const reset =
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-magic-numbers
-      parseInt(this._response?.headers['x-rate-limit-reset'], 10) * 1000
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      Number(this._response?.headers['x-rate-limit-reset']) * 1000
     return new Date(reset)
   }
 
@@ -133,7 +132,7 @@ export class Tweet extends Embed<TweetResponse, EmbettyTweet> {
     let response: CacheEntry<string> | undefined
 
     try {
-      response = await this.embetty.get<string>({ url })
+      response = await this.embetty.get<string>({ url, responseType: 'text' })
     } catch (error_) {
       const error =
         error_ instanceof Error ? error_ : new Error(JSON.stringify(error_))

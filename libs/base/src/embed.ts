@@ -1,24 +1,22 @@
-import { AxiosRequestConfig } from 'axios'
 import debug_ from 'debug'
 import { CacheEntry } from './cache/cache'
 import { Embetty } from './embetty'
+import { RequestOptions } from './request-cache'
 
 const debug = debug_('embetty-base:embed')
 
 const DEFAULT_REQUEST_TIMEOUT = 2000
 
-export interface EmbedOptions<T> {
-  embetty: Embetty<T>
+export interface EmbedOptions {
+  embetty: Embetty
   requestTimeout?: number
 }
 
-type MakeRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>
-
-export type EmbettyRequest = MakeRequired<AxiosRequestConfig, 'url'>
+export type EmbettyRequest = RequestOptions
 
 export abstract class Embed<T, U = T> {
   _retrieved = false
-  embetty: Embetty<T>
+  embetty: Embetty
   id: string
   requestTimeout: number
   _response?: CacheEntry<T>
@@ -27,7 +25,7 @@ export abstract class Embed<T, U = T> {
 
   constructor(
     id: string,
-    { embetty, requestTimeout = DEFAULT_REQUEST_TIMEOUT }: EmbedOptions<T>,
+    { embetty, requestTimeout = DEFAULT_REQUEST_TIMEOUT }: EmbedOptions,
   ) {
     this.embetty = embetty
     this.id = id
@@ -41,7 +39,7 @@ export abstract class Embed<T, U = T> {
 
     debug(`request: ${JSON.stringify(this._requestOptions)}`)
 
-    this._response = await this.embetty.get({
+    this._response = await this.embetty.get<T>({
       timeout: this.requestTimeout,
       ...this._requestOptions,
     })

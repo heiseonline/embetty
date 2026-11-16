@@ -46,27 +46,15 @@ app.use((_req, _res, next) => {
   next(new NotFoundException())
 })
 
-const hasCause = (error: unknown): error is { cause: unknown } =>
-  typeof error === 'object' &&
-  error !== null &&
-  'cause' in error &&
-  error.cause !== undefined
-
-// axios and follow-redirects wrap errors raised by @embetty/base's guard.
-function rootCause(error: unknown): unknown {
-  return hasCause(error) ? rootCause(error.cause) : error
-}
-
 function statusCodeOf(err: unknown): number {
   if (err instanceof HttpException) {
     return err.statusCode
   }
 
-  const cause = rootCause(err)
-  if (cause instanceof ForbiddenTargetError) {
+  if (err instanceof ForbiddenTargetError) {
     return FORBIDDEN
   }
-  if (cause instanceof UnsupportedContentTypeError) {
+  if (err instanceof UnsupportedContentTypeError) {
     return BAD_GATEWAY
   }
 

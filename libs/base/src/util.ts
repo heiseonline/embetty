@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios'
 import crypto from 'crypto'
 
 export const env = (key: string) => {
@@ -24,5 +23,5 @@ export const hash = (object: object) => {
 // Bumped to discard entries cached before outgoing requests were guarded.
 const CACHE_KEY_VERSION = 2
 
-export const hashRequest = ({ url }: AxiosRequestConfig) =>
+export const hashRequest = ({ url }: { url: string }) =>
   hash({ url, version: CACHE_KEY_VERSION })

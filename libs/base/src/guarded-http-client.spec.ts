@@ -3,11 +3,14 @@ import { AddressInfo } from 'net'
 import {
   AddressPolicy,
   assertAllowedTarget,
-  createGuardedHttpClient,
+  createGuardedFetch,
   ForbiddenTargetError,
+  GuardedRequestInit,
   guardedLookup,
   isPublicAddress,
   Resolver,
+  ResponseTooLargeError,
+  TooManyRedirectsError,
 } from './guarded-http-client'
 
 type Handler = (req: IncomingMessage, res: ServerResponse) => void
@@ -48,25 +51,15 @@ const resolveTo =
   () =>
     Promise.resolve(addresses)
 
-const hasCause = (error: unknown): error is { cause: unknown } =>
-  typeof error === 'object' &&
-  error !== null &&
-  'cause' in error &&
-  error.cause !== undefined
-
-// axios and follow-redirects wrap errors; the root cause is what matters.
-const rejectionCause = async (promise: Promise<unknown>): Promise<unknown> => {
-  try {
-    await promise
-  } catch (error) {
-    let cause: unknown = error
-    while (hasCause(cause)) {
-      cause = cause.cause
-    }
-    return cause
-  }
-  throw new Error('Expected promise to reject')
-}
+const lookupAll = (
+  lookup: ReturnType<typeof guardedLookup>,
+  hostname: string,
+): Promise<unknown> =>
+  new Promise((resolve, reject) => {
+    lookup(hostname, { all: true }, (error, addresses) =>
+      error ? reject(error) : resolve(addresses),
+    )
+  })
 
 describe('isPublicAddress', () => {
   it.each([
@@ -137,7 +130,9 @@ describe('guardedLookup', () => {
   it('rejects a hostname if any resolved address is forbidden', async () => {
     const lookup = guardedLookup(isPublicAddress, resolveTo('1.1.1.1', '::1'))
 
-    await expect(lookup('mixed.test')).rejects.toThrow(ForbiddenTargetError)
+    await expect(lookupAll(lookup, 'mixed.test')).rejects.toThrow(
+      ForbiddenTargetError,
+    )
   })
 
   it('returns all resolved addresses if every one is allowed', async () => {
@@ -146,13 +141,14 @@ describe('guardedLookup', () => {
       resolveTo('1.1.1.1', '2606:4700::1111'),
     )
 
-    await expect(lookup('public.test')).resolves.toEqual([
-      [{ address: '1.1.1.1' }, { address: '2606:4700::1111' }],
+    await expect(lookupAll(lookup, 'public.test')).resolves.toEqual([
+      { address: '1.1.1.1', family: 4 },
+      { address: '2606:4700::1111', family: 6 },
     ])
   })
 })
 
-describe('createGuardedHttpClient', () => {
+describe('createGuardedFetch', () => {
   let server: TestServer
   let handler: Handler
 
@@ -164,30 +160,26 @@ describe('createGuardedHttpClient', () => {
   afterEach(() => server.close())
 
   it('requests allowed targets', async () => {
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
 
-    const response = await client.get<string>(server.origin)
+    const response = await fetch(server.origin)
 
-    expect(response.data).toBe('ok')
+    expect(await response.text()).toBe('ok')
   })
 
   it('rejects forbidden IP literals without connecting', async () => {
-    const client = createGuardedHttpClient()
+    const fetch = createGuardedFetch()
 
-    expect(await rejectionCause(client.get(server.origin))).toBeInstanceOf(
-      ForbiddenTargetError,
-    )
+    await expect(fetch(server.origin)).rejects.toThrow(ForbiddenTargetError)
     expect(server.connections()).toBe(0)
   })
 
   it('rejects hostnames resolving to forbidden addresses without connecting', async () => {
-    const client = createGuardedHttpClient({
-      resolve: resolveTo('127.0.0.1'),
-    })
+    const fetch = createGuardedFetch({ resolve: resolveTo('127.0.0.1') })
 
-    expect(
-      await rejectionCause(client.get(`http://internal.test:${server.port}/`)),
-    ).toBeInstanceOf(ForbiddenTargetError)
+    await expect(fetch(`http://internal.test:${server.port}/`)).rejects.toThrow(
+      ForbiddenTargetError,
+    )
     expect(server.connections()).toBe(0)
   })
 
@@ -198,32 +190,81 @@ describe('createGuardedHttpClient', () => {
     handler = (_req, res) => {
       res.writeHead(302, { Location: location() }).end()
     }
-    const client = createGuardedHttpClient({
+    const fetch = createGuardedFetch({
       isAllowedAddress: onlyTestServer,
       resolve: resolveTo('10.0.0.1'),
     })
 
-    expect(await rejectionCause(client.get(server.origin))).toBeInstanceOf(
-      ForbiddenTargetError,
+    await expect(fetch(server.origin)).rejects.toThrow(ForbiddenTargetError)
+  })
+
+  it('follows redirects to allowed targets', async () => {
+    handler = (req, res) => {
+      if (req.url === '/target') {
+        res.end('redirected')
+      } else {
+        res.writeHead(302, { Location: '/target' }).end()
+      }
+    }
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+
+    const response = await fetch(server.origin)
+
+    expect(await response.text()).toBe('redirected')
+  })
+
+  it('gives up after too many redirects', async () => {
+    handler = (_req, res) => res.writeHead(302, { Location: '/' }).end()
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+
+    await expect(fetch(server.origin)).rejects.toThrow(TooManyRedirectsError)
+  })
+
+  it('drops credentials when redirecting to another origin', async () => {
+    const other = await startServer((req, res) =>
+      res.end(JSON.stringify(req.headers)),
     )
+    handler = (_req, res) => {
+      res.writeHead(302, { Location: other.origin }).end()
+    }
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+
+    try {
+      const response = await fetch(server.origin, {
+        headers: { Authorization: 'Bearer secret', Accept: 'text/plain' },
+      })
+
+      expect(await response.json()).toEqual(
+        expect.not.objectContaining({ authorization: expect.anything() }),
+      )
+    } finally {
+      await other.close()
+    }
   })
 
   it('ignores per-request options that would bypass the guard', async () => {
     handler = (_req, res) => {
       res.writeHead(302, { Location: 'http://127.0.0.2/secret' }).end()
     }
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
-
-    const cause = await rejectionCause(
-      client.get(server.origin, {
-        beforeRedirect: () => undefined,
-        lookup: (_hostname, _options, callback) =>
-          callback(null, '127.0.0.2', 4),
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+    // Untyped callers could pass node:http options along.
+    const init: GuardedRequestInit = Object.assign(
+      {},
+      {
+        lookup: (
+          _hostname: string,
+          _options: unknown,
+          callback: (error: null, address: string, family: number) => void,
+        ) => callback(null, '127.0.0.2', 4),
+        agent: false,
         maxRedirects: 5,
-      }),
+        timeout: 1000,
+      },
     )
 
-    expect(cause).toBeInstanceOf(ForbiddenTargetError)
+    await expect(fetch(server.origin, init)).rejects.toThrow(
+      ForbiddenTargetError,
+    )
   })
 
   it('ignores proxy environment variables', async () => {
@@ -232,13 +273,11 @@ describe('createGuardedHttpClient', () => {
     process.env.http_proxy = proxy.origin
 
     try {
-      const client = createGuardedHttpClient({
-        isAllowedAddress: onlyTestServer,
-      })
+      const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
 
-      const response = await client.get<string>(server.origin)
+      const response = await fetch(server.origin)
 
-      expect(response.data).toBe('ok')
+      expect(await response.text()).toBe('ok')
       expect(proxy.connections()).toBe(0)
     } finally {
       delete process.env.HTTP_PROXY
@@ -253,22 +292,22 @@ describe('createGuardedHttpClient', () => {
       const interval = setInterval(() => res.write('.'), 50)
       res.on('close', () => clearInterval(interval))
     }
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
 
-    await expect(
-      client.get(server.origin, { timeout: 300 }),
-    ).rejects.toMatchObject({ code: 'ERR_CANCELED' })
+    await expect(fetch(server.origin, { timeout: 300 })).rejects.toMatchObject({
+      name: 'TimeoutError',
+    })
   })
 
   it('still honors a caller-provided signal', async () => {
     handler = () => undefined
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
     const controller = new AbortController()
 
-    const request = client.get(server.origin, { signal: controller.signal })
+    const request = fetch(server.origin, { signal: controller.signal })
     controller.abort()
 
-    await expect(request).rejects.toMatchObject({ code: 'ERR_CANCELED' })
+    await expect(request).rejects.toMatchObject({ name: 'AbortError' })
   })
 
   it('aborts trickling responses despite a caller-provided signal', async () => {
@@ -277,20 +316,29 @@ describe('createGuardedHttpClient', () => {
       const interval = setInterval(() => res.write('.'), 50)
       res.on('close', () => clearInterval(interval))
     }
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
 
     await expect(
-      client.get(server.origin, {
+      fetch(server.origin, {
         signal: new AbortController().signal,
         timeout: 300,
       }),
-    ).rejects.toMatchObject({ code: 'ERR_CANCELED' })
+    ).rejects.toMatchObject({ name: 'TimeoutError' })
   })
 
-  it('rejects responses exceeding the size limit', async () => {
-    handler = (_req, res) => res.end(Buffer.alloc(11 * 1024 * 1024))
-    const client = createGuardedHttpClient({ isAllowedAddress: onlyTestServer })
+  it.each([
+    ['declared', true],
+    ['streamed', false],
+  ])('rejects %s responses exceeding the size limit', async (_, declared) => {
+    const body = Buffer.alloc(11 * 1024 * 1024)
+    handler = (_req, res) => {
+      if (!declared) {
+        res.setHeader('Transfer-Encoding', 'chunked')
+      }
+      res.end(body)
+    }
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
 
-    await expect(client.get(server.origin)).rejects.toThrow(/maxContentLength/)
+    await expect(fetch(server.origin)).rejects.toThrow(ResponseTooLargeError)
   })
 })
