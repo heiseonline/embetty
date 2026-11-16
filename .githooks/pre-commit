@@ -2,4 +2,4 @@
 set -e
 
 bun fmt --staged
-bun lint --staged
+bun lint --staged --fix
