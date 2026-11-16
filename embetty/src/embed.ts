@@ -2,6 +2,17 @@ import EMBETTY_LOGO from '../assets/embetty.svg' with { type: 'text' }
 import { Template } from 'hogan.js'
 import { TEMPLATE_METADATA_KEY } from './decorators'
 
+export class EmbedLoadError extends Error {
+  override name = 'EmbedLoadError'
+
+  constructor(
+    readonly url: string,
+    readonly status: number,
+  ) {
+    super(`Embetty server answered ${status} for ${url}`)
+  }
+}
+
 export abstract class Embed<T> extends HTMLElement {
   _fetched = false
   abstract get url(): string | undefined
@@ -58,9 +69,12 @@ export abstract class Embed<T> extends HTMLElement {
   }
 
   async fetchData(url: string) {
-    const _response = await window.fetch(url)
+    const response = await window.fetch(url)
+    if (!response.ok) {
+      throw new EmbedLoadError(url, response.status)
+    }
 
-    this._data = await _response.json()
+    this._data = (await response.json()) as T
     this._fetched = true
   }
 
