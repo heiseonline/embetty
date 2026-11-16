@@ -67,6 +67,8 @@ jobs:
           bun-version: canary
       - name: Install
         run: bun install --frozen-lockfile
+      - name: Format
+        run: bun fmt --check
       - name: Lint
         run: bun lint --max-warnings=0
       - name: Typecheck
