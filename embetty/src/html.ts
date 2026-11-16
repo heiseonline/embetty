@@ -90,7 +90,19 @@ const ALLOWED_ATTRIBUTES: Readonly<Record<string, ReadonlySet<string>>> = {
   LI: new Set(),
 }
 
-// Removed with their content; other unknown elements are unwrapped.
+const SAFE_REL: ReadonlySet<string> = new Set([
+  'me',
+  'nofollow',
+  'noopener',
+  'noreferrer',
+  'tag',
+  'ugc',
+])
+
+const HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml'
+
+// Removed with their content; other unknown elements are unwrapped. SVG and
+// MathML content is dropped by namespace.
 const DROPPED_ELEMENTS: ReadonlySet<string> = new Set([
   'SCRIPT',
   'STYLE',
@@ -99,8 +111,6 @@ const DROPPED_ELEMENTS: ReadonlySet<string> = new Set([
   'OBJECT',
   'EMBED',
   'NOSCRIPT',
-  'SVG',
-  'MATH',
   'TEXTAREA',
   'SELECT',
   'TITLE',
@@ -116,14 +126,18 @@ function sanitizeElement(element: Element): void {
 
   if (element.tagName === 'A') {
     element.setAttribute('href', safeUrl(element.getAttribute('href')))
+    const rel = (element.getAttribute('rel') ?? '')
+      .split(/\s+/)
+      .filter((token) => SAFE_REL.has(token))
     if (element.hasAttribute('target')) {
       element.setAttribute('target', '_blank')
-      if (!/\bnoopener\b/.test(element.getAttribute('rel') ?? '')) {
-        element.setAttribute(
-          'rel',
-          `${element.getAttribute('rel') ?? ''} noopener`.trim(),
-        )
-      }
+      // New tabs must not get window.opener of the embedding page.
+      rel.push(...['noopener', 'noreferrer'].filter((t) => !rel.includes(t)))
+    }
+    if (rel.length > 0) {
+      element.setAttribute('rel', rel.join(' '))
+    } else {
+      element.removeAttribute('rel')
     }
   }
 }
@@ -133,7 +147,11 @@ function sanitizeChildren(parent: ParentNode): void {
     if (node.nodeType === Node.TEXT_NODE) {
       continue
     }
-    if (!(node instanceof Element) || DROPPED_ELEMENTS.has(node.tagName)) {
+    if (
+      !(node instanceof Element) ||
+      node.namespaceURI !== HTML_NAMESPACE ||
+      DROPPED_ELEMENTS.has(node.tagName)
+    ) {
       node.remove()
       continue
     }

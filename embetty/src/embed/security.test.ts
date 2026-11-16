@@ -3,7 +3,10 @@ import { afterEach, describe, expect, it, mock } from 'bun:test'
 import { Embed } from '../embed'
 import { createElement, mockServerResponse } from '../test/lib/util'
 import mastodonCard from '../test/fixtures/mastodon-card.json'
+import tweetReply from '../test/fixtures/tweet-916618051906428928.json'
 import tweetLink from '../test/fixtures/tweet-941595208298483712.json'
+import type Video from './video'
+import './video'
 import './mastodon'
 import './tweet'
 
@@ -87,5 +90,122 @@ describe('Tweet text', () => {
     expect(root.querySelector('article > p')!.textContent).toBe(
       'Fish & Chips <3',
     )
+  })
+})
+
+describe('Mastodon status attribute', () => {
+  it('only becomes a link if it is an http(s) URL', async () => {
+    mockServerResponse(mastodonCard)
+    const { element } = await createElement<Embed<unknown>>(
+      'embetty-mastodon',
+      {
+        status:
+          'javascript:alert(document.domain)//https://mastodon.social/@a/1',
+      },
+    )
+    await element.becomesVisible()
+
+    expect(
+      hrefs(element.shadowRoot!).filter((href) => /^javascript:/i.test(href)),
+    ).toEqual([])
+  })
+})
+
+describe('Mastodon link attributes', () => {
+  it('cannot keep window.opener for new tabs', async () => {
+    const root = await renderMastodon({
+      content:
+        '<p><a href="https://evil.test" target="x" rel="opener x-noopener">x</a></p>',
+    })
+    const rel = root
+      .querySelector('a[href="https://evil.test"]')!
+      .getAttribute('rel')!
+
+    expect(rel.split(/\s+/)).toContain('noopener')
+    expect(rel.split(/\s+/)).not.toContain('opener')
+  })
+
+  it('drops foreign elements with their content', async () => {
+    const root = await renderMastodon({
+      content:
+        '<p>a<svg><script>alert(1)</script><style>p{}</style></svg>b</p>',
+    })
+
+    const article = root.querySelector('article')!
+    // happy-dom parses foreign content less faithfully than browsers, so
+    // only the outcome that matters is checked.
+    expect(article.textContent).not.toContain('alert(1)')
+    expect(article.querySelector('p svg, p script, p style')).toBeNull()
+  })
+})
+
+describe('Video attributes', () => {
+  async function activate(type: string, attributes: Record<string, string>) {
+    mockServerResponse({ canonicalUrl: 'https://www.facebook.com/1' })
+    const { element } = await createElement<Video<unknown>>('embetty-video', {
+      type,
+      ...attributes,
+    })
+    // An invalid ID may refuse to render at all; it just must not inject.
+    await element.becomesVisible().catch(() => undefined)
+    try {
+      element.activate()
+    } catch {
+      // Same.
+    }
+    return element.shadowRoot!
+  }
+
+  it.each(['youtube', 'vimeo'])(
+    'cannot inject markup into the %s player through video-id',
+    async (type) => {
+      const root = await activate(type, {
+        'video-id': 'x"></iframe><img src=x onerror=alert(1)><iframe x="',
+      })
+
+      expect(root.querySelector('img, [onerror]')).toBeNull()
+    },
+  )
+
+  it.each(['youtube', 'vimeo'])(
+    'only passes a number as start-at to the %s player',
+    async (type) => {
+      const root = await activate(type, {
+        'video-id': type === 'youtube' ? 'm6UOo2YGbIE' : '223099532',
+        'start-at': '1"><img src=x onerror=alert(1)>',
+      })
+
+      expect(root.querySelector('img, [onerror]')).toBeNull()
+      expect(root.querySelector('iframe')!.getAttribute('src')).toMatch(
+        /(start=|#t=)0$/,
+      )
+    },
+  )
+})
+
+describe('Reply threads', () => {
+  async function answeredTweets(repliedTo: string) {
+    const data = {
+      ...tweetReply,
+      data: {
+        ...tweetReply.data,
+        referenced_tweets: [{ type: 'replied_to', id: repliedTo }],
+      },
+    }
+    mockServerResponse(data)
+    const { element } = await createElement<Embed<unknown>>('embetty-tweet', {
+      status: tweetReply.data.id,
+      'include-thread': '',
+    })
+    await element.becomesVisible()
+    return element.shadowRoot!.querySelectorAll('embetty-tweet').length
+  }
+
+  it('shows the answered tweet', async () => {
+    expect(await answeredTweets('1')).toBe(1)
+  })
+
+  it('stops at a tweet answering itself', async () => {
+    expect(await answeredTweets(tweetReply.data.id)).toBe(0)
   })
 })

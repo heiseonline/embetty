@@ -1,7 +1,10 @@
+import { markup, raw } from '../../../html'
 import VideoImplementation from '../type'
 import CSS from '../../_video.css'
 
 export class YoutubeVideo extends VideoImplementation<never> {
+  readonly idPattern = /^[\w-]{11}$/
+
   get css() {
     return CSS
   }
@@ -13,8 +16,8 @@ export class YoutubeVideo extends VideoImplementation<never> {
   }
 
   get iframe() {
-    return `
-      <style>${this.css}</style>
+    return markup`
+      <style>${raw(this.css)}</style>
       <div class="wrapper">
         <iframe
           id="ytplayer"

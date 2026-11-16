@@ -1,3 +1,4 @@
+import { Html } from '../../html'
 import Video from '../video'
 
 const DEFAULT_WIDTH = 1600
@@ -28,6 +29,9 @@ export default abstract class VideoImplementation<T> {
     return height ? parseInt(height) : DEFAULT_HEIGHT
   }
 
-  abstract get iframe(): string
+  abstract get iframe(): Html
   abstract get posterImageUrl(): string
+
+  /** Video IDs end up in player and server URLs. */
+  abstract readonly idPattern: RegExp
 }

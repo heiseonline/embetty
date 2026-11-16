@@ -6,6 +6,7 @@ import { height, parseHostname } from '../util'
 import CSS from './tweet.css'
 
 const HEIGHT_OFFSET = 2
+const MAX_THREAD_DEPTH = 10
 
 // The API returns text with &, < and > escaped, and only those.
 const decodeTwitterEntities = (text: string) =>
@@ -90,15 +91,24 @@ export class Tweet extends Embed<EmbettyTweet> {
     })
   }
 
+  // The ancestors shown above this tweet, nearest first.
+  get thread(): readonly Tweet[] {
+    return this.parent ? [this.parent, ...this.parent.thread] : []
+  }
+
   appendAnsweredTweet() {
+    const id = this.answeredTweetId
     if (
       !this.isReply ||
       !this.hasAttribute('include-thread') ||
-      !this.answeredTweetId
+      !id ||
+      // A server answering with a reply to itself must not recurse forever.
+      this.thread.length >= MAX_THREAD_DEPTH ||
+      [this, ...this.thread].some((tweet) => tweet.statusId === id)
     ) {
       return
     }
-    const answered = new Tweet(this.answeredTweetId, this, {
+    const answered = new Tweet(id, this, {
       'include-thread': '',
     })
 

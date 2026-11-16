@@ -100,7 +100,7 @@ export class Mastodon extends Embed<MastodonStatusData> {
   }
 
   get mastodonUrl() {
-    return this.status
+    return safeUrl(this.status)
   }
 
   get card() {

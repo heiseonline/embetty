@@ -1,4 +1,5 @@
 import { spyOn } from 'bun:test'
+import { Embed } from '../../embed'
 import Video from '../../embed/video'
 import { respondWith } from './fetch'
 
@@ -10,20 +11,18 @@ export function createElement<T extends HTMLElement>(
   query: (...args: Parameters<typeof document.querySelector>) => T
 }> {
   return new Promise((resolve) => {
-    const wrapper = document.createElement('div')
-    const htmlAttrs = Object.keys(attrs)
-      .map((attr) => `${attr}="${attrs[attr]}"`)
-      .join(' ')
-
-    wrapper.innerHTML = `<${tag} ${htmlAttrs}></${tag}>`
-
-    const element = wrapper.firstElementChild as T
+    const element = document.createElement(tag) as T
+    for (const [name, value] of Object.entries(attrs)) {
+      element.setAttribute(name, value)
+    }
 
     document.body.append(element)
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    element.becomesVisible()
+    // Like the IntersectionObserver would; tests that care about the result
+    // call becomesVisible() again and await it.
+    if (element instanceof Embed) {
+      element.becomesVisible().catch(() => undefined)
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const query = element.shadowRoot!.querySelector.bind(element.shadowRoot)

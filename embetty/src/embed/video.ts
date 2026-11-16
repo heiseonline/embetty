@@ -59,7 +59,7 @@ export default class Video<T> extends Embed<T> {
 
   activate() {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.shadowRoot!.innerHTML = this.impl.iframe
+    this.shadowRoot!.innerHTML = this.impl.iframe.value
     this.emit('activated')
   }
 
@@ -105,6 +105,9 @@ export default class Video<T> extends Embed<T> {
     if (!videoId) {
       throw new Error('No video ID specified.')
     }
+    if (!this.impl.idPattern.test(videoId)) {
+      throw new Error(`Invalid ${this.type ?? ''} video ID: ${videoId}`)
+    }
 
     return videoId
   }
@@ -113,7 +116,9 @@ export default class Video<T> extends Embed<T> {
     return this.getAttribute('poster-image') || this.impl.posterImageUrl
   }
 
-  get startAt() {
-    return this.getAttribute('start-at') || 0
+  /** Seconds; anything but a non-negative integer starts at the beginning. */
+  get startAt(): number {
+    const seconds = Number(this.getAttribute('start-at'))
+    return Number.isSafeInteger(seconds) && seconds > 0 ? seconds : 0
   }
 }

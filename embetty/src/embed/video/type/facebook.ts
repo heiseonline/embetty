@@ -1,9 +1,12 @@
+import { markup, raw } from '../../../html'
 import VideoImplementation from '../type'
 import CSS from '../../_video.css'
 
 export class FacebookVideo extends VideoImplementation<{
   canonicalUrl: string
 }> {
+  readonly idPattern = /^\d+$/
+
   get css() {
     return CSS
   }
@@ -31,8 +34,8 @@ export class FacebookVideo extends VideoImplementation<{
   }
 
   get iframe() {
-    return `
-      <style>${CSS}</style>
+    return markup`
+      <style>${raw(CSS)}</style>
       <div class="wrapper">
         <iframe
           src="${this.iframeSrc}"
