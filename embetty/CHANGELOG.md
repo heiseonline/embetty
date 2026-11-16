@@ -1,5 +1,33 @@
 # [4.0.0](https://github.com/heiseonline/embetty/compare/v3.0.8...v4.0.0) (2023-03-08)
 
+## 3.0.0
+
+### Major Changes
+
+- e955bba: Packages are built with Bun instead of tsc and webpack.
+  
+  - `@embetty/base` and `@embetty/types` ship one bundled CommonJS file plus declarations and declare `exports`; deep imports such as `@embetty/base/src/...` no longer work.
+  - `@embetty/component` ships a minified IIFE bundle (`dist/embetty.js`) that targets current browsers; it no longer declares `engines`.
+  - `@embetty/server`: `npm start` runs `dist/server.js` (the referenced `bin/www` did not exist), and `dotenv` is no longer a dependency; set environment variables directly.
+
+### Patch Changes
+
+- e955bba: - `@embetty/component`: `<embetty-video>` no longer throws when created via `document.createElement()` or before its `type` attribute is set; the video implementation is resolved on first use.
+  - `@embetty/server`: video and Mastodon routes answer 404 instead of 500 when the upstream service does not know the requested ID.
+- 2f02e22: - `video-id` must be a valid YouTube, Vimeo or Facebook ID and `start-at` a number of seconds; both used to be inserted into the player markup unescaped.
+  - The `status` attribute of `<embetty-mastodon>` only becomes a link if it is an http(s) URL.
+  - Links in Mastodon statuses that open a new tab always get `noopener noreferrer`; other `rel` values are limited to a safe set. SVG and MathML inside a status are dropped.
+  - Reply threads stop after ten tweets or at a tweet that is already part of the thread.
+- c03ec39: When the Embetty server answers with an error (e.g. 404 for a deleted tweet), the component logs an `EmbedLoadError` naming the URL and status instead of a JSON parse error.
+- e0f6fc3: Embedded content can no longer inject script into the embedding page:
+  
+  - Mastodon status HTML is sanitized before rendering. Statuses may come from any Mastodon-compatible server, which can return arbitrary HTML.
+  - Tweet text is escaped; quotes in hashtags or mentions could break out of the generated links.
+  - Profile, card and link URLs are only rendered as links if they use http or https.
+- 60c0bfa: - `@embetty/base`: the LRU cache now honors `max` from `EMBETTY_CACHE` (e.g. `lru://max:500`); it was always 100 before. `TwitterErrorType` is a plain object instead of a TypeScript enum.
+  - `@embetty/types`: Mastodon fields typed as `any` now have their actual types, including `null` where the API returns it.
+  - `@embetty/component`: errors while loading an embed are logged instead of surfacing as unhandled rejections.
+
 ## 2.4.0
 
 ### Minor Changes

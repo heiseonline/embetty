@@ -13,7 +13,7 @@
     },
     "embetty": {
       "name": "@embetty/component",
-      "version": "2.4.0",
+      "version": "3.0.0",
       "devDependencies": {
         "@embetty/tsconfig": "workspace:*",
         "@embetty/types": "workspace:^",
@@ -22,7 +22,7 @@
     },
     "embetty-server": {
       "name": "@embetty/server",
-      "version": "3.2.12",
+      "version": "4.0.0",
       "bin": {
         "embetty": "bin/embetty",
         "embetty-start": "bin/embetty-start",
@@ -44,7 +44,7 @@
     },
     "libs/base": {
       "name": "@embetty/base",
-      "version": "2.1.3",
+      "version": "3.0.0",
       "dependencies": {
         "@embetty/types": "workspace:^",
         "cheerio": "^1.2.0",
@@ -60,7 +60,7 @@
     },
     "libs/types": {
       "name": "@embetty/types",
-      "version": "2.1.3",
+      "version": "3.0.0",
       "devDependencies": {
         "@embetty/tsconfig": "workspace:*",
       },

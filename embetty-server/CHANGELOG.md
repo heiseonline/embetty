@@ -1,5 +1,69 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- d43018f: - AMP pages are rendered without nunjucks.
+  - AMP video pages pass only the `start-at`, `poster-image`, `width` and `height` query parameters on to `<embetty-video>`. Before, every query parameter became an attribute, including event handlers such as `onmouseover`.
+  - A `URL_BASE` with a path (e.g. `https://example.com/embetty`) no longer loses its last path segment in AMP pages.
+- e955bba: Packages are built with Bun instead of tsc and webpack.
+  
+  - `@embetty/base` and `@embetty/types` ship one bundled CommonJS file plus declarations and declare `exports`; deep imports such as `@embetty/base/src/...` no longer work.
+  - `@embetty/component` ships a minified IIFE bundle (`dist/embetty.js`) that targets current browsers; it no longer declares `engines`.
+  - `@embetty/server`: `npm start` runs `dist/server.js` (the referenced `bin/www` did not exist), and `dotenv` is no longer a dependency; set environment variables directly.
+- 24ce433: Require Node.js 24 or later. The Docker image now runs on the current LTS release, Node.js 26.
+
+### Minor Changes
+
+- a8b7f51: Restrict outgoing requests to public http(s) targets, bound their duration and size, and serve only raster images (JPEG, PNG, GIF, WebP, AVIF) from image routes. Mastodon instances can be restricted via `MASTODON_INSTANCES`.
+  
+  Outgoing requests no longer honor `HTTP_PROXY`/`HTTPS_PROXY`, because a proxy would bypass the address checks. Cache keys changed, so existing cache entries are no longer used.
+
+### Patch Changes
+
+- e955bba: - `@embetty/component`: `<embetty-video>` no longer throws when created via `document.createElement()` or before its `type` attribute is set; the video implementation is resolved on first use.
+  - `@embetty/server`: video and Mastodon routes answer 404 instead of 500 when the upstream service does not know the requested ID.
+- 0dfad29: The Docker image is now based on Debian (`node:26-trixie-slim`) instead of Alpine and runs as the `node` user.
+- ff1a5f9: Dependencies updated: cheerio 1.2, ioredis 6, lru-cache 11, helmet 8. ioredis 6 talks RESP3 to Redis, which requires Redis 6 or later.
+- 6f97fcf: The server runs on Express 5.
+- d9d56dc: update to Node.js 24 and update vulnerable dependencies (axios, express, morgan)
+- ea3943f: - Link previews of tweets work again for large pages: web pages are read up to 1 MiB instead of being rejected beyond it.
+  - Malformed responses from upstream services (invalid JSON, unexpected shapes, API errors) answer 502 with a one-line log instead of 500 with a stack trace.
+  - An invalid `EMBETTY_CACHE_TTL` (not a positive whole number of seconds) fails at startup.
+- 5e3360b: Hardening against abuse through attacker-controlled upstreams:
+  
+  - The in-memory cache is bounded by size (`maxSize`, default 64 MiB) besides the number of entries, and cached responses expire after `EMBETTY_CACHE_TTL` seconds (default one day), in Redis as well.
+  - JSON and text responses are limited to 1 MiB, images stay at 10 MiB.
+  - Cache keys include the response type and query, so a URL requested as an image cannot replace the cached JSON of the same URL. Existing cache entries are no longer used.
+  - Upstream failures (timeouts, oversized or non-image responses, unreachable or erroring services) answer 502 or 504 and are logged in one line instead of 500 with a stack trace.
+  - Debug logs no longer contain request headers, which included the Twitter bearer token.
+  - Facebook videos no longer request the Facebook page, whose content was never used.
+- 9843886: - Mastodon image routes answer 404 when the status has no such image (e.g. no link preview) instead of 400.
+  - The Docker image contains only the built packages and their runtime dependencies, no sources or local files from the build context.
+- 38aa062: - `commander`, `cors`, `http-status` and `content-type` are no longer dependencies.
+  - The `embetty` and `embetty start` CLI options work again: with commander 10 they were silently ignored. The documented cache default is now the actual one (`lru://`).
+  - CORS preflights answer `GET, HEAD` as allowed methods, the only ones the server serves.
+- 9e504b1: Deleted or unknown tweets are recognized again since the Twitter API reports them under `api.x.com`; the server answers 404 instead of 500. `TwitterErrorType` is no longer exported.
+- Updated dependencies [62de8f3]
+- Updated dependencies [e955bba]
+- Updated dependencies [e955bba]
+- Updated dependencies [2f02e22]
+- Updated dependencies [c03ec39]
+- Updated dependencies [e0f6fc3]
+- Updated dependencies [ff1a5f9]
+- Updated dependencies [a8b7f51]
+- Updated dependencies [8f9b999]
+- Updated dependencies [60c0bfa]
+- Updated dependencies [24ce433]
+- Updated dependencies [d9d56dc]
+- Updated dependencies [ea3943f]
+- Updated dependencies [5e3360b]
+- Updated dependencies [38aa062]
+- Updated dependencies [9e504b1]
+  - @embetty/base@3.0.0
+  - @embetty/component@3.0.0
+
 ## 3.2.12
 
 ### Patch Changes
