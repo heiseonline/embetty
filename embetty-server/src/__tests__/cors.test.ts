@@ -42,4 +42,30 @@ describe('CORS', () => {
     const response = await fromOrigin('http://example.com')
     expect(response.status).toBe(404)
   })
+
+  it('should allow requests without an Origin header', async () => {
+    process.env.VALID_ORIGINS = 'http://example.com'
+    const response = await get('/version')
+    expect(response.status).toBe(200)
+    expect(response.headers.has('access-control-allow-origin')).toBe(false)
+    expect(response.headers.get('vary')).toContain('Origin')
+  })
+
+  it('should answer preflights from valid origins', async () => {
+    process.env.VALID_ORIGINS = 'http://example.com'
+    const response = await get('/version', {
+      method: 'OPTIONS',
+      headers: {
+        Origin: 'http://example.com',
+        'Access-Control-Request-Method': 'GET',
+      },
+    })
+    expect(response.status).toBe(204)
+    expect(response.headers.get('access-control-allow-origin')).toBe(
+      'http://example.com',
+    )
+    expect(response.headers.get('access-control-allow-methods')).toBe(
+      'GET, HEAD',
+    )
+  })
 })

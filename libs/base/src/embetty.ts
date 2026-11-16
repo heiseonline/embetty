@@ -1,4 +1,3 @@
-import contentType from 'content-type'
 import debug_ from 'debug'
 import { CacheEntry, EmbettyCache } from './cache/cache'
 import { LRU } from './cache/lru'
@@ -23,6 +22,10 @@ const IMAGE_CONTENT_TYPES: ReadonlySet<string> = new Set([
   'image/png',
   'image/webp',
 ])
+
+// "image/png; charset=binary" -> "image/png"; types are case-insensitive.
+const mediaType = (header = 'application/octet-stream') =>
+  (header.split(';')[0] ?? '').trim().toLowerCase()
 
 export class UnsupportedContentTypeError extends Error {
   override name = 'UnsupportedContentTypeError'
@@ -70,9 +73,7 @@ export class Embetty {
 
     return {
       data: response.data,
-      type: contentType.parse(
-        response.headers['content-type'] ?? 'application/octet-stream',
-      ).type,
+      type: mediaType(response.headers['content-type']),
     }
   }
 

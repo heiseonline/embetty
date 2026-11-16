@@ -5,14 +5,9 @@ import {
 } from '@embetty/base'
 import express, { Express, NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
-import {
-  BAD_GATEWAY,
-  FORBIDDEN,
-  INTERNAL_SERVER_ERROR,
-  NOT_FOUND,
-} from 'http-status'
 import logger from 'morgan'
 import { HttpException, NotFoundException } from './exceptions'
+import { HttpStatus } from './http-status'
 import routes from './routes'
 
 export const app: Express = express()
@@ -45,23 +40,23 @@ function statusCodeOf(err: unknown): number {
   }
 
   if (err instanceof ForbiddenTargetError) {
-    return FORBIDDEN
+    return HttpStatus.FORBIDDEN
   }
   // Unknown upstream IDs (a deleted video, ...) are unknown here as well.
-  if (err instanceof HttpStatusError && err.status === NOT_FOUND) {
-    return NOT_FOUND
+  if (err instanceof HttpStatusError && err.status === HttpStatus.NOT_FOUND) {
+    return HttpStatus.NOT_FOUND
   }
   if (err instanceof UnsupportedContentTypeError) {
-    return BAD_GATEWAY
+    return HttpStatus.BAD_GATEWAY
   }
 
-  return INTERNAL_SERVER_ERROR
+  return HttpStatus.INTERNAL_SERVER_ERROR
 }
 
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
   const statusCode = statusCodeOf(err)
 
-  if (statusCode >= INTERNAL_SERVER_ERROR) {
+  if (statusCode >= HttpStatus.INTERNAL_SERVER_ERROR) {
     console.error(err)
   }
 

@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@embetty/tsconfig": "workspace:*",
-    "@types/cors": "^2.8.17",
     "@types/debug": "^4.1.12",
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9"
@@ -32,12 +31,9 @@
   "dependencies": {
     "@embetty/base": "workspace:*",
     "@embetty/component": "workspace:*",
-    "commander": "^10.0.1",
-    "cors": "^2.8.5",
     "debug": "^4.3.7",
     "express": "^4.22.3",
     "helmet": "^7.1.0",
-    "http-status": "^1.7.4",
     "morgan": "^1.12.1"
   }
 }

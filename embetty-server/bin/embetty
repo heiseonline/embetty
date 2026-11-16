@@ -1,11 +1,27 @@
 #!/usr/bin/env node
 
 const { version } = require('../package.json')
-const program = require('commander')
 
-program
-  .version(version)
-  .description('🐙 Proxy and provider of data for embetty/server')
-  .usage('<command> [options]')
-  .command('start', 'start the embetty server')
-  .parse(process.argv)
+const USAGE = `🐙 Proxy and provider of data for embetty/server
+
+Usage: embetty <command> [options]
+
+Commands:
+  start  start the embetty server (embetty start --help for options)
+
+Options:
+  -V, --version  output the version number
+  -h, --help     display help`
+
+const [command, ...args] = process.argv.slice(2)
+
+if (command === 'start') {
+  process.argv = [process.argv[0], process.argv[1], ...args]
+  require('./embetty-start')
+} else if (command === '-V' || command === '--version') {
+  console.log(version)
+} else {
+  console.log(USAGE)
+  process.exitCode =
+    command === undefined || command === '-h' || command === '--help' ? 0 : 1
+}
