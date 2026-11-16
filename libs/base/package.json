@@ -15,6 +15,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
+    "@embetty/types": "workspace:^",
     "axios": "^1.21.0",
     "cheerio": "1.0.0-rc.12",
     "content-type": "^1.0.5",
@@ -27,7 +28,6 @@
   "devDependencies": {
     "@embetty/jest-config": "workspace:^",
     "@embetty/tsconfig": "workspace:*",
-    "@embetty/types": "workspace:^",
     "@types/content-type": "^1.1.8",
     "@types/debug": "^4.1.12",
     "@types/jest": "^29.5.12",
