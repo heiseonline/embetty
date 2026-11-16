@@ -137,6 +137,7 @@ export function assertAllowedTarget(
 export function guardedLookup(
   isAllowedAddress: AddressPolicy,
   resolve: Resolver = resolveAll,
+  trustedHosts: ReadonlySet<string> = new Set(),
 ): LookupFunction {
   const check = async (
     hostname: string,
@@ -144,7 +145,9 @@ export function guardedLookup(
   ): Promise<[LookupAddress, ...LookupAddress[]]> => {
     const wanted = { IPv4: 4, IPv6: 6 } as const
     const addresses = await resolve(hostname)
-    const forbidden = addresses.find((address) => !isAllowedAddress(address))
+    const forbidden = trustedHosts.has(hostname.toLowerCase())
+      ? undefined
+      : addresses.find((address) => !isAllowedAddress(address))
 
     if (forbidden !== undefined) {
       throw new ForbiddenTargetError(hostname, `resolves to ${forbidden}`)
@@ -211,6 +214,12 @@ interface Exchange {
 export interface GuardedFetchOptions {
   isAllowedAddress?: AddressPolicy
   resolve?: Resolver
+  /**
+   * Hostnames that may resolve to addresses the policy forbids, e.g. own
+   * sites that split DNS resolves to internal addresses. Exact names only;
+   * every redirect hop is still checked on its own.
+   */
+  trustedHosts?: Iterable<string>
 }
 
 /**
@@ -221,8 +230,13 @@ export interface GuardedFetchOptions {
 export function createGuardedFetch({
   isAllowedAddress = isPublicAddress,
   resolve = resolveAll,
+  trustedHosts = [],
 }: GuardedFetchOptions = {}): GuardedFetch {
-  const lookup = guardedLookup(isAllowedAddress, resolve)
+  const lookup = guardedLookup(
+    isAllowedAddress,
+    resolve,
+    new Set(Array.from(trustedHosts, (host) => host.toLowerCase())),
+  )
   // Own agents: the global ones may be set up to use a proxy, which would
   // make the lookup check the proxy instead of the target.
   const agents = {

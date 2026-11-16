@@ -220,3 +220,18 @@ describe(`${Embetty.name}.createCache`, () => {
     expect(() => Embetty.createCache()).toThrow('EMBETTY_CACHE_TTL')
   })
 })
+
+describe(`${Embetty.name}.trustedHosts`, () => {
+  afterEach(() => {
+    delete process.env.EMBETTY_TRUSTED_HOSTS
+  })
+
+  it('reads EMBETTY_TRUSTED_HOSTS', () => {
+    process.env.EMBETTY_TRUSTED_HOSTS = ' www.heise.de, WWW.Techstage.de ,,'
+    expect(Embetty.trustedHosts()).toEqual(['www.heise.de', 'www.techstage.de'])
+  })
+
+  it('trusts no host by default', () => {
+    expect(Embetty.trustedHosts()).toEqual([])
+  })
+})

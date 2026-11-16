@@ -47,7 +47,9 @@ export class Embetty {
 
   constructor(
     cache: EmbettyCache = Embetty.createCache(),
-    fetch: GuardedFetch = createGuardedFetch(),
+    fetch: GuardedFetch = createGuardedFetch({
+      trustedHosts: Embetty.trustedHosts(),
+    }),
   ) {
     this.cache = cache
     this.request = cachedRequest(this.cache, fetch)
@@ -130,6 +132,14 @@ export class Embetty {
 
   static get cacheEngines(): Record<string, ClassOf<EmbettyCache>> {
     return { Redis, LRU }
+  }
+
+  /** EMBETTY_TRUSTED_HOSTS, comma-separated; see GuardedFetchOptions. */
+  static trustedHosts(): string[] {
+    return (process.env.EMBETTY_TRUSTED_HOSTS ?? '')
+      .split(',')
+      .map((host) => host.trim().toLowerCase())
+      .filter((host) => host.length > 0)
   }
 
   static createCache(): EmbettyCache {
