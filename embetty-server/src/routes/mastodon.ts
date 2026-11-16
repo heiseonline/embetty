@@ -75,7 +75,9 @@ router.get('/:statusUrl(*)/profile-image', async (_req, res, next) => {
     ).getProfileImage()
 
     if (!image) {
-      next()
+      // next() would fall through to the status route, which then rejects
+      // the URL with its suffix as malformed (400).
+      next(new NotFoundException())
       return
     }
 
@@ -92,7 +94,7 @@ router.get('/:statusUrl(*)/link-image', async (_req, res, next) => {
     const image = await (res.locals.mastodon as MastodonStatus).getLinkImage()
 
     if (!image) {
-      next()
+      next(new NotFoundException())
       return
     }
 
@@ -111,7 +113,7 @@ router.get('/:statusUrl(*)/images/:number', async (req, res, next) => {
     )
 
     if (!image) {
-      next()
+      next(new NotFoundException())
       return
     }
 

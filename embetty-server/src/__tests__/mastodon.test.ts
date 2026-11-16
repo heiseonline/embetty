@@ -30,6 +30,14 @@ describe('Mastodon', () => {
     expect(response.status).toBe(403)
   })
 
+  it('should respond with 404 for a missing link image', async () => {
+    // A status on mastodon.social without a link preview (card: null).
+    const response = await get(
+      '/mastodon/https://mastodon.social/@Mastodon/117156549508722805/link-image',
+    )
+    expect(response.status).toBe(404)
+  })
+
   describe('internal targets', () => {
     let server: Server
     let port: number
