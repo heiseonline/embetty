@@ -379,4 +379,50 @@ describe('createGuardedFetch', () => {
 
     expect(await response.text()).toBe('a'.repeat(1024))
   })
+
+  describe('trusted hosts', () => {
+    it('may resolve to addresses the policy forbids', async () => {
+      const fetch = createGuardedFetch({
+        resolve: resolveTo('127.0.0.1'),
+        trustedHosts: ['Own.Test'],
+      })
+
+      const response = await fetch(`http://own.test:${server.port}/`)
+
+      expect(await response.text()).toBe('ok')
+    })
+
+    it('do not extend to other hosts', async () => {
+      const fetch = createGuardedFetch({
+        resolve: resolveTo('127.0.0.1'),
+        trustedHosts: ['own.test'],
+      })
+
+      await expect(
+        fetch(`http://sub.own.test:${server.port}/`),
+      ).rejects.toThrow(ForbiddenTargetError)
+    })
+
+    it('cannot redirect to untrusted internal targets', async () => {
+      handler = (req, res) => {
+        if (req.headers.host?.startsWith('own.test')) {
+          res
+            .writeHead(302, {
+              Location: `http://internal.test:${server.port}/`,
+            })
+            .end()
+        } else {
+          res.end('internal')
+        }
+      }
+      const fetch = createGuardedFetch({
+        resolve: resolveTo('127.0.0.1'),
+        trustedHosts: ['own.test'],
+      })
+
+      await expect(fetch(`http://own.test:${server.port}/`)).rejects.toThrow(
+        ForbiddenTargetError,
+      )
+    })
+  })
 })
