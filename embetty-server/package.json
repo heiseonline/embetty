@@ -8,8 +8,8 @@
     "embetty": "bin/embetty",
     "embetty-start": "bin/embetty-start"
   },
-  "engine": {
-    "node": ">=16"
+  "engines": {
+    "node": ">=24"
   },
   "scripts": {
     "start": "./bin/www",

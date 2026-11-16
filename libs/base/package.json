@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public",

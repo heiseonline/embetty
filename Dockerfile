@@ -1,9 +1,11 @@
-ARG NODE_IMAGE=node:24.22.1-alpine
+ARG NODE_IMAGE=node:26-alpine
 
 FROM ${NODE_IMAGE} AS builder
 WORKDIR /build
 COPY . .
-RUN corepack enable \
+# Node.js 25+ no longer ships corepack.
+RUN npm install --global corepack@0.36.0 \
+  && corepack enable \
   && pnpm i --frozen-lockfile \
   && pnpm build \
   && pnpm --filter server --prod deploy .target
