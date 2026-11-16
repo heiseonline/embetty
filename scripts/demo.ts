@@ -3,7 +3,8 @@
 // on changes. The server reads embetty.js on every request, so a reload
 // picks up the new build.
 // Server settings such as TWITTER_BEARER_TOKEN come from embetty-server/.env,
-// the same file `bun run dev` in embetty-server reads.
+// the same file `bun run dev` in embetty-server reads. The cache is always the
+// in-memory one, so the demo needs no Redis.
 import { spawn } from 'bun'
 import { createServer, IncomingMessage, ServerResponse } from 'node:http'
 import path from 'node:path'

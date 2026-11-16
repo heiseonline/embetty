@@ -10,7 +10,7 @@
     "bump": "changeset version && bun install",
     "release": "bun run build && bun scripts/publish.ts",
     "typecheck": "bun check -b",
-    "demo": "bun run --filter \"@embetty/base...\" build && bun --env-file=embetty-server/.env scripts/demo.ts"
+    "demo": "bun run --filter \"@embetty/base...\" build && EMBETTY_CACHE=lru:// bun --env-file=embetty-server/.env scripts/demo.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
