@@ -1,11 +1,15 @@
 import { EmbettyTweet, TweetData, User } from '@embetty/types'
 import { observable, webcomponent } from '../decorators'
 import { Embed } from '../embed'
-import { each, markup, raw, when } from '../html'
+import { each, Html, markup, raw, safeUrl, when } from '../html'
 import { height, parseHostname } from '../util'
 import CSS from './tweet.css'
 
 const HEIGHT_OFFSET = 2
+
+// The API returns text with &, < and > escaped, and only those.
+const decodeTwitterEntities = (text: string) =>
+  text.replaceAll('&lt;', '<').replaceAll('&gt;', '>').replaceAll('&amp;', '&')
 
 @webcomponent('embetty-tweet')
 @observable()
@@ -21,7 +25,7 @@ export class Tweet extends Embed<EmbettyTweet> {
         </span>
       </header>
       <article>
-        <p>${raw(this.fullText)}</p>
+        <p>${this.fullText}</p>
         ${when(
           this.hasImages,
           () => markup`
@@ -46,7 +50,7 @@ export class Tweet extends Embed<EmbettyTweet> {
         ${when(
           this.link,
           (link) => markup`
-          <a href="${link.url}" target="_blank" rel="noopener" id="links">
+          <a href="${safeUrl(link.url)}" target="_blank" rel="noopener" id="links">
             <img src="${this.linkImageUrl}">
             <section id="link-body">
               <h3>${link.title}</h3>
@@ -179,24 +183,28 @@ export class Tweet extends Embed<EmbettyTweet> {
     return `${this.url}/link-image`
   }
 
-  get fullText() {
-    const text = this._data?.data.note_tweet
-      ? this._data?.data.note_tweet.text
-      : this._data?.data.text
+  // Hashtags and mentions become links; everything else stays text.
+  get fullText(): Html {
+    const data = this._data?.data
+    const text = decodeTwitterEntities(
+      data?.note_tweet?.text ?? data?.text ?? '',
+    )
 
-    return (text ?? '')
-      .replaceAll(/#([^\s-]+)/g, (hashTag: string, word: string) => {
-        return `<a href="https://twitter.com/hashtag/${word}">${hashTag}</a>`
-      })
-      .replaceAll(/@(\w+)/g, (name: string, word: string) => {
-        return `<a href="https://twitter.com/${word}">${name}</a>`
-      })
-    // .replace(/(https:\/\/\S+)$/, (link: string) => {
-    //   if (this.hasMedia && this.media[0].url === link) {
-    //     return ''
-    //   }
-    //   return link
-    // })
+    const parts: Html[] = []
+    let last = 0
+    for (const match of text.matchAll(/#([^\s-]+)|@(\w+)/g)) {
+      const [token, hashtag, user] = match
+      parts.push(markup`${text.slice(last, match.index)}`)
+      parts.push(
+        hashtag === undefined
+          ? markup`<a href="https://twitter.com/${user}">${token}</a>`
+          : markup`<a href="https://twitter.com/hashtag/${hashtag}">${token}</a>`,
+      )
+      last = match.index + token.length
+    }
+    parts.push(markup`${text.slice(last)}`)
+
+    return each(parts, (part) => part)
   }
 
   get user(): User {
