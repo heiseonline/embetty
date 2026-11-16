@@ -1,4 +1,3 @@
-import { EmbettyRequest } from './embed'
 import { Video } from './video'
 
 export type FacebookVideoData = never
@@ -7,11 +6,9 @@ export class FacebookVideo extends Video<
   FacebookVideoData,
   { canonicalUrl: string }
 > {
-  get _requestOptions(): EmbettyRequest {
-    return {
-      url: `https://www.facebook.com/${this.id}`,
-      responseType: 'text',
-    }
+  // The player only needs the canonical URL; the page itself is of no use.
+  get _requestOptions(): undefined {
+    return undefined
   }
 
   get type() {
@@ -19,7 +16,7 @@ export class FacebookVideo extends Video<
   }
 
   get canonicalUrl() {
-    return this._requestOptions.url
+    return `https://www.facebook.com/${this.id}`
   }
 
   get posterImageUrl() {

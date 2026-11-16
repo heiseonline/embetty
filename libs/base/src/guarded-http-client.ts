@@ -18,6 +18,8 @@ export interface GuardedRequestInit {
   signal?: AbortSignal
   /** Covers the whole exchange including the body, in milliseconds. */
   timeout?: number
+  /** Lowers the response size limit (10 MiB). */
+  maxBytes?: number
 }
 
 /**
@@ -227,6 +229,7 @@ export function createGuardedFetch({
     url: URL,
     headers: Readonly<Record<string, string>>,
     signal: AbortSignal,
+    limit: number,
   ): Promise<Exchange> =>
     new Promise((resolve, reject) => {
       const secure = url.protocol === 'https:'
@@ -247,10 +250,9 @@ export function createGuardedFetch({
 
       request.on('error', fail)
       request.on('response', (message) => {
-        const tooLarge = () =>
-          fail(new ResponseTooLargeError(url.href, MAX_CONTENT_LENGTH))
+        const tooLarge = () => fail(new ResponseTooLargeError(url.href, limit))
 
-        if (Number(message.headers['content-length']) > MAX_CONTENT_LENGTH) {
+        if (Number(message.headers['content-length']) > limit) {
           tooLarge()
           return
         }
@@ -259,7 +261,7 @@ export function createGuardedFetch({
         let length = 0
         message.on('data', (chunk: Buffer) => {
           length += chunk.length
-          if (length > MAX_CONTENT_LENGTH) {
+          if (length > limit) {
             tooLarge()
           } else {
             chunks.push(chunk)
@@ -275,7 +277,8 @@ export function createGuardedFetch({
       request.end()
     })
 
-  return async (input, { headers = {}, signal, timeout } = {}) => {
+  return async (input, { headers = {}, signal, timeout, maxBytes } = {}) => {
+    const limit = Math.min(maxBytes ?? MAX_CONTENT_LENGTH, MAX_CONTENT_LENGTH)
     const deadline = AbortSignal.timeout(timeout ?? DEFAULT_TIMEOUT_MS)
     const combined = signal ? AbortSignal.any([signal, deadline]) : deadline
     combined.throwIfAborted()
@@ -285,7 +288,12 @@ export function createGuardedFetch({
 
     for (let redirects = 0; ; redirects++) {
       assertAllowedTarget(url, isAllowedAddress)
-      const { message, body } = await exchange(url, requestHeaders, combined)
+      const { message, body } = await exchange(
+        url,
+        requestHeaders,
+        combined,
+        limit,
+      )
       const status = message.statusCode ?? 0
       const { location } = message.headers
 

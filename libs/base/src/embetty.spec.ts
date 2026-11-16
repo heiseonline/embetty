@@ -19,7 +19,7 @@ describe(`${Embetty.name}#getImage`, () => {
     origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`
 
     embetty = new Embetty(
-      new LRU('lru://'),
+      new LRU('lru://', { ttl: 60 }),
       createGuardedFetch({
         isAllowedAddress: (address) => address === '127.0.0.1',
       }),
@@ -102,7 +102,7 @@ describe(`${Embetty.name}#get`, () => {
 
   const createEmbetty = () =>
     new Embetty(
-      new LRU('lru://'),
+      new LRU('lru://', { ttl: 60 }),
       createGuardedFetch({
         isAllowedAddress: (address) => address === '127.0.0.1',
       }),
@@ -152,5 +152,26 @@ describe(`${Embetty.name}#get`, () => {
     await expect(
       createEmbetty().get({ url: `${origin}/missing` }),
     ).rejects.toThrow('status code 404')
+  })
+
+  it('caches the same URL separately per response type', async () => {
+    const embetty = createEmbetty()
+
+    await embetty.get({ url: `${origin}/json` })
+    const text = await embetty.get<string>({
+      url: `${origin}/json`,
+      responseType: 'text',
+    })
+
+    expect(text?.data).toBe(JSON.stringify({ hello: 'world' }))
+  })
+
+  it('caches the same URL separately per query', async () => {
+    const embetty = createEmbetty()
+
+    await embetty.get({ url: `${origin}/json`, params: { a: '1' } })
+    await embetty.get({ url: `${origin}/json`, params: { a: '2' } })
+
+    expect(requests.map(({ query }) => query)).toEqual([{ a: '1' }, { a: '2' }])
   })
 })

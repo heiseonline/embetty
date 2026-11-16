@@ -357,4 +357,14 @@ describe('createGuardedFetch', () => {
 
     await expect(fetch(server.origin)).rejects.toThrow(ResponseTooLargeError)
   })
+
+  it('applies a lower size limit per request', async () => {
+    handler = (_req, res) => res.end(Buffer.alloc(2048))
+    const fetch = createGuardedFetch({ isAllowedAddress: onlyTestServer })
+
+    await expect(fetch(server.origin, { maxBytes: 1024 })).rejects.toThrow(
+      ResponseTooLargeError,
+    )
+    expect((await fetch(server.origin, { maxBytes: 4096 })).ok).toBe(true)
+  })
 })

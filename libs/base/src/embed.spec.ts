@@ -15,7 +15,7 @@ describe(`${Embed.name}`, () => {
   let embetty: Embetty
 
   beforeEach(() => {
-    embetty = new Embetty(new LRU('lru://'))
+    embetty = new Embetty(new LRU('lru://', { ttl: 60 }))
   })
 
   it('should be defined', () => {

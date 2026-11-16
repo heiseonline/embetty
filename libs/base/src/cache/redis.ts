@@ -1,12 +1,14 @@
 import IORedis from 'ioredis'
 import { deserialize, serialize } from 'v8'
-import { CacheEntry, EmbettyCache } from './cache'
+import { CacheEntry, CacheOptions, EmbettyCache } from './cache'
 
 export class Redis implements EmbettyCache {
   #redis: IORedis
+  #ttl: number
 
-  constructor(url?: string) {
+  constructor(url: string | undefined, { ttl }: CacheOptions) {
     this.#redis = url ? new IORedis(url) : new IORedis()
+    this.#ttl = ttl
   }
 
   async get<T>(key: string): Promise<CacheEntry<T> | undefined> {
@@ -19,9 +21,13 @@ export class Redis implements EmbettyCache {
     return deserialize(response) as CacheEntry<T>
   }
 
+  async disconnect(): Promise<void> {
+    await this.#redis.quit()
+  }
+
   async set(entry: CacheEntry): Promise<void> {
     const value = serialize(entry)
 
-    await this.#redis.set(entry.key, value)
+    await this.#redis.set(entry.key, value, 'EX', this.#ttl)
   }
 }

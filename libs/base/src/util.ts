@@ -20,8 +20,14 @@ export const hash = (object: object) => {
   return sha256.digest('base64').toString()
 }
 
-// Bumped to discard entries cached before outgoing requests were guarded.
-const CACHE_KEY_VERSION = 2
+// Bumped whenever cached entries must not be served anymore: 2 after
+// outgoing requests were guarded, 3 when the response type joined the key.
+const CACHE_KEY_VERSION = 3
 
-export const hashRequest = ({ url }: { url: string }) =>
-  hash({ url, version: CACHE_KEY_VERSION })
+export const hashRequest = ({
+  url,
+  responseType,
+}: {
+  url: string
+  responseType: string
+}) => hash({ url, responseType, version: CACHE_KEY_VERSION })

@@ -1,12 +1,8 @@
-import {
-  ForbiddenTargetError,
-  HttpStatusError,
-  UnsupportedContentTypeError,
-} from '@embetty/base'
 import express, { Express, NextFunction, Request, Response } from 'express'
 import helmet from 'helmet'
 import logger from 'morgan'
-import { HttpException, NotFoundException } from './exceptions'
+import { classify } from './errors'
+import { NotFoundException } from './exceptions'
 import { HttpStatus } from './http-status'
 import routes from './routes'
 
@@ -34,31 +30,15 @@ app.use((_req, _res, next) => {
   next(new NotFoundException())
 })
 
-function statusCodeOf(err: unknown): number {
-  if (err instanceof HttpException) {
-    return err.statusCode
-  }
+app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {
+  const { status, upstream } = classify(err)
 
-  if (err instanceof ForbiddenTargetError) {
-    return HttpStatus.FORBIDDEN
-  }
-  // Unknown upstream IDs (a deleted video, ...) are unknown here as well.
-  if (err instanceof HttpStatusError && err.status === HttpStatus.NOT_FOUND) {
-    return HttpStatus.NOT_FOUND
-  }
-  if (err instanceof UnsupportedContentTypeError) {
-    return HttpStatus.BAD_GATEWAY
-  }
-
-  return HttpStatus.INTERNAL_SERVER_ERROR
-}
-
-app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-  const statusCode = statusCodeOf(err)
-
-  if (statusCode >= HttpStatus.INTERNAL_SERVER_ERROR) {
+  if (upstream) {
+    const reason = err instanceof Error ? `${err.name}: ${err.message}` : err
+    console.warn(`${req.method} ${req.originalUrl} -> ${status}:`, reason)
+  } else if (status >= HttpStatus.INTERNAL_SERVER_ERROR) {
     console.error(err)
   }
 
-  res.sendStatus(statusCode)
+  res.sendStatus(status)
 })

@@ -6,10 +6,14 @@ export interface CacheEntry<T = unknown> {
   status: number
 }
 
+export interface CacheOptions {
+  /** Seconds after which an entry is fetched again. */
+  ttl: number
+}
+
 export interface EmbettyCache {
   get<T>(
     key: string,
-    // options: { isBinary?: boolean },
   ): Promise<CacheEntry<T> | undefined> | CacheEntry<T> | undefined
 
   set<T>(entry: CacheEntry<T>): Promise<void> | void

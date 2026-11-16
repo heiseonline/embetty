@@ -35,6 +35,9 @@ export class UnsupportedContentTypeError extends Error {
   }
 }
 
+// Deleted posts disappear from embeds within a day.
+const DEFAULT_CACHE_TTL = 86_400
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ClassOf<T> = new (...args: any[]) => T
 
@@ -130,7 +133,8 @@ export class Embetty {
   }
 
   static createCache(): EmbettyCache {
-    const dsn = process.env.EMBETTY_CACHE || 'lru://max:100'
+    const dsn = process.env.EMBETTY_CACHE || 'lru://'
+    const ttl = Number(process.env.EMBETTY_CACHE_TTL) || DEFAULT_CACHE_TTL
     const wantedEngine = dsn.match(/(\w+):\/\//)?.[1]
 
     const Engine = Object.keys(Embetty.cacheEngines)
@@ -142,6 +146,6 @@ export class Embetty {
     }
 
     debug(`Using ${Engine.name} cache ...`)
-    return new Engine(dsn)
+    return new Engine(dsn, { ttl })
   }
 }

@@ -37,7 +37,8 @@ export abstract class Embed<T, U = T> {
       return
     }
 
-    debug(`request: ${JSON.stringify(this._requestOptions)}`)
+    // Only the URL: the options may carry credentials (Twitter token).
+    debug(`request: ${this._requestOptions.url}`)
 
     this._response = await this.embetty.get<T>({
       timeout: this.requestTimeout,
